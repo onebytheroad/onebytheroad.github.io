@@ -24,7 +24,7 @@ languages:
                 subtitle: Example description  # 侧边栏副标题
     zh-cn:
         languageName: 中文
-        title: 演示站点
+        title: 雫的小站
         weight: 2
         params:
             sidebar:
@@ -77,11 +77,11 @@ params:
     # 侧边栏设置
     sidebar:
         emoji: 🍥                      # 表情图标
-        subtitle: Lorem ipsum dolor sit amet, consectetur adipiscing elit.  # 副标题
+        subtitle: 一蓑烟雨任平生  # 副标题
         avatar:
             enabled: true              # 是否显示头像
             local: true                # 是否使用本地图片
-            src: img/avatar.png        # 头像路径
+            src: /img/avatar.png        # 头像路径
 
     # 文章设置
     article:
