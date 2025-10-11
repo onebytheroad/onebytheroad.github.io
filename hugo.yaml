@@ -17,18 +17,18 @@ hasCJKLanguage: false
 languages:
     en:
         languageName: English           # 语言显示名称
-        title: Example Site             # 该语言下的网站标题
+        title: na's little place             # 该语言下的网站标题
         weight: 1                       # 权重（排序用）
         params:
             sidebar:
-                subtitle: Example description  # 侧边栏副标题
+                subtitle: Why must we have known each other before when we meet  # 侧边栏副标题
     zh-cn:
         languageName: 中文
         title: 雫的小站
         weight: 2
         params:
             sidebar:
-                subtitle: 演示说明
+                subtitle: 一蓑烟雨任平生
     ar:
         languageName: عربي
         languagedirection: rtl          # 文本方向（阿拉伯语从右到左）
@@ -66,7 +66,7 @@ params:
 
     # 页脚设置
     footer:
-        since: 2020                    # 起始年份
+        since: 2024                    # 起始年份
         customText:                    # 自定义文本
 
     # 日期格式
