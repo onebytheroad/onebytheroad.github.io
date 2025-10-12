@@ -49,3 +49,5 @@ SHA=256哈希无法反推出原始数据
 
 一道图片lsb隐写题，利用stegsolve看RGB编码解出  
 ![photo by zoo](zoo.jpg)  
+  
+最后一道是docx，利用010查询编码发现是504b0304，改格式解压得出  
