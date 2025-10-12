@@ -1,12 +1,11 @@
 ---
-title: Chinese Test
-description: 这是一个副标题
-date: 2020-09-09
-slug: test-chinese
-image: helena-hertz-wWZzXlDpMog-unsplash.jpg
+title: 第一周总结
+description: 这没有标题
+date: 2025-10-12
+slug: first-week
+image: gui.png
 categories:
-    - Test
-    - 测试
+    - 周结
 ---
 
 # 第一周学习总结（未完）
