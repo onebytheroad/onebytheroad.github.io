@@ -1,31 +1,13 @@
-# 删除有问题的文件
-rm .gitattributes
-
-# 创建正确的 .gitattributes 文件
-cat > .gitattributes << 'EOF'
 * text=auto
-
 *.html text eol=lf
 *.css text eol=lf
 *.js text eol=lf
 *.scss text eol=lf
 *.xml text eol=lf
 *.md text eol=lf
-*.json text eol=lf
 *.yaml text eol=lf
 *.yml text eol=lf
-*.txt text eol=lf
-
-*.gitignore text eol=lf
-*.gitattributes text eol=lf
-
 *.png binary
 *.jpg binary
-*.jpeg binary
 *.gif binary
 *.ico binary
-*.woff binary
-*.woff2 binary
-*.ttf binary
-*.eot binary
-EOF
