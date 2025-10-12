@@ -143,6 +143,8 @@ params:
     colorScheme:
         toggle: true                   # 是否显示切换按钮
         default: auto                  # 默认模式：auto, light, dark
+        efaultAppearance: "dark"      # 默认浅色
+        autoSwitchAppearance: true    # 根据系统偏好自动切换
 
     # 图片处理
     imageProcessing:

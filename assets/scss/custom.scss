@@ -63,6 +63,15 @@
 
 
 
+  //---------------------------------------------------
+/* 暗色模式背景 */
+[data-scheme="dark"] body {
+    position: relative;
+    background-image: url('img/bj.jpg'); /* 你的暗色背景图片 */
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: 50% center;
+}
   //------------------------------------------------
 :root {
   --accent-color: #255F38;

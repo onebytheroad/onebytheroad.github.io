@@ -1,0 +1,23 @@
+# 为所有文本文件设置自动行尾符处理
+* text=auto
+
+# 明确指定这些文件类型使用 LF
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.scss text eol=lf
+*.xml text eol=lf
+
+# 源代码文件使用 LF
+*.md text eol=lf
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+
+# 二进制文件不转换
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary

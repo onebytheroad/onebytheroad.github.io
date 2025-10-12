@@ -27,3 +27,9 @@
         {{ partial "footer/include.html" . }}
     </body>
 </html>
+
+<head>
+    <!-- 其他代码 -->
+    {{ $styles := resources.Get "css/custom.css" | minify }}
+    <link rel="stylesheet" href="{{ $styles.Permalink }}">
+</head>
