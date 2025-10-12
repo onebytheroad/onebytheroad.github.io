@@ -95,54 +95,6 @@
     &gt;Typlog&lt;/a&gt;&lt;/p&gt;
 </description>
         </item>
-        <item>
-        <title>Chinese Test</title>
-        <link>http://localhost:1313/p/test-chinese/</link>
-        <pubDate>Wed, 09 Sep 2020 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/p/test-chinese/</guid>
-        <description>&lt;img src="http://localhost:1313/helena-hertz-wWZzXlDpMog-unsplash.jpg" alt="Featured image of post Chinese Test" /&gt;&lt;h1 id=&#34;第一周学习总结未完&#34;&gt;第一周学习总结（未完）
-&lt;/h1&gt;&lt;p&gt;首先是在ctfplus做的题&lt;br&gt;
-做了一部分misc和一部分re的题&lt;br&gt;
-先说re&lt;br&gt;
-有两到sign题&lt;br&gt;
-sign1 在ida中反编译在代码中直接能看到flag&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/p/test-chinese/sign1.jpg&#34;
-	width=&#34;1920&#34;
-	height=&#34;1440&#34;
-	srcset=&#34;http://localhost:1313/p/test-chinese/sign1_hu_37601ce965eb36ad.jpg 480w, http://localhost:1313/p/test-chinese/sign1_hu_a84a24b916e6dc2b.jpg 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;photo by sign1&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;133&#34;
-		data-flex-basis=&#34;320px&#34;
-	
-&gt;&lt;br&gt;
-sign2 根据运行提示和代码分析，flag应该是通过ROT47方式加密的&lt;br&gt;
-ROT47：凯撒加密变种，通过映射ASCII 字符集进行移位加密。可以将数字，字母，符号全部混合互换&lt;br&gt;
-加密解密算法完全相同&lt;br&gt;
-此题已知flag开头为&amp;quot;0xGame&amp;quot;,将问题喂给ai，通过python代码暴力破解可以得到答案&lt;br&gt;
-不过此题中还进行了一个变换&lt;br&gt;
-其中decrypt是一个解密函数，并不是常规rot47解密，此题是一个rot47的变种&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/p/test-chinese/sign2.jpg&#34;
-	width=&#34;1920&#34;
-	height=&#34;1440&#34;
-	srcset=&#34;http://localhost:1313/p/test-chinese/sign2_hu_cd381d4745b5aa3a.jpg 480w, http://localhost:1313/p/test-chinese/sign2_hu_810c538bab573e46.jpg 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;photo by sing2&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;133&#34;
-		data-flex-basis=&#34;320px&#34;
-	
-&gt;&lt;/p&gt;
-</description>
-        </item>
         
     </channel>
 </rss>

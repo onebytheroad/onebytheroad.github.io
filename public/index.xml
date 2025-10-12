@@ -7,7 +7,154 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Example Person</copyright>
-        <lastBuildDate>Thu, 09 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 12 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>第一周总结</title>
+        <link>http://localhost:1313/p/first-week/</link>
+        <pubDate>Sun, 12 Oct 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/first-week/</guid>
+        <description>&lt;img src="http://localhost:1313/p/first-week/gui.png" alt="Featured image of post 第一周总结" /&gt;&lt;h1 id=&#34;第一周学习总结未完&#34;&gt;第一周学习总结（未完）
+&lt;/h1&gt;&lt;p&gt;首先是在ctfplus做的题&lt;br&gt;
+做了一部分misc和一部分re的题&lt;br&gt;
+先说re&lt;br&gt;
+有两道sign题&lt;br&gt;
+sign1 在ida中反编译在代码中直接能看到flag&lt;br&gt;
+&lt;img src=&#34;http://localhost:1313/p/first-week/sign1.jpg&#34;
+	width=&#34;1920&#34;
+	height=&#34;1440&#34;
+	srcset=&#34;http://localhost:1313/p/first-week/sign1_hu_37601ce965eb36ad.jpg 480w, http://localhost:1313/p/first-week/sign1_hu_a84a24b916e6dc2b.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;photo by sign1&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt;&lt;br&gt;
+sign2 根据运行提示和代码分析，flag应该是通过ROT47方式加密的&lt;br&gt;
+ROT47：凯撒加密变种，通过映射ASCII 字符集进行移位加密。可以将数字，字母，符号全部混合互换&lt;br&gt;
+加密解密算法完全相同&lt;br&gt;
+此题已知flag开头为&amp;quot;0xGame&amp;quot;,将问题喂给ai，通过python代码暴力破解可以得到答案&lt;br&gt;
+不过此题中还进行了一个变换&lt;br&gt;
+其中decrypt是一个解密函数，并不是常规rot47解密，此题是一个rot47的变种&lt;br&gt;
+&lt;img src=&#34;http://localhost:1313/p/first-week/sign2.jpg&#34;
+	width=&#34;1920&#34;
+	height=&#34;1440&#34;
+	srcset=&#34;http://localhost:1313/p/first-week/sign2_hu_cd381d4745b5aa3a.jpg 480w, http://localhost:1313/p/first-week/sign2_hu_810c538bab573e46.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;photo by sing2&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;一道BaseUPX的题&lt;br&gt;
+用软件检查exe发现是UPX壳，然后脱壳之后再查看反编译代码&lt;br&gt;
+根据代码中base64_encode的提示，找到base64的编码，再利用ai解码&lt;br&gt;
+&lt;img src=&#34;http://localhost:1313/p/first-week/UPX.jpg&#34;
+	width=&#34;1920&#34;
+	height=&#34;1440&#34;
+	srcset=&#34;http://localhost:1313/p/first-week/UPX_hu_3d842f38836e3492.jpg 480w, http://localhost:1313/p/first-week/UPX_hu_8beec0cfabdf313.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;photo by upx&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;一道睡觉zzz的题&lt;br&gt;
+此题的核心是sha-256，ASCII字符，长度验证，%8x格式说明符&lt;br&gt;
+根据代码提示，format error和wrong的区别，先检查格式问题，再排查其他&lt;br&gt;
+然后是sscanf(s1, &amp;ldquo;0xGame{%8x%8x%8x%8x}&amp;rdquo;, &amp;amp;x1, &amp;amp;x2, &amp;amp;x3, &amp;amp;x4)这一段说明是4个8位十六进制数&lt;br&gt;
+SHA=256哈希无法反推出原始数据&lt;br&gt;
+最后就是编写代码使得4个十六进制数满足代码中所给出的方程，导入ai可得&lt;br&gt;
+但本题还有一个问题，已在程序中获得正确提示的答案提交不对&lt;br&gt;
+&lt;img src=&#34;http://localhost:1313/p/first-week/zzz.jpg&#34;
+	width=&#34;1920&#34;
+	height=&#34;1440&#34;
+	srcset=&#34;http://localhost:1313/p/first-week/zzz_hu_de28aee1690e7fd8.jpg 480w, http://localhost:1313/p/first-week/zzz_hu_52274f607b335563.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;photo by zzz&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt; &lt;img src=&#34;http://localhost:1313/p/first-week/zzz1.jpg&#34;
+	width=&#34;1920&#34;
+	height=&#34;1440&#34;
+	srcset=&#34;http://localhost:1313/p/first-week/zzz1_hu_b246fa45b4e766be.jpg 480w, http://localhost:1313/p/first-week/zzz1_hu_9e672309b89189c0.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;photo by zzz1&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;一道简单异或题&lt;br&gt;
+找到str函数对应代码，导入ai进行编译可得&lt;br&gt;
+&lt;img src=&#34;http://localhost:1313/p/first-week/xor.jpg&#34;
+	width=&#34;1920&#34;
+	height=&#34;1440&#34;
+	srcset=&#34;http://localhost:1313/p/first-week/xor_hu_16637695bcc5f778.jpg 480w, http://localhost:1313/p/first-week/xor_hu_c3ce590a086b5aed.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;photo by xor&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;一道dydebug复杂加密问题，四种加密方式，也是利用ai解出，具体图片未保存&lt;/p&gt;
+&lt;p&gt;然后是misc方向的题目&lt;br&gt;
+一道base64编码和凯撒加密的题目&lt;br&gt;
+&lt;img src=&#34;http://localhost:1313/p/first-week/kaisa.jpg&#34;
+	width=&#34;1920&#34;
+	height=&#34;1440&#34;
+	srcset=&#34;http://localhost:1313/p/first-week/kaisa_hu_51e2bf8e93aa2725.jpg 480w, http://localhost:1313/p/first-week/kaisa_hu_c823bf04f804aa53.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;photo by kaisa&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;一道图片lsb隐写题，利用stegsolve看RGB编码解出&lt;br&gt;
+&lt;img src=&#34;http://localhost:1313/p/first-week/zoo.jpg&#34;
+	width=&#34;1920&#34;
+	height=&#34;1440&#34;
+	srcset=&#34;http://localhost:1313/p/first-week/zoo_hu_bd49ae42df560854.jpg 480w, http://localhost:1313/p/first-week/zoo_hu_f229b0643e4a61b.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;photo by zoo&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>人生总有第一次</title>
         <link>http://localhost:1313/p/first-word/</link>
         <pubDate>Thu, 09 Oct 2025 00:00:00 +0000</pubDate>
@@ -179,54 +326,6 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;相册语法来自 &lt;a class=&#34;link&#34; href=&#34;https://typlog.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Typlog&lt;/a&gt;&lt;/p&gt;
-</description>
-        </item>
-        <item>
-        <title>Chinese Test</title>
-        <link>http://localhost:1313/p/test-chinese/</link>
-        <pubDate>Wed, 09 Sep 2020 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/p/test-chinese/</guid>
-        <description>&lt;img src="http://localhost:1313/helena-hertz-wWZzXlDpMog-unsplash.jpg" alt="Featured image of post Chinese Test" /&gt;&lt;h1 id=&#34;第一周学习总结未完&#34;&gt;第一周学习总结（未完）
-&lt;/h1&gt;&lt;p&gt;首先是在ctfplus做的题&lt;br&gt;
-做了一部分misc和一部分re的题&lt;br&gt;
-先说re&lt;br&gt;
-有两到sign题&lt;br&gt;
-sign1 在ida中反编译在代码中直接能看到flag&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/p/test-chinese/sign1.jpg&#34;
-	width=&#34;1920&#34;
-	height=&#34;1440&#34;
-	srcset=&#34;http://localhost:1313/p/test-chinese/sign1_hu_37601ce965eb36ad.jpg 480w, http://localhost:1313/p/test-chinese/sign1_hu_a84a24b916e6dc2b.jpg 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;photo by sign1&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;133&#34;
-		data-flex-basis=&#34;320px&#34;
-	
-&gt;&lt;br&gt;
-sign2 根据运行提示和代码分析，flag应该是通过ROT47方式加密的&lt;br&gt;
-ROT47：凯撒加密变种，通过映射ASCII 字符集进行移位加密。可以将数字，字母，符号全部混合互换&lt;br&gt;
-加密解密算法完全相同&lt;br&gt;
-此题已知flag开头为&amp;quot;0xGame&amp;quot;,将问题喂给ai，通过python代码暴力破解可以得到答案&lt;br&gt;
-不过此题中还进行了一个变换&lt;br&gt;
-其中decrypt是一个解密函数，并不是常规rot47解密，此题是一个rot47的变种&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/p/test-chinese/sign2.jpg&#34;
-	width=&#34;1920&#34;
-	height=&#34;1440&#34;
-	srcset=&#34;http://localhost:1313/p/test-chinese/sign2_hu_cd381d4745b5aa3a.jpg 480w, http://localhost:1313/p/test-chinese/sign2_hu_810c538bab573e46.jpg 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;photo by sing2&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;133&#34;
-		data-flex-basis=&#34;320px&#34;
-	
-&gt;&lt;/p&gt;
 </description>
         </item>
         <item>
