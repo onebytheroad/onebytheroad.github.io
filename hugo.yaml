@@ -28,7 +28,7 @@ languages:
         weight: 2
         params:
             sidebar:
-                subtitle: 一蓑烟雨任平生
+                subtitle: 谁怕，一蓑烟雨任平生！
     ar:
         languageName: عربي
         languagedirection: rtl          # 文本方向（阿拉伯语从右到左）
