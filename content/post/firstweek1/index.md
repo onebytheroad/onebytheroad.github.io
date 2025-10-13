@@ -51,3 +51,10 @@ SHA=256哈希无法反推出原始数据
 ![photo by zoo](zoo.jpg)  
   
 最后一道是docx，利用010查询编码发现是504b0304，改格式解压得出  
+  
+  
+
+
+接着是学习的linux基本命令，询问ai之后在系统中试过抄写命令  
+![photo by linux](linux1.jpg)  ![photo by linux1](linux2.jpg)  ![photo by linux2](linux3.jpg)  
+

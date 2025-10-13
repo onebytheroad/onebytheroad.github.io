@@ -77,7 +77,7 @@ params:
     # 侧边栏设置
     sidebar:
         emoji: 🍥                      # 表情图标
-        subtitle: 一蓑烟雨任平生  # 副标题
+        subtitle:                      # 副标题
         avatar:
             enabled: true              # 是否显示头像
             local: true                # 是否使用本地图片
@@ -137,7 +137,7 @@ params:
         opengraph:
             enabled: false             # 是否启用
             local: false               # 是否使用本地图片
-            src:                       # 图片路径
+            src: /img/bj.png           # 图片路径
 
     # 颜色方案
     colorScheme:
