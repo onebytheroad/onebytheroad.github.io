@@ -28,7 +28,7 @@ languages:
         weight: 2
         params:
             sidebar:
-                subtitle: 谁怕，一蓑烟雨任平生！
+                subtitle: 我是木讷的树，你是自由的风。  终究树成枯木，不闻风止何处。
     ar:
         languageName: عربي
         languagedirection: rtl          # 文本方向（阿拉伯语从右到左）
