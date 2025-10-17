@@ -28,7 +28,7 @@ languages:
         weight: 2
         params:
             sidebar:
-                subtitle: 我是木讷的树，<br>你是自由的风。  
+                subtitle: Don't leave me  
     ar:
         languageName: عربي
         languagedirection: rtl          # 文本方向（阿拉伯语从右到左）
