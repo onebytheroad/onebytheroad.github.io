@@ -27,8 +27,8 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.123.8'
-          # extended: true       
+          hugo-version: 'latest'
+          # extended: true       # 若主题需扩展版，取消注释
 
       - name: Build with Hugo
         run: hugo --minify --gc   # 生成优化后的静态文件
