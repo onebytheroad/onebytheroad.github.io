@@ -1,6 +1,6 @@
 ---
 title: 人生总有第一次
-description: 这是一个副标题
+description: 他朝若是同淋雪，此生也算共白头
 date: 2025-10-09
 slug: first-word
 image: 121.jpg

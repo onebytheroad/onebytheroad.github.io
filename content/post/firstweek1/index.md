@@ -1,6 +1,6 @@
 ---
 title: 第一周总结
-description: 这没有标题
+description: 我是木讷的树，你是自由的风
 date: 2025-10-12
 slug: first-week
 image: gui.png

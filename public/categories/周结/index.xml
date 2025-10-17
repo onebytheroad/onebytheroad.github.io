@@ -153,6 +153,47 @@ SHA=256哈希无法反推出原始数据&lt;br&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;最后一道是docx，利用010查询编码发现是504b0304，改格式解压得出&lt;/p&gt;
+&lt;p&gt;接着是学习的linux基本命令，询问ai之后在系统中试过抄写命令&lt;br&gt;
+&lt;img src=&#34;http://localhost:1313/p/first-week/linux1.jpg&#34;
+	width=&#34;1440&#34;
+	height=&#34;1920&#34;
+	srcset=&#34;http://localhost:1313/p/first-week/linux1_hu_23ae6ac9259b6100.jpg 480w, http://localhost:1313/p/first-week/linux1_hu_cf61ba3c9c66e9.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;photo by linux&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;75&#34;
+		data-flex-basis=&#34;180px&#34;
+	
+&gt;  &lt;img src=&#34;http://localhost:1313/p/first-week/linux2.jpg&#34;
+	width=&#34;1440&#34;
+	height=&#34;1920&#34;
+	srcset=&#34;http://localhost:1313/p/first-week/linux2_hu_afa2093206e9b63.jpg 480w, http://localhost:1313/p/first-week/linux2_hu_8e5fbe76e0d9d8a9.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;photo by linux1&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;75&#34;
+		data-flex-basis=&#34;180px&#34;
+	
+&gt;  &lt;img src=&#34;http://localhost:1313/p/first-week/linux3.jpg&#34;
+	width=&#34;1536&#34;
+	height=&#34;2048&#34;
+	srcset=&#34;http://localhost:1313/p/first-week/linux3_hu_b7282d976f27a7ff.jpg 480w, http://localhost:1313/p/first-week/linux3_hu_83af5ed57161d449.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;photo by linux2&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;75&#34;
+		data-flex-basis=&#34;180px&#34;
+	
+&gt;&lt;/p&gt;
 </description>
         </item>
         

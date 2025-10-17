@@ -25,7 +25,7 @@ languages:
     zh-cn:
         languageName: 中文
         title: 雫的小站
-        weight: 2
+        weight: 
         params:
             sidebar:
                 subtitle: Don't leave me  
