@@ -9,3 +9,22 @@ colorScheme:
 
 # 隐藏切换按钮（可选）
 showThemeSwitcher: false
+
+# 菜单配置
+menu:
+  main:
+    - name: 主页
+      url: /
+      weight: 1
+    - name: 关于
+      url: /about/
+      weight: 2
+    - name: 归档
+      url: /archives/
+      weight: 3
+    - name: 搜索
+      url: /search/
+      weight: 4
+    - name: 链接
+      url: /links/
+      weight: 5

@@ -51,10 +51,15 @@ body::before {
 }
 
 /* 主标题 - 使用正确的class: site-name */
-.site-name {
-    color: #ffcc00 !important;  /* 更亮的金黄色 */
+.site-name,
+.sidebar .site-name,
+.sidebar header .site-name {
+    color: #ffd700 !important;  /* 金黄色文字 */
     font-weight: bold !important;
-    text-shadow: none !important;
+    text-shadow: 
+        0 0 10px rgba(255, 215, 0, 0.8),
+        0 0 20px rgba(255, 215, 0, 0.6),
+        0 0 30px rgba(255, 215, 0, 0.4) !important;  /* 金色描边效果 */
     font-size: 1.5em !important;
 }
 
