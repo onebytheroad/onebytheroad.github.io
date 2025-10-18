@@ -1,89 +1,88 @@
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // ========== 新增的强制设置代码 ==========
-    // 强制暗色模式
+// 立即执行，不等待DOMContentLoaded
+(function() {
+    // 强制暗色模式 - 立即执行
     document.documentElement.setAttribute('data-scheme', 'dark');
+    document.documentElement.style.setProperty('--body-background', 'transparent', 'important');
     localStorage.setItem('theme', 'dark');
     
-    // 强制背景图片
-    const style = document.createElement('style');
-    style.textContent = `
-        body::before {
-            content: '' !important;
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            width: 100% !important;
-            height: 100% !important;
-            background-image: url('/img/bj.jpg') !important;
-            background-size: cover !important;
-            background-position: center !important;
-            background-attachment: fixed !important;
-            background-repeat: no-repeat !important;
-            z-index: -9999 !important;
-        }
-        :root, :root[data-scheme="light"], :root[data-scheme="dark"] {
-            --body-background: transparent !important;
-        }
-        body {
-            background: transparent !important;
-        }
-    `;
-    document.head.appendChild(style);
-    console.log('强制暗色和背景图片已设置');
-    
-    // ========== 你原有的按钮代码 ==========
-    // 移除原按钮
-    const oldSwitcher = document.querySelector('.theme-switcher');
-    if (oldSwitcher) {
-        oldSwitcher.remove();
+    // 优化背景图片设置
+    if (!document.querySelector('#forced-bg-style')) {
+        const style = document.createElement('style');
+        style.id = 'forced-bg-style';
+        style.textContent = `
+            body::before {
+                content: '' !important;
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
+                background-image: url('/img/bj.jpg') !important;
+                background-size: cover !important;
+                background-position: center !important;
+                background-attachment: fixed !important;
+                background-repeat: no-repeat !important;
+                z-index: -9999 !important;
+            }
+            body { background: transparent !important; }
+        `;
+        document.head.appendChild(style);
     }
     
-    // 创建新按钮
-    const newSwitcher = document.createElement('div');
-    newSwitcher.className = 'theme-switcher';
-    newSwitcher.innerHTML = `
-        <button class="theme-switcher-btn" style="
-            position: fixed;
-            left: 20px;
-            bottom: 20px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: none;
-            background: var(--card-background);
-            color: var(--card-text-color-main);
-            cursor: pointer;
-            z-index: 1000;
-            box-shadow: var(--shadow-l2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-        ">🌙</button>
-    `;
+    // 延迟加载按钮代码，避免阻塞
+    setTimeout(initThemeButton, 100);
     
-    document.body.appendChild(newSwitcher);
-    
-    // 更新按钮图标
-    function updateButtonIcon() {
-        const isDark = document.documentElement.getAttribute('data-scheme') === 'dark';
-        const btn = document.querySelector('.theme-switcher-btn');
-        btn.textContent = isDark ? '☀️' : '🌙';
-    }
-    
-    // 绑定点击事件
-    document.querySelector('.theme-switcher-btn').onclick = function() {
-        const current = document.documentElement.getAttribute('data-scheme');
-        const newScheme = current === 'dark' ? 'light' : 'dark';
+    function initThemeButton() {
+        const oldSwitcher = document.querySelector('.theme-switcher');
+        if (oldSwitcher) oldSwitcher.remove();
         
-        document.documentElement.setAttribute('data-scheme', newScheme);
-        localStorage.setItem('theme', newScheme);
+        const newSwitcher = document.createElement('div');
+        newSwitcher.className = 'theme-switcher';
+        newSwitcher.innerHTML = `<button class="theme-switcher-btn">🌙</button>`;
+        
+        // 使用CSS类而不是内联样式
+        const style = document.createElement('style');
+        style.textContent = `
+            .theme-switcher-btn {
+                position: fixed !important;
+                left: 20px !important;
+                bottom: 20px !important;
+                width: 40px !important;
+                height: 40px !important;
+                border-radius: 50% !important;
+                border: none !important;
+                background: var(--card-background) !important;
+                color: var(--card-text-color-main) !important;
+                cursor: pointer !important;
+                z-index: 1000 !important;
+                box-shadow: var(--shadow-l2) !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                font-size: 18px !important;
+            }
+        `;
+        document.head.appendChild(style);
+        
+        document.body.appendChild(newSwitcher);
+        
+        function updateButtonIcon() {
+            const btn = document.querySelector('.theme-switcher-btn');
+            if (btn) {
+                btn.textContent = document.documentElement.getAttribute('data-scheme') === 'dark' ? '☀️' : '🌙';
+            }
+        }
+        
+        document.querySelector('.theme-switcher-btn').onclick = function() {
+            const current = document.documentElement.getAttribute('data-scheme');
+            const newScheme = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-scheme', newScheme);
+            localStorage.setItem('theme', newScheme);
+            updateButtonIcon();
+        };
+        
         updateButtonIcon();
-        console.log('主题切换至:', newScheme);
-    };
-    
-    // 初始更新图标
-    updateButtonIcon();
-});
+    }
+})();
 </script>
