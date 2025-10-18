@@ -1,4 +1,5 @@
-name: Deploy Hugo Site to Pages
+name: Build with Hugo
+run: hugo --gc
 
 on:
   push:
