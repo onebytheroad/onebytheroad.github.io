@@ -1,15 +1,14 @@
 <script>
-// 立即执行，不等待DOMContentLoaded
-(function() {
-    // 强制暗色模式 - 立即执行
+// 延迟执行，避免阻塞页面加载
+setTimeout(function() {
+    // 强制暗色模式
     document.documentElement.setAttribute('data-scheme', 'dark');
-    document.documentElement.style.setProperty('--body-background', 'transparent', 'important');
     localStorage.setItem('theme', 'dark');
     
-    // 优化背景图片设置
-    if (!document.querySelector('#forced-bg-style')) {
+    // 只在需要时创建样式
+    if (!document.querySelector('#optimized-bg-style')) {
         const style = document.createElement('style');
-        style.id = 'forced-bg-style';
+        style.id = 'optimized-bg-style';
         style.textContent = `
             body::before {
                 content: '' !important;
@@ -21,68 +20,11 @@
                 background-image: url('/img/bj.jpg') !important;
                 background-size: cover !important;
                 background-position: center !important;
-                background-attachment: fixed !important;
                 background-repeat: no-repeat !important;
                 z-index: -9999 !important;
             }
-            body { background: transparent !important; }
         `;
         document.head.appendChild(style);
     }
-    
-    // 延迟加载按钮代码，避免阻塞
-    setTimeout(initThemeButton, 100);
-    
-    function initThemeButton() {
-        const oldSwitcher = document.querySelector('.theme-switcher');
-        if (oldSwitcher) oldSwitcher.remove();
-        
-        const newSwitcher = document.createElement('div');
-        newSwitcher.className = 'theme-switcher';
-        newSwitcher.innerHTML = `<button class="theme-switcher-btn">🌙</button>`;
-        
-        // 使用CSS类而不是内联样式
-        const style = document.createElement('style');
-        style.textContent = `
-            .theme-switcher-btn {
-                position: fixed !important;
-                left: 20px !important;
-                bottom: 20px !important;
-                width: 40px !important;
-                height: 40px !important;
-                border-radius: 50% !important;
-                border: none !important;
-                background: var(--card-background) !important;
-                color: var(--card-text-color-main) !important;
-                cursor: pointer !important;
-                z-index: 1000 !important;
-                box-shadow: var(--shadow-l2) !important;
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-                font-size: 18px !important;
-            }
-        `;
-        document.head.appendChild(style);
-        
-        document.body.appendChild(newSwitcher);
-        
-        function updateButtonIcon() {
-            const btn = document.querySelector('.theme-switcher-btn');
-            if (btn) {
-                btn.textContent = document.documentElement.getAttribute('data-scheme') === 'dark' ? '☀️' : '🌙';
-            }
-        }
-        
-        document.querySelector('.theme-switcher-btn').onclick = function() {
-            const current = document.documentElement.getAttribute('data-scheme');
-            const newScheme = current === 'dark' ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-scheme', newScheme);
-            localStorage.setItem('theme', newScheme);
-            updateButtonIcon();
-        };
-        
-        updateButtonIcon();
-    }
-})();
+}, 100);
 </script>
