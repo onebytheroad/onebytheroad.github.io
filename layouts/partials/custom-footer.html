@@ -1,0 +1,56 @@
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 移除原按钮
+    const oldSwitcher = document.querySelector('.theme-switcher');
+    if (oldSwitcher) {
+        oldSwitcher.remove();
+    }
+    
+    // 创建新按钮
+    const newSwitcher = document.createElement('div');
+    newSwitcher.className = 'theme-switcher';
+    newSwitcher.innerHTML = `
+        <button class="theme-switcher-btn" style="
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: var(--card-background);
+            color: var(--card-text-color-main);
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: var(--shadow-l2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        ">🌙</button>
+    `;
+    
+    document.body.appendChild(newSwitcher);
+    
+    // 更新按钮图标
+    function updateButtonIcon() {
+        const isDark = document.documentElement.getAttribute('data-scheme') === 'dark';
+        const btn = document.querySelector('.theme-switcher-btn');
+        btn.textContent = isDark ? '☀️' : '🌙';
+    }
+    
+    // 绑定点击事件
+    document.querySelector('.theme-switcher-btn').onclick = function() {
+        const current = document.documentElement.getAttribute('data-scheme');
+        const newScheme = current === 'dark' ? 'light' : 'dark';
+        
+        document.documentElement.setAttribute('data-scheme', newScheme);
+        localStorage.setItem('theme', newScheme);
+        updateButtonIcon();
+        console.log('主题切换至:', newScheme);
+    };
+    
+    // 初始更新图标
+    updateButtonIcon();
+});
+</script>

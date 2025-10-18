@@ -1,8 +1,38 @@
 /* assets/css/custom.css */
+:root,
+:root[data-scheme="light"],
+:root[data-scheme="dark"] {
+    --body-background: transparent !important;
+}
+
 body {
-    background-image: url('/blog/my-blog/static/img/bj.jpg');
+    position: relative;
+    background: transparent !important;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/img/bj.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
+    z-index: -9999;
+}
+
+/* 为暗色模式添加遮罩 */
+[data-scheme="dark"] body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: -9998;
 }

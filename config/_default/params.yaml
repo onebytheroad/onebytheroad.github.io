@@ -1,0 +1,11 @@
+# 设置为固定暗色模式
+display_mode: dark
+default_mode: dark
+
+# 或者使用 colorScheme
+colorScheme:
+  display: dark
+  default: dark
+
+# 隐藏切换按钮（可选）
+showThemeSwitcher: false
