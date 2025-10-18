@@ -5,8 +5,6 @@ date: 2025-10-09
 slug: first-word
 image: 121.jpg
 categories:
-    - 学习
-    - 尝试
 ---
 
 # 第一篇文章
