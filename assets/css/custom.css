@@ -52,9 +52,9 @@ body::before {
 
 /* 主标题 - 使用正确的class: site-name */
 .site-name {
-    color: #ffd700 !important;  /* 金黄色 */
+    color: #ffcc00 !important;  /* 更亮的金黄色 */
     font-weight: bold !important;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5) !important;
+    text-shadow: none !important;
     font-size: 1.5em !important;
 }
 
