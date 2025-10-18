@@ -1,10 +1,9 @@
-name: Build with Hugo
-run: hugo --gc
+name: Deploy Hugo to GitHub Pages
 
 on:
   push:
-    branches: ["main"]   # 代码推送至 main 分支时触发
-  workflow_dispatch:     # 支持手动触发
+    branches: ["main"]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -22,22 +21,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          submodules: recursive  # 自动拉取主题子模块
+          submodules: recursive
           fetch-depth: 0
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: '0.123.8'
-          extended: true       # 若主题需扩展版，取消注释
+          extended: true
 
       - name: Build with Hugo
-        run: hugo --minify --gc   # 生成优化后的静态文件
+        run: hugo --gc  # 去掉了 --minify 避免错误
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public          # 上传生成的站点文件
+          path: ./public
 
   deploy:
     environment:
