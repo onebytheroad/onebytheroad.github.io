@@ -7,7 +7,50 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Example Person</copyright>
-        <lastBuildDate>Sat, 18 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 19 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>10-19 笔记</title>
+        <link>http://localhost:1313/p/10-19/</link>
+        <pubDate>Sun, 19 Oct 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/10-19/</guid>
+        <description>&lt;img src="http://localhost:1313/p/10-19/bj.jpg" alt="Featured image of post 10-19 笔记" /&gt;&lt;h3 id=&#34;python基础课&#34;&gt;python基础课
+&lt;/h3&gt;&lt;p&gt;序列中有关于字符串，列表，元组的知识总结
+补充了一些常用函数&lt;/p&gt;
+&lt;h3 id=&#34;c语言基础&#34;&gt;c语言基础
+&lt;/h3&gt;&lt;p&gt;##内建型别##
+c语言是一个强类型的语言，数据必须明确指定类型，C++还加强了类型安全的检查
+程序与数据：程序的任务：处理数据（信息），图片，视频，文本，日志，数据库等。
+一个人的年龄，身高，体重，名字，健康状况，性别等数据，对应了不同的类型&lt;/p&gt;
+&lt;p&gt;c语言标准，所有的都支持，占字节意为在磁盘中进行存储的时候必须要占这么多空间才能进行存储
+字符类型：char/wchar_t    2个字节或者4个字节   char对应    wchar_t对应
+整型：short 短暂，2个字节/int 标准，4个字节/long 长整型，winx86 8个字节/longlong 再linux用的多/_int64 win多，8字节
+实数单精度：float  4字节
+实数双精度：double  8字节
+有符号和无符号：signed   有/unsigned 无,(signed)int 默认有/ unsigned int
+布尔类型：bool,0/1(true/false) C99 &amp;lt;stdbool.h&amp;gt;  头文件
+c语言内部支持的型别&lt;/p&gt;
+&lt;p&gt;数据类型的实例
+char gender = &amp;lsquo;M&amp;rsquo;;ASCII字符
+wchar_t sex = L&amp;rsquo;F&amp;rsquo;;UNICODE字符  此字符一个字符占两个字节，ios和linux占4个字节
+char name[16] = &amp;rsquo;tom&amp;rsquo;;   字符组有16个元素
+wchar_t nick[16] = L&amp;rsquo;Jcak&amp;rsquo;;&lt;/p&gt;
+&lt;p&gt;int age=30;
+float weight=79.1f;
+double height= 1.80
+bool bhealthy= ture;&lt;/p&gt;
+&lt;p&gt;内建型别，数据以字节为单位存储在内存中，不同类型的数据，存储占用的内存空间长度不同&lt;/p&gt;
+&lt;p&gt;#字符型：char./wchar_t
+sizeof(char) = 1 即char类型占1个字节空间       采用ASCII编码，一个字符对应一个字节
+sizeof(wchar_t) = 2或者4,字符数与字节数的区别  Unicode编码，一个字符对应多个字节
+char c=&amp;lsquo;a&amp;rsquo;// &amp;lsquo;a&amp;rsquo;是字符常量，c是字符变量。常量用单引号包围  &amp;lsquo;&amp;rsquo;&amp;rsquo;-&amp;gt;&amp;rsquo;&#39;&amp;rsquo;  表示字符常量的时候用单引号引起来，单引号也是一个字符，需要用转义字符来表示该引号不是字符
+wchar_t wc=L&amp;rsquo;a&amp;rsquo;;
+unsigned char/signed char,只写char，由编译器决定是有符号无符号
+字符编码：字符在计算机中是通过字符编码（字符的id）的形式存储的，&amp;lsquo;a&amp;rsquo;-&amp;gt;97,&amp;lsquo;A&amp;rsquo;-&amp;gt;65
+ASCII码，美国标准信息交换代码
+ASCII码是单字节编码系统，它使用指定的7位或者8位二进制数组合来表示128或256种可能的字符&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>10-18 笔记</title>
         <link>http://localhost:1313/p/10-18/</link>
         <pubDate>Sat, 18 Oct 2025 00:00:00 +0000</pubDate>
@@ -372,9 +415,40 @@ SHA=256哈希无法反推出原始数据&lt;br&gt;
 </description>
         </item>
         <item>
+        <title>Emoji Support</title>
+        <link>http://localhost:1313/p/emoji-support/</link>
+        <pubDate>Wed, 08 Oct 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/emoji-support/</guid>
+        <description>&lt;img src="http://localhost:1313/p/emoji-support/the-creative-exchange-d2zvqp3fpro-unsplash.jpg" alt="Featured image of post Emoji Support" /&gt;&lt;p&gt;Emoji can be enabled in a Hugo project in a number of ways.&lt;/p&gt;
+&lt;p&gt;The &lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/functions/emojify/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;&lt;code&gt;emojify&lt;/code&gt;&lt;/a&gt; function can be called directly in templates or &lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/templates/shortcode-templates/#inline-shortcodes&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Inline Shortcodes&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To enable emoji globally, set &lt;code&gt;enableEmoji&lt;/code&gt; to &lt;code&gt;true&lt;/code&gt; in your site&amp;rsquo;s &lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/getting-started/configuration/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;configuration&lt;/a&gt; and then you can type emoji shorthand codes directly in content files; e.g.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;nowrap&#34;&gt;&lt;span class=&#34;emojify&#34;&gt;🙈&lt;/span&gt; &lt;code&gt;:see_no_evil:&lt;/code&gt;&lt;/span&gt;  &lt;span class=&#34;nowrap&#34;&gt;&lt;span class=&#34;emojify&#34;&gt;🙉&lt;/span&gt; &lt;code&gt;:hear_no_evil:&lt;/code&gt;&lt;/span&gt;  &lt;span class=&#34;nowrap&#34;&gt;&lt;span class=&#34;emojify&#34;&gt;🙊&lt;/span&gt; &lt;code&gt;:speak_no_evil:&lt;/code&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;br&gt;
+&lt;p&gt;The &lt;a class=&#34;link&#34; href=&#34;http://www.emoji-cheat-sheet.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Emoji cheat sheet&lt;/a&gt; is a useful reference for emoji shorthand codes.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;N.B.&lt;/strong&gt; The above steps enable Unicode Standard emoji characters and sequences in Hugo, however the rendering of these glyphs depends on the browser and the platform. To style the emoji you can either use a third party emoji font or a font stack; e.g.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;.emoji {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  font-family: Apple Color Emoji, Segoe UI Emoji, NotoColorEmoji, Segoe UI Symbol, Android Emoji, EmojiSymbols;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        <item>
         <title>人生总有第一次</title>
         <link>http://localhost:1313/p/first-word/</link>
-        <pubDate>Thu, 09 Oct 2025 00:00:00 +0000</pubDate>
+        <pubDate>Fri, 03 Sep 2021 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/p/first-word/</guid>
         <description>&lt;img src="http://localhost:1313/p/first-word/121.jpg" alt="Featured image of post 人生总有第一次" /&gt;&lt;h1 id=&#34;第一篇文章&#34;&gt;第一篇文章
@@ -393,6 +467,37 @@ SHA=256哈希无法反推出原始数据&lt;br&gt;
 我曾经那样真诚，那样温柔地爱过你；&lt;br&gt;
 但愿上帝保佑你，它会比我更爱你。&lt;br&gt;
 &amp;mdash;普希金&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;莫言在《晚熟的人》里这样写道：&lt;br&gt;
+“烟火人间，各有遗憾。&lt;br&gt;
+想过安稳日子的女人，却嫁给了挣不来qian的男人；&lt;br&gt;
+想过安稳日子的男人，却娶了爱败家的女人；&lt;br&gt;
+做得一手好菜的女人，等不到回家吃饭的男人；&lt;br&gt;
+经常回家吃饭的男人，偏偏娶了不会做饭的女人。&lt;br&gt;
+山山而川，不过尔尔。在喜欢你的人那里去热爱生活，在不喜欢你的人那里去看清世界，就这么简单。”&lt;/p&gt;
+&lt;p&gt;活着活着你就会明白，这个世界是守恒的。&lt;br&gt;
+很多婚姻好的人，事业不行；&lt;br&gt;
+事业好的人，婚姻不行；&lt;br&gt;
+事业婚姻都好的人，可能身体不好。&lt;br&gt;
+大部分有成就的人，大多是六亲无靠，六亲无靠大概就是他们用来交换成功的代价，所以对于很多事不必太执着。&lt;br&gt;
+枕边人成不了心上人，心上人也成不了枕边人。枕边人给不了爱，心上人给不了家；&lt;br&gt;
+最终，枕边人守着过了一辈子，心上人待在心里一辈子。&lt;br&gt;
+我们本不善言辞，为了生活，却不得不忙于交际；&lt;br&gt;
+我们本喜欢独处，为了生活，却不得不四处奔波。&lt;br&gt;
+在无人问津的地方，拿尊严换qian；&lt;br&gt;
+在人声鼎沸的地方，拿qian换取尊严。&lt;br&gt;
+有工作的地方没有家，有家的地方没有工作。&lt;br&gt;
+他乡容不下灵魂，故乡安不了肉身。&lt;br&gt;
+上苍不会让所有幸福集中到某个人身上。&lt;br&gt;
+得到了爱情未必拥有金qian，拥有金qian未必得到快乐；&lt;br&gt;
+得到快乐未必拥有健康，拥有健康未必一切都会如愿以偿。&lt;br&gt;
+你得到了这个，还想要那个，但不可能所有的好处你都能得到。你不可能同时拥有春花和秋月，也不可能同时拥有硕果和繁花。&lt;br&gt;
+人生最忌讳的就是过于圆满，不信你看看身边的人。&lt;br&gt;
+有人婚姻不好，但子女很优秀；&lt;br&gt;
+有人婚姻很好，但身体不太好；&lt;br&gt;
+有人事业很顺，但家庭不和睦；&lt;br&gt;
+有人家庭和睦，日子却过得很清贫。&lt;br&gt;
+人生哪能都如意，万事只能半称心。美满的婚姻是由瞎子女人和聋子男人缔成，我们都是和对方的优点谈恋爱，却和他们的缺点生活在一起，天下没有十全十美的男女。婚姻不是争输赢，半睁眼半闭眼过生活，少用放大镜看对方，否则连上帝身上都能挑出毛病。&lt;br&gt;
+时光煮雨，岁月缝花。这烟火人间，事事遗憾，但事事也值得！&lt;/p&gt;
 &lt;h2 id=&#34;图片&#34;&gt;图片
 &lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/first-word/fuxuan.jpg&#34;
 	width=&#34;1200&#34;
@@ -425,79 +530,6 @@ SHA=256哈希无法反推出原始数据&lt;br&gt;
 &lt;/h2&gt;&lt;p&gt;+++       &amp;mdash;
 +++   和  &amp;mdash; 是两种语法&lt;/p&gt;
 </description>
-        </item>
-        <item>
-        <title>Emoji Support</title>
-        <link>http://localhost:1313/p/emoji-support/</link>
-        <pubDate>Tue, 05 Mar 2024 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/p/emoji-support/</guid>
-        <description>&lt;img src="http://localhost:1313/p/emoji-support/the-creative-exchange-d2zvqp3fpro-unsplash.jpg" alt="Featured image of post Emoji Support" /&gt;&lt;p&gt;Emoji can be enabled in a Hugo project in a number of ways.&lt;/p&gt;
-&lt;p&gt;The &lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/functions/emojify/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;&lt;code&gt;emojify&lt;/code&gt;&lt;/a&gt; function can be called directly in templates or &lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/templates/shortcode-templates/#inline-shortcodes&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Inline Shortcodes&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;To enable emoji globally, set &lt;code&gt;enableEmoji&lt;/code&gt; to &lt;code&gt;true&lt;/code&gt; in your site&amp;rsquo;s &lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/getting-started/configuration/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;configuration&lt;/a&gt; and then you can type emoji shorthand codes directly in content files; e.g.&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;nowrap&#34;&gt;&lt;span class=&#34;emojify&#34;&gt;🙈&lt;/span&gt; &lt;code&gt;:see_no_evil:&lt;/code&gt;&lt;/span&gt;  &lt;span class=&#34;nowrap&#34;&gt;&lt;span class=&#34;emojify&#34;&gt;🙉&lt;/span&gt; &lt;code&gt;:hear_no_evil:&lt;/code&gt;&lt;/span&gt;  &lt;span class=&#34;nowrap&#34;&gt;&lt;span class=&#34;emojify&#34;&gt;🙊&lt;/span&gt; &lt;code&gt;:speak_no_evil:&lt;/code&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;br&gt;
-&lt;p&gt;The &lt;a class=&#34;link&#34; href=&#34;http://www.emoji-cheat-sheet.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Emoji cheat sheet&lt;/a&gt; is a useful reference for emoji shorthand codes.&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;&lt;strong&gt;N.B.&lt;/strong&gt; The above steps enable Unicode Standard emoji characters and sequences in Hugo, however the rendering of these glyphs depends on the browser and the platform. To style the emoji you can either use a third party emoji font or a font stack; e.g.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;.emoji {
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  font-family: Apple Color Emoji, Segoe UI Emoji, NotoColorEmoji, Segoe UI Symbol, Android Emoji, EmojiSymbols;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description>
-        </item>
-        <item>
-        <title>Math Typesetting</title>
-        <link>http://localhost:1313/p/math-typesetting/</link>
-        <pubDate>Fri, 08 Mar 2019 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/p/math-typesetting/</guid>
-        <description>&lt;p&gt;Mathematical notation in a Hugo project can be enabled by using third party JavaScript libraries.&lt;/p&gt;
-&lt;p&gt;In this example we will be using &lt;a class=&#34;link&#34; href=&#34;https://katex.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;KaTeX&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Create a partial under &lt;code&gt;/layouts/partials/math.html&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Within this partial reference the &lt;a class=&#34;link&#34; href=&#34;https://katex.org/docs/autorender.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Auto-render Extension&lt;/a&gt; or host these scripts locally.&lt;/li&gt;
-&lt;li&gt;Include the partial in your templates like so:&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;{{&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; or .Params.math .Site.Params.math &lt;span class=&#34;o&#34;&gt;}}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;{{&lt;/span&gt; partial &lt;span class=&#34;s2&#34;&gt;&amp;#34;math.html&amp;#34;&lt;/span&gt; . &lt;span class=&#34;o&#34;&gt;}}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;{{&lt;/span&gt; end &lt;span class=&#34;o&#34;&gt;}}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;To enable KaTeX globally set the parameter &lt;code&gt;math&lt;/code&gt; to &lt;code&gt;true&lt;/code&gt; in a project&amp;rsquo;s configuration&lt;/li&gt;
-&lt;li&gt;To enable KaTeX on a per page basis include the parameter &lt;code&gt;math: true&lt;/code&gt; in content files&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Use the online reference of &lt;a class=&#34;link&#34; href=&#34;https://katex.org/docs/supported.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Supported TeX Functions&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;examples&#34;&gt;Examples
-&lt;/h3&gt;&lt;p&gt;Inline math: $\varphi = \dfrac{1+\sqrt5}{2}= 1.6180339887…$&lt;/p&gt;
-&lt;p&gt;Block math:
-&lt;/p&gt;
-$$
- \varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } } 
-$$</description>
         </item>
         
     </channel>

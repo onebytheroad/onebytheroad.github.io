@@ -3,7 +3,7 @@ title: 10-19 笔记
 description: 故事不长，也不难讲，相识一场，爱而不得
 date: 2025-10-19
 slug: 10-19
-image: tutu.jpg
+image: bj.jpg
 categories:
     - 每日
 ---
