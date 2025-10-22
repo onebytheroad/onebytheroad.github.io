@@ -1,21 +1,12 @@
-\---
-
+---
 title: 10-22 笔记
-
 description: 欲买桂花同载酒，终不似，少年游。
-
 date: 2025-10-22
-
 slug: 10-22
-
-image: bi.jpg
-
+image: bj.jpg
 categories:
-
-  \- 每日
-
-\---
-
+    - 每日
+---
 # 第五课-变量
 
 ## c语言变量定义与命名
@@ -72,19 +63,19 @@ printf("addr.%p,value:%d\n",&a,a);
 
 ##### 匈牙利命名法则
 
-![xiongyalifaze](C:\blog\my-blog\content\post\10.22.2025\xiongyalifaze.png)
+![photo by xiongyalifaza](xiongyalifaze.png)
 
 图中helloworld改成人名更贴切
 
 ***其他变量法则***
 
-![qitabianliang](C:\blog\my-blog\content\post\10.22.2025\qitabianliang.png)
+![photo by qitabianliang](qitabianliang.png)
 
 linux也可以叫做下划线命名法
 
 **作业**
 
-![zuoye1](C:\blog\my-blog\content\post\10.22.2025\zuoye1.png)
+![photo by zuoye1](zuoye1.png)
 
 ## 变量作用域，存储空间，生命周期
 
@@ -94,7 +85,7 @@ linux也可以叫做下划线命名法
 
 **系统内存布局**
 
-![fuxi1](C:\blog\my-blog\content\post\10.22.2025\fuxi1.png)
+![photo by fuxi1](fuxi1.png)
 
 内核空间，只能有最高权限的内核代码才能访问
 
@@ -106,7 +97,7 @@ NULL空间是无法访问的
 
 **程序内存布局** 
 
-![fixu2](C:\blog\my-blog\content\post\10.22.2025\fixu2.png)
+![photo by fixu2](fixu2.png)
 
 一个进程空间的布局
 
@@ -136,11 +127,11 @@ NULL空间是无法访问的
 
 寄存器变量：不像其他变量那样在内存中存放数据，而是在cpu的寄存器中暂存数据，使用寄存器变量比使用内存变量的操作速度快得多，只有整形和字符型变量可定义为寄存器变量，由于cpu中寄存器有限，尽量减少使用数量和占用时间，用完马上释放；不能定义为全局变量，也不能定义在结构或者类中
 
-![bianliang](C:\blog\my-blog\content\post\10.22.2025\bianliang.png)
+![photo by bianliang](bianliang.png)
 
 *举例*
 
-![lizi](C:\blog\my-blog\content\post\10.22.2025\lizi.png)
+![photo by lizi](lizi.png)
 
 初始化的全局变量，存放在.data区，未初始化的全局变量存放在.bss区。例如例子中的0和p1，一个是初始化了存放在data区，一个没有初始化存放在bss区
 
@@ -154,9 +145,9 @@ NULL空间是无法访问的
 
 函数的调用，数据的传递，内存的分配都是在栈上
 
-![zongjie](C:\blog\my-blog\content\post\10.22.2025\zongjie.png)
+![photo by zongjie](zongjie.png)
 
 作业
 
-![zuoye2](C:\blog\my-blog\content\post\10.22.2025\zuoye2.png)
+![photo by zuoye2](zuoye2.png)
 
