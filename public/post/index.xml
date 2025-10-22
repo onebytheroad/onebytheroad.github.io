@@ -201,6 +201,68 @@
 		data-flex-basis=&#34;354px&#34;
 	
 &gt;&lt;/p&gt;
+&lt;h1 id=&#34;python-集合&#34;&gt;python 集合
+&lt;/h1&gt;&lt;p&gt;集合中所有元素都是无序的且独一无二的&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;创建一个集合&lt;/p&gt;
+&lt;p&gt;1.花括号&lt;/p&gt;
+&lt;p&gt;{&amp;ldquo;fish&amp;rdquo;,&amp;ldquo;python&amp;rdquo;}&lt;/p&gt;
+&lt;p&gt;2.集合推导式&lt;/p&gt;
+&lt;p&gt;{s for s in &amp;ldquo;fish&amp;rdquo;}   -&amp;gt; {&amp;lsquo;h&amp;rsquo;,&amp;lsquo;i&amp;rsquo;,&amp;lsquo;f&amp;rsquo;,&amp;rsquo;s&amp;rsquo;}&lt;/p&gt;
+&lt;p&gt;3.类型构造器  set&lt;/p&gt;
+&lt;p&gt;set(&amp;lsquo;fish&amp;rsquo;)&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;集合不能使用下标来访问&lt;/p&gt;
+&lt;p&gt;可以使用in来判断某个元素是否存在于集合中&lt;/p&gt;
+&lt;p&gt;或者使用for in迭代来访问集合中的元素&lt;/p&gt;
+&lt;h2 id=&#34;唯一性&#34;&gt;唯一性
+&lt;/h2&gt;&lt;p&gt;可以给元素去重&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;s = [1,1,2,3,5] &lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;len(s) == len(set(s))&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;copy&#34;&gt;copy
+&lt;/h2&gt;&lt;p&gt;浅拷贝操作&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;t = s.copy()&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;检验是否毫不相干&#34;&gt;检验是否毫不相干
+&lt;/h2&gt;&lt;p&gt;相干，即是否拥有交集&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;s.isdisjoint(set(&amp;quot;python&amp;quot;))&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;当然，也可以直接传入一个字符串&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;s.isdisjoint(&amp;quot;python&amp;quot;)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;子集&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;s.issubset(&amp;quot;  &amp;quot;)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;超集&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;s.issuperset(&amp;quot;  &amp;quot;)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;并集：将其他元素与原集合合并&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;s.union({  })&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;交集&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;s.intersection(&amp;quot;  &amp;quot;)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;差集&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;s.difference(&amp;quot;  &amp;quot;)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;对称差集：不支持多参数&lt;/p&gt;
+&lt;p&gt;s.symmetric_difference(&amp;quot; &amp;ldquo;)&lt;/p&gt;
+&lt;p&gt;可以用运算符直接运算&lt;/p&gt;
+&lt;p&gt;&amp;lt;= 检测子集   &amp;lt; 检测真子集  &amp;gt;  真超集 &amp;gt;=  超集&lt;/p&gt;
+&lt;p&gt;|  并集  &amp;amp;   交集  -  差集      ^ 对称差集&lt;/p&gt;
+&lt;p&gt;使用运算符的话左右两边需要都需要是集合&lt;/p&gt;
+&lt;h2 id=&#34;可变和不可变--set--frozenset&#34;&gt;可变和不可变  set &amp;amp; frozenset
+&lt;/h2&gt;&lt;p&gt;update(*others) 将使用others参数的值来更新集合  （多个）&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;s.update([1,1],&amp;quot;23&amp;quot;)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;上述代码得到的集合内容则会只添加&amp;quot;1&amp;rdquo;,&amp;ldquo;2&amp;rdquo;,&amp;ldquo;3&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;intersection_update&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;difference_update&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;symmetric_difference_update&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;如果没有update则返回的是计算结果，并不会更改该集合里面的内容&lt;/p&gt;
+&lt;p&gt;单纯的只添加数据&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;s.add(&amp;quot;&amp;quot;)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;之前是迭代出每个元素插入，add是可以将字符串插入&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;s.remove&lt;/code&gt;   会抛出异常&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;s.discard &lt;/code&gt; 会静默处理&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;pop&lt;/code&gt;    随机从集合中弹出一个元素&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;clear&lt;/code&gt;  直接清空&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;可哈希&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;正确创建字典或者说集合，必须要求键或元素必须是可哈希的&lt;/p&gt;
+&lt;p&gt;hash(object)&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;hash(1)&lt;/code&gt;   =  &lt;code&gt;hash(1.0)&lt;/code&gt;  对一个相等的值，尽管是不同的对象&lt;/p&gt;
+&lt;p&gt;大多数可变对象是不可哈希的，不可变对象是可哈希的&lt;/p&gt;
 </description>
         </item>
         <item>

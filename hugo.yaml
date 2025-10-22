@@ -90,7 +90,7 @@ params:
     # 文章设置
     article:
         math: false
-        toc: true
+        toc: true                      # 确保启用TOC
         readingTime: true
         license:
             enabled: true
@@ -184,7 +184,7 @@ related:
         - name: categories
           weight: 200
 
-# Markdown渲染设置
+# Markdown渲染设置 - 已修改：解决标题显示问题
 markup:
     goldmark:
         extensions:
@@ -202,9 +202,9 @@ markup:
         renderer:
             unsafe: true
     tableOfContents:
-        endLevel: 4
+        endLevel: 6                    # 修改：显示到h6标题
         ordered: true
-        startLevel: 2
+        startLevel: 1                  # 修改：从h1标题开始
     highlight:
         noClasses: false
         codeFences: true
