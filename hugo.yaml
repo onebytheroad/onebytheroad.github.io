@@ -1,37 +1,38 @@
 # 站点基础配置
-baseurl: https://onebytheroad.github.io/           # 网站根URL
-languageCode: en-us                     # 默认语言代码
-theme: hugo-theme-stack                 # 使用的主题名称
-title: Example Site                     # 网站标题
-copyright: Example Person               # 版权信息
+baseurl: https://onebytheroad.github.io/
+languageCode: en-us
+theme: hugo-theme-stack
+title: Example Site
+copyright: Example Person
+
+# 分页设置 - 修正：使用新的配置方式
+pagination:
+  pagerSize: 5                        # 分页器显示页码数量
+  path: "page"                        # 分页路径
 
 # 国际化配置
-# 支持的语言: ar, bn, ca, de, el, en, es, fr, hu, id, it, ja, ko, nl, pt-br, th, uk, zh-cn, zh-hk, zh-tw
-DefaultContentLanguage: zh-cn              # 默认内容语言
-
-# 如果默认语言是中文/日文/韩文，需设置为true
-# 这将使.Summary和.WordCount对CJK语言正常工作
-hasCJKLanguage: false
+DefaultContentLanguage: zh-cn
+hasCJKLanguage: true
 
 # 多语言详细配置
 languages:
     en:
-        languageName: English           # 语言显示名称
-        title: na's little place             # 该语言下的网站标题
-        weight: 1                       # 权重（排序用）
+        languageName: English
+        title: na's little place
+        weight: 1
         params:
             sidebar:
-                subtitle: Why must we have known each other before when we meet  # 侧边栏副标题
+                subtitle: Why must we have known each other before when we meet
     zh-cn:
         languageName: 中文
         title: 雫的小站
-        weight: 
+        weight: 2
         params:
             sidebar:
-                subtitle: Don't leave me  
+                subtitle: Don't leave me
     ar:
         languageName: عربي
-        languagedirection: rtl          # 文本方向（阿拉伯语从右到左）
+        languagedirection: rtl
         title: موقع تجريبي
         weight: 3
         params:
@@ -40,139 +41,147 @@ languages:
 
 # 第三方服务配置
 services:
-    # Disqus评论系统（使用前需修改为你的shortname）
     disqus:
         shortname: "hugo-theme-stack"
-    # Google Analytics跟踪ID
     googleAnalytics:
-        id:                             # 填入你的GA跟踪ID
-
-# 分页设置
-pagination:
-    pagerSize: 3                        # 分页器显示页码数量
+        id:
 
 # 永久链接格式
 permalinks:
-    post: /p/:slug/                     # 文章URL格式
-    page: /:slug/                       # 页面URL格式
+    post: /p/:slug/
+    page: /:slug/
 
 # 主题参数配置
 params:
     mainSections:
-        - post                         # 主要内容区域
-    featuredImageField: image          # 特色图片字段名
-    rssFullContent: true               # RSS是否包含全文
-    favicon:                           # 网站图标路径，如：/favicon.ico
+        - post
+    
+    # 控制每页显示文章数量的新方法
+    home:
+      paginate: 20                    # 首页每页显示20篇文章
+    
+    list:
+      paginate: 20                    # 列表页每页显示20篇文章
+    
+    featuredImageField: image
+    rssFullContent: true
+    favicon:
 
     # 页脚设置
     footer:
-        since: 2024                    # 起始年份
-        customText:                    # 自定义文本
+        since: 2024
+        customText:
 
     # 日期格式
     dateFormat:
-        published: Jan 02, 2006        # 发布日期格式
-        lastUpdated: Jan 02, 2006 15:04 MST  # 最后更新日期格式
+        published: Jan 02, 2006
+        lastUpdated: Jan 02, 2006 15:04 MST
 
     # 侧边栏设置
     sidebar:
-        emoji: 🍥                      # 表情图标
-        subtitle:                      # 副标题
+        emoji: 🍥
+        subtitle:
         avatar:
-            enabled: true              # 是否显示头像
-            local: true                # 是否使用本地图片
-            src: /img/avatar.png        # 头像路径
+            enabled: true
+            local: true
+            src: /img/avatar.png
+        recentLimit: 15                # 侧边栏最新文章显示15篇
 
     # 文章设置
     article:
-        math: false                    # 是否支持数学公式
-        toc: true                      # 是否显示目录
-        readingTime: true              # 是否显示阅读时间
+        math: false
+        toc: true
+        readingTime: true
         license:
-            enabled: true              # 是否显示版权信息
-            default: Licensed under CC BY-NC-SA 4.0  # 默认许可证
+            enabled: true
+            default: Licensed under CC BY-NC-SA 4.0
 
     # 评论系统配置
     comments:
-        enabled: true                  # 启用评论
-        provider: disqus               # 评论提供商
-
-        # 各评论系统的具体配置
-        disqusjs: {...}                # DisqusJS配置
-        utterances: {...}              # Utterances配置（GitHub-based）
-        beaudar: {...}                 # Beaudar配置
-        remark42: {...}                # Remark42配置
-        vssue: {...}                   # Vssue配置
-        waline: {...}                  # Waline配置
-        twikoo: {...}                  # Twikoo配置
-        cactus: {...}                  # Cactus Chat配置
-        giscus: {...}                  # Giscus配置（GitHub Discussions）
-        gitalk: {...}                  # Gitalk配置
-        cusdis: {...}                  # Cusdis配置
+        enabled: true
+        provider: disqus
+        disqusjs:
+            shortname: "hugo-theme-stack"
+        utterances:
+            repo: ""
+        beaudar:
+            repo: ""
+        remark42:
+            host: ""
+        waline:
+            serverURL: ""
+        twikoo:
+            envId: ""
+        giscus:
+            repo: ""
 
     # 小工具配置
     widgets:
-        homepage:                      # 首页小工具
-            - type: search             # 搜索框
-            - type: archives           # 文章归档
-              params:
-                  limit: 5             # 显示数量
-            - type: categories         # 分类
+        homepage:
+            - type: search
+            - type: archives
               params:
                   limit: 10
-            - type: tag-cloud          # 标签云
+            - type: categories
               params:
-                  limit: 10
+                  limit: 15
+            - type: tag-cloud
+              params:
+                  limit: 20
         page:
-            - type: toc                # 页面目录
+            - type: toc
 
-    # OpenGraph设置（社交媒体分享）
+    # OpenGraph设置
     opengraph:
         twitter:
-            site:                      # Twitter用户名
-            card: summary_large_image  # 卡片类型：summary或summary_large_image
+            site:
+            card: summary_large_image
 
     # 默认图片设置
     defaultImage:
         opengraph:
-            enabled: false             # 是否启用
-            local: false               # 是否使用本地图片
-            src: /img/bj.png           # 图片路径
+            enabled: false
+            local: false
+            src: /img/bj.png
 
     # 颜色方案
     colorScheme:
-        toggle: true                   # 是否显示切换按钮
-        default: auto                  # 默认模式：auto, light, dark
-        efaultAppearance: "dark"      # 默认浅色
-        autoSwitchAppearance: true    # 根据系统偏好自动切换
+        toggle: true
+        default: auto
+        defaultAppearance: "dark"
+        autoSwitchAppearance: true
 
     # 图片处理
     imageProcessing:
         cover:
-            enabled: true              # 处理封面图片
+            enabled: true
         content:
-            enabled: true              # 处理内容图片
+            enabled: true
+
+    # 相关文章设置
+    related:
+        limit: 8
+        includeNewer: true
 
 # 自定义菜单配置
 menu:
-    main: []                           # 主导航菜单
-
-    social:                            # 社交链接菜单
+    main: []
+    social:
         - identifier: github
           name: GitHub
           url: https://github.com/CaiJimmy/hugo-theme-stack
           params:
-              icon: brand-github       # 图标名称
+              icon: brand-github
 
 # 相关文章设置
 related:
-    includeNewer: true                 # 是否包含较新文章
-    threshold: 60                      # 相关度阈值
-    toLower: false                     # 是否忽略大小写
+    includeNewer: true
+    threshold: 60
+    toLower: false
     indices:
-        - name: tags                   # 使用标签作为关联依据
-          weight: 100                  # 权重
-        - name: categories             # 使用分类作为关联依据
+        - name: tags
+          weight: 100
+        - name: categories
           weight: 200
 
 # Markdown渲染设置
@@ -180,27 +189,27 @@ markup:
     goldmark:
         extensions:
             passthrough:
-                enable: true           # 启用原始HTML通过
+                enable: true
                 delimiters:
-                    block:             # 块级分隔符
+                    block:
                         - - \[
                           - \]
                         - - $$
                           - $$
-                    inline:            # 行内分隔符
+                    inline:
                         - - \(
                           - \)
         renderer:
-            unsafe: true               # 允许不安全HTML（直接渲染HTML内容）
+            unsafe: true
     tableOfContents:
-        endLevel: 4                    # 目录结束级别
-        ordered: true                  # 是否有序
-        startLevel: 2                  # 目录开始级别
+        endLevel: 4
+        ordered: true
+        startLevel: 2
     highlight:
-        noClasses: false               # 是否使用内联样式
-        codeFences: true               # 启用代码围栏
-        guessSyntax: true              # 自动猜测语法
-        lineNoStart: 1                 # 行号起始值
-        lineNos: true                  # 显示行号
-        lineNumbersInTable: true       # 在表格中显示行号
-        tabWidth: 4                    # 制表符宽度
+        noClasses: false
+        codeFences: true
+        guessSyntax: true
+        lineNoStart: 1
+        lineNos: true
+        lineNumbersInTable: true
+        tabWidth: 4

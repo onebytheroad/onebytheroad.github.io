@@ -7,33 +7,139 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Example Person</copyright>
-        <lastBuildDate>Mon, 20 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 21 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>10-21 笔记</title>
+        <link>http://localhost:1313/p/10-21/</link>
+        <pubDate>Tue, 21 Oct 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/10-21/</guid>
+        <description>&lt;img src="http://localhost:1313/p/10-21/bi.jpg" alt="Featured image of post 10-21 笔记" /&gt;&lt;h3 id=&#34;c语言基础&#34;&gt;c语言基础
+&lt;/h3&gt;&lt;h2 id=&#34;类型长度与取值范围&#34;&gt;类型长度与取值范围
+&lt;/h2&gt;&lt;p&gt;类型长度-sizeof
+sizeof(char)   1
+sizeof(wchar_t)   2或4
+sizeof(short)   2
+sizeof(int)    4
+sizeof(long)   4         linux X86为4，X64为8
+sizeof(float)  4
+sizeof(double)   8
+sizeof(bool)   1        	C99之后或者C++
+sizeof(BOOL）  4         win
+在需要使用类型长度的时候，不要使用硬编码，直接使用1，2，4这种就是使用硬编码，使用sizeof，比如用sizeof（int）代替4，提高代码的可移植性，（同一串代码的不同平台的移植性）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/10-21/leixing.png&#34;
+	width=&#34;941&#34;
+	height=&#34;707&#34;
+	srcset=&#34;http://localhost:1313/p/10-21/leixing_hu_5f0e16db4cef9a9a.png 480w, http://localhost:1313/p/10-21/leixing_hu_5a8b61253a6ac30f.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Photo by lei&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;319px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;sizeof计算类型或者变量长度，字节为单位，是操作符，不是函数，在编译阶段确定，而不是运行阶段
+决定一串代码是函数还是操作符，看其结果是在编译阶段确定还是在运行阶段确定，sizeof在编译阶段即确定&lt;/p&gt;
+&lt;p&gt;各个类型表示的数的范围
+最大值和最小值表示：
+无符号：
+unsigned int max = (unsigned int)-1;//1111 1111 1111 1111
+unsigned int min = 0
+有符号
+int max =  0x7fffffff=0111 1111 1111 1111 0x7f ff ff ff
+int min =0x80000000 =  1000 0000 0000 1111,0x80 00 00 00      （除了符号位之外其他的全部为0）&lt;/p&gt;
+&lt;p&gt;整数溢出之后发生什么
+char(-128*-1) 上溢 1：变成最小值
+下溢出1：最大值
+举例：有符号 -129-1// -129  -&amp;gt;127        127+1//128 -&amp;gt;-128
+无符号  255+1 = 0   0-1=255&lt;/p&gt;
+&lt;p&gt;UTC 世界标准时，与GMT（格林尼治时间）&lt;/p&gt;
+&lt;h2 id=&#34;类型转换&#34;&gt;类型转换
+&lt;/h2&gt;&lt;h1 id=&#34;强制转换&#34;&gt;强制转换
+&lt;/h1&gt;&lt;p&gt;类型转换：将一种类型转换为另一种类型，一种类型指针转为另一种类型指针
+强制转换：（新类型，写要转换的哪一个量）变量
+从小到大：小，指的是字节小，从字节小的转化为字节大的
+char c = &amp;lsquo;a&amp;rsquo;
+short i = (short)c
+int a = (int)i
+unsigned int u = (unsigned int)a （有符号数和无符号数也能强制转化）
+long b = (long)a
+float c = (float)b
+double d = (double)c
+小到大转换的时候，符号位填充多出的尾数
+00110101 &amp;ndash;&amp;gt; 00000000 00110101 &amp;ndash;&amp;gt;
+10110100 &amp;ndash;&amp;gt;11111111 10110100 &amp;ndash;&amp;gt;
+short s = 0x12
+int i = (int) s ..i -&amp;gt;0x00 00 00 12
+short s = -0xff ee //-18
+int i = (int)s //i -&amp;gt;0xff ff ff ee&lt;/p&gt;
+&lt;p&gt;浮点数到整数
+int i =(int)3.14 //取整，非四舍五入&lt;/p&gt;
+&lt;p&gt;从大到小：
+int x = 0x12345678
+short y = (short)x
+y==0x5678截断，丢弃高位       大字节缩小到小字节&lt;/p&gt;
+&lt;h1 id=&#34;自动隐式转换1&#34;&gt;自动（隐式）转换（1）
+&lt;/h1&gt;&lt;p&gt;1）若参与运算量的类型不同，则先转换成同一类型，然后进行运算
+2）转换按数据长度增加的方向进行，以保证精度不降低。如int型和long型运算时，先把int量转成long型后再进行运算
+a.若两种类型的字节数不同，转换成字节数高的一种类型
+b.若两种类型的字节数相同，且一种有符号，一种无符号，则转换成无符号类型
+3）所有的浮点运算都是以双精度进行的，即使仅含float单精度量运算的表达式，也要先转换成double型，在做运算
+4）char型和short型参与运算时，必须先转换成int型
+5）再赋值运算中，赋值号两边量数据类型不同时，赋值号右边量的类型将转换为左边量的类型，类型不一致，可以能降低精度
+6）算数运算中，加减乘除取余以及符号运算。
+不同类型数据必须转换成同一类型的数据才能运算，算数转换的原则为：
+a若运算数中有double型或float型，则其他类型数据均转换成该类型进行运算
+b若运算数种最长的类型为long型，则其他类型数据转换lang型函数
+c若运算数种最长类型为int型，则char型也转换成int型进行运算，算术转换是再运算过程中自动填充而行的
+7）函数调用中参数传递时，系统隐式地将实参转换为形参的类型后，赋给形参。char和short会被转换成int，float会被转化为double
+8）函数有返回值时，系统将隐式地返回表达式类型转换为返回值类型，赋值给调用函数
+无论是强制转换后世自动转换，都只是为了本次运算的需要而对变量的数据长度进行的临时性转换，而不改变数据说明是对该变量定义的类型
+float f = 5.34f
+int x = (int)f
+f虽为强制转为int型，但只在运算中起作用，是临时的，而f本身的类型并不改变&lt;/p&gt;
+&lt;p&gt;赋值中的类型转换
+当赋值运算符两边的运算对象类型不匹配时，将要发生的类型转换，转换的规则是：把赋值运算符右侧表达式的类型转换为左侧变量的类型
+（1）浮点型与整形
+将浮点数（单双精度）转换为整数时，将舍弃浮点数的小数部分，只保留整数部分。将整型值赋给浮点型变量，数值不变，只将形式改为浮点形式，即小数点后带若干个0，注意，负值时的类型转换实际上是强制的
+（2）单双精度浮点型
+由于c语言中的浮点值总是用双精度 表示的，所以float型数据知识在尾部加0延长为double型数据参加运算，然后直接赋值，double型数据转换为float型时，通过截尾数来实验，截断前要进行四舍五入操作
+（3）char型与int型
+int型数值赋给char型变量时，只保留其最低八位，高位部分舍弃
+char型数值赋给int型变量时，一些编译程序不管其值大小都做整数处理，而另一些编译程序在转换时，若char型数据值大于127，就作为负数处理。对使用者来讲，如果原来char型数据取正值，转换后仍然为正值；如果原来char型值可正可负，则转换后也仍然保持原值，只是数据的内部表示形式有所不同
+（4）int型与long型
+long型数据赋给int型变量时，将低16位值送给int型变量，而将高16位截断舍弃。（这里假定int型占两个字节）将int型数据送给long型变量时，其外部值保持不变，而内部形式有所改变。
+（5）无符号整数
+将一个unsigned型数据赋给一个占据同样长度存储单元的整形变量时（如：unsigned-&amp;gt;int，unsigned long-&amp;gt;long，unsigned short -&amp;gt;short），原值照赋，内部的存储方式不变，但外部的值却可能改变。
+将一个signed整形数据赋给长度相同的unsigned型变量时，内部存储形式不变，但外部表示时总是无符号的。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>10-20 笔记</title>
         <link>http://localhost:1313/p/10-20/</link>
         <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/p/10-20/</guid>
         <description>&lt;img src="http://localhost:1313/p/10-20/bj.jpg" alt="Featured image of post 10-20 笔记" /&gt;&lt;h3 id=&#34;c语言基础&#34;&gt;c语言基础
-&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;    ASCII码，美国标准信息交换代码  
-
-ASCII码是单字节编码系统，它使用指定的7位或者8位二进制数组合来表示128或256种可能的字符
+&lt;/h3&gt;&lt;p&gt;ASCII码，美国标准信息交换代码&lt;/p&gt;
+&lt;p&gt;SCII码是单字节编码系统，它使用指定的7位或者8位二进制数组合来表示128或256种可能的字符
 标准ASCII码也叫基础ASCII码，使用7位二进制数来表示所有的大写和小写字母，数字0-9，标点符号，以及在美式英语中使用的特殊控制字符
-char c= &#39;A&#39;,//c=65  
-    char ch=&#39;0&#39;;//ch=48  
-
-    UNICODE编码
+char c= &amp;lsquo;A&amp;rsquo;,//c=65&lt;br&gt;
+char ch=&amp;lsquo;0&amp;rsquo;;//ch=48&lt;/p&gt;
+&lt;p&gt;UNICODE编码
 ASCII编码只能表示有限的字符数，为了能够将世界上所有的字符都纳入编码范围，UNICODE字符编码便产生了，在UNICODE字符编码中，经常采用的是用2个字节或4个字节来表示一个字符，UNICODE编码的具体实现包括UTF-8，UTF-16和UTF-32。其中UTF-8中的字符占用的字节可以从1到4个，而UTF-16占两个字节，UTF-32占4个字节。
-    unicode编码兼容ASCII编码
-    &#39;0&#39;  &#39;1&#39;被引号括起来，表示1和0的字符，有对应的编码，而0，和1对应的就是整数的值，
-如何把一个字符转化成整数：  c - &#39;0&#39;//     &#39;5&#39;-&#39;0&#39;=5      (减0这个字符)
-                       整数转化成字符：    i  + &#39;0&#39;//       5+&#39;0&#39;=&#39;5&#39; （加0这个字符）
-                      大写转小写  char c = &#39;M&#39;
-                                             c + &#39;a&#39; - &#39;A&#39;   字母大小写之间转化差32位值，所以加上小a减大A，不直接写32是为了能看懂
-                                            char ch=&#39;y&#39;
-                                             ch + &#39;A&#39;-&#39;a&#39;    a=97 A=65
-   
-    #整形
-   short int   简写为 short
+unicode编码兼容ASCII编码
+&amp;lsquo;0&amp;rsquo;  &amp;lsquo;1&amp;rsquo;被引号括起来，表示1和0的字符，有对应的编码，而0，和1对应的就是整数的值，
+如何把一个字符转化成整数：  c - &amp;lsquo;0&amp;rsquo;//     &amp;lsquo;5&amp;rsquo;-&amp;lsquo;0&amp;rsquo;=5      (减0这个字符)
+整数转化成字符：    i  + &amp;lsquo;0&amp;rsquo;//       5+&amp;lsquo;0&amp;rsquo;=&amp;lsquo;5&amp;rsquo; （加0这个字符）
+大写转小写  char c = &amp;lsquo;M&amp;rsquo;
+c + &amp;lsquo;a&amp;rsquo; - &amp;lsquo;A&amp;rsquo;   字母大小写之间转化差32位值，所以加上小a减大A，不直接写32是为了能看懂
+char ch=&amp;lsquo;y&amp;rsquo;
+ch + &amp;lsquo;A&amp;rsquo;-&amp;lsquo;a&amp;rsquo;    a=97 A=65&lt;/p&gt;
+&lt;h1 id=&#34;整形&#34;&gt;整形
+&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;   short int   简写为 short
 int
 long int  简写为 long
 long long
@@ -53,7 +159,7 @@ short a1 = 100
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;长度不对，会容易出很多漏洞，&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;浮点类型
-  float//单精度, 4个字节
+float//单精度, 4个字节
 double//双精度，8个字节
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;float x=3.1415f  如果不写f系统会认为这是一个双精度浮点数

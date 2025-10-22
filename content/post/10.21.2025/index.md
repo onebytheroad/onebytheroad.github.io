@@ -1,9 +1,9 @@
 ---
 title: 10-21 笔记
-description: 浮世三千，我爱有三，日，月与卿。日为朝，月为幕，卿为朝朝暮暮。
+description: 浮世三千，吾爱有三，日，月与卿。日为朝，月为幕，卿为朝朝暮暮。
 date: 2025-10-21
 slug: 10-21
-image: bj.jpg
+image: bi.jpg
 categories:
     - 每日
 ---
