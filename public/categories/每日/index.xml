@@ -263,6 +263,7 @@
 &lt;p&gt;hash(object)&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;hash(1)&lt;/code&gt;   =  &lt;code&gt;hash(1.0)&lt;/code&gt;  对一个相等的值，尽管是不同的对象&lt;/p&gt;
 &lt;p&gt;大多数可变对象是不可哈希的，不可变对象是可哈希的&lt;/p&gt;
+&lt;p&gt;集合的嵌套，需要使用frozenset&lt;/p&gt;
 </description>
         </item>
         <item>
