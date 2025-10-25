@@ -2,7 +2,7 @@
 
 title: 10-23 笔记
 
-description: 
+description: 我在等你开口，也在等我放弃
 
 date: 2025-10-23
 
@@ -12,7 +12,7 @@ image: bj.jpg
 
 categories:
 
-  \- 每日
+   每日
 
 ---
 

@@ -7,7 +7,44 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Example Person</copyright>
-        <lastBuildDate>Wed, 22 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E6%AF%8F%E6%97%A5/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 23 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E6%AF%8F%E6%97%A5/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>10-23 笔记</title>
+        <link>http://localhost:1313/p/10-23/</link>
+        <pubDate>Thu, 23 Oct 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/10-23/</guid>
+        <description>&lt;img src="http://localhost:1313/p/10-23/bj.jpg" alt="Featured image of post 10-23 笔记" /&gt;&lt;h1 id=&#34;查漏补缺&#34;&gt;查漏补缺
+&lt;/h1&gt;&lt;h3 id=&#34;初始化与预处理&#34;&gt;初始化与预处理
+&lt;/h3&gt;&lt;p&gt;区别：预处理发生在程序运行之前，也就是导入模块，替换头文件等操作&lt;/p&gt;
+&lt;p&gt;​           初始化发生在程序开始运行时，将代码中的值写入变量对应的内存&lt;/p&gt;
+&lt;h3 id=&#34;程序构成&#34;&gt;程序构成
+&lt;/h3&gt;&lt;p&gt;预处理，导入代码中需要的模块，函数&lt;/p&gt;
+&lt;p&gt;编译，将输入的高级语言，转化为汇编语言，&lt;/p&gt;
+&lt;p&gt;汇编，将汇编语言转变为机器语言，也就是二进制语言&lt;/p&gt;
+&lt;p&gt;链接，将多个文件合并装订在一起，形成可执行文件&lt;/p&gt;
+&lt;h3 id=&#34;壳&#34;&gt;壳
+&lt;/h3&gt;&lt;p&gt;将原本的文件加密压缩到新文件，然后混合壳的代码形成新的可执行文件，在新的可执行文件中，文件头记录的ep即是壳的入口也就是更改之后的文件入口，而原始文件入口oep被隐藏，此为加壳&lt;/p&gt;
+&lt;h3 id=&#34;调试信息&#34;&gt;调试信息
+&lt;/h3&gt;&lt;p&gt;调试信息包含源代码，内存地址，寄存器，函数地址等大量汇编简化信息，用来辅助调试程序运行和修复错误&lt;/p&gt;
+&lt;h3 id=&#34;程序进程线程&#34;&gt;程序，进程，线程
+&lt;/h3&gt;&lt;p&gt;程序是静态的，是代码的链接，进程的启动器&lt;/p&gt;
+&lt;p&gt;进程是一次程序的执行过程，拥有开始到结束运行的完整的生命周期，进程与进程之间相互隔离，通信难度大&lt;/p&gt;
+&lt;p&gt;线程是一个进程内的cpu调度，一个进程可以有多个线程来帮助完成作业，但是线程与线程之间相互影响&lt;/p&gt;
+&lt;p&gt;进程是资源分配的基本单元，线程是调度的基本单元&lt;/p&gt;
+&lt;h3 id=&#34;处理器核cpu&#34;&gt;处理器，核，cpu
+&lt;/h3&gt;&lt;p&gt;核是一个计算核心，包括了算术逻辑单元核浮点数逻辑单元&lt;/p&gt;
+&lt;p&gt;cpu是用来运算核流程控制的部件，可以同时装载多个核来提高并行处理能力&lt;/p&gt;
+&lt;p&gt;处理器是完整的计算芯片，可能包含多个cpu和gpu&lt;/p&gt;
+&lt;h3 id=&#34;内建型别&#34;&gt;内建型别
+&lt;/h3&gt;&lt;p&gt;即函数的基本类型，c语言中一定要明确函数的类型，不同类型的数不能够轻易改变&lt;/p&gt;
+&lt;p&gt;字符，数据，整形，布尔，头文件，实数，&lt;/p&gt;
+&lt;h3 id=&#34;数据结构体列表节点二次参数&#34;&gt;数据结构体，列表节点，二次参数
+&lt;/h3&gt;&lt;p&gt;数据结构体相当于一个自定义的数据包裹，捆绑了多个不同类型的数据变量，作为一个整体来使用&lt;/p&gt;
+&lt;p&gt;列表节点是构成“链表”的基本单元，用来帮助链表动态的增长或者缩短&lt;/p&gt;
+&lt;p&gt;二次参数，主函数的命令行参数&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>10-22 笔记</title>
         <link>http://localhost:1313/p/10-22/</link>
         <pubDate>Wed, 22 Oct 2025 00:00:00 +0000</pubDate>
@@ -383,7 +420,7 @@ long型数据赋给int型变量时，将低16位值送给int型变量，而将�
         <guid>http://localhost:1313/p/10-20/</guid>
         <description>&lt;img src="http://localhost:1313/p/10-20/bj.jpg" alt="Featured image of post 10-20 笔记" /&gt;&lt;h3 id=&#34;c语言基础&#34;&gt;c语言基础
 &lt;/h3&gt;&lt;p&gt;ASCII码，美国标准信息交换代码&lt;/p&gt;
-&lt;p&gt;SCII码是单字节编码系统，它使用指定的7位或者8位二进制数组合来表示128或256种可能的字符
+&lt;p&gt;ASCII码是单字节编码系统，它使用指定的7位或者8位二进制数组合来表示128或256种可能的字符
 标准ASCII码也叫基础ASCII码，使用7位二进制数来表示所有的大写和小写字母，数字0-9，标点符号，以及在美式英语中使用的特殊控制字符
 char c= &amp;lsquo;A&amp;rsquo;,//c=65&lt;br&gt;
 char ch=&amp;lsquo;0&amp;rsquo;;//ch=48&lt;/p&gt;
