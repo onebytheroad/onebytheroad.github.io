@@ -1,22 +1,14 @@
-\---
-
+---
 title: 10-25 笔记
-
 description: 世人千万种，浮云莫去求。斯人若彩虹，遇上方知有。
-
 date: 2025-10-25
-
 slug: 10-25
-
 image: bj.jpg
-
 categories:
+    - 每日
+---
 
-  \- 每日
-
-\---
-
-![geshihua](C:\blog\my-blog\content\post\10.25.2025\geshihua.png)
+![geshihua](geshihua.png)
 
 输出16进制前缀的整数
 
@@ -96,11 +88,11 @@ int main(int argc)
 
 多重输出，加宽字节会出bug导致无法输出。
 
-![jingcheng](C:\blog\my-blog\content\post\10.25.2025\jingcheng.png)
+![jingcheng](jingcheng.png)
 
 fd，文件描述符表，每个进程独立拥有的指向任何一打开的文件，管道，设备等任何资源的引用或句柄，一种资源调配的数字编号
 
-![zuoye1](C:\blog\my-blog\content\post\10.25.2025\zuoye1.png)
+![zuoye1](zuoye1.png)
 
 1.输入一个变量需要用取值符&获取其内存地址，字符串不需要，字符串的数组存储在计算机
 
@@ -135,7 +127,7 @@ sizeof也是单目运算符
 ？： 唯一的三目运算符
 ```
 
-![yunsuanfu](C:\blog\my-blog\content\post\10.25.2025\yunsuanfu.png)
+![yunsuanfu](yunsuanfu.png)
 
 ### 逻辑非
 
@@ -193,5 +185,86 @@ printf("%d %d\n",i++,++i);  // 不同的编译器产生的结果不一样
 
 如图，类型必须加括号，常量、变量可以不加括号
 
-![daquan](C:\blog\my-blog\content\post\10.25.2025\daquan.png)
 
+
+/ 取商  %取余数
+
+### 比较运算符
+
+< <= > >= == !=
+
+写a>b>c，需要写成 a>b && b>c 必须单独比较 
+
+可以用常量 == 变量的相等方式来验证是否赋值 （常量与变量比较）
+
+a == 1  a = 1   1 = a  1 == a
+
+0和整数进行比较直接用== 即可
+
+如果是和浮点数和零比较  ,不能直接进行比较，浮点数不精确 fabs是math.h中的绝对值
+
+fabs(x)<=1e-6   ---> 
+
+### 逻辑运算符：含义与计算顺序
+
+&&：只要一个为0就停止计算    和
+
+||：只要一个为1就停止运算    或
+
+与的优先级大于或的优先级
+
+### 三目
+
+？：  常量变量都可以，也可以是一个符合要求的表达式
+
+a?b:c  -->如果a为真，则取b的值为这个式子的表达式
+
+​                如果a为假，则取c的值为运算符的值
+
+### 复合运算符
+
+= 
+
++=                   a = a+50      a += 50
+
+*=                    a=a *100          a *= 100
+
+-=                   a = a -20      a   -= 20
+
+/=
+
+%=
+
+a <<= 2;    a = a<<2         a左移两位
+
+###   逗号运算符
+
+, i++,j++,(逗号表达式的求值，非常容易错)
+
+![daquan](daquan.png)
+
+## 运算符的结合律与优先
+
+运算符的优先级和结合律决定操作数的结合方式，当复合表达式中的运算符的优先级不同时操作数的结合方式是由优先级决定。当符合表达式中的运算符的优先级相同时，操作数的结合方式由结合律决定。不过，我们也可以使用哭号强制把操作数结合在一起。
+
+![youxianji](youxianji.png)
+
+
+
+![yunsuanfuyouxianji](yunsuanfuyouxianji.png)
+
+
+
+作业
+
+![zuoye2](C:\blog\my-blog\content\post\10.25.2025\zuoye2.png)
+
+1.
+
+代码中的比较 NULL == p ,p ==NULL ,0 == i 与 i == 0 比较意义上是等效的，不过反写成0 == i ,NULL == p可以防止，如果在少打了一个等号的情况下，代码打成 0 = i 这样的代码会报错，能够有效的检查出代码错误
+
+2.
+
+a %= 5     等效为  a = a % 5
+
+a *= 5   等效为  a = a * 5

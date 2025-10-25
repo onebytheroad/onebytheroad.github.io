@@ -1,20 +1,13 @@
-\---
-
+---
 title: 10-24 笔记
-
-description: 人面不知何处去，桃花依旧笑春风
-
+description: 人面不知何处去，桃花依旧笑春风。
 date: 2025-10-24
-
 slug: 10-24
-
 image: bj.jpg
-
 categories:
+    - 每日
+---
 
-  \- 每日
-
-\---
 
 栈增长，高地址到低地址
 
@@ -30,7 +23,7 @@ rip64 eip32
 
 # 第六个：输入输出  stdio
 
-![biaozhunshuru](C:\blog\my-blog\content\post\10.24.2025\biaozhunshuru.png)
+![biaozhunshuru](biaozhunshuru.png)
 
 scanf 输入  printf  输出
 
