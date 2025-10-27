@@ -280,8 +280,14 @@
             <li><a href="#i和i">i++和i&ndash;</a></li>
             <li><a href="#强转">强转</a></li>
             <li><a href="#sizeof--用来计算类型变量常量的长度">sizeof  用来计算类型，变量，常量的长度</a></li>
+            <li><a href="#比较运算符">比较运算符</a></li>
+            <li><a href="#逻辑运算符含义与计算顺序">逻辑运算符：含义与计算顺序</a></li>
+            <li><a href="#三目">三目</a></li>
+            <li><a href="#复合运算符">复合运算符</a></li>
+            <li><a href="#逗号运算符">逗号运算符</a></li>
           </ol>
         </li>
+        <li><a href="#运算符的结合律与优先">运算符的结合律与优先</a></li>
       </ol>
     </li>
   </ol>
@@ -364,7 +370,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 3 分钟
+                    阅读时长: 4 分钟
                 </time>
             </div>
         
@@ -604,6 +610,33 @@
 </h3><p>(int)3.14f  &ndash;&gt;浮点转整数</p>
 <h3 id="sizeof--用来计算类型变量常量的长度">sizeof  用来计算类型，变量，常量的长度
 </h3><p>如图，类型必须加括号，常量、变量可以不加括号</p>
+<p>/ 取商  %取余数</p>
+<h3 id="比较运算符">比较运算符
+</h3><p>&lt; &lt;= &gt; &gt;= == !=</p>
+<p>写a&gt;b&gt;c，需要写成 a&gt;b &amp;&amp; b&gt;c 必须单独比较</p>
+<p>可以用常量 == 变量的相等方式来验证是否赋值 （常量与变量比较）</p>
+<p>a == 1  a = 1   1 = a  1 == a</p>
+<p>0和整数进行比较直接用== 即可</p>
+<p>如果是和浮点数和零比较  ,不能直接进行比较，浮点数不精确 fabs是math.h中的绝对值</p>
+<p>fabs(x)&lt;=1e-6   &mdash;&gt;</p>
+<h3 id="逻辑运算符含义与计算顺序">逻辑运算符：含义与计算顺序
+</h3><p>&amp;&amp;：只要一个为0就停止计算    和</p>
+<p>||：只要一个为1就停止运算    或</p>
+<p>与的优先级大于或的优先级</p>
+<h3 id="三目">三目
+</h3><p>？：  常量变量都可以，也可以是一个符合要求的表达式</p>
+<p>a?b:c  &ndash;&gt;如果a为真，则取b的值为这个式子的表达式</p>
+<p>​                如果a为假，则取c的值为运算符的值</p>
+<h3 id="复合运算符">复合运算符
+</h3><p>=</p>
+<p>+=                   a = a+50      a += 50</p>
+<p>*=                    a=a *100          a *= 100</p>
+<p>-=                   a = a -20      a   -= 20</p>
+<p>/=</p>
+<p>%=</p>
+<p>a &laquo;= 2;    a = a&laquo;2         a左移两位</p>
+<h3 id="逗号运算符">逗号运算符
+</h3><p>, i++,j++,(逗号表达式的求值，非常容易错)</p>
 <p><img src="/p/10-25/daquan.png"
 	width="1921"
 	height="1289"
@@ -618,6 +651,52 @@
 		data-flex-basis="357px"
 	
 ></p>
+<h2 id="运算符的结合律与优先">运算符的结合律与优先
+</h2><p>运算符的优先级和结合律决定操作数的结合方式，当复合表达式中的运算符的优先级不同时操作数的结合方式是由优先级决定。当符合表达式中的运算符的优先级相同时，操作数的结合方式由结合律决定。不过，我们也可以使用哭号强制把操作数结合在一起。</p>
+<p><img src="/p/10-25/youxianji.png"
+	width="1744"
+	height="415"
+	srcset="/p/10-25/youxianji_hu_67df33ce483114c4.png 480w, /p/10-25/youxianji_hu_dd6affaf806218f2.png 1024w"
+	loading="lazy"
+	
+		alt="youxianji"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="420"
+		data-flex-basis="1008px"
+	
+></p>
+<p><img src="/p/10-25/yunsuanfuyouxianji.png"
+	width="1901"
+	height="1134"
+	srcset="/p/10-25/yunsuanfuyouxianji_hu_9f7faa6f38a57949.png 480w, /p/10-25/yunsuanfuyouxianji_hu_33d803853de01e3c.png 1024w"
+	loading="lazy"
+	
+		alt="yunsuanfuyouxianji"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="167"
+		data-flex-basis="402px"
+	
+></p>
+<p>作业</p>
+<p><img src="C:%5cblog%5cmy-blog%5ccontent%5cpost%5c10.25.2025%5czuoye2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="zuoye2"
+	
+	
+></p>
+<p>1.</p>
+<p>代码中的比较 NULL == p ,p ==NULL ,0 == i 与 i == 0 比较意义上是等效的，不过反写成0 == i ,NULL == p可以防止，如果在少打了一个等号的情况下，代码打成 0 = i 这样的代码会报错，能够有效的检查出代码错误</p>
+<p>2.</p>
+<p>a %= 5     等效为  a = a % 5</p>
+<p>a *= 5   等效为  a = a * 5</p>
 
 </section>
 
@@ -651,6 +730,30 @@
     <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/10-26/">
+        
+        
+            <div class="article-image">
+                <img src="/p/10-26/bj.e15b70dfb8c49bf725f90f9142bf986d_hu_53baeb44ae03cdcb.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 10-26 笔记"
+                        data-key="10-26" 
+                        data-hash="md5-4Vtw37jEm/cl&#43;Q&#43;RQr&#43;YbQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">10-26 笔记</h2>
+        </div>
+    </a>
+</article>
+
             
                 
 <article class="has-image">
@@ -743,30 +846,6 @@
 
         <div class="article-details">
             <h2 class="article-title">10-21 笔记</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/10-20/">
-        
-        
-            <div class="article-image">
-                <img src="/p/10-20/bj.88b9d84ebe74f04635db454a6868d11c_hu_3b834a4b3491f919.jpg" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post 10-20 笔记"
-                        data-key="10-20" 
-                        data-hash="md5-iLnYTr508EY120VKaGjRHA==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">10-20 笔记</h2>
         </div>
     </a>
 </article>

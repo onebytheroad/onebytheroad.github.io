@@ -191,7 +191,7 @@ int main()
 
 
 
-![yujushili](C:\blog\my-blog\content\post\10.26.2025\yujushili.png)
+![yujushili](yujushili.png)
 
 ## 定义语句&表达式语句&赋值语句
 
