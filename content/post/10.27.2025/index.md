@@ -136,7 +136,7 @@ a[10]中有0-9，没有10，如果访问a[10]会导致数组溢出，但是程�
 
 定义实例：
 
-![shuzushilidigyi](C:shuzushilidigyi.png)
+![shuzushilidigyi](shuzushilidigyi.png)
 
 *a表示指针
 
