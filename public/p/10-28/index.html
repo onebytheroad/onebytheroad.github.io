@@ -373,7 +373,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 4 分钟
+                    阅读时长: 8 分钟
                 </time>
             </div>
         
@@ -436,6 +436,146 @@
 		data-flex-basis="356px"
 	
 ></p>
+<p>1.随机访问：指能通过  a[下标值]  直接访问到数组中这个下标所在的值   原因：数组的存储方式是按照顺序一个一个字节数相同，连续排列的组合，通过长度乘以下标值能够直接找到对应的内存地址，所以数组能够支持随机访问</p>
+<p>2.在C语言中，数组的长度是固定的，因此无法直接删除数组中的某一项。通常通过<strong>覆盖法</strong>或<strong>辅助数组法</strong>来实现删除操作。</p>
+<ol>
+<li>覆盖法</li>
+</ol>
+<p>确定需要删除元素的下标位置，然后从此位置开始将后续元素全部往前移动一位，而后更新数组长度或者将最后一位换为0</p>
+<p>代码示例：(百度复制)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">void</span> <span class="nf">removeElement</span><span class="p">(</span><span class="kt">int</span> <span class="n">arr</span><span class="p">[],</span> <span class="kt">int</span> <span class="o">*</span><span class="n">size</span><span class="p">,</span> <span class="kt">int</span> <span class="n">index</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="o">*</span><span class="n">size</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">       <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;索引超出范围</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">       <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">index</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="o">*</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">       <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="o">*</span><span class="n">size</span><span class="p">)</span><span class="o">--</span><span class="p">;</span> <span class="c1">// 更新数组长度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">arr</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// 要删除的元素索引
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="nf">removeElement</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">size</span><span class="p">,</span> <span class="n">index</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">       <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>辅助数组</li>
+</ol>
+<p>创建一个新的数组，然后将除了删除元素的其他元素复制到新数组，再复制回去</p>
+<p>代码示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">void</span> <span class="nf">removeElement</span><span class="p">(</span><span class="kt">int</span> <span class="n">arr</span><span class="p">[],</span> <span class="kt">int</span> <span class="o">*</span><span class="n">size</span><span class="p">,</span> <span class="kt">int</span> <span class="n">index</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="o">*</span><span class="n">size</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">       <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;索引超出范围</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">       <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">temp</span><span class="p">[</span><span class="o">*</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="o">*</span><span class="n">size</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">       <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">!=</span> <span class="n">index</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">           <span class="n">temp</span><span class="p">[</span><span class="n">j</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">       <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">       <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="o">*</span><span class="n">size</span><span class="p">)</span><span class="o">--</span><span class="p">;</span> <span class="c1">// 更新数组长度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">arr</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// 要删除的元素索引
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="nf">removeElement</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">size</span><span class="p">,</span> <span class="n">index</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">       <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>3.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#define array_number[int a[],int len]
+</span></span><span class="line"><span class="cl">	len = sizeof(a)/sizeof(a[]);
+</span></span><span class="line"><span class="cl">	return 0;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>4.数组溢出：访问到数组未定义的内存地址</p>
+<p>现象：如果是内存中未定义的地址，进入非法区域，会导致程序崩溃</p>
+<p>或者是访问到其他数据所在的地址，导致数据破坏影响程序运行</p>
+<p>或者是得到一些未定义的垃圾值</p>
+<p>c语言并不检测数组溢出，所以这算是一个隐性的bug</p>
 <p>注意事项</p>
 <p><img src="/p/10-28/shuzuchushihua.png"
 	width="1916"
@@ -514,7 +654,20 @@
 		data-flex-basis="482px"
 	
 ></p>
-<p>作业2：</p>
+<p>数组中用（）括起来的是逗号表达式，需要计算其中的值，此数组中的值{2，4，3，0，0，0}，因为是二维数组，所以写为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{2,4
+</span></span><span class="line"><span class="cl"> 3,0
+</span></span><span class="line"><span class="cl"> 0,0}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>作业2：</p>
 <p><img src="/p/10-28/zuoye2.png"
 	width="1919"
 	height="873"
@@ -529,6 +682,140 @@
 		data-flex-basis="527px"
 	
 ></p>
+<p>1.</p>
+<p>1）直接赋值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">int a[1][1]={{1,2},{1,2}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2）循环遍历输入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">6</span><span class="p">][</span><span class="mi">6</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">6</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">6</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">rand</span> <span class="c1">// 固定数值，或者随机数生成
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//*还可以通过键盘输入来往数组里面输入值 参考
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Please input the score for %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">o</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	         <span class="nf">scanf_s</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">score</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">	         
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//*
+</span></span></span><span class="line"><span class="cl"><span class="c1">//个人想法，未搜索
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//*以下是网络搜索
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span> 
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">rows</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>       <span class="c1">// 定义二维数组的行数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">cols</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>       <span class="c1">// 定义二维数组的列数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">matrix</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">4</span><span class="p">];</span>    <span class="c1">// 定义一个3行4列的二维数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> 
+</span></span><span class="line"><span class="cl">    <span class="c1">// 为二维数组的每个元素赋值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">rows</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 外层循环遍历行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">cols</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 内层循环遍历列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="c1">// 赋值操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">cols</span> <span class="o">+</span> <span class="n">j</span><span class="p">;</span> <span class="c1">// 赋值逻辑，这里只是示例，可以根据需要修改
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="c1">// 打印二维数组以验证赋值是否成功
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">rows</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">cols</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span> <span class="c1">// 打印矩阵元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span> <span class="c1">// 每行结束后换行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="err">————————————————</span>
+</span></span><span class="line"><span class="cl"><span class="err">版权声明：本文为</span><span class="n">CSDN博主</span><span class="err">「凭栏落花侧」的原创文章，遵循</span><span class="n">CC</span> <span class="mf">4.0</span> <span class="n">BY</span><span class="o">-</span><span class="n">SA版权协议</span><span class="err">，转载请附上原文出处链接及本声明。</span>
+</span></span><span class="line"><span class="cl"><span class="err">原文链接：</span><span class="nl">https</span><span class="p">:</span><span class="c1">//blog.csdn.net/m0_67484548/article/details/140399701
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.</p>
+<p>存储方式：</p>
+<p>线性存储方式，按照a[0]行，a[1]行的方式，一行一行一个数据一个数据的方式存储，每个元素的长度根据定义长度来</p>
+<p>3.按行遍历的效率高</p>
+<p>因为涉及内存页存储</p>
+<p><em>内存页是操作系统分配内存的最小单位，通常大小为4KB，用于实现虚拟内存和内存管理。</em></p>
+<p><em>内存页的定义:内存页（Memory Page）是操作系统在内存管理中使用的基本单位。它将物理内存划分为固定大小的块，通常为4KB（4096字节）。操作系统通过页表来管理这些内存页，记录虚拟地址与物理地址之间的映射关系</em></p>
+<p>如果存储数据过多，二维数组的数据存放在不同的内存页，那么按列遍历的方式 就是在内存中频繁跳转，容易导致缓存未命中，预取的命中率不高的问题</p>
+<p>现代cpu可以做到提前加载数据，按行遍历的方式能够完全利用这个机制快速遍历，而按列方式预取器难以预测</p>
 <h2 id="3数组重要注意事项">（3）：数组重要注意事项
 </h2><p>首地址</p>
 <p><img src="/p/10-28/shoudizhi.png"
@@ -668,6 +955,42 @@
 		class="gallery-image" 
 		data-flex-grow="148"
 		data-flex-basis="356px"
+	
+></p>
+<p>1.代码输出：</p>
+<p>printf(&ldquo;sizeof(a)=%d\n&rdquo;,sizeof(a))  输入应是 40 字节长度     int是整型，代表四字节长度，a数组里有10个元素，共40字节的长度</p>
+<p>func(a,10）输入应该4字节长度，因为数组导入函数之后，缩成指针，函数中输出int a 应是int对应的指针长度为4</p>
+<p>2.<img src="/p/10-28/zuoyeshili.png"
+	width="930"
+	height="666"
+	srcset="/p/10-28/zuoyeshili_hu_e3469762a946dc81.png 480w, /p/10-28/zuoyeshili_hu_e67b7608879e4fe3.png 1024w"
+	loading="lazy"
+	
+		alt="zuoyeshili"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="139"
+		data-flex-basis="335px"
+	
+></p>
+<p>如图，在内存区高到低存储的内存地址分布，      ！！！！<strong>低到高</strong>！！！！</p>
+<p>ptr1  int *  &amp;a+1   取整个数组a的内存长度往前移动一位  移动之后如图中红色部分所示</p>
+<p>ptr2 int) a+1    将数组指针a强制转化为整型并且移动一位</p>
+<p>printf()      ptr1[-1]   往前移动一位之后，再往后取一位，也就是如图中蓝色部分</p>
+<p>​                ptr2         a所处的地址被转化为int型，然后移动一位就是移动一个字节，ptr2所输出是图中黄色部分</p>
+<p><img src="/p/10-28/zuoyeshiligaishan.png"
+	width="998"
+	height="790"
+	srcset="/p/10-28/zuoyeshiligaishan_hu_9c256bb4bb12ea97.png 480w, /p/10-28/zuoyeshiligaishan_hu_b8555663a60fe468.png 1024w"
+	loading="lazy"
+	
+		alt="zuoyeshiligaishan"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="126"
+		data-flex-basis="303px"
 	
 ></p>
 <h2 id="4数组应用">（4）：数组应用
@@ -1201,6 +1524,14 @@
 		data-flex-basis="355px"
 	
 ></p>
+<ol>
+<li>0:一个整数，数值    &lsquo;0&rsquo;一个字符常量，值类型   &ldquo;0&rdquo;  一个表示0的字符串    &lsquo;\0&rsquo; 一个字符变量</li>
+<li>“123” 一个字符串  123 一个整数数值</li>
+<li>用\转义符，表示此引号不具有特殊含义</li>
+<li>用双引号括起来,然后内部再用两个斜杠来表示</li>
+<li>9，1-8八个字符再加上\0的末尾不可见字符</li>
+<li>区别在于每一个元素所占字节数，未标注L 所用是ASCII编码，每一个元素占一个字节，标注L所用UNICODE编码，每一个元素占两个字节</li>
+</ol>
 
 </section>
 
