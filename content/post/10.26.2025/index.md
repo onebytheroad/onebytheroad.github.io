@@ -26,7 +26,7 @@ int main()
 	int a, b, c;
 
 	a = b = 1;
-	printf("%d\n", (c = a++, b++, ++b));
+	printf("%d\n", (c = a++, b++, ++b);
 
 	printf("a:%d\n", a);
 	printf("b:%d\n", b);
@@ -44,7 +44,7 @@ b:3
 c:1
 
 ```
-int get_max(int a,intb,int c)
+int get_max(int a,int b,int c)
 {
 return (a>b?a:b)>c?(a>b?a:b):c;
 }
@@ -313,7 +313,7 @@ int main()
 
 switch语句是一种多路判定语句，它测试表达式是否与一些常量整数值中的某一个值匹配，并执行相应的分值动作。所以switch语句也是一种分支语句，可以和if语句互相转换。
 
-switch(a) // a之恶能为整数(char,short,int,long等)，不能为指针，浮点数
+switch(a) // a只能为整数(char,short,int,long等)，不能为指针，浮点数
 
 ```
 #include <stdio.h>

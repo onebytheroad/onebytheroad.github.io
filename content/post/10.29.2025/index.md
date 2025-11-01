@@ -1,6 +1,6 @@
 ---
 title: 10-29 笔记
-description: 只想在睡前在听见你的蜜语甜言
+description: 只想在睡前再听见你的蜜语甜言
 date: 2025-10-29
 slug: 10-29
 image: bj.jpg

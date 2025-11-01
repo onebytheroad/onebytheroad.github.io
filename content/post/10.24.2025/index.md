@@ -60,7 +60,7 @@ int main(int argc, _TCHAR* argv[])
 	fflush(stdin);
 
 	   printf("please input a char\n");
-	char c1 = getch();//buhui xianshizi pingmushang ,a
+	char c1 = getch();//不会显示在屏幕上 ,a
 	prindf("plesse int input a char\m");
 	char c2 = getchar();
 
