@@ -1,12 +1,158 @@
 ---
 title: 11-01 笔记
-description: 小轩窗，正梳妆。相顾无言，惟有泪千行！
+description: 小轩窗，正梳妆，相顾无言，惟有泪千行...
 date: 2025-11-01
 slug: 11-01
 image: bj.jpg
 categories:
     - 每日
 ---
+
+字符串作业代码
+
+```
+1.
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h> 
+
+
+int main()
+{
+char path[50]="c:\\docs\\mallocfree.txt";
+char* p = strrchr(path,'m');
+
+if (p != NULL)
+{
+	printf("found it :%s\n", p);
+}
+else
+{
+	printf("found it not :%s\n", p);
+}
+	return 0;
+}
+```
+
+
+
+2.
+
+```
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h> 
+
+
+int main()
+{
+char path[100]="http://www.mallocfree.com/? x=y&mm_gxb=1_87adefc12d&id=9988";
+char* p = strstr(path, "1_8");
+
+if (p != NULL)
+{
+	printf("found it :%s\n", p);
+}
+else
+{
+	printf("found it not :%s\n", p);
+}
+	return 0;
+}
+```
+
+
+
+3.
+
+```
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h> 
+
+
+int main()
+{
+char path[100]="http://www.mallocfree.com/?x=y&mm_gxb=1_98adefc12e";
+char* p = strstr(path, "1_9");
+
+if (p != NULL)
+{
+	printf("found it :%s\n", p);
+}
+else
+{
+	printf("found it not :%s\n", p);
+}
+	return 0;
+}
+```
+
+
+
+4.
+
+```
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h> 
+
+
+int main()
+{
+	char  ip[] = "192.168.100.1";
+	const char* delim = ".";
+	char* next = NULL;
+
+	char* p2 = strtok_s(ip, delim, &next);
+	while (p2 != NULL)
+	{
+		int f = atof(p2);
+		printf("%d ", f);
+
+		p2 = strtok_s(NULL, delim, &next);
+	}
+	return 0;
+
+}
+
+
+
+
+ai生成：
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h> 
+
+int main()
+{
+    char ip[] = "192.168.100.1";
+    const char* delim = ".";
+    char* next = NULL;
+    
+    unsigned int result = 0;  // 32位整数结果
+    int shift = 24;           // 从最高位开始
+
+    char* token = strtok_s(ip, delim, &next);
+    
+    while (token != NULL && shift >= 0)
+    {
+        int num = atoi(token);
+        result |= (num << shift);  // 按位合并
+        shift -= 8;                // 每次移动8位
+        
+        token = strtok_s(NULL, delim, &next);
+    }
+    
+    printf("IP地址: %s\n", "192.168.100.1");
+    printf("32位整数: %u\n", result);
+    printf("十六进制: 0x%08X\n", result);
+    
+    return 0;
+}
+
+```
 
 ## (4):自己实现字符串api
 
@@ -132,6 +278,210 @@ int main()
 ##### 作业
 
 ![zuoye1](zuoye1.png)
+
+1.
+
+```
+char* rav_strtok(char* strToken, const char* strDelimit) {
+
+    //定义局部变量
+    static char* text = NULL;
+    unsigned char table[32];
+    const unsigned char* delimit;
+    unsigned char* str;
+    char *head;
+
+    //更新静态字符串
+    if (strToken) text = strToken;
+
+    //对不合法输入进行特殊判断
+    if (text == NULL) return NULL;
+    if (strDelimit == NULL) return text;
+
+    //改变 char 为 unsigned char 以便进行位运算
+    str = (unsigned char*)text;
+    delimit = (const unsigned char*)strDelimit;
+
+    //初始化位表
+    for (int i = 0; i < 32; i++) table[i] = 0;
+    for (; *delimit; delimit++) {
+        table[*delimit >> 3] |= 1 << (*delimit & 7);
+    }
+
+    // 跳过分隔符直到起始位置
+    while (*str && (table[*str >> 3] & (1 << (*str & 7)))) str++;
+    head = (char*)str;
+
+    // 找到第一个分隔符
+    for (; *str; str++) {
+        if (table[*str >> 3] & (1 << (*str & 7))) {
+            *str++ = '\0';
+            break;
+        }
+    }
+
+    // 更新结果
+    text = (char*)str;
+    if (*text == '\0') text = NULL;
+    return head;
+}
+```
+
+2.
+
+```
+atoi:
+#include<stdio.h>
+#include<stdlib.h>
+#include<ctype.h>
+int myAtoi(const char * str)
+{
+	//判断是否是NULL指针或空白字符串
+	if (str == NULL)
+		return 0;
+	if (str == '\0')
+		return 0;
+	//过滤空白字符
+	while (isspace(*str))
+	{
+		str++;
+	}
+	//使用标志flag来判断数字正负
+	int flag = 1;
+	if (*str == '+')
+	{
+		flag = 1;
+		str++;
+	}
+	else if (*str == '-')
+	{
+		flag = -1;
+		str++;
+	}
+	//由于字符串里的数字可能大于int类型的最大值，所以使用long long类型变量记录数据
+	long long ret = 0;
+	while (*str != '\0')
+	{
+		//如果是10进制数据
+		if (isdigit(*str))
+		{
+			ret = ret * 10 + (*str - '0') * flag;
+			str++;
+			if (ret > INT_MAX)
+				ret = INT_MAX;
+			if (ret < INT_MIN)
+				ret = INT_MIN;
+		}
+		//如果不是10进制数据
+		else
+		{
+			//由于atoi函数返回值为int类型，而刚才定义的变量是long long类型，所以要进行转换
+			return (int)ret;
+		}
+	}
+	return (int)ret;
+}
+```
+
+2.
+
+```
+char* my_itoa(int value, char* str, int base)
+{
+	if (base < 2 || base > 32)
+	{
+		printf("Wrong radix!\n");
+		return str;
+	}
+	char* ret = str;
+	if (value == 0)
+	{
+		*str++ = '0';
+		*str = '\0';
+		return ret;
+	}
+	if (base == 10 && value < 0)
+	{
+		value = -value;
+		*str++ = '-';
+	}
+	char* start = str;
+	// 从右到左依次将数字的每一位存储起来
+	size_t num = value;
+	while (num != 0)
+	{
+		if (num % base < 10)
+		{
+			*str++ = '0' + (char)(num % base);
+		}
+		else
+		{
+			*str++ = 'a' + (char)(num % base - 10);
+		}
+		num /= base;
+	}
+	*str = '\0';
+	// 倒置字符串
+	for (char* left = start, *right = str - 1; left < right; left++, right--)
+	{
+		char tmp = *left;
+		*left = *right;
+		*right = tmp;
+	}
+	return ret;
+}
+```
+
+3.
+
+```
+#include <stdio.h>
+#include <string.h>
+#include <assert.h>
+
+char* my_strstr(const char* str1, const char* str2)
+{
+	const char* cur = str1;  //用cur用来记录当前的位置
+	const char* s1 = NULL;   //通过s1 和 s2 比较元素
+	const char* s2 = NULL;
+	assert(str1 && str2);    //assert断言，如果传入的地址有有一个会空指针，则直接返回str1的地址
+	if (str2 == '\0')
+		return (char*)str1;
+	while (*cur)   //当cur中的值不为'\0'时，进入循环
+	{
+		s1 = cur;   //s1回到比较时的位置
+		s2 = str2;  //s2回到初始位置
+		while (*s1 && *s2 && *s1 == *s2) //当s1和s2指向的值相等时，进入循环
+		{
+			s1++;  //找到下一个元素
+			s2++;  //找到下一个元素
+			//再次比较
+		}
+		if (*s2 == '\0')  //当s2中的元素为'\0'时，则说明在str1中找到了str2
+			return (char*)cur; //返回当前的位置
+		cur++; //第一次没找到，找到下一个元素重新寻找
+	}
+	return NULL; //如果在循环中没有找到，则返回一个空指针
+}
+
+int main()
+{
+	char arr1[] = "abcadefdef";
+	char arr2[] = "def";
+	char* ret = my_strstr(arr1, arr2);
+	if (ret != NULL)
+	{
+		printf("%s\n", ret);
+	}
+	else
+	{
+		printf("找不到\n");
+	}
+	return 0;
+}
+```
+
+
 
 # 第十二课-函数
 
@@ -439,6 +789,51 @@ int main()
 
 ![zuoye2](zuoye2.png)
 
+1.
+
+```
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h> 
+
+int main()
+{
+	char str[] = "hello world";
+	int len = sizeof(str) / 2 - 1;
+	char* p1 = str[0];
+	char* p2 = str[len];
+
+	for (int i = 0; i <len; )
+	{
+		for (int j = len+1 ; j < strlen(str); )
+		{
+			char tep = str[i];
+			str[i] = str[j];
+			str[j] = tep;
+			++i;
+			++j;
+
+		}
+	}
+
+	for (int i = 0; i < sizeof(str); i++)
+	{
+		printf("%c", str[i]);
+	}
+	return 0;
+}
+
+```
+
+2.
+
+```
+```
+
+
+
+
+
 ## （2）：函数传参
 
 ![hanshuchuancan](hanshuchuancan.png)
@@ -709,4 +1104,61 @@ malloc 需要头文件
 ##### 作业
 
 ![zuoye3](zuoye3.png)
+
+1.
+
+```
+fun(c)   输出  9   fun函数设定c[]，忽略了函数长度的影响，但是此题没有涉及函数长度的语句，结果不变
+fun2(c)  输出  9   fun2函数设定&c，也就是传递指针，c数组指针传递过去，计算元素个数为9
+fun3(c)  输出  报错  fun3中，（&c）[9]限制了输入数组的长度必须为9，但是原数组是1-8八个元素，所以报错
+
+解析： 8 1 9
+第一个，数组参数退化为指针，char c[]在函数参数中等价于char *c 即sizeof(char*)，与数组内容无关，只与指针类型有关
+第二个，
+第三个，(&c)[9]限定的九个元素里是包含了'\0'这个元素的，所以实际上对于a[8]来说元素个数是符合条件的
+```
+
+2.
+
+~~~
+1.传递空指针，会导致程序崩溃
+2.手动分配内存，可能会出现导入字节数大于100的情况
+
+ai解答：
+getmemory函数定义指针值，test传递值应该二级指针
+或者get函数定义数组，返回指针
+
+1.
+void GetMemory(char** p)  // 传指针的地址
+{
+    *p = (char*)malloc(100);
+}
+
+void Test(char* s)
+{
+    char* str = NULL;
+    GetMemory(&str);  // 传str的地址
+    if(str != NULL) {
+        strcpy(str, s);
+        printf("%s", str);
+        free(str);
+    }
+}
+
+2.
+char* GetMemory()
+{
+    return (char*)malloc(100);
+}
+
+void Test(char* s)
+{
+    char* str = GetMemory();
+    if(str != NULL) {
+        strcpy(str, s);
+        printf("%s", str);
+        free(str);
+    }
+}
+~~~
 
