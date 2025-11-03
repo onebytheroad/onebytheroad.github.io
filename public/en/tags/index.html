@@ -13,6 +13,8 @@
 <meta property='og:type' content='website'>
 <meta name="twitter:title" content="Tags">
 <meta name="twitter:description" content="Why must we have known each other before when we meet"><link rel="alternate" type="application/rss&#43;xml" href="http://localhost:1313/en/tags/index.xml">
+        
+        <link rel="stylesheet" href="http://localhost:1313/css/custom.min.css">
     </head>
     <body class="">
     <script>
@@ -37,7 +39,63 @@
         }
     })();
 </script>
-<script type="text/javascript" src="https://demo.hellozwh.com/source/canvas-nest.min.js"></script>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                var script = document.createElement('script');
+                script.src = 'https://demo.hellozwh.com/source/canvas-nest.min.js';
+                script.async = true;
+                document.body.appendChild(script);
+            }, 1500);
+        });
+        </script>
+        
+        
+        <div class="music-player" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; background: red; border: 3px solid blue; padding: 15px;">
+    <audio id="bgMusic" loop>
+        <source src="/music/background.mp3" type="audio/mpeg">
+        您的浏览器不支持音频元素。
+    </audio>
+    
+    <button id="musicToggle" style="background: green; color: white; border: none; padding: 15px 20px; border-radius: 50%; cursor: pointer; font-size: 20px;">
+        🎵 播放
+    </button>
+    
+    <div id="musicStatus" style="margin-top: 10px; font-size: 14px; color: black; font-weight: bold;">
+        点击绿色按钮播放音乐
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const audio = document.getElementById('bgMusic');
+    const toggleBtn = document.getElementById('musicToggle');
+    const status = document.getElementById('musicStatus');
+    
+    toggleBtn.addEventListener('click', function() {
+        if (audio.paused) {
+            audio.play().then(() => {
+                status.textContent = '🎶 播放中...';
+                toggleBtn.innerHTML = '⏸ 暂停';
+                toggleBtn.style.background = 'orange';
+            }).catch(error => {
+                status.textContent = '❌ 播放失败';
+                console.error('播放错误:', error);
+            });
+        } else {
+            audio.pause();
+            status.textContent = '⏹ 已暂停';
+            toggleBtn.innerHTML = '🎵 播放';
+            toggleBtn.style.background = 'green';
+        }
+    });
+});
+</script>
+        
+        
+        
+        
         <div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
     <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
         <span class="hamburger-box">
@@ -371,9 +429,3 @@
 
     </body>
 </html>
-
-<head>
-    
-    
-    <link rel="stylesheet" href="http://localhost:1313/css/custom.min.css">
-</head>
