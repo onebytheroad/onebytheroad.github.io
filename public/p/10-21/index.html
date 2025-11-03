@@ -16,7 +16,6 @@
     <meta name="twitter:image" content='http://localhost:1313/p/10-21/bi.jpg' />
         
         <link rel="stylesheet" href="http://localhost:1313/css/custom.min.css">
-        
         <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🌸</text></svg>">
     </head>
     <body class="
@@ -45,47 +44,6 @@
     })();
 </script>
 
-        <div class="music-player" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; background: red; border: 3px solid blue; padding: 15px;">
-    <audio id="bgMusic" loop>
-        <source src="/music/background.mp3" type="audio/mpeg">
-        您的浏览器不支持音频元素。
-    </audio>
-    
-    <button id="musicToggle" style="background: green; color: white; border: none; padding: 15px 20px; border-radius: 50%; cursor: pointer; font-size: 20px;">
-        🎵 播放
-    </button>
-    
-    <div id="musicStatus" style="margin-top: 10px; font-size: 14px; color: black; font-weight: bold;">
-        点击绿色按钮播放音乐
-    </div>
-</div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const audio = document.getElementById('bgMusic');
-    const toggleBtn = document.getElementById('musicToggle');
-    const status = document.getElementById('musicStatus');
-    
-    toggleBtn.addEventListener('click', function() {
-        if (audio.paused) {
-            audio.play().then(() => {
-                status.textContent = '🎶 播放中...';
-                toggleBtn.innerHTML = '⏸ 暂停';
-                toggleBtn.style.background = 'orange';
-            }).catch(error => {
-                status.textContent = '❌ 播放失败';
-                console.error('播放错误:', error);
-            });
-        } else {
-            audio.pause();
-            status.textContent = '⏹ 已暂停';
-            toggleBtn.innerHTML = '🎵 播放';
-            toggleBtn.style.background = 'green';
-        }
-    });
-});
-</script>
-        
         
         
         
@@ -957,15 +915,6 @@ long型数据赋给int型变量时，将低16位值送给int型变量，而将�
 
 
         
-        <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                const script = document.createElement('script');
-                script.src = 'https://cdn.jsdelivr.net/gh/hustcc/canvas-nest.js@1.0.1/dist/canvas-nest.min.js';
-                script.async = true;
-                document.body.appendChild(script);
-            }, 1500);
-        });
-        </script>
+        
     </body>
 </html>
