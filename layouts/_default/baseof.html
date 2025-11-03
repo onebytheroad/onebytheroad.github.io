@@ -17,9 +17,11 @@
             {{- end -}}
         {{- end -}}
         
-        {{/* 暂时注释掉所有自定义功能 */}}
-        {{/* {{ partial "music-player.html" . }} */}}
-        {{/* {{ partial "sakura-effect.html" . }} */}}
+        {{/* 添加音乐播放器 */}}
+        {{ partial "music-player.html" . }}
+        
+        {{/* 添加樱花特效 */}}
+        {{ partial "sakura-effect.html" . }}
         
         <div class="container main-container flex on-phone--column {{ if $hasWidget }}extended{{ else }}compact{{ end }}">
             {{- block "left-sidebar" . -}}
@@ -33,8 +35,7 @@
         
         {{ partial "footer/include.html" . }}
 
-        {{/* 暂时注释掉背景动画 */}}
-        {{/* 
+        {{/* 背景动画 */}}
         <script>
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
@@ -45,6 +46,5 @@
             }, 1500);
         });
         </script>
-        */}}
     </body>
 </html>

@@ -5,10 +5,16 @@ theme: hugo-theme-stack
 title: Example Site
 copyright: Example Person
 
-# 分页设置 - 修正：使用新的配置方式
+# 超时设置（防止递归超时）
+timeout: 60s
+
+# Google Analytics 配置（修复v3.32问题）
+googleAnalytics: ""
+
+# 分页设置
 pagination:
-  pagerSize: 5                        # 分页器显示页码数量
-  path: "page"                        # 分页路径
+  pagerSize: 5
+  path: "page"
 
 # 国际化配置
 DefaultContentLanguage: zh-cn
@@ -44,7 +50,7 @@ services:
     disqus:
         shortname: "hugo-theme-stack"
     googleAnalytics:
-        id:
+        id: ""  # 明确设置为空字符串
 
 # 永久链接格式
 permalinks:
@@ -56,12 +62,15 @@ params:
     mainSections:
         - post
     
-    # 控制每页显示文章数量的新方法
-    home:
-      paginate: 20                    # 首页每页显示20篇文章
+    # 分析配置（修复v3.32问题）
+    analytics:
+        google: ""
     
+    # 控制每页显示文章数量
+    home:
+      paginate: 20
     list:
-      paginate: 20                    # 列表页每页显示20篇文章
+      paginate: 20
     
     featuredImageField: image
     rssFullContent: true
@@ -85,12 +94,12 @@ params:
             enabled: true
             local: true
             src: /img/avatar.png
-        recentLimit: 15                # 侧边栏最新文章显示15篇
+        recentLimit: 15
 
     # 文章设置
     article:
         math: false
-        toc: true                      # 确保启用TOC
+        toc: true
         readingTime: true
         license:
             enabled: true
@@ -184,7 +193,7 @@ related:
         - name: categories
           weight: 200
 
-# Markdown渲染设置 - 已修改：解决标题显示问题
+# Markdown渲染设置
 markup:
     goldmark:
         extensions:
@@ -202,9 +211,9 @@ markup:
         renderer:
             unsafe: true
     tableOfContents:
-        endLevel: 6                    # 修改：显示到h6标题
+        endLevel: 6
         ordered: true
-        startLevel: 1                  # 修改：从h1标题开始
+        startLevel: 1
     highlight:
         noClasses: false
         codeFences: true
