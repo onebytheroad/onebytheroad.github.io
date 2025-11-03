@@ -5,7 +5,6 @@
         {{- block "head" . -}}{{ end }}
         {{ $styles := resources.Get "css/custom.css" | minify }}
         <link rel="stylesheet" href="{{ $styles.Permalink }}">
-        <!-- 添加默认favicon -->
         <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🌸</text></svg>">
     </head>
     <body class="{{ block `body-class` . }}{{ end }}">
@@ -18,11 +17,9 @@
             {{- end -}}
         {{- end -}}
         
-        {{/* 添加音乐播放器 */}}
-        {{ partial "music-player.html" . }}
-        
-        {{/* 添加樱花特效 */}}
-        {{ partial "sakura-effect.html" . }}
+        {{/* 暂时注释掉所有自定义功能 */}}
+        {{/* {{ partial "music-player.html" . }} */}}
+        {{/* {{ partial "sakura-effect.html" . }} */}}
         
         <div class="container main-container flex on-phone--column {{ if $hasWidget }}extended{{ else }}compact{{ end }}">
             {{- block "left-sidebar" . -}}
@@ -36,7 +33,8 @@
         
         {{ partial "footer/include.html" . }}
 
-        {{/* 修复版背景动画 */}}
+        {{/* 暂时注释掉背景动画 */}}
+        {{/* 
         <script>
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
@@ -47,5 +45,6 @@
             }, 1500);
         });
         </script>
+        */}}
     </body>
 </html>
