@@ -17,21 +17,10 @@ list:
         other: Alt bölümler
 
 article:
-    back:
-        other: Geri
-
-    tableOfContents:
-        other: İçindekiler
-
     relatedContent:
-        other: Benzer içerikler
-
+        other: Alakalı içerikler
     lastUpdatedOn:
         other: Son güncelleme
-
-    readingTime:
-        one: "{{ .Count }} dakika okuma süresi"
-        other: "{{ .Count }} dakika okuma süresi"
 
 notFound:
     title:
@@ -48,9 +37,6 @@ widget:
     tagCloud:
         title:
             other: Etiketler
-    categoriesCloud:
-        title:
-            other: Kategoriler
 
 search:
     title:
