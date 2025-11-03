@@ -426,7 +426,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 11 分钟
+                    阅读时长: 12 分钟
                 </time>
             </div>
         
@@ -2539,19 +2539,107 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">fun(c)   输出  9   fun函数设定c[]，忽略了函数长度的影响，但是此题没有涉及函数长度的语句，结果不变
 </span></span><span class="line"><span class="cl">fun2(c)  输出  9   fun2函数设定&amp;c，也就是传递指针，c数组指针传递过去，计算元素个数为9
 </span></span><span class="line"><span class="cl">fun3(c)  输出  报错  fun3中，（&amp;c）[9]限制了输入数组的长度必须为9，但是原数组是1-8八个元素，所以报错
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">解析： 8 1 9
+</span></span><span class="line"><span class="cl">第一个，数组参数退化为指针，char c[]在函数参数中等价于char *c 即sizeof(char*)，与数组内容无关，只与指针类型有关
+</span></span><span class="line"><span class="cl">第二个，
+</span></span><span class="line"><span class="cl">第三个，(&amp;c)[9]限定的九个元素里是包含了&#39;\0&#39;这个元素的，所以实际上对于a[8]来说元素个数是符合条件的
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>2.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code></code></pre></td>
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1.传递空指针，会导致程序崩溃
+</span></span><span class="line"><span class="cl">2.手动分配内存，可能会出现导入字节数大于100的情况
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ai解答：
+</span></span><span class="line"><span class="cl">getmemory函数定义指针值，test传递值应该二级指针
+</span></span><span class="line"><span class="cl">或者get函数定义数组，返回指针
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">1.
+</span></span><span class="line"><span class="cl">void GetMemory(char** p)  // 传指针的地址
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    *p = (char*)malloc(100);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">void Test(char* s)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    char* str = NULL;
+</span></span><span class="line"><span class="cl">    GetMemory(&amp;str);  // 传str的地址
+</span></span><span class="line"><span class="cl">    if(str != NULL) {
+</span></span><span class="line"><span class="cl">        strcpy(str, s);
+</span></span><span class="line"><span class="cl">        printf(&#34;%s&#34;, str);
+</span></span><span class="line"><span class="cl">        free(str);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">2.
+</span></span><span class="line"><span class="cl">char* GetMemory()
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    return (char*)malloc(100);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">void Test(char* s)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    char* str = GetMemory();
+</span></span><span class="line"><span class="cl">    if(str != NULL) {
+</span></span><span class="line"><span class="cl">        strcpy(str, s);
+</span></span><span class="line"><span class="cl">        printf(&#34;%s&#34;, str);
+</span></span><span class="line"><span class="cl">        free(str);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
 </section>
@@ -2586,6 +2674,54 @@
     <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/11-03/">
+        
+        
+            <div class="article-image">
+                <img src="/p/11-03/bj.9a1d6202d64d89703a98814e1d64b970_hu_651b1b6f1a03ae77.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 11-03 笔记"
+                        data-key="11-03" 
+                        data-hash="md5-mh1iAtZNiXA6mIFOHWS5cA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">11-03 笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/11-02/">
+        
+        
+            <div class="article-image">
+                <img src="/p/11-02/bj.93acfee33fb0489498853c4aaff81418_hu_550ee05f41cb1914.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 11-02 笔记"
+                        data-key="11-02" 
+                        data-hash="md5-k6z&#43;4z&#43;wSJSYhTxKr/gUGA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">11-02 笔记</h2>
+        </div>
+    </a>
+</article>
+
             
                 
 <article class="has-image">
@@ -2654,54 +2790,6 @@
 
         <div class="article-details">
             <h2 class="article-title">10-29 笔记</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/10-28/">
-        
-        
-            <div class="article-image">
-                <img src="/p/10-28/bj.f17608836fc3b59d3a775e19c3842b2c_hu_3399f4f247f082d5.jpg" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post 10-28 笔记"
-                        data-key="10-28" 
-                        data-hash="md5-8XYIg2/DtZ06d14Zw4QrLA==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">10-28 笔记</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/10-27/">
-        
-        
-            <div class="article-image">
-                <img src="/p/10-27/bj.2e4964ea5c407f40eddc77500641db75_hu_b43e9b34bf2d1576.jpg" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post 10-27 笔记"
-                        data-key="10-27" 
-                        data-hash="md5-Lklk6lxAf0Dt3HdQBkHbdQ==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">10-27 笔记</h2>
         </div>
     </a>
 </article>

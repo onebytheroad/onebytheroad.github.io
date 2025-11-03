@@ -3,6 +3,9 @@
     <head>
         {{- partial "head/head.html" . -}}
         {{- block "head" . -}}{{ end }}
+        <!-- 其他代码 -->
+        {{ $styles := resources.Get "css/custom.css" | minify }}
+        <link rel="stylesheet" href="{{ $styles.Permalink }}">
     </head>
     <body class="{{ block `body-class` . }}{{ end }}">
         {{- partial "head/colorScheme" . -}}
@@ -25,11 +28,8 @@
             </main>
         </div>
         {{ partial "footer/include.html" . }}
+        
+        {{/* 添加音乐播放器 */}}
+        {{ partial "music-player.html" . }}
     </body>
 </html>
-
-<head>
-    <!-- 其他代码 -->
-    {{ $styles := resources.Get "css/custom.css" | minify }}
-    <link rel="stylesheet" href="{{ $styles.Permalink }}">
-</head>

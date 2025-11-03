@@ -3,6 +3,9 @@
     <head>
         {{- partial "head/head.html" . -}}
         {{- block "head" . -}}{{ end }}
+        <!-- 其他代码 -->
+        {{ $styles := resources.Get "css/custom.css" | minify }}
+        <link rel="stylesheet" href="{{ $styles.Permalink }}">
     </head>
     <body class="{{ block `body-class` . }}{{ end }}">
         {{- partial "head/colorScheme" . -}}
@@ -14,7 +17,10 @@
                 {{- $hasWidget = true -}}
             {{- end -}}
         {{- end -}}
-        <script type="text/javascript" src="https://demo.hellozwh.com/source/canvas-nest.min.js"></script>
+        
+        {{/* 添加音乐播放器 */}}
+        {{ partial "music-player.html" . }}
+        
         <div class="container main-container flex on-phone--column {{ if $hasWidget }}extended{{ else }}compact{{ end }}">
             {{- block "left-sidebar" . -}}
                 {{ partial "sidebar/left.html" . }}
@@ -25,11 +31,18 @@
             </main>
         </div>
         {{ partial "footer/include.html" . }}
+
+        {{/* 延迟加载背景 */}}
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 页面主要内容加载完成后才加载背景
+            setTimeout(function() {
+                var script = document.createElement('script');
+                script.src = 'https://demo.hellozwh.com/source/canvas-nest.min.js';
+                script.async = true;
+                document.body.appendChild(script);
+            }, 1000); // 延迟1秒加载
+        });
+        </script>
     </body>
 </html>
-
-<head>
-    <!-- 其他代码 -->
-    {{ $styles := resources.Get "css/custom.css" | minify }}
-    <link rel="stylesheet" href="{{ $styles.Permalink }}">
-</head>
