@@ -41,144 +41,7 @@
         }
     })();
 </script>
-
-        <div class="music-player" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; background: red; border: 3px solid blue; padding: 15px;">
-    <audio id="bgMusic" loop>
-        <source src="/music/background.mp3" type="audio/mpeg">
-        您的浏览器不支持音频元素。
-    </audio>
-    
-    <button id="musicToggle" style="background: green; color: white; border: none; padding: 15px 20px; border-radius: 50%; cursor: pointer; font-size: 20px;">
-        🎵 播放
-    </button>
-    
-    <div id="musicStatus" style="margin-top: 10px; font-size: 14px; color: black; font-weight: bold;">
-        点击绿色按钮播放音乐
-    </div>
-</div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const audio = document.getElementById('bgMusic');
-    const toggleBtn = document.getElementById('musicToggle');
-    const status = document.getElementById('musicStatus');
-    
-    toggleBtn.addEventListener('click', function() {
-        if (audio.paused) {
-            audio.play().then(() => {
-                status.textContent = '🎶 播放中...';
-                toggleBtn.innerHTML = '⏸ 暂停';
-                toggleBtn.style.background = 'orange';
-            }).catch(error => {
-                status.textContent = '❌ 播放失败';
-                console.error('播放错误:', error);
-            });
-        } else {
-            audio.pause();
-            status.textContent = '⏹ 已暂停';
-            toggleBtn.innerHTML = '🎵 播放';
-            toggleBtn.style.background = 'green';
-        }
-    });
-});
-</script>
-        
-        
-        <script>
-
-(function() {
-    'use strict';
-    
-    
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initSakura);
-    } else {
-        setTimeout(initSakura, 1000);
-    }
-    
-    function initSakura() {
-        console.log('初始化安全版樱花特效');
-        
-        
-        const oldContainer = document.getElementById('safe-sakura-container');
-        if (oldContainer) oldContainer.remove();
-        
-        
-        const container = document.createElement('div');
-        container.id = 'safe-sakura-container';
-        container.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 9998;
-            overflow: hidden;
-        `;
-        document.body.appendChild(container);
-        
-        
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes safeSakuraFall {
-                0% {
-                    transform: translateY(-100px) rotate(0deg);
-                    opacity: 0.8;
-                }
-                100% {
-                    transform: translateY(100vh) rotate(180deg);
-                    opacity: 0;
-                }
-            }
-            .safe-sakura {
-                position: absolute;
-                top: -50px;
-                font-size: 18px;
-                animation: safeSakuraFall linear forwards;
-                user-select: none;
-                pointer-events: none;
-            }
-        `;
-        document.head.appendChild(style);
-        
-        let sakuraCount = 0;
-        const maxSakuras = 10;
-        
-        function createSafeSakura() {
-            if (sakuraCount >= maxSakuras) return;
-            
-            const sakura = document.createElement('div');
-            sakura.className = 'safe-sakura';
-            sakura.innerHTML = '🌸';
-            sakura.style.left = Math.random() * 100 + 'vw';
-            sakura.style.fontSize = (16 + Math.random() * 16) + 'px';
-            sakura.style.animationDuration = (10 + Math.random() * 10) + 's';
-            sakura.style.animationDelay = (Math.random() * 3) + 's';
-            
-            container.appendChild(sakura);
-            sakuraCount++;
-            
-            setTimeout(() => {
-                if (sakura.parentNode) {
-                    sakura.remove();
-                    sakuraCount--;
-                }
-            }, 20000);
-        }
-        
-        
-        setTimeout(() => {
-            setInterval(createSafeSakura, 1200);
-            for (let i = 0; i < 5; i++) {
-                setTimeout(createSafeSakura, i * 800);
-            }
-        }, 2000);
-    }
-})();
-</script>
-        
-        <div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
     <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
         <span class="hamburger-box">
             <span class="hamburger-inner"></span>
@@ -1099,14 +962,188 @@ document.addEventListener('DOMContentLoaded', function() {
 
         
         <script>
+        
+        function initGlobalMusicPlayer() {
+            if (!document.getElementById('global-music-player')) {
+                const playerHTML = `
+                    <div id="global-music-player" style="position: fixed; bottom: 20px; right: 20px; z-index: 99999; background: red; border: 3px solid blue; padding: 15px;">
+                        <audio id="bgMusic" loop>
+                            <source src="/music/background.mp3" type="audio/mpeg">
+                        </audio>
+                        <button id="musicToggle" style="background: green; color: white; border: none; padding: 15px 20px; border-radius: 50%; cursor: pointer; font-size: 20px;">
+                            🎵 播放
+                        </button>
+                        <div id="musicStatus" style="margin-top: 10px; font-size: 14px; color: black; font-weight: bold;">
+                            点击播放
+                        </div>
+                    </div>
+                `;
+                document.body.insertAdjacentHTML('beforeend', playerHTML);
+                
+                
+                const audio = document.getElementById('bgMusic');
+                const toggleBtn = document.getElementById('musicToggle');
+                const status = document.getElementById('musicStatus');
+                
+                
+                const savedState = localStorage.getItem('globalMusicState');
+                const savedTime = localStorage.getItem('globalMusicTime');
+                
+                
+                if (savedTime) {
+                    audio.currentTime = parseFloat(savedTime);
+                }
+                
+                function updateButtonState(isPlaying) {
+                    if (isPlaying) {
+                        status.textContent = '🎶 播放中...';
+                        toggleBtn.innerHTML = '⏸ 暂停';
+                        toggleBtn.style.background = 'orange';
+                    } else {
+                        status.textContent = '⏹ 已暂停';
+                        toggleBtn.innerHTML = '🎵 播放';
+                        toggleBtn.style.background = 'green';
+                    }
+                }
+                
+                
+                function tryAutoResume() {
+                    const savedState = localStorage.getItem('globalMusicState');
+                    if (savedState === 'playing') {
+                        
+                        audio.muted = true;
+                        audio.play().then(() => {
+                            audio.muted = false;
+                            updateButtonState(true);
+                        }).catch(error => {
+                            
+                            status.textContent = '点击恢复播放';
+                            updateButtonState(false);
+                        });
+                    }
+                }
+                
+                
+                setTimeout(tryAutoResume, 1000);
+                
+                
+                let userInteracted = false;
+                const interactionEvents = ['click', 'touchstart', 'keydown', 'scroll'];
+                
+                interactionEvents.forEach(eventType => {
+                    document.addEventListener(eventType, function() {
+                        if (!userInteracted) {
+                            userInteracted = true;
+                            const savedState = localStorage.getItem('globalMusicState');
+                            if (savedState === 'playing' && audio.paused) {
+                                audio.play().then(() => {
+                                    updateButtonState(true);
+                                });
+                            }
+                        }
+                    }, { once: true, passive: true });
+                });
+                
+                toggleBtn.addEventListener('click', function() {
+                    userInteracted = true; 
+                    if (audio.paused) {
+                        audio.play().then(() => {
+                            updateButtonState(true);
+                            localStorage.setItem('globalMusicState', 'playing');
+                        }).catch(error => {
+                            status.textContent = '❌ 播放失败';
+                        });
+                    } else {
+                        audio.pause();
+                        updateButtonState(false);
+                        localStorage.setItem('globalMusicState', 'paused');
+                    }
+                });
+                
+                
+                audio.addEventListener('timeupdate', function() {
+                    localStorage.setItem('globalMusicTime', audio.currentTime);
+                });
+                
+                
+                window.addEventListener('beforeunload', function() {
+                    localStorage.setItem('globalMusicTime', audio.currentTime);
+                    localStorage.setItem('globalMusicState', audio.paused ? 'paused' : 'playing');
+                });
+
+                
+                audio.addEventListener('loadeddata', function() {
+                    console.log('音频加载完成，尝试恢复播放状态');
+                });
+            }
+        }
+
+        
+        function initSakuraEffect() {
+            if (!document.getElementById('sakura-container')) {
+                const sakuraHTML = `
+                    <div id="sakura-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998; overflow: hidden;"></div>
+                `;
+                document.body.insertAdjacentHTML('beforeend', sakuraHTML);
+                
+                
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes sakuraFall {
+                        0% { transform: translateY(-100px) rotate(0deg); opacity: 0.8; }
+                        100% { transform: translateY(100vh) rotate(180deg); opacity: 0; }
+                    }
+                    .sakura { position: absolute; top: -50px; font-size: 18px; animation: sakuraFall linear forwards; user-select: none; pointer-events: none; }
+                `;
+                document.head.appendChild(style);
+                
+                let sakuraCount = 0;
+                const maxSakuras = 10;
+                
+                function createSakura() {
+                    if (sakuraCount >= maxSakuras) return;
+                    
+                    const sakura = document.createElement('div');
+                    sakura.className = 'sakura';
+                    sakura.innerHTML = '🌸';
+                    sakura.style.left = Math.random() * 100 + 'vw';
+                    sakura.style.fontSize = (16 + Math.random() * 16) + 'px';
+                    sakura.style.animationDuration = (10 + Math.random() * 10) + 's';
+                    sakura.style.animationDelay = (Math.random() * 3) + 's';
+                    
+                    document.getElementById('sakura-container').appendChild(sakura);
+                    sakuraCount++;
+                    
+                    setTimeout(() => {
+                        if (sakura.parentNode) {
+                            sakura.remove();
+                            sakuraCount--;
+                        }
+                    }, 20000);
+                }
+                
+                setTimeout(() => {
+                    setInterval(createSakura, 1200);
+                    for (let i = 0; i < 5; i++) {
+                        setTimeout(createSakura, i * 800);
+                    }
+                }, 2000);
+            }
+        }
+
+        
         document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                const script = document.createElement('script');
-                script.src = 'https://cdn.jsdelivr.net/gh/hustcc/canvas-nest.js@1.0.1/dist/canvas-nest.min.js';
-                script.async = true;
-                document.body.appendChild(script);
-            }, 1500);
+            initGlobalMusicPlayer();
+            initSakuraEffect();
         });
+
+        
+        setTimeout(function() {
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/gh/hustcc/canvas-nest.js@1.0.1/dist/canvas-nest.min.js';
+            script.async = true;
+            document.body.appendChild(script);
+        }, 1500);
         </script>
     </body>
 </html>

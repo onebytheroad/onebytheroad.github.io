@@ -17,12 +17,6 @@
             {{- end -}}
         {{- end -}}
         
-        {{/* 添加音乐播放器 */}}
-        {{ partial "music-player.html" . }}
-        
-        {{/* 添加樱花特效 */}}
-        {{ partial "sakura-effect.html" . }}
-        
         <div class="container main-container flex on-phone--column {{ if $hasWidget }}extended{{ else }}compact{{ end }}">
             {{- block "left-sidebar" . -}}
                 {{ partial "sidebar/left.html" . }}
@@ -35,16 +29,190 @@
         
         {{ partial "footer/include.html" . }}
 
-        {{/* 背景动画 */}}
+        {{/* 动态插入音乐播放器和樱花特效 */}}
         <script>
+        // 动态插入音乐播放器
+        function initGlobalMusicPlayer() {
+            if (!document.getElementById('global-music-player')) {
+                const playerHTML = `
+                    <div id="global-music-player" style="position: fixed; bottom: 20px; right: 20px; z-index: 99999; background: red; border: 3px solid blue; padding: 15px;">
+                        <audio id="bgMusic" loop>
+                            <source src="/music/background.mp3" type="audio/mpeg">
+                        </audio>
+                        <button id="musicToggle" style="background: green; color: white; border: none; padding: 15px 20px; border-radius: 50%; cursor: pointer; font-size: 20px;">
+                            🎵 播放
+                        </button>
+                        <div id="musicStatus" style="margin-top: 10px; font-size: 14px; color: black; font-weight: bold;">
+                            点击播放
+                        </div>
+                    </div>
+                `;
+                document.body.insertAdjacentHTML('beforeend', playerHTML);
+                
+                // 初始化播放器逻辑
+                const audio = document.getElementById('bgMusic');
+                const toggleBtn = document.getElementById('musicToggle');
+                const status = document.getElementById('musicStatus');
+                
+                // 恢复播放状态和进度
+                const savedState = localStorage.getItem('globalMusicState');
+                const savedTime = localStorage.getItem('globalMusicTime');
+                
+                // 恢复播放进度
+                if (savedTime) {
+                    audio.currentTime = parseFloat(savedTime);
+                }
+                
+                function updateButtonState(isPlaying) {
+                    if (isPlaying) {
+                        status.textContent = '🎶 播放中...';
+                        toggleBtn.innerHTML = '⏸ 暂停';
+                        toggleBtn.style.background = 'orange';
+                    } else {
+                        status.textContent = '⏹ 已暂停';
+                        toggleBtn.innerHTML = '🎵 播放';
+                        toggleBtn.style.background = 'green';
+                    }
+                }
+                
+                // 尝试自动恢复播放（有用户交互的情况下）
+                function tryAutoResume() {
+                    const savedState = localStorage.getItem('globalMusicState');
+                    if (savedState === 'playing') {
+                        // 先静音播放，然后取消静音（绕过自动播放限制）
+                        audio.muted = true;
+                        audio.play().then(() => {
+                            audio.muted = false;
+                            updateButtonState(true);
+                        }).catch(error => {
+                            // 如果自动播放失败，显示点击提示
+                            status.textContent = '点击恢复播放';
+                            updateButtonState(false);
+                        });
+                    }
+                }
+                
+                // 页面加载后尝试自动恢复（如果有用户交互历史）
+                setTimeout(tryAutoResume, 1000);
+                
+                // 监听用户交互，触发自动播放
+                let userInteracted = false;
+                const interactionEvents = ['click', 'touchstart', 'keydown', 'scroll'];
+                
+                interactionEvents.forEach(eventType => {
+                    document.addEventListener(eventType, function() {
+                        if (!userInteracted) {
+                            userInteracted = true;
+                            const savedState = localStorage.getItem('globalMusicState');
+                            if (savedState === 'playing' && audio.paused) {
+                                audio.play().then(() => {
+                                    updateButtonState(true);
+                                });
+                            }
+                        }
+                    }, { once: true, passive: true });
+                });
+                
+                toggleBtn.addEventListener('click', function() {
+                    userInteracted = true; // 标记用户已交互
+                    if (audio.paused) {
+                        audio.play().then(() => {
+                            updateButtonState(true);
+                            localStorage.setItem('globalMusicState', 'playing');
+                        }).catch(error => {
+                            status.textContent = '❌ 播放失败';
+                        });
+                    } else {
+                        audio.pause();
+                        updateButtonState(false);
+                        localStorage.setItem('globalMusicState', 'paused');
+                    }
+                });
+                
+                // 定期保存播放进度
+                audio.addEventListener('timeupdate', function() {
+                    localStorage.setItem('globalMusicTime', audio.currentTime);
+                });
+                
+                // 页面卸载前保存状态
+                window.addEventListener('beforeunload', function() {
+                    localStorage.setItem('globalMusicTime', audio.currentTime);
+                    localStorage.setItem('globalMusicState', audio.paused ? 'paused' : 'playing');
+                });
+
+                // 监听音频加载完成
+                audio.addEventListener('loadeddata', function() {
+                    console.log('音频加载完成，尝试恢复播放状态');
+                });
+            }
+        }
+
+        // 动态插入樱花特效
+        function initSakuraEffect() {
+            if (!document.getElementById('sakura-container')) {
+                const sakuraHTML = `
+                    <div id="sakura-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998; overflow: hidden;"></div>
+                `;
+                document.body.insertAdjacentHTML('beforeend', sakuraHTML);
+                
+                // 樱花特效逻辑
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes sakuraFall {
+                        0% { transform: translateY(-100px) rotate(0deg); opacity: 0.8; }
+                        100% { transform: translateY(100vh) rotate(180deg); opacity: 0; }
+                    }
+                    .sakura { position: absolute; top: -50px; font-size: 18px; animation: sakuraFall linear forwards; user-select: none; pointer-events: none; }
+                `;
+                document.head.appendChild(style);
+                
+                let sakuraCount = 0;
+                const maxSakuras = 10;
+                
+                function createSakura() {
+                    if (sakuraCount >= maxSakuras) return;
+                    
+                    const sakura = document.createElement('div');
+                    sakura.className = 'sakura';
+                    sakura.innerHTML = '🌸';
+                    sakura.style.left = Math.random() * 100 + 'vw';
+                    sakura.style.fontSize = (16 + Math.random() * 16) + 'px';
+                    sakura.style.animationDuration = (10 + Math.random() * 10) + 's';
+                    sakura.style.animationDelay = (Math.random() * 3) + 's';
+                    
+                    document.getElementById('sakura-container').appendChild(sakura);
+                    sakuraCount++;
+                    
+                    setTimeout(() => {
+                        if (sakura.parentNode) {
+                            sakura.remove();
+                            sakuraCount--;
+                        }
+                    }, 20000);
+                }
+                
+                setTimeout(() => {
+                    setInterval(createSakura, 1200);
+                    for (let i = 0; i < 5; i++) {
+                        setTimeout(createSakura, i * 800);
+                    }
+                }, 2000);
+            }
+        }
+
+        // 页面加载时初始化
         document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                const script = document.createElement('script');
-                script.src = 'https://cdn.jsdelivr.net/gh/hustcc/canvas-nest.js@1.0.1/dist/canvas-nest.min.js';
-                script.async = true;
-                document.body.appendChild(script);
-            }, 1500);
+            initGlobalMusicPlayer();
+            initSakuraEffect();
         });
+
+        // 背景动画
+        setTimeout(function() {
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/gh/hustcc/canvas-nest.js@1.0.1/dist/canvas-nest.min.js';
+            script.async = true;
+            document.body.appendChild(script);
+        }, 1500);
         </script>
     </body>
 </html>
