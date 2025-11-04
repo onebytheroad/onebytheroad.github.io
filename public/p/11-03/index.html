@@ -371,7 +371,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 1 分钟
+                    阅读时长: 2 分钟
                 </time>
             </div>
         
@@ -390,7 +390,147 @@
 </h5><p>1.指针含义：指针是一个存放内存地址的变量.指针长度：长度由所属变量类型决定，char 即1字节，int 即4字节，如果五类型，由所在平台决定，x86即4个字节，x64即8个字节</p>
 <p>2.p是指针时，*p的情况需要做讨论，如果是没有与int之类的声明语句相结合，则为解引用符号，读取指针中存放的地址，如果与声明语句结合，则可能是二级指针</p>
 <p>3.通过char类型的指针指向int 类型的整数1，然后打印指针值，int类型占四个字节，而char指针只有一个字节，会丢失另外三字节的数据，看打印结果是1或者0就能判断是高位还是低位优先。</p>
-<p>4.</p>
+<p>4.x86平台是低位优先储存，所以两个指针读取出的数都是ff，p1用的是有符号的字符型，p2是无符号的字符型，而输出的之后又采取转换成10进制输出，</p>
+<p>ff转换成2进制应0111 1111 ，10进制是255，但是有符号数中，数的范围是-128~127，所以p1的输出应该是-1，因为补码的127+1整数溢出，p2的输出应该是255</p>
+<p>导入vs</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt; </span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdbool.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mh">0x000000ff</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span><span class="o">*</span> <span class="n">p1</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">num</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">unsigned</span> <span class="kt">char</span><span class="o">*</span> <span class="n">p2</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">num</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%lu</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">p1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%lu</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">p2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>第一个结果是随机数，第二个结果是255</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ai解答
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">1. 整数提升规则
+</span></span><span class="line"><span class="cl">在C语言中，小于int的类型在表达式计算中会被提升为int：
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">char → int
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">unsigned char → int
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">2. 具体过程分析
+</span></span><span class="line"><span class="cl">对于 *p1 (有符号char，值0xff = -1)：
+</span></span><span class="line"><span class="cl">c
+</span></span><span class="line"><span class="cl">*p1 = 0xff  // 内存中的字节
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// 整数提升（保持值不变）：
+</span></span><span class="line"><span class="cl">char -1 → int -1
+</span></span><span class="line"><span class="cl">二进制：11111111 (char) → 11111111 11111111 11111111 11111111 (int)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// 提升后的int值：0xFFFFFFFF (-1)
+</span></span><span class="line"><span class="cl">对于 *p2 (无符号char，值0xff = 255)：
+</span></span><span class="line"><span class="cl">c
+</span></span><span class="line"><span class="cl">*p2 = 0xff  // 内存中的字节
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// 整数提升（保持值不变）：
+</span></span><span class="line"><span class="cl">unsigned char 255 → int 255  
+</span></span><span class="line"><span class="cl">二进制：11111111 (uchar) → 00000000 00000000 00000000 11111111 (int)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// 提升后的int值：0x000000FF (255)
+</span></span><span class="line"><span class="cl">printf的可变参数机制
+</span></span><span class="line"><span class="cl">printf 通过 va_list 从栈上读取参数，它不知道实际传入的类型，只按照格式符解释：
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">c
+</span></span><span class="line"><span class="cl">printf(&#34;%lu\n&#34;, *p1);
+</span></span><span class="line"><span class="cl">栈上实际内容：
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">text
+</span></span><span class="line"><span class="cl">| 0xFFFFFFFF | (从*p1提升来的int -1)
+</span></span><span class="line"><span class="cl">| 格式字符串地址 |
+</span></span><span class="line"><span class="cl">printf的理解：
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">%lu 期望 4/8字节的 unsigned long
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">但从栈上读取到的是 0xFFFFFFFF (int -1)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">类型不匹配 → 未定义行为
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>美化了博客，修复了一堆史山代码</p>
 
 </section>
 
@@ -424,6 +564,30 @@
     <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/11-04/">
+        
+        
+            <div class="article-image">
+                <img src="/p/11-04/bj.99aa3eb1ec5ce31ead1a42030b883fc8_hu_fda5212a5b3956.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 11-04 笔记"
+                        data-key="11-04" 
+                        data-hash="md5-mao&#43;sexc4x6tGkIDC4g/yA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">11-04 笔记</h2>
+        </div>
+    </a>
+</article>
+
             
                 
 <article class="has-image">
@@ -516,30 +680,6 @@
 
         <div class="article-details">
             <h2 class="article-title">10-30 笔记</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/10-29/">
-        
-        
-            <div class="article-image">
-                <img src="/p/10-29/bj.621b7b57bec909e476ec71b8ca85eb26_hu_70990da5d791b14c.jpg" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post 10-29 笔记"
-                        data-key="10-29" 
-                        data-hash="md5-Yht7V77JCeR27HG4yoXrJg==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">10-29 笔记</h2>
         </div>
     </a>
 </article>
