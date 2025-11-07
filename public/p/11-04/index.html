@@ -300,15 +300,10 @@
           <ol>
             <li><a href="#程序内存布局">程序内存布局</a></li>
             <li><a href="#堆和栈的区别">堆和栈的区别</a></li>
-            <li><a href="#寻址模式">寻址模式</a></li>
-            <li><a href="#保护模式虚拟地址到物理地址顿dacngk">保护模式虚拟地址到物理地址顿dacngk</a></li>
-          </ol>
-        </li>
-        <li><a href="#2内存分配">（2）：内存分配</a>
-          <ol>
-            <li><a href="#malloccallocrealloc">malloc/calloc/realloc</a>
+            <li><a href="#寻址模式">寻址模式</a>
               <ol>
-                <li>
+                <li><a href="#分段用起始地址加偏移地址来表示位置">分段：用起始地址加偏移地址来表示位置</a></li>
+                <li><a href="#扁平模型">扁平模型</a>
                   <ol>
                     <li><a href="#作业-1">作业</a></li>
                   </ol>
@@ -317,6 +312,20 @@
             </li>
           </ol>
         </li>
+        <li><a href="#2内存分配">（2）：内存分配</a>
+          <ol>
+            <li><a href="#malloccallocrealloc">malloc/calloc/realloc</a>
+              <ol>
+                <li>
+                  <ol>
+                    <li><a href="#作业-2">作业</a></li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+        <li></li>
         <li><a href="#3内存泄漏预防与检测">（3）：内存泄漏预防与检测</a>
           <ol>
             <li><a href="#内存泄漏">内存泄漏</a></li>
@@ -329,7 +338,7 @@
               <ol>
                 <li>
                   <ol>
-                    <li><a href="#作业-2">作业</a></li>
+                    <li><a href="#作业-3">作业</a></li>
                   </ol>
                 </li>
               </ol>
@@ -418,7 +427,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 3 分钟
+                    阅读时长: 6 分钟
                 </time>
             </div>
         
@@ -636,7 +645,71 @@
 		data-flex-basis="344px"
 	
 ></p>
-<h1 id="第十四课-内存管理">第十四课-内存管理
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1.函数f中，两个变量分别是二级指针**ptr1,指针*ptr2。
+</span></span><span class="line"><span class="cl">定义指针p1=i的地址，p2等于j的地址
+</span></span><span class="line"><span class="cl">然后调用f函数
+</span></span><span class="line"><span class="cl">&amp;p1，也就是取指针p1的地址，作为二级指针**Ptr1；p2，就是j变量的地址作为指针变量导入f函数中
+</span></span><span class="line"><span class="cl">然后int 指针tmp=ptr2  也就是 tmp=ptr2=p2=&amp;j
+</span></span><span class="line"><span class="cl">下一个**ptr1，两次解引用ptr1指针，结果为i，i*10=0，i=0
+</span></span><span class="line"><span class="cl">解ptr2指针，结果为j，j*10=200，j=200
+</span></span><span class="line"><span class="cl">ptr2 = *ptr1，解引用ptr1，即二级指针中存放的是p1的地址，解出来p1存放的i的地址，也就是ptr2 = &amp;i
+</span></span><span class="line"><span class="cl">*ptr1 = tmp  就是p1 = p2 = &amp;j
+</span></span><span class="line"><span class="cl">所以，i=0，j=200，p1=p2=&amp;j
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2.问题：调用的getmemory函数中，malloc没有对应的free来清除堆上使用的内存，会造成内存泄漏
+</span></span><span class="line"><span class="cl">void中调用getmemory函数，传值传入的不是地址，定义getmemory的时候设定的指针，也就是需要传入地址，
+</span></span><span class="line"><span class="cl">所以程序会在调用函数的时候崩溃，还可能会造成内存泄露
+</span></span><span class="line"><span class="cl">修改：
+</span></span><span class="line"><span class="cl">void getmemory(char *p)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">	p=(char*)malloc(100);
+</span></span><span class="line"><span class="cl">	free(p)
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">void test(char *s)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">	char *str = NULL;
+</span></span><span class="line"><span class="cl">	getmemory(&amp;str);
+</span></span><span class="line"><span class="cl">	strcpy(str,s);
+</span></span><span class="line"><span class="cl">	printf(str);
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="第十四课-内存管理">第十四课-内存管理
 </h1><p>物理内存，cpu根据物理地址在物理内存中存储数据</p>
 <h2 id="1内存分类与寻址">（1）：内存分类与寻址
 </h2><p><img src="/p/11-04/xunineicun.png"
@@ -722,6 +795,15 @@
 		data-flex-basis="351px"
 	
 ></p>
+<h4 id="分段用起始地址加偏移地址来表示位置">分段：用起始地址加偏移地址来表示位置
+</h4><p>段的起始地址，低4位设置成零用来让16位寄存器表示段地址</p>
+<p>两个寄存器，一个寄存器中拿到起始地址，然后左移四位，加上段的偏移</p>
+<p>左移四位，低四位是0，未存放，也就是存放时右移四位</p>
+<p>cs 代码段起始地址， ds 数据段起始地址</p>
+<h4 id="扁平模型">扁平模型
+</h4><p>不需要设置起始地址，能够直接用一个寄存器寻址整个地址空间</p>
+<p>实模式，段寄存器中的地址加偏移能得到物理地址</p>
+<p>保护模式，地址使用虚拟地址，通过页表段表来映射得到物理地址</p>
 <p><img src="/p/11-04/leixingzongjie.png"
 	width="1888"
 	height="1308"
@@ -736,8 +818,83 @@
 		data-flex-basis="346px"
 	
 ></p>
-<h3 id="保护模式虚拟地址到物理地址顿dacngk">保护模式虚拟地址到物理地址顿dacngk
-</h3><h2 id="2内存分配">（2）：内存分配
+<p>保护模式中无需参与计算</p>
+<p><img src="/p/11-04/xunzhi.png"
+	width="1928"
+	height="1295"
+	srcset="/p/11-04/xunzhi_hu_299a2a3d9155bd01.png 480w, /p/11-04/xunzhi_hu_e5f475a51133d159.png 1024w"
+	loading="lazy"
+	
+		alt="xunzhi"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="148"
+		data-flex-basis="357px"
+	
+></p>
+<p>段选择符加段表和偏移量得到线性地址</p>
+<p>CR3寄存器，获得页目录，确定页表项，通过偏移找到物理地址</p>
+<h5 id="作业-1">作业
+</h5><p><img src="/p/11-04/zuoye1.png"
+	width="1914"
+	height="1291"
+	srcset="/p/11-04/zuoye1_hu_542ef080966b0ce2.png 480w, /p/11-04/zuoye1_hu_3fbdef4e91b0b8b9.png 1024w"
+	loading="lazy"
+	
+		alt="zuoye1"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="148"
+		data-flex-basis="355px"
+	
+></p>
+<p>1.底层是静态区，存放了变量，数据，常量；往上是代码区，存放源代码；再往上是堆，一个手动管理的内存池；然后最后是栈，调用函数时存放变量的区域</p>
+<p>2.程序内存分为四个区域，内核区，两个非法区，进程区。内核区和进程区占4GB，内核区的权限最高，进程区R3的权限，非法区域用来隔绝两个区域的相互影响，只占64kb</p>
+<p>3.栈是函数调用时的临时存储区，由系统自动分配，后进先出，效率较高</p>
+<p>堆是由程序员手动分配的内存池，大小由计算机硬件决定，调用灵活，但是效率稍低</p>
+<p>4.分段模型是在计算机寄存器只有16位用来寻址的方法，计算机地址总线有20位，寄存器无法完全存储，于是采用分段模型的方式来存储，将20位总内存大小1m的内存分为16个64kb的段，然后规定最后四位都为0的方式，省略四位零，然后用两个寄存器，一个用来表示起始地址，另一个用来表示偏移量，这样用来将逻辑地址转换为物理地址</p>
+<p>平坦模型，则是计算机发展之后，一个寄存器能够完成将逻辑地址转换为物理地址之后发展出来的方式，能用一个寄存器去遍历所有的地址线</p>
+<p>5.实模式，没有保护，用分段模型构建的物理地址，可以读写任何内存位置</p>
+<p>保护模式，需要页表将虚拟地址转换为物理地址</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">直接物理内存访问：程序看到的地址就是真实的物理内存地址。一个程序可以读写任何内存位置，包括操作系统的核心代码。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">无权限分级：没有“内核态”和“用户态”之分。所有代码都以最高权限运行。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">内存空间小：由于16位架构和寻址方式限制，最多只能访问 1MB 内存。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">虚拟内存：程序运行在独立的“虚拟地址空间”中，由CPU和操作系统负责映射到真实的物理内存。程序A无法直接访问程序B的内存。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">权限分级：通常有4个特权级（Ring 0 ~ Ring 3）。操作系统内核运行在最高特权级（Ring 0），应用程序运行在最低特权级（Ring 3）。应用程序想执行特权指令（如操作硬件）会被CPU拒绝。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">内存分段与分页：通过复杂的描述符表和页表来管理内存访问，提供了隔离和保护机制。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">支持大内存：可以访问远超过1MB的物理和虚拟内存（如4GB甚至更多）。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="2内存分配">（2）：内存分配
 </h2><p>静态区，代码区，栈，堆，如何编译一个10m的程序</p>
 <p>全局数组，全局变量， 必然存放在静态区</p>
 <div class="highlight"><div class="chroma">
@@ -839,7 +996,7 @@
 		data-flex-basis="351px"
 	
 ></p>
-<h5 id="作业-1">作业
+<h5 id="作业-2">作业
 </h5><p><img src="/p/11-04/zuoye2.png"
 	width="1200"
 	height="796"
@@ -854,7 +1011,13 @@
 		data-flex-basis="361px"
 	
 ></p>
-<h2 id="3内存泄漏预防与检测">（3）：内存泄漏预防与检测
+<p>1.静态区存放全局变量，静态变量，从静态区分配内存只能从最开始的声明变量，内存由声明类型决定，不由程序员决定</p>
+<p>2.栈的内存是在函数调用时由机器分配使用，根据所写函数的声明类型定义来决定，不受程序员控制</p>
+<p>3.从堆上分配内存需要使用特定的函数，比如malloc，calloc，用来在堆上划取一部分内存来使用</p>
+<p>4.栈是函数调用时的临时存储区，由系统自动分配，后进先出，效率较高</p>
+<p>堆是由程序员手动分配的内存池，大小由计算机硬件决定，调用灵活，但是效率稍低</p>
+<h2 id="">
+</h2><h2 id="3内存泄漏预防与检测">（3）：内存泄漏预防与检测
 </h2><h3 id="内存泄漏">内存泄漏
 </h3><p><img src="/p/11-04/neicunxielou.png"
 	width="1924"
@@ -965,7 +1128,7 @@
 	
 ></p>
 <p>realloc会检查原来内存的容量，不够会开辟新的内存地址</p>
-<h5 id="作业-2">作业
+<h5 id="作业-3">作业
 </h5><p><img src="/p/11-04/zuoye3.png"
 	width="718"
 	height="350"
@@ -980,6 +1143,10 @@
 		data-flex-basis="492px"
 	
 ></p>
+<p>1.写代码的时候，声明函数之后跟上释放，让划取和释放成对出现</p>
+<p>或者用goto集中处理所有的堆</p>
+<p>用内存使用计数，使用时+1，释放时-1，最后看是否还有+1</p>
+<p>2.用容器封存指向所划取堆的首地址的指针，在调用完成后检查是否有未释放的指针留存</p>
 
 </section>
 
@@ -1013,6 +1180,73 @@
     <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/11-07/">
+        
+        
+            <div class="article-image">
+                <img src="/p/11-07/bj.0fcb26fa4d62ddeafbbf77a60e286e6d_hu_ec2335d29d1f749e.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 11-07 笔记"
+                        data-key="11-07" 
+                        data-hash="md5-D8sm&#43;k1i3er7v3emDihubQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">11-07 笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/11-06/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/bj.jpg" loading="lazy" data-key="11-06" data-hash="/bj.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">11-06 笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/11-05/">
+        
+        
+            <div class="article-image">
+                <img src="/p/11-05/bj.85999048b72bc6fa6f1d7488722fd4fb_hu_6126d35cc36e74f0.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 11-05 笔记"
+                        data-key="11-05" 
+                        data-hash="md5-hZmQSLcrxvpvHXSIci/U&#43;w==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">11-05 笔记</h2>
+        </div>
+    </a>
+</article>
+
             
                 
 <article class="has-image">
@@ -1057,78 +1291,6 @@
 
         <div class="article-details">
             <h2 class="article-title">11-02 笔记</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/11-01/">
-        
-        
-            <div class="article-image">
-                <img src="/p/11-01/bj.3e07cca7b8c3476812966714ecbd8771_hu_dcac352264b8a165.jpg" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post 11-01 笔记"
-                        data-key="11-01" 
-                        data-hash="md5-PgfMp7jDR2gSlmcU7L2HcQ==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">11-01 笔记</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/10-31/">
-        
-        
-            <div class="article-image">
-                <img src="/p/10-31/bj.5b0d2ba2bba80b80c9b6da002977a268_hu_49b40fae47bca15b.jpg" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post 10-31 笔记"
-                        data-key="10-31" 
-                        data-hash="md5-Ww0roruoC4DJttoAKXeiaA==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">10-31 笔记</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/10-30/">
-        
-        
-            <div class="article-image">
-                <img src="/p/10-30/bj.fd9c547a1142b49c8b3bdb14b232eb18_hu_97db364ba2801478.jpg" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post 10-30 笔记"
-                        data-key="10-30" 
-                        data-hash="md5-/ZxUehFCtJyLO9sUsjLrGA==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">10-30 笔记</h2>
         </div>
     </a>
 </article>
