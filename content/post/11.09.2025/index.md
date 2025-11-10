@@ -1,6 +1,6 @@
 ---
 title: 11-09 笔记
-description: 
+description: 花开堪折直须折，莫待无花空折枝
 date: 2025-11-09
 slug: 11-09
 image: bj.jpg
