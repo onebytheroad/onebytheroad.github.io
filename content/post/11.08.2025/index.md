@@ -560,7 +560,7 @@ ip:192.168.1.100
 
 或运算算法，有1即结果为1,所以只需要确保计算的某位置的数为1即可
 
-## （4）：异或运算
+## （4）：异或运算    ^
 
 ![yihuoyunsuan](yihuoyunsuan.png)
 
@@ -681,4 +681,108 @@ java   >>>逻辑   >>算数
 ###### 作业
 
 ![zuoye12](zuoye12.png)
+
+1.  127 ->  0111 1111  左移1位，然后用0填充，再加1   1111 1110 加1   结果是1111 1111,  255   (?)
+2.  -1 -> 1111 1111 右移1位，然后用符号位填充，1111 1111 再加1   结果是 1 0000 0000  -256   (?)
+
+3. 算数运算符优先，也就是1<<5   0000 0001    0010 0000  结果是，乘以2的5次方，32
+
+4. 15 & 240 换成二进制   0000 1111    1111 0000     与运算，与1运算为本身  , 0
+
+5. 0000 1010   ^   0000 1100    异或运算，相同取0，相反取1   即  0000 0110   ，6
+6. 与1111 1111 0000 0000 0000 0000 0000 0000  进行与运算
+7. 1向左移动100位，除以7的余数，  0000 0111取余  (?)
+8. 1~1024  00 0000 0001   -  10 0000 0000   异或取值范围   相同0，不同1   最大即2047，最小(?)  1025  还包含0
+
+9. (?)
+
+
+
+解析：
+
+字符型，-128~127 第一题左移转为十进制254，超出范围，截断，1111 1110 表示为 -2,-2+1=-1
+
+第二题，右移一位，保持-1，再加1，结果为0
+
+思路，循环加移位，先将浮点数转换为整数，因为浮点数与整数的编码方式不同，如果直接转换成2进制会出现问题，所以
+
+需要转换成整数并且一位一位打印
+
+```
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h> 
+#include <stdbool.h>
+#include <malloc.h>
+
+#define mask 0x1
+
+int main()
+{
+	float f = 1.0f;
+	
+	int k = *(int*)(&f), j;
+	for (j = 31; j >= 0; j--)
+		printf("%d", (k >> j) & mask);
+	return 0;
+}
+
+网络：https://www.zhihu.com/question/457946470
+```
+
+结果如下
+
+![diyizhiongsuanfa](C:\blog\my-blog\content\post\11.11.2025\diyizhiongsuanfa.png)
+
+```
+ai
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h> 
+#include <stdbool.h>
+#include <malloc.h>
+#include <stdint.h>
+
+void print_float_bits(float f) {
+    // 1. 将 f 的二进制表示转为 uint32_t
+    uint32_t u = *((uint32_t*)&f);
+
+    // 2. 分别提取符号位(1 bit)、指数位(8 bits)、尾数位(23 bits)
+    //    并打印每一位
+    // 符号位: bit 31
+    // 指数位: bit 30~23
+    // 尾数位: bit 22~0
+
+    printf("符号位(1): ");
+    printf("%d", (u >> 31) & 1);
+
+    printf("\n指数位(8): ");
+    for (int i = 30; i >= 23; i--) {
+        printf("%d", (u >> i) & 1);
+    }
+
+    printf("\n尾数位(23): ");
+    for (int i = 22; i >= 0; i--) {
+        printf("%d", (u >> i) & 1);
+    }
+    printf("\n");
+}
+
+int main()
+{
+    print_float_bits(1.0f);
+
+    return 0;
+}
+```
+
+结果：
+
+![suanfadierzhong](C:\blog\my-blog\content\post\11.11.2025\suanfadierzhong.png)
+
+
+
+
+
+
 
