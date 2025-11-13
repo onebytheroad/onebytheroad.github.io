@@ -137,7 +137,7 @@ void reverse_str(char *str,int len)
 
 ### 文件分类
 
-![wenjianfenlei ](wenjianfenlei .png)
+![wenjianfenle](wenjianfenlei.png)
 
  ### 文件系统
 
