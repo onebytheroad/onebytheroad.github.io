@@ -404,7 +404,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 2 分钟
+                    阅读时长: 3 分钟
                 </time>
             </div>
         
@@ -567,16 +567,113 @@
 <p>递归或者循环解决</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code></code></pre></td>
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">int fibonacci(int n) {
+</span></span><span class="line"><span class="cl">    if(n == 0) {
+</span></span><span class="line"><span class="cl">        return 0;
+</span></span><span class="line"><span class="cl">    } else if(n == 1) {
+</span></span><span class="line"><span class="cl">        return 1;
+</span></span><span class="line"><span class="cl">    } else {
+</span></span><span class="line"><span class="cl">        return fibonacci(n-1) + fibonacci(n-2);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">int main() {
+</span></span><span class="line"><span class="cl">    int n;
+</span></span><span class="line"><span class="cl">    printf(&#34;请输入一个整数：&#34;);
+</span></span><span class="line"><span class="cl">    scanf(&#34;%d&#34;, &amp;n);
+</span></span><span class="line"><span class="cl">    printf(&#34;斐波那契数列的第%d项为：%d\n&#34;, n, fibonacci(n));
+</span></span><span class="line"><span class="cl">    return 0;
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#include&lt;stdio.h&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// 斐波那契数列函数
+</span></span><span class="line"><span class="cl">int fibonacci(int n) {
+</span></span><span class="line"><span class="cl">    if(n &lt;= 1) {
+</span></span><span class="line"><span class="cl">        return n;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    int a = 0, b = 1;
+</span></span><span class="line"><span class="cl">    for(int i = 2; i &lt;= n; i++) {
+</span></span><span class="line"><span class="cl">        int temp = a + b;
+</span></span><span class="line"><span class="cl">        a = b;
+</span></span><span class="line"><span class="cl">        b = temp;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    return b;
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">int main() {
+</span></span><span class="line"><span class="cl">    int n;
+</span></span><span class="line"><span class="cl">    printf(&#34;请输入一个整数：&#34;);
+</span></span><span class="line"><span class="cl">    scanf(&#34;%d&#34;, &amp;n);
+</span></span><span class="line"><span class="cl">    printf(&#34;斐波那契数列的第%d项为：%d\n&#34;, n, fibonacci(n));
+</span></span><span class="line"><span class="cl">    return 0;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="第二十课-文件">第二十课-文件
 </h1></li>
 </ol>
 <h2 id="1文件概念">（1）：文件概念
 </h2><h3 id="文件分类">文件分类
-</h3><p>![wenjianfenlei ](wenjianfenlei .png)</p>
+</h3><p><img src="/p/11-10/wenjianfenlei.png"
+	width="1881"
+	height="1300"
+	srcset="/p/11-10/wenjianfenlei_hu_f4d2b6814846eff7.png 480w, /p/11-10/wenjianfenlei_hu_ee1b85ae1597c521.png 1024w"
+	loading="lazy"
+	
+		alt="wenjianfenle"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="144"
+		data-flex-basis="347px"
+	
+></p>
 <h3 id="文件系统">文件系统
 </h3><p><img src="/p/11-10/wenjianxitong.png"
 	width="1925"
@@ -624,6 +721,12 @@
 		data-flex-basis="449px"
 	
 ></p>
+<ol>
+<li>文本文件，基于字符编码的方式编写</li>
+<li>二进制文件，基于值编码的方式的文件</li>
+<li>文件系统：管理，读写，调用一个文件的数据结构</li>
+</ol>
+<p>FAT  ZFS</p>
 <h2 id="2文件创建打开与读写">（2）：文件创建、打开与读写
 </h2><p><img src="/p/11-10/wenjianchuangjian,dakaiyuguanbi.png"
 	width="1900"
@@ -936,6 +1039,54 @@
             
                 
 <article class="has-image">
+    <a href="/p/11-13/">
+        
+        
+            <div class="article-image">
+                <img src="/p/11-13/bj.c319198b3d02ce40ea9c75f5a419c871_hu_26b15fc36ffa70d.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 11-13 笔记"
+                        data-key="11-13" 
+                        data-hash="md5-wxkZiz0CzkDqnHX1pBnIcQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">11-13 笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/11-12/">
+        
+        
+            <div class="article-image">
+                <img src="/p/11-12/bj.ad77c93609bb7b7605a81180b007dcdc_hu_17f111edc709b5c7.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 11-12 笔记"
+                        data-key="11-12" 
+                        data-hash="md5-rXfJNgm7e3YFqBGAsAfc3A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">11-12 笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/p/11-11/">
         
         
@@ -1001,49 +1152,6 @@
 
         <div class="article-details">
             <h2 class="article-title">11-08 笔记</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/11-07/">
-        
-        
-            <div class="article-image">
-                <img src="/p/11-07/bj.0fcb26fa4d62ddeafbbf77a60e286e6d_hu_ec2335d29d1f749e.jpg" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post 11-07 笔记"
-                        data-key="11-07" 
-                        data-hash="md5-D8sm&#43;k1i3er7v3emDihubQ==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">11-07 笔记</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/11-06/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="/bj.jpg" loading="lazy" data-key="11-06" data-hash="/bj.jpg"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">11-06 笔记</h2>
         </div>
     </a>
 </article>
