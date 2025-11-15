@@ -1,11 +1,11 @@
+---
 title: 11-15 笔记
 description: 夜阑卧听风吹雨，铁马冰河入梦来
 date: 2025-11-15
 slug: 11-15
 image: bj.jpg
 categories:
-
-    - 每日
+  - 每日
 ---
 
 2.
