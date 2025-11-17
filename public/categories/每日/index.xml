@@ -13,21 +13,21 @@
         <pubDate>Sun, 16 Nov 2025 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/p/11-16/</guid>
-        <description>&lt;img src="http://localhost:1313/bj.jpg" alt="Featured image of post 11-16 笔记" /&gt;&lt;h1 id=&#34;13-汇编语言的组成&#34;&gt;1.3 汇编语言的组成
-&lt;/h1&gt;&lt;ol&gt;
+        <description>&lt;img src="http://localhost:1313/p/11-16/bj.jpg" alt="Featured image of post 11-16 笔记" /&gt;&lt;h2 id=&#34;13-汇编语言的组成&#34;&gt;1.3 汇编语言的组成
+&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;汇编指令  （可以直接翻译成机器码）&lt;/li&gt;
 &lt;li&gt;伪指令   （伪指令，用编译器执行）&lt;/li&gt;
 &lt;li&gt;其他符号     （由编译器识别）&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;font size=3 color=&#34;red&#34;&gt;&lt;strong&gt;核心是汇编指令，它决定了汇编语言的特性&lt;/strong&gt;&lt;/font&gt;&lt;/p&gt;
-&lt;h1 id=&#34;14-存储器&#34;&gt;1.4 存储器
-&lt;/h1&gt;&lt;p&gt;cpu是计算机的核心部件，它控制整个计算机的运作并进行运算，想zpu工作，必须提供指令和数据&lt;/p&gt;
+&lt;h2 id=&#34;14-存储器&#34;&gt;1.4 存储器
+&lt;/h2&gt;&lt;p&gt;cpu是计算机的核心部件，它控制整个计算机的运作并进行运算，想cpu工作，必须提供指令和数据&lt;/p&gt;
 &lt;p&gt;指令和数据在存储器中存放，也就是内存&lt;/p&gt;
 &lt;p&gt;内存是其中一种存储器&lt;/p&gt;
 &lt;p&gt;pc机中内存作用仅次于cpu，离开了内存，cpu无法工作&lt;/p&gt;
 &lt;p&gt;磁盘不同于内存，磁盘上的数据或程序如果不读到内存中，就无法被cpu使用&lt;/p&gt;
-&lt;h1 id=&#34;15-指令和数据&#34;&gt;1.5 指令和数据
-&lt;/h1&gt;&lt;p&gt;指令和数据是应用上的概念，在内存或磁盘上，指令和数据都是二进制信息&lt;/p&gt;
+&lt;h2 id=&#34;15-指令和数据&#34;&gt;1.5 指令和数据
+&lt;/h2&gt;&lt;p&gt;指令和数据是应用上的概念，在内存或磁盘上，指令和数据都是二进制信息&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-16/erjizh.png&#34;
 	width=&#34;1054&#34;
 	height=&#34;607&#34;
@@ -42,8 +42,8 @@
 		data-flex-basis=&#34;416px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h1 id=&#34;16-存储单元&#34;&gt;1.6 存储单元
-&lt;/h1&gt;&lt;p&gt;存储器被划分为若干个存储单元，每个存储单元从0开始顺序编号&lt;/p&gt;
+&lt;h2 id=&#34;16-存储单元&#34;&gt;1.6 存储单元
+&lt;/h2&gt;&lt;p&gt;存储器被划分为若干个存储单元，每个存储单元从0开始顺序编号&lt;/p&gt;
 &lt;p&gt;比如128个存储单元，编号0~127&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-16/1.6cunchundanyuan.png&#34;
 	width=&#34;1643&#34;
@@ -59,8 +59,8 @@
 		data-flex-basis=&#34;343px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h1 id=&#34;17-cpu对存储器的读写&#34;&gt;1.7 cpu对存储器的读写
-&lt;/h1&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-16/1.7duxie.png&#34;
+&lt;h2 id=&#34;17-cpu对存储器的读写&#34;&gt;1.7 cpu对存储器的读写
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-16/1.7duxie.png&#34;
 	width=&#34;1540&#34;
 	height=&#34;870&#34;
 	srcset=&#34;http://localhost:1313/p/11-16/1.7duxie_hu_37d00dc0c4864816.png 480w, http://localhost:1313/p/11-16/1.7duxie_hu_a2ad77aba4b89af1.png 1024w&#34;
@@ -129,19 +129,31 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;8086cpu，最基础的cpu&lt;/p&gt;
-&lt;h1 id=&#34;18-地址总线&#34;&gt;1.8 地址总线
-&lt;/h1&gt;&lt;p&gt;&lt;font size=3 color=&#34;red&#34;&gt;cpu是通过地址总线来指定存储单元的&lt;/font&gt;&lt;/p&gt;
+&lt;h2 id=&#34;18-地址总线&#34;&gt;1.8 地址总线
+&lt;/h2&gt;&lt;p&gt;&lt;font size=3 color=&#34;red&#34;&gt;cpu是通过地址总线来指定存储单元的&lt;/font&gt;&lt;/p&gt;
 &lt;p&gt;地址总线上能传送多少个不同的信息，cpu就可以对多少个存储单元进行寻址&lt;/p&gt;
 &lt;p&gt;多少位的cpu，就是描述cpu寻址的能力，&lt;/p&gt;
 &lt;p&gt;64位的速度需要：64位的cpu，64位的操作系统，64位的软件&lt;/p&gt;
 &lt;p&gt;![1.8  shili](1.8  shili.png)&lt;/p&gt;
 &lt;p&gt;最多可以寻找2的n次方个内存单元&lt;/p&gt;
-&lt;p&gt;一个地址总线，可以索引一个位，一个内存单元，就是一个字节，包含8个位&lt;/p&gt;
-&lt;h1 id=&#34;19-数据总线&#34;&gt;1.9 数据总线
-&lt;/h1&gt;&lt;p&gt;cpu与内存或其他期间之间的数据传送时通过数据总线来进行的&lt;/p&gt;
+&lt;p&gt;一个地址总线，可以索引到一个内存单元，就是一个字节，包含8个位&lt;/p&gt;
+&lt;h2 id=&#34;19-数据总线&#34;&gt;1.9 数据总线
+&lt;/h2&gt;&lt;p&gt;cpu与内存或其他期间之间的数据传送时通过数据总线来进行的&lt;/p&gt;
 &lt;p&gt;数据总线的宽度决定了cpu和外界的数据传输速度&lt;/p&gt;
-&lt;p&gt;![小计额：&lt;/p&gt;
-&lt;p&gt;](1.9shujuzongxian.png)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-16/1.9shujuzongxian.png&#34;
+	width=&#34;1042&#34;
+	height=&#34;941&#34;
+	srcset=&#34;http://localhost:1313/p/11-16/1.9shujuzongxian_hu_9ee4c845ae4592ae.png 480w, http://localhost:1313/p/11-16/1.9shujuzongxian_hu_63b27d82f7b094b6.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1.9shujuzongxian&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;110&#34;
+		data-flex-basis=&#34;265px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;8088cpu，一次传8位数据，传送89 D8，传两遍&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-16/1.98086cpuchuanshu.png&#34;
 	width=&#34;954&#34;
@@ -158,8 +170,8 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;8086cpu传输，16位，比8088cpu快一倍&lt;/p&gt;
-&lt;h1 id=&#34;110-控制总线&#34;&gt;1.10 控制总线
-&lt;/h1&gt;&lt;p&gt;cpu对外部器件的控制是通过控制总线来进行。这里控制总线是一个总称，控制总线是一些不同控制线的集合&lt;/p&gt;
+&lt;h2 id=&#34;110-控制总线&#34;&gt;1.10 控制总线
+&lt;/h2&gt;&lt;p&gt;cpu对外部器件的控制是通过控制总线来进行。这里控制总线是一个总称，控制总线是一些不同控制线的集合&lt;/p&gt;
 &lt;p&gt;有多少根控制总线，就意味着cpu提供了对外部器件的多少钟控制&lt;/p&gt;
 &lt;p&gt;所以，控制总线的宽度绝对cpu对外部器件的控制的能力&lt;/p&gt;
 &lt;p&gt;控制总线发送控制信息&lt;/p&gt;
@@ -179,8 +191,8 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;内存读写的命令是由几根总控制线综合发出的：其中由一根名为读信号输出控制线负责由cpu向外传送读信号，cpu向该控制线上输出低电平表示将要读取数据；&lt;/p&gt;
 &lt;p&gt;有一根名为写信号输出控制线负责由cpu向外传送写信号&lt;/p&gt;
-&lt;h2 id=&#34;小结&#34;&gt;小结：
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-16/xiaojie.png&#34;
+&lt;h3 id=&#34;小结&#34;&gt;小结：
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-16/xiaojie.png&#34;
 	width=&#34;1697&#34;
 	height=&#34;889&#34;
 	srcset=&#34;http://localhost:1313/p/11-16/xiaojie_hu_6e79ec9c90b0542.png 480w, http://localhost:1313/p/11-16/xiaojie_hu_47a0998e7919eaa9.png 1024w&#34;
@@ -222,21 +234,23 @@
 		data-flex-basis=&#34;416px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h1 id=&#34;111-内存地址空间概述&#34;&gt;1.11 内存地址空间（概述）
-&lt;/h1&gt;&lt;p&gt;内存地址空间&lt;/p&gt;
+&lt;h2 id=&#34;111-内存地址空间概述&#34;&gt;1.11 内存地址空间（概述）
+&lt;/h2&gt;&lt;p&gt;内存地址空间&lt;/p&gt;
 &lt;p&gt;一个cpu的地址线宽度为10，那么可以寻址到1024个内存单元，这1024个可寻到的内存单元就构成这个cpu的内存地址空间&lt;/p&gt;
-&lt;h1 id=&#34;112-主板&#34;&gt;1.12 主板
-&lt;/h1&gt;&lt;p&gt;每一台pc机种，都有一个主板，主板上由核心器件和一些主要器件&lt;/p&gt;
+&lt;h2 id=&#34;112-主板&#34;&gt;1.12 主板
+&lt;/h2&gt;&lt;p&gt;每一台pc机种，都有一个主板，主板上由核心器件和一些主要器件&lt;/p&gt;
 &lt;p&gt;器件通过总线相连&lt;/p&gt;
-&lt;h1 id=&#34;113-接口卡&#34;&gt;1.13 接口卡
-&lt;/h1&gt;&lt;p&gt;计算机系统中，所有可用程序控制其工作的设备，都必须受到cpu的控制&lt;/p&gt;
+&lt;h2 id=&#34;113-接口卡&#34;&gt;1.13 接口卡
+&lt;/h2&gt;&lt;p&gt;计算机系统中，所有可用程序控制其工作的设备，都必须受到cpu的控制&lt;/p&gt;
 &lt;p&gt;cpu对外部设备不能直接控制，如显示器，音响，打印机等。直接控制这些设备进行工作的是插在拓展插槽上的接口卡&lt;/p&gt;
-&lt;h1 id=&#34;114-各类存储器的芯片&#34;&gt;1.14 各类存储器的芯片
-&lt;/h1&gt;&lt;ul&gt;
+&lt;p&gt;接口卡通过总线与cpu相连，cpu可以通过总线向接口卡发送指令，以此来间接控制设备&lt;/p&gt;
+&lt;h2 id=&#34;114-各类存储器的芯片&#34;&gt;1.14 各类存储器的芯片
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;从读写属性上看分为两类：&lt;/p&gt;
 &lt;p&gt;随机存储器（RAM）和&lt;em&gt;只读存储器&lt;/em&gt;（ROM）&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;内存就是一个大的随机存储器，断了电之后数据将会遗失&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;(主随机存储器一般是由装载主板上的RAM和插在拓展插槽上的RAM组成)&lt;/p&gt;
 &lt;p&gt;只读存储器，永远只能读，数据只要不把他刷掉，一直都存在那里&lt;/p&gt;
 &lt;p&gt;装有BIOS的ROM      BIOS: Basic Input/Output System 基本输入输出系统&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;BIOS是由主板个各类接i卡（显卡，网卡等）厂商提供的软件系统，可以通过它利用该硬件设备进行最近本的输入输出。子在主板你和某些接口卡上插有存储相应的BIOS的ROM&lt;/em&gt;&lt;/p&gt;
@@ -248,12 +262,13 @@
 &lt;li&gt;装有BIOS的ROM&lt;/li&gt;
 &lt;li&gt;接口卡上的RAM&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;某些接口卡上的RAM需要对大批量输入输出数据进行存储，比如显示卡上的RAM，一般叫显存&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;PC机种各类存储器的逻辑链接情况&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;各类储存器的逻辑链接&lt;/strong&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;各类储存器的逻辑链接&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-16/xiashiqiluojilianjie.png&#34;
 	width=&#34;1709&#34;
 	height=&#34;1243&#34;
@@ -268,8 +283,8 @@
 		data-flex-basis=&#34;329px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h1 id=&#34;115-内存地址空间&#34;&gt;1.15 内存地址空间
-&lt;/h1&gt;&lt;p&gt;上述那些存储器在物理上是独立的器件&lt;/p&gt;
+&lt;h2 id=&#34;115-内存地址空&#34;&gt;1.15 内存地址空
+&lt;/h2&gt;&lt;p&gt;上述那些存储器在物理上是独立的器件&lt;/p&gt;
 &lt;p&gt;以下两点相同&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;都和cpu的总线相连&lt;/li&gt;
@@ -326,9 +341,218 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;对cpu来将，系统中所有的存储器中的存储单元都处于一个统一的逻辑储存器中，它的容量手cpu寻址能力的限制。这个逻辑存储器即是我们所说的内存地址空间&lt;/p&gt;
+&lt;p&gt;对cpu来将，系统中所有的存储器中的存储单元都处于一个统一的逻辑储存器中，它的容量受cpu寻址能力的限制。这个逻辑存储器即是我们所说的内存地址空间&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;地址总线宽度，决定了定位的地址单元的数量，地址单元的数量，决定了cpu能够访问到的地址，也是各类设备能够储存的地址空间&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
+&lt;h3 id=&#34;补充&#34;&gt;补充
+&lt;/h3&gt;&lt;p&gt;电平，电信号的电压值，两个不同的电压范围用来表示二进制&lt;/p&gt;
+&lt;p&gt;管脚，也叫引脚，cpu与外部电路进行连接的接口&lt;/p&gt;
+&lt;p&gt;存储单元，存储器最小寻址单位，每个单元占一个字节，&lt;/p&gt;
+&lt;p&gt;1Byte = 1 bit   -&amp;gt;   1KB = 8*1024 bit  = 1024B&lt;/p&gt;
+&lt;h1 id=&#34;第二章--寄存器cpu工作原理&#34;&gt;第二章  寄存器（cpu工作原理）
+&lt;/h1&gt;&lt;h2 id=&#34;cpu寄存器&#34;&gt;CPU，寄存器
+&lt;/h2&gt;&lt;p&gt;一个典型的CPU由运算器，控制器，寄存器等器件组成，器件靠内部总线相连&lt;/p&gt;
+&lt;p&gt;区别：&lt;/p&gt;
+&lt;p&gt;内部总线实现CPU内部各个器件之间的联系&lt;/p&gt;
+&lt;p&gt;外部总线实现CPU和主板上其他器件的联系&lt;/p&gt;
+&lt;h2 id=&#34;21-通用寄存器&#34;&gt;2.1 通用寄存器
+&lt;/h2&gt;&lt;p&gt;8086CPU由14个寄存器，名称为AX,BZ,CX,DX,SI,DI,SP,BP,IP,CS,SS,DS,ES,PSW&lt;/p&gt;
+&lt;p&gt;8086CPU所有的寄存器都是16位的，可以存放两个字节&lt;/p&gt;
+&lt;p&gt;AX,BX,CX,DX 通常用来存放一般性数据被称之为通用寄存器&lt;/p&gt;
+&lt;p&gt;AX作例子&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-16/2.1jicunqicunfang.png&#34;
+	width=&#34;1396&#34;
+	height=&#34;625&#34;
+	srcset=&#34;http://localhost:1313/p/11-16/2.1jicunqicunfang_hu_38b5c8dddafe8d52.png 480w, http://localhost:1313/p/11-16/2.1jicunqicunfang_hu_69dc7346e2bccf84.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2.1jicunqicunfang&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;223&#34;
+		data-flex-basis=&#34;536px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-16/2.1hexcunchuqingk.png&#34;
+	width=&#34;1593&#34;
+	height=&#34;1071&#34;
+	srcset=&#34;http://localhost:1313/p/11-16/2.1hexcunchuqingk_hu_b04586cb97122843.png 480w, http://localhost:1313/p/11-16/2.1hexcunchuqingk_hu_664b861faac0546f.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2.1hexcunchuqingk&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;148&#34;
+		data-flex-basis=&#34;356px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-16/2.1jicunqidfenwei.png&#34;
+	width=&#34;1670&#34;
+	height=&#34;910&#34;
+	srcset=&#34;http://localhost:1313/p/11-16/2.1jicunqidfenwei_hu_7bc90af24ae4a5f2.png 480w, http://localhost:1313/p/11-16/2.1jicunqidfenwei_hu_816e810731d9fc2a.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2.1jicunqidfenwei&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;183&#34;
+		data-flex-basis=&#34;440px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;![2.1 jicunqi8weio](2.1 jicunqi8weio.png)&lt;/p&gt;
+&lt;h2 id=&#34;22-字在寄存器中的存储&#34;&gt;2.2 字在寄存器中的存储
+&lt;/h2&gt;&lt;p&gt;字  word = 2B  8086  8位升级到16位， 把一次性读取16位的内存单元称之为字&lt;/p&gt;
+&lt;h2 id=&#34;23-几条汇编指令&#34;&gt;2.3 几条汇编指令
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-16/2.3huibianzhil.png&#34;
+	width=&#34;1628&#34;
+	height=&#34;877&#34;
+	srcset=&#34;http://localhost:1313/p/11-16/2.3huibianzhil_hu_2d52459744c42988.png 480w, http://localhost:1313/p/11-16/2.3huibianzhil_hu_567046c39ea98a6b.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2.3huibianzhil&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;185&#34;
+		data-flex-basis=&#34;445px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;示例：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;C:%5cblog%5cmy-blog%5ccontent%5cpost%5c11-2025%5c11.16.2025%5c2.3huibianshili.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2.3huibianshili&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;8226H+8226H   进位溢出  1044C  答案是044C&lt;/p&gt;
+&lt;p&gt;这里的1被放到了进制位中去（请听下回分解）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-16/2.3seconshili.png&#34;
+	width=&#34;1661&#34;
+	height=&#34;1025&#34;
+	srcset=&#34;http://localhost:1313/p/11-16/2.3seconshili_hu_d134b8a6d1a9464a.png 480w, http://localhost:1313/p/11-16/2.3seconshili_hu_5ec4ebfd7da94761.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2.3seconshili&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;162&#34;
+		data-flex-basis=&#34;388px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;0000H  其中，AH代表了ax的高位，AL代表了ax的低位&lt;/p&gt;
+&lt;p&gt;add ah，bl  就是对ax的高位和bx的低位进行运算&lt;/p&gt;
+&lt;p&gt;答案不等于0158H，AH和AL是两个分开的存储，溢出了不会互相进入，会抛到另一个地方&lt;/p&gt;
+&lt;p&gt;如果是ax则为0158H&lt;/p&gt;
+&lt;h6 id=&#34;监测点21&#34;&gt;监测点2.1
+&lt;/h6&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-16/jiancedian2.1.png&#34;
+	width=&#34;1198&#34;
+	height=&#34;1105&#34;
+	srcset=&#34;http://localhost:1313/p/11-16/jiancedian2.1_hu_509b10f5b1cabe2d.png 480w, http://localhost:1313/p/11-16/jiancedian2.1_hu_657744ea2d069ab4.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;jiancedian2.1&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;108&#34;
+		data-flex-basis=&#34;260px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;另附             add al,6						ax=&lt;/p&gt;
+&lt;p&gt;​		    add al.al						ax=&lt;/p&gt;
+&lt;p&gt;​		    mov ax,cx						ax=&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AX = F4A3H
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AX = 31A3H
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AX = 3123H
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AX = 6246H
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;BX = 826CH
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CX = 6246H
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AX = 826CH
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AX = 04D8H
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AX = 0482H
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AX = 6C82H
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AX = D882H
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AX = D888H
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AX = D810H
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AX = 6246H
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;（2）只能使用目前削过的汇编指令，最多能够使用四条指令，编程计算2的4次方&lt;/p&gt;
+&lt;p&gt;add ax,0008H&lt;/p&gt;
+&lt;p&gt;add ax,0008H&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;add ax,2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;add ax,ax
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;add ax,ax
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;add ax,ax
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;24-物理地址&#34;&gt;2.4 物理地址
+&lt;/h2&gt;&lt;p&gt;cpu访问内存单元是要给出内存单元的地址，所有的内存单元构成的存储空间是一个一位的线性空间。&lt;/p&gt;
+&lt;p&gt;我们将这个唯一的地址成为物理地址。&lt;/p&gt;
+&lt;p&gt;线性空间里的每一个存储单元都有唯一的地址，这个唯一的地址称为物理地址&lt;/p&gt;
 </description>
         </item>
         <item>

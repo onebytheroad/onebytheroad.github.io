@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="那个冬日后我变得格外贪睡，可能是想你想的太累，或者是梦里你眼睛太美">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="那个冬日后我变得格外贪睡，可能是想你想的太累，也可能是梦里你的眼睛太美">
 <title>11-16 笔记</title>
 
 <link rel='canonical' href='http://localhost:1313/p/11-16/'>
 
 <link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="11-16 笔记">
-<meta property='og:description' content="那个冬日后我变得格外贪睡，可能是想你想的太累，或者是梦里你眼睛太美">
+<meta property='og:description' content="那个冬日后我变得格外贪睡，可能是想你想的太累，也可能是梦里你的眼睛太美">
 <meta property='og:url' content='http://localhost:1313/p/11-16/'>
 <meta property='og:site_name' content='雫的小站'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-11-16T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-11-16T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/bj.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-11-16T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-11-16T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/p/11-16/bj.jpg' />
 <meta name="twitter:title" content="11-16 笔记">
-<meta name="twitter:description" content="那个冬日后我变得格外贪睡，可能是想你想的太累，或者是梦里你眼睛太美"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:1313/bj.jpg' />
+<meta name="twitter:description" content="那个冬日后我变得格外贪睡，可能是想你想的太累，也可能是梦里你的眼睛太美"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/p/11-16/bj.jpg' />
         
         <link rel="stylesheet" href="http://localhost:1313/css/custom.min.css">
         <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🌸</text></svg>">
@@ -274,23 +274,56 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#13-汇编语言的组成">1.3 汇编语言的组成</a></li>
-    <li><a href="#14-存储器">1.4 存储器</a></li>
-    <li><a href="#15-指令和数据">1.5 指令和数据</a></li>
-    <li><a href="#16-存储单元">1.6 存储单元</a></li>
-    <li><a href="#17-cpu对存储器的读写">1.7 cpu对存储器的读写</a></li>
-    <li><a href="#18-地址总线">1.8 地址总线</a></li>
-    <li><a href="#19-数据总线">1.9 数据总线</a></li>
-    <li><a href="#110-控制总线">1.10 控制总线</a>
+    <li>
       <ol>
-        <li><a href="#小结">小结：</a></li>
+        <li><a href="#13-汇编语言的组成">1.3 汇编语言的组成</a></li>
+        <li><a href="#14-存储器">1.4 存储器</a></li>
+        <li><a href="#15-指令和数据">1.5 指令和数据</a></li>
+        <li><a href="#16-存储单元">1.6 存储单元</a></li>
+        <li><a href="#17-cpu对存储器的读写">1.7 cpu对存储器的读写</a></li>
+        <li><a href="#18-地址总线">1.8 地址总线</a></li>
+        <li><a href="#19-数据总线">1.9 数据总线</a></li>
+        <li><a href="#110-控制总线">1.10 控制总线</a>
+          <ol>
+            <li><a href="#小结">小结：</a></li>
+          </ol>
+        </li>
+        <li><a href="#111-内存地址空间概述">1.11 内存地址空间（概述）</a></li>
+        <li><a href="#112-主板">1.12 主板</a></li>
+        <li><a href="#113-接口卡">1.13 接口卡</a></li>
+        <li><a href="#114-各类存储器的芯片">1.14 各类存储器的芯片</a></li>
+        <li><a href="#115-内存地址空">1.15 内存地址空</a>
+          <ol>
+            <li><a href="#补充">补充</a></li>
+          </ol>
+        </li>
       </ol>
     </li>
-    <li><a href="#111-内存地址空间概述">1.11 内存地址空间（概述）</a></li>
-    <li><a href="#112-主板">1.12 主板</a></li>
-    <li><a href="#113-接口卡">1.13 接口卡</a></li>
-    <li><a href="#114-各类存储器的芯片">1.14 各类存储器的芯片</a></li>
-    <li><a href="#115-内存地址空间">1.15 内存地址空间</a></li>
+    <li><a href="#第二章--寄存器cpu工作原理">第二章  寄存器（cpu工作原理）</a>
+      <ol>
+        <li><a href="#cpu寄存器">CPU，寄存器</a></li>
+        <li><a href="#21-通用寄存器">2.1 通用寄存器</a></li>
+        <li><a href="#22-字在寄存器中的存储">2.2 字在寄存器中的存储</a></li>
+        <li><a href="#23-几条汇编指令">2.3 几条汇编指令</a>
+          <ol>
+            <li>
+              <ol>
+                <li>
+                  <ol>
+                    <li>
+                      <ol>
+                        <li><a href="#监测点21">监测点2.1</a></li>
+                      </ol>
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+        <li><a href="#24-物理地址">2.4 物理地址</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -306,8 +339,12 @@
     <header class="article-header">
         <div class="article-image">
             <a href="/p/11-16/">
-                
-                    <img src="/bj.jpg" loading="lazy" alt="Featured image of post 11-16 笔记" />
+                <img src="/p/11-16/bj_hu_f9860bfcf169e3af.jpg"
+                        srcset="/p/11-16/bj_hu_f9860bfcf169e3af.jpg 800w, /p/11-16/bj_hu_3c97a045d50864ec.jpg 1600w"
+                        width="800" 
+                        height="561" 
+                        loading="lazy"
+                        alt="Featured image of post 11-16 笔记" />
                 
             </a>
         </div>
@@ -331,7 +368,7 @@
     
         
         <h3 class="article-subtitle">
-            那个冬日后我变得格外贪睡，可能是想你想的太累，或者是梦里你眼睛太美
+            那个冬日后我变得格外贪睡，可能是想你想的太累，也可能是梦里你的眼睛太美
         </h3>
         
     </div>
@@ -367,7 +404,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 4 分钟
+                    阅读时长: 6 分钟
                 </time>
             </div>
         
@@ -382,21 +419,21 @@
     <section class="article-content">
     
     
-    <h1 id="13-汇编语言的组成">1.3 汇编语言的组成
-</h1><ol>
+    <h2 id="13-汇编语言的组成">1.3 汇编语言的组成
+</h2><ol>
 <li>汇编指令  （可以直接翻译成机器码）</li>
 <li>伪指令   （伪指令，用编译器执行）</li>
 <li>其他符号     （由编译器识别）</li>
 </ol>
 <p><font size=3 color="red"><strong>核心是汇编指令，它决定了汇编语言的特性</strong></font></p>
-<h1 id="14-存储器">1.4 存储器
-</h1><p>cpu是计算机的核心部件，它控制整个计算机的运作并进行运算，想zpu工作，必须提供指令和数据</p>
+<h2 id="14-存储器">1.4 存储器
+</h2><p>cpu是计算机的核心部件，它控制整个计算机的运作并进行运算，想cpu工作，必须提供指令和数据</p>
 <p>指令和数据在存储器中存放，也就是内存</p>
 <p>内存是其中一种存储器</p>
 <p>pc机中内存作用仅次于cpu，离开了内存，cpu无法工作</p>
 <p>磁盘不同于内存，磁盘上的数据或程序如果不读到内存中，就无法被cpu使用</p>
-<h1 id="15-指令和数据">1.5 指令和数据
-</h1><p>指令和数据是应用上的概念，在内存或磁盘上，指令和数据都是二进制信息</p>
+<h2 id="15-指令和数据">1.5 指令和数据
+</h2><p>指令和数据是应用上的概念，在内存或磁盘上，指令和数据都是二进制信息</p>
 <p><img src="/p/11-16/erjizh.png"
 	width="1054"
 	height="607"
@@ -411,8 +448,8 @@
 		data-flex-basis="416px"
 	
 ></p>
-<h1 id="16-存储单元">1.6 存储单元
-</h1><p>存储器被划分为若干个存储单元，每个存储单元从0开始顺序编号</p>
+<h2 id="16-存储单元">1.6 存储单元
+</h2><p>存储器被划分为若干个存储单元，每个存储单元从0开始顺序编号</p>
 <p>比如128个存储单元，编号0~127</p>
 <p><img src="/p/11-16/1.6cunchundanyuan.png"
 	width="1643"
@@ -428,8 +465,8 @@
 		data-flex-basis="343px"
 	
 ></p>
-<h1 id="17-cpu对存储器的读写">1.7 cpu对存储器的读写
-</h1><p><img src="/p/11-16/1.7duxie.png"
+<h2 id="17-cpu对存储器的读写">1.7 cpu对存储器的读写
+</h2><p><img src="/p/11-16/1.7duxie.png"
 	width="1540"
 	height="870"
 	srcset="/p/11-16/1.7duxie_hu_37d00dc0c4864816.png 480w, /p/11-16/1.7duxie_hu_a2ad77aba4b89af1.png 1024w"
@@ -498,19 +535,31 @@
 	
 ></p>
 <p>8086cpu，最基础的cpu</p>
-<h1 id="18-地址总线">1.8 地址总线
-</h1><p><font size=3 color="red">cpu是通过地址总线来指定存储单元的</font></p>
+<h2 id="18-地址总线">1.8 地址总线
+</h2><p><font size=3 color="red">cpu是通过地址总线来指定存储单元的</font></p>
 <p>地址总线上能传送多少个不同的信息，cpu就可以对多少个存储单元进行寻址</p>
 <p>多少位的cpu，就是描述cpu寻址的能力，</p>
 <p>64位的速度需要：64位的cpu，64位的操作系统，64位的软件</p>
 <p>![1.8  shili](1.8  shili.png)</p>
 <p>最多可以寻找2的n次方个内存单元</p>
-<p>一个地址总线，可以索引一个位，一个内存单元，就是一个字节，包含8个位</p>
-<h1 id="19-数据总线">1.9 数据总线
-</h1><p>cpu与内存或其他期间之间的数据传送时通过数据总线来进行的</p>
+<p>一个地址总线，可以索引到一个内存单元，就是一个字节，包含8个位</p>
+<h2 id="19-数据总线">1.9 数据总线
+</h2><p>cpu与内存或其他期间之间的数据传送时通过数据总线来进行的</p>
 <p>数据总线的宽度决定了cpu和外界的数据传输速度</p>
-<p>![小计额：</p>
-<p>](1.9shujuzongxian.png)</p>
+<p><img src="/p/11-16/1.9shujuzongxian.png"
+	width="1042"
+	height="941"
+	srcset="/p/11-16/1.9shujuzongxian_hu_9ee4c845ae4592ae.png 480w, /p/11-16/1.9shujuzongxian_hu_63b27d82f7b094b6.png 1024w"
+	loading="lazy"
+	
+		alt="1.9shujuzongxian"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="110"
+		data-flex-basis="265px"
+	
+></p>
 <p>8088cpu，一次传8位数据，传送89 D8，传两遍</p>
 <p><img src="/p/11-16/1.98086cpuchuanshu.png"
 	width="954"
@@ -527,8 +576,8 @@
 	
 ></p>
 <p>8086cpu传输，16位，比8088cpu快一倍</p>
-<h1 id="110-控制总线">1.10 控制总线
-</h1><p>cpu对外部器件的控制是通过控制总线来进行。这里控制总线是一个总称，控制总线是一些不同控制线的集合</p>
+<h2 id="110-控制总线">1.10 控制总线
+</h2><p>cpu对外部器件的控制是通过控制总线来进行。这里控制总线是一个总称，控制总线是一些不同控制线的集合</p>
 <p>有多少根控制总线，就意味着cpu提供了对外部器件的多少钟控制</p>
 <p>所以，控制总线的宽度绝对cpu对外部器件的控制的能力</p>
 <p>控制总线发送控制信息</p>
@@ -548,8 +597,8 @@
 ></p>
 <p>内存读写的命令是由几根总控制线综合发出的：其中由一根名为读信号输出控制线负责由cpu向外传送读信号，cpu向该控制线上输出低电平表示将要读取数据；</p>
 <p>有一根名为写信号输出控制线负责由cpu向外传送写信号</p>
-<h2 id="小结">小结：
-</h2><p><img src="/p/11-16/xiaojie.png"
+<h3 id="小结">小结：
+</h3><p><img src="/p/11-16/xiaojie.png"
 	width="1697"
 	height="889"
 	srcset="/p/11-16/xiaojie_hu_6e79ec9c90b0542.png 480w, /p/11-16/xiaojie_hu_47a0998e7919eaa9.png 1024w"
@@ -591,21 +640,23 @@
 		data-flex-basis="416px"
 	
 ></p>
-<h1 id="111-内存地址空间概述">1.11 内存地址空间（概述）
-</h1><p>内存地址空间</p>
+<h2 id="111-内存地址空间概述">1.11 内存地址空间（概述）
+</h2><p>内存地址空间</p>
 <p>一个cpu的地址线宽度为10，那么可以寻址到1024个内存单元，这1024个可寻到的内存单元就构成这个cpu的内存地址空间</p>
-<h1 id="112-主板">1.12 主板
-</h1><p>每一台pc机种，都有一个主板，主板上由核心器件和一些主要器件</p>
+<h2 id="112-主板">1.12 主板
+</h2><p>每一台pc机种，都有一个主板，主板上由核心器件和一些主要器件</p>
 <p>器件通过总线相连</p>
-<h1 id="113-接口卡">1.13 接口卡
-</h1><p>计算机系统中，所有可用程序控制其工作的设备，都必须受到cpu的控制</p>
+<h2 id="113-接口卡">1.13 接口卡
+</h2><p>计算机系统中，所有可用程序控制其工作的设备，都必须受到cpu的控制</p>
 <p>cpu对外部设备不能直接控制，如显示器，音响，打印机等。直接控制这些设备进行工作的是插在拓展插槽上的接口卡</p>
-<h1 id="114-各类存储器的芯片">1.14 各类存储器的芯片
-</h1><ul>
+<p>接口卡通过总线与cpu相连，cpu可以通过总线向接口卡发送指令，以此来间接控制设备</p>
+<h2 id="114-各类存储器的芯片">1.14 各类存储器的芯片
+</h2><ul>
 <li>
 <p>从读写属性上看分为两类：</p>
 <p>随机存储器（RAM）和<em>只读存储器</em>（ROM）</p>
 <p><em>内存就是一个大的随机存储器，断了电之后数据将会遗失</em></p>
+<p>(主随机存储器一般是由装载主板上的RAM和插在拓展插槽上的RAM组成)</p>
 <p>只读存储器，永远只能读，数据只要不把他刷掉，一直都存在那里</p>
 <p>装有BIOS的ROM      BIOS: Basic Input/Output System 基本输入输出系统</p>
 <p><em>BIOS是由主板个各类接i卡（显卡，网卡等）厂商提供的软件系统，可以通过它利用该硬件设备进行最近本的输入输出。子在主板你和某些接口卡上插有存储相应的BIOS的ROM</em></p>
@@ -617,12 +668,13 @@
 <li>装有BIOS的ROM</li>
 <li>接口卡上的RAM</li>
 </ul>
+<p>某些接口卡上的RAM需要对大批量输入输出数据进行存储，比如显示卡上的RAM，一般叫显存</p>
 </li>
 <li>
 <p>PC机种各类存储器的逻辑链接情况</p>
+<p><strong>各类储存器的逻辑链接</strong></p>
 </li>
 </ul>
-<p><strong>各类储存器的逻辑链接</strong></p>
 <p><img src="/p/11-16/xiashiqiluojilianjie.png"
 	width="1709"
 	height="1243"
@@ -637,8 +689,8 @@
 		data-flex-basis="329px"
 	
 ></p>
-<h1 id="115-内存地址空间">1.15 内存地址空间
-</h1><p>上述那些存储器在物理上是独立的器件</p>
+<h2 id="115-内存地址空">1.15 内存地址空
+</h2><p>上述那些存储器在物理上是独立的器件</p>
 <p>以下两点相同</p>
 <ul>
 <li>都和cpu的总线相连</li>
@@ -695,9 +747,218 @@
 </ul>
 </li>
 <li>
-<p>对cpu来将，系统中所有的存储器中的存储单元都处于一个统一的逻辑储存器中，它的容量手cpu寻址能力的限制。这个逻辑存储器即是我们所说的内存地址空间</p>
+<p>对cpu来将，系统中所有的存储器中的存储单元都处于一个统一的逻辑储存器中，它的容量受cpu寻址能力的限制。这个逻辑存储器即是我们所说的内存地址空间</p>
+<ul>
+<li>地址总线宽度，决定了定位的地址单元的数量，地址单元的数量，决定了cpu能够访问到的地址，也是各类设备能够储存的地址空间</li>
+</ul>
 </li>
 </ul>
+<h3 id="补充">补充
+</h3><p>电平，电信号的电压值，两个不同的电压范围用来表示二进制</p>
+<p>管脚，也叫引脚，cpu与外部电路进行连接的接口</p>
+<p>存储单元，存储器最小寻址单位，每个单元占一个字节，</p>
+<p>1Byte = 1 bit   -&gt;   1KB = 8*1024 bit  = 1024B</p>
+<h1 id="第二章--寄存器cpu工作原理">第二章  寄存器（cpu工作原理）
+</h1><h2 id="cpu寄存器">CPU，寄存器
+</h2><p>一个典型的CPU由运算器，控制器，寄存器等器件组成，器件靠内部总线相连</p>
+<p>区别：</p>
+<p>内部总线实现CPU内部各个器件之间的联系</p>
+<p>外部总线实现CPU和主板上其他器件的联系</p>
+<h2 id="21-通用寄存器">2.1 通用寄存器
+</h2><p>8086CPU由14个寄存器，名称为AX,BZ,CX,DX,SI,DI,SP,BP,IP,CS,SS,DS,ES,PSW</p>
+<p>8086CPU所有的寄存器都是16位的，可以存放两个字节</p>
+<p>AX,BX,CX,DX 通常用来存放一般性数据被称之为通用寄存器</p>
+<p>AX作例子</p>
+<p><img src="/p/11-16/2.1jicunqicunfang.png"
+	width="1396"
+	height="625"
+	srcset="/p/11-16/2.1jicunqicunfang_hu_38b5c8dddafe8d52.png 480w, /p/11-16/2.1jicunqicunfang_hu_69dc7346e2bccf84.png 1024w"
+	loading="lazy"
+	
+		alt="2.1jicunqicunfang"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="223"
+		data-flex-basis="536px"
+	
+></p>
+<p><img src="/p/11-16/2.1hexcunchuqingk.png"
+	width="1593"
+	height="1071"
+	srcset="/p/11-16/2.1hexcunchuqingk_hu_b04586cb97122843.png 480w, /p/11-16/2.1hexcunchuqingk_hu_664b861faac0546f.png 1024w"
+	loading="lazy"
+	
+		alt="2.1hexcunchuqingk"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="148"
+		data-flex-basis="356px"
+	
+></p>
+<p><img src="/p/11-16/2.1jicunqidfenwei.png"
+	width="1670"
+	height="910"
+	srcset="/p/11-16/2.1jicunqidfenwei_hu_7bc90af24ae4a5f2.png 480w, /p/11-16/2.1jicunqidfenwei_hu_816e810731d9fc2a.png 1024w"
+	loading="lazy"
+	
+		alt="2.1jicunqidfenwei"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="183"
+		data-flex-basis="440px"
+	
+></p>
+<p>![2.1 jicunqi8weio](2.1 jicunqi8weio.png)</p>
+<h2 id="22-字在寄存器中的存储">2.2 字在寄存器中的存储
+</h2><p>字  word = 2B  8086  8位升级到16位， 把一次性读取16位的内存单元称之为字</p>
+<h2 id="23-几条汇编指令">2.3 几条汇编指令
+</h2><p><img src="/p/11-16/2.3huibianzhil.png"
+	width="1628"
+	height="877"
+	srcset="/p/11-16/2.3huibianzhil_hu_2d52459744c42988.png 480w, /p/11-16/2.3huibianzhil_hu_567046c39ea98a6b.png 1024w"
+	loading="lazy"
+	
+		alt="2.3huibianzhil"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="185"
+		data-flex-basis="445px"
+	
+></p>
+<p>示例：</p>
+<p><img src="C:%5cblog%5cmy-blog%5ccontent%5cpost%5c11-2025%5c11.16.2025%5c2.3huibianshili.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2.3huibianshili"
+	
+	
+></p>
+<p>8226H+8226H   进位溢出  1044C  答案是044C</p>
+<p>这里的1被放到了进制位中去（请听下回分解）</p>
+<p><img src="/p/11-16/2.3seconshili.png"
+	width="1661"
+	height="1025"
+	srcset="/p/11-16/2.3seconshili_hu_d134b8a6d1a9464a.png 480w, /p/11-16/2.3seconshili_hu_5ec4ebfd7da94761.png 1024w"
+	loading="lazy"
+	
+		alt="2.3seconshili"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="162"
+		data-flex-basis="388px"
+	
+></p>
+<p>0000H  其中，AH代表了ax的高位，AL代表了ax的低位</p>
+<p>add ah，bl  就是对ax的高位和bx的低位进行运算</p>
+<p>答案不等于0158H，AH和AL是两个分开的存储，溢出了不会互相进入，会抛到另一个地方</p>
+<p>如果是ax则为0158H</p>
+<h6 id="监测点21">监测点2.1
+</h6><p><img src="/p/11-16/jiancedian2.1.png"
+	width="1198"
+	height="1105"
+	srcset="/p/11-16/jiancedian2.1_hu_509b10f5b1cabe2d.png 480w, /p/11-16/jiancedian2.1_hu_657744ea2d069ab4.png 1024w"
+	loading="lazy"
+	
+		alt="jiancedian2.1"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="108"
+		data-flex-basis="260px"
+	
+></p>
+<p>另附             add al,6						ax=</p>
+<p>​		    add al.al						ax=</p>
+<p>​		    mov ax,cx						ax=</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">AX = F4A3H
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">AX = 31A3H
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">AX = 3123H
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">AX = 6246H
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">BX = 826CH
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">CX = 6246H
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">AX = 826CH
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">AX = 04D8H
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">AX = 0482H
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">AX = 6C82H
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">AX = D882H
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">AX = D888H
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">AX = D810H
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">AX = 6246H
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>（2）只能使用目前削过的汇编指令，最多能够使用四条指令，编程计算2的4次方</p>
+<p>add ax,0008H</p>
+<p>add ax,0008H</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">add ax,2
+</span></span><span class="line"><span class="cl">add ax,ax
+</span></span><span class="line"><span class="cl">add ax,ax
+</span></span><span class="line"><span class="cl">add ax,ax
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="24-物理地址">2.4 物理地址
+</h2><p>cpu访问内存单元是要给出内存单元的地址，所有的内存单元构成的存储空间是一个一位的线性空间。</p>
+<p>我们将这个唯一的地址成为物理地址。</p>
+<p>线性空间里的每一个存储单元都有唯一的地址，这个唯一的地址称为物理地址</p>
 
 </section>
 
