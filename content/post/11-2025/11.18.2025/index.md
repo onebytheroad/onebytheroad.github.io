@@ -1,6 +1,6 @@
 ---
 title: 11-18 笔记
-description: 平生不会相思，才会相思，便害相思
+description: 绿蚁新醅酒，红泥小火炉
 date: 2025-11-18
 slug: 11-18
 image: bj.jpg
@@ -14,7 +14,7 @@ categories:
 
 在0地址开始地址，低位存放低地址，高位存放高地址
 
-![3.1 neicunzhongzidecunchu](3.1 neicunzhongzidecunchu.png)
+![3.1 neicunzhongzidecunchu](3.1neicunzhongzidecunchu.png)
 
 0地址单元中存放的字节型数据    20
 
@@ -32,7 +32,7 @@ categories:
 * 在8086pc中，内存地址由段地址和偏移地址组成
 * 8086cpu中有一个ds寄存器，通常用来存放要访问的 数据的段地址
 
-![3.2 duandizhishili](3.2 duandizhishili.png)
+![3.2 duandizhishili](3.2duandizhishili.png)
 
 mov al,[0]
 
@@ -48,11 +48,11 @@ mov指令可以完成的两种传送功能
 
 ds 存放段地址，【】存放偏移，上述三条指令，合起来就是将10000H单元中的数据读到al中
 
-![3.2 duandsshili](3.2 duandsshili.png)
+![3.2 duandsshili](3.2duandsshili.png)
 
 不能直接将数据送入ds中，ds是一个段寄存器，需要通过通用寄存器来导入ds
 
-![3.2 addressqeustion](3.2 addressqeustion.png)
+![3.2 addressqeustion](3.2addressqeustion.png)
 
 ```
 mov bl,al
@@ -67,11 +67,11 @@ mov bl,[0]  --->  mov [0],bl
 
 8086cpu是16位结构，由16根数据线，所以，可以一次性传送16位的数据，也就是一次性传送一个字
 
-![3.3 zidechuansongshil](3.3 zidechuansongshil.png)
+![3.3 zidechuansongshil](3.3zidechuansongshil.png)
 
 mov的数据，如【0】和ax或者和al，必须一一对应，ax是16位，那么从偏移地址传送的数据默认就是16位的
 
-![3.3 zidechuansongwent](3.3 zidechuansongwent.png)
+![3.3 zidechuansongwent](3.3zidechuansongwent.png)
 
 ~~~
 ax：23H
@@ -90,7 +90,7 @@ cx:8833H
 
 
 
-![3.3 wenti4zichuans](3.3 wenti4zichuans.png)
+![3.3 wenti4zichuans](3.3wenti4zichuans.png)
 
 
 
@@ -113,7 +113,7 @@ bx:1b12
 
 ## 3.4 mov，add，sub指令
 
-![3.4 movzhilingshili](3.4 movzhilingshili.png)
+![3.4 movzhilingshili](3.4movzhilingshili.png)
 
 
 
@@ -137,13 +137,13 @@ mov 寄存器，段寄存器
 
 
 
-![3.4 zhilingzhangwop](3.4 zhilingzhangwop.png)
+![3.4 zhilingzhangwop](3.4zhilingzhangwop.png)
 
  <font size=3 color="red">段寄存器不能参与计算</font>
 
 ## 3.5 数据段
 
-![3.5 shujuduan](3.5 shujuduan.png)
+![3.5 shujuduan](3.5shujuduan.png)
 
 如何访问数据段中的数据：
 
@@ -181,7 +181,7 @@ mov ax,1000:[0] 会报错
 
 c语言练习
 
-## **题目：学生成绩管理系统**
+**题目：学生成绩管理系统**
 
 ### **要求：**
 

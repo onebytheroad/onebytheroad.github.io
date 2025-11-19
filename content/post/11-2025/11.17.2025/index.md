@@ -117,7 +117,7 @@ es：什么都有的地址
 
 ## 2.10 cs和ip
 
-![2.10 cshe ip](2.10 cshe ip.png)
+![2.10 cshe ip](2.10csheip.png)
 
 ### 8086pc读取和执行指令相关部件
 
@@ -167,15 +167,15 @@ ip+3，ip+2，索引到下一条指令
 
  ## 2.12 代码段
 
-![2.12 daimaduangainia](2.12 daimaduangainia.png)
+![2.12 daimaduangainia](2.12daimaduangainia.png)
 
 ### 执行代码段的指令
 
-![2.12 daimaduanzhix](2.12 daimaduanzhix.png)
+![2.12 daimaduanzhix](2.12daimaduanzhix.png)
 
 
 
-![2.12 shili](2.12 shili.png)
+![2.12 shili](2.12shili.png)
 
 ## 2.9-2.12 小结
 
