@@ -1,6 +1,6 @@
 ---
 title: 11-18 笔记
-description: 绿蚁新醅酒，红泥小火炉
+description: 非常幸福的结局，只是忘记了爱你
 date: 2025-11-18
 slug: 11-18
 image: bj.jpg

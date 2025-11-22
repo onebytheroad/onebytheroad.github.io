@@ -1,6 +1,6 @@
 ---
 title: 11-19 笔记
-description: 非常幸福的结局，只是忘记了爱你
+description: 绿蚁新醅酒，红泥小火炉
 date: 2025-11-19
 slug: 11-19
 image: bj.jpg
@@ -15,8 +15,9 @@ categories:
 * 栈有两个基本的操作：入栈和出栈
   * 入栈：将一个新的元素放到栈顶
   * 出栈：从栈顶取出一个元素
-
 * 栈顶的元素总是最先入栈，需要出栈时，有最先被从栈中取出
+
+对程序而言，需要有一个标记一直指示着最顶上的数据，每次这个数据被pop，然后标记+2从低地址到高地址，底部是不需要标记的
 
 ## 3.7 CPU提供的栈机制
 
@@ -32,7 +33,7 @@ push ax：将寄存器ax中的数据送入栈中
 
 pop ax：从栈顶取出数据送入ax
 
-8086cpu的入栈和出栈操作都是以字为单位进行的
+8086cpu的入栈和出栈操作都是以字为单位进行的 （两个字节）
 
 
 
@@ -57,10 +58,6 @@ pop ax：从栈顶取出数据送入ax
 
 ![zhanjicunqi](zhanjicunqi.png)
 
-![lianggyiwen](lianggyiwen.png)
-
-
-
 ### push ax
 
 * SP = SP -2;
@@ -74,9 +71,13 @@ pop ax：从栈顶取出数据送入ax
 
 如果我们将1000H~000FH这段空间当作栈，初始状态栈式空的，此时，SS= 1000H，SP=？
 
-![zhixiangfenxi](C:\blog\my-blog\content\post\11-2025\11.19.2025\zhixiangfenxi.png)
+![zhixiangfenxi](zhixiangfenxi.png)
+
+栈空，ss：sp指向最高地址单元的下一个单元
 
 ![zhandewentifenxi](zhandewentifenxi.png)
+
+如果栈的大小已经到了FFFF最大的时候，那么这时的+2将会导致溢出，不过由于栈为空，所以sp = 0
 
  ### pop的执行过程
 
@@ -89,6 +90,8 @@ pop ax：从栈顶取出数据送入ax
 注意：
 
 ![popguochengtips](popguochengtips.png)
+
+栈中已经存放的数据不会被删除，只能被覆盖
 
 ## 3.8 栈顶超界的问题
 
@@ -123,6 +126,10 @@ push和pop指令是可以在寄存器和内存之间传送数据的
 ![pushpopjicunqizhil](pushpopjicunqizhil.png)
 
 ![pushpopogeshi](pushpopogeshi.png)
+
+push和pop也可以用于
+
+内存单元，段寄存器，寄存器，的入栈与出栈
 
 ### 问题3.7
 
@@ -164,7 +171,7 @@ pop ax
 
 
 
-push和pop即是一种内存传送指令，可以在存期机和内存之间传输数据，与mov指令不同的是，pusjh和pop都是她继续案例的juh-ua型男
+push和pop即是一种内存传送指令，可以在寄存器和内存之间传输数据，与mov指令不同的是，push和pop指令访问的内存单元的地址是由SS:SP指出的，而且push和pop还会在执行指令的过程中，更改SS:IP的内容
 
 ![3.9zhandezongji](3.9zhandezongji.png)
 
