@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="非常幸福的结局，只是忘记了爱你">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="绿蚁新醅酒，红泥小火炉">
 <title>11-19 笔记</title>
 
 <link rel='canonical' href='http://localhost:1313/p/11-19/'>
 
 <link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="11-19 笔记">
-<meta property='og:description' content="非常幸福的结局，只是忘记了爱你">
+<meta property='og:description' content="绿蚁新醅酒，红泥小火炉">
 <meta property='og:url' content='http://localhost:1313/p/11-19/'>
 <meta property='og:site_name' content='雫的小站'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-11-19T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-11-19T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/p/11-19/bj.jpg' />
 <meta name="twitter:title" content="11-19 笔记">
-<meta name="twitter:description" content="非常幸福的结局，只是忘记了爱你"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="绿蚁新醅酒，红泥小火炉"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='http://localhost:1313/p/11-19/bj.jpg' />
         
         <link rel="stylesheet" href="http://localhost:1313/css/custom.min.css">
@@ -345,7 +345,7 @@
     
         
         <h3 class="article-subtitle">
-            非常幸福的结局，只是忘记了爱你
+            绿蚁新醅酒，红泥小火炉
         </h3>
         
     </div>
@@ -399,17 +399,15 @@
     <h2 id="36-栈">3.6 栈
 </h2><p>栈是一种具有特殊访问方式的存储空间，特殊性在于：最后进入这个空间的数据，最先出去</p>
 <ul>
-<li>
-<p>栈有两个基本的操作：入栈和出栈</p>
+<li>栈有两个基本的操作：入栈和出栈
 <ul>
 <li>入栈：将一个新的元素放到栈顶</li>
 <li>出栈：从栈顶取出一个元素</li>
 </ul>
 </li>
-<li>
-<p>栈顶的元素总是最先入栈，需要出栈时，有最先被从栈中取出</p>
-</li>
+<li>栈顶的元素总是最先入栈，需要出栈时，有最先被从栈中取出</li>
 </ul>
+<p>对程序而言，需要有一个标记一直指示着最顶上的数据，每次这个数据被pop，然后标记+2从低地址到高地址，底部是不需要标记的</p>
 <h2 id="37-cpu提供的栈机制">3.7 CPU提供的栈机制
 </h2><p><img src="/p/11-19/3.7cputigongzhanjizhi.png"
 	width="1590"
@@ -430,7 +428,7 @@
 <p>​		POP （出栈）</p>
 <p>push ax：将寄存器ax中的数据送入栈中</p>
 <p>pop ax：从栈顶取出数据送入ax</p>
-<p>8086cpu的入栈和出栈操作都是以字为单位进行的</p>
+<p>8086cpu的入栈和出栈操作都是以字为单位进行的 （两个字节）</p>
 <h3 id="指令执行"><em>指令执行</em>
 </h3><p><img src="/p/11-19/3.7zhilingzhixing.png"
 	width="1585"
@@ -493,20 +491,6 @@
 		data-flex-basis="428px"
 	
 ></p>
-<p><img src="/p/11-19/lianggyiwen.png"
-	width="1685"
-	height="944"
-	srcset="/p/11-19/lianggyiwen_hu_f66bf80ef8285c5a.png 480w, /p/11-19/lianggyiwen_hu_b522ff6193fcc8f8.png 1024w"
-	loading="lazy"
-	
-		alt="lianggyiwen"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="178"
-		data-flex-basis="428px"
-	
-></p>
 <h3 id="push-ax">push ax
 </h3><ul>
 <li>SP = SP -2;</li>
@@ -528,16 +512,21 @@
 ></p>
 <h3 id="问题">问题：
 </h3><p>如果我们将1000H~000FH这段空间当作栈，初始状态栈式空的，此时，SS= 1000H，SP=？</p>
-<p><img src="C:%5cblog%5cmy-blog%5ccontent%5cpost%5c11-2025%5c11.19.2025%5czhixiangfenxi.png"
-	
-	
-	
+<p><img src="/p/11-19/zhixiangfenxi.png"
+	width="1632"
+	height="950"
+	srcset="/p/11-19/zhixiangfenxi_hu_cd3a109e9fa6a86f.png 480w, /p/11-19/zhixiangfenxi_hu_bbd7c9793d736fbc.png 1024w"
 	loading="lazy"
 	
 		alt="zhixiangfenxi"
 	
 	
+		class="gallery-image" 
+		data-flex-grow="171"
+		data-flex-basis="412px"
+	
 ></p>
+<p>栈空，ss：sp指向最高地址单元的下一个单元</p>
 <p><img src="/p/11-19/zhandewentifenxi.png"
 	width="1672"
 	height="1009"
@@ -552,6 +541,7 @@
 		data-flex-basis="397px"
 	
 ></p>
+<p>如果栈的大小已经到了FFFF最大的时候，那么这时的+2将会导致溢出，不过由于栈为空，所以sp = 0</p>
 <h3 id="pop的执行过程">pop的执行过程
 </h3><ul>
 <li>pop ax
@@ -590,6 +580,7 @@
 		data-flex-basis="326px"
 	
 ></p>
+<p>栈中已经存放的数据不会被删除，只能被覆盖</p>
 <h2 id="38-栈顶超界的问题">3.8 栈顶超界的问题
 </h2><p>ss和sp只记录了栈顶的位置，依靠SS和SP可以保证在入栈和出栈时找到栈顶，可是如何能够保证在入栈，出栈时，栈顶不会超出栈空间？</p>
 <p>栈溢出</p>
@@ -697,6 +688,8 @@
 		data-flex-basis="393px"
 	
 ></p>
+<p>push和pop也可以用于</p>
+<p>内存单元，段寄存器，寄存器，的入栈与出栈</p>
 <h3 id="问题37">问题3.7
 </h3><p><img src="/p/11-19/3.7question.png"
 	width="1674"
@@ -802,7 +795,7 @@
 	
 ></p>
 <p>用栈来暂存以后需要恢复的寄存器中的内容是，出栈的顺序要和入栈的顺序相反，因为最后入栈的寄存器的内容在栈顶，所以在恢复时，要最先出栈</p>
-<p>push和pop即是一种内存传送指令，可以在存期机和内存之间传输数据，与mov指令不同的是，pusjh和pop都是她继续案例的juh-ua型男</p>
+<p>push和pop即是一种内存传送指令，可以在寄存器和内存之间传输数据，与mov指令不同的是，push和pop指令访问的内存单元的地址是由SS:SP指出的，而且push和pop还会在执行指令的过程中，更改SS:IP的内容</p>
 <p><img src="/p/11-19/3.9zhandezongji.png"
 	width="1634"
 	height="1149"
@@ -996,23 +989,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-18/">
+    <a href="/p/11-25/">
         
         
             <div class="article-image">
-                <img src="/p/11-18/bj.b7c0760390655a77fb6350cfb9faa2ef_hu_b54fe6ffde29d1de.jpg" 
+                <img src="/p/11-25/bj.e9dac6a8aebe837eda20455659bac86e_hu_36200ed80501b60f.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-18 笔记"
-                        data-key="11-18" 
-                        data-hash="md5-t8B2A5BlWnf7Y1DPufqi7w==">
+                        alt="Featured image of post 11-25 笔记"
+                        data-key="11-25" 
+                        data-hash="md5-6drGqK6&#43;g37aIEVWWbrIbg==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-18 笔记</h2>
+            <h2 class="article-title">11-25 笔记</h2>
         </div>
     </a>
 </article>
@@ -1020,23 +1013,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-17/">
+    <a href="/p/11-24/">
         
         
             <div class="article-image">
-                <img src="/p/11-17/bj.d635fadfeeedb75a53964f912f475f39_hu_255c73581c814c34.jpg" 
+                <img src="/p/11-24/bj.733cb7ba3f0e39deda261541470bbcdb_hu_38bc1ebfe3960a2c.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-17 笔记"
-                        data-key="11-17" 
-                        data-hash="md5-1jX63&#43;7tt1pTlk&#43;RL0dfOQ==">
+                        alt="Featured image of post 11-24 笔记"
+                        data-key="11-24" 
+                        data-hash="md5-czy3uj8OOd7aJhVBRwu82w==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-17 笔记</h2>
+            <h2 class="article-title">11-24 笔记</h2>
         </div>
     </a>
 </article>
@@ -1044,23 +1037,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-16/">
+    <a href="/p/11-23/">
         
         
             <div class="article-image">
-                <img src="/p/11-16/bj.9acbe8fd55c8f6169965c403bb5250b1_hu_db12820676e0370a.jpg" 
+                <img src="/p/11-23/bj.0f16790bd1326645439119e7fddab1e3_hu_b94b1a0c2bbd6e4f.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-16 笔记"
-                        data-key="11-16" 
-                        data-hash="md5-msvo/VXI9haZZcQDu1JQsQ==">
+                        alt="Featured image of post 11-23 笔记"
+                        data-key="11-23" 
+                        data-hash="md5-DxZ5C9EyZkVDkRnn/dqx4w==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-16 笔记</h2>
+            <h2 class="article-title">11-23 笔记</h2>
         </div>
     </a>
 </article>
@@ -1068,23 +1061,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-15/">
+    <a href="/p/11-22/">
         
         
             <div class="article-image">
-                <img src="/p/11-15/bj.a16604ad36919a2ee87388ff87281a01_hu_9e5044718131be7e.jpg" 
+                <img src="/p/11-22/bj.70d95499d35822043d42705b4c7690f7_hu_9135f0bbe7cdde99.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-15 笔记"
-                        data-key="11-15" 
-                        data-hash="md5-oWYErTaRmi7oc4j/hygaAQ==">
+                        alt="Featured image of post 11-22 笔记"
+                        data-key="11-22" 
+                        data-hash="md5-cNlUmdNYIgQ9QnBbTHaQ9w==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-15 笔记</h2>
+            <h2 class="article-title">11-22 笔记</h2>
         </div>
     </a>
 </article>
@@ -1092,23 +1085,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-14/">
+    <a href="/p/11-21/">
         
         
             <div class="article-image">
-                <img src="/p/11-14/bj.d577405db0b641e0a671e01e6c32b3b8_hu_5c9e70a11824ff53.jpg" 
+                <img src="/p/11-21/bj.e0858450fab548db234c0571192b1fc6_hu_bc2b61b55cd3574b.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-14 笔记"
-                        data-key="11-14" 
-                        data-hash="md5-1XdAXbC2QeCmceAebDKzuA==">
+                        alt="Featured image of post 11-21 笔记"
+                        data-key="11-21" 
+                        data-hash="md5-4IWEUPq1SNsjTAVxGSsfxg==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-14 笔记</h2>
+            <h2 class="article-title">11-21 笔记</h2>
         </div>
     </a>
 </article>
