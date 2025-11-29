@@ -7,7 +7,1261 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Example Person</copyright>
-        <lastBuildDate>Tue, 25 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E6%AF%8F%E6%97%A5/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 29 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E6%AF%8F%E6%97%A5/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>11-29 笔记</title>
+        <link>http://localhost:1313/p/11-29/</link>
+        <pubDate>Sat, 29 Nov 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/11-29/</guid>
+        <description>&lt;img src="http://localhost:1313/p/11-29/bj.jpg" alt="Featured image of post 11-29 笔记" /&gt;</description>
+        </item>
+        <item>
+        <title>11-28 笔记</title>
+        <link>http://localhost:1313/p/11-28/</link>
+        <pubDate>Fri, 28 Nov 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/11-28/</guid>
+        <description>&lt;img src="http://localhost:1313/p/11-28/bj.jpg" alt="Featured image of post 11-28 笔记" /&gt;&lt;p&gt;位运算&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;XOR 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;XOR reg1,reg2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;逻辑：reg2 = reg2 XOR reg1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;标志位更新
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;S：与最高位相同
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Z：全0置1，否则置0
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Test
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;进行逻辑与运算，但不改变操作数
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;运算结果在设置相关标记位后会被丢弃
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;作用是利用标志位进行验位跳转
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;SF：最高位赋值
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ZF：test结果。est=0,zf=1。反之，
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;movzx (用0填充拓展的高位部分)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	unsigned char a = 0xff;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;00A33E85 C6 45 FB FF          mov         byte ptr [a],0FFh  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; 	int b;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; 	b = a + 1;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;00A33E9B 0F B6 45 FB          movzx       eax,byte ptr [a]  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;00A33E9F 83 C0 01             add         eax,1  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;00A33EA2 89 45 EC             mov         dword ptr [b],eax  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;char a 类型与int b 类型在寄存器中进行计算
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;对a进行无符号拓展
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;拓宽字节数
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;同样的先使用movzx进行无符号扩展
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;不过与b不同的点在于，将al寄存其中的值赋给了a,也就是0x0100的后两位 00
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;所以最后a 的值为0
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; movsx（将sf（对应符号位）填充到拓展的高位部分）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	char a = 0xff;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;00983E85 C6 45 FB FF          mov         byte ptr [a],0FFh  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	printf(&amp;#34;%d\n&amp;#34;, a);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;00983E89 0F BE 45 FB          movsx       eax,byte ptr [a]  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	int b;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	b = a + 1;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;00983E9B 0F BE 45 FB          movsx       eax,byte ptr [a]  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;00983E9F 83 C0 01             add         eax,1  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;00983EA2 89 45 EC             mov         dword ptr [b],eax  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;此处char型变量a中值最初是0xff，此时的符号位为1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;使用movsx指令进行有符号扩展后将值存入eax中，eax中保存的值为0xffff
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;eax加1之后，发生溢出，此时eax中保存的值为0x0000
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;所以最终b中的值为0
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;lea
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;计算有效地址并加载到寄存器中
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;lea ax,[bx+si]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;会计算[bx+si]的和然后加载到ax中，不访问内存内容
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;leaq 表示的是加载有效地址；而（%rsi，%rdi，4）表示的是将%rsi寄存器中的值，加上4倍的%rdi的值，得到X(A)+4n*i 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        <item>
+        <title>11-27 笔记</title>
+        <link>http://localhost:1313/p/11-27/</link>
+        <pubDate>Thu, 27 Nov 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/11-27/</guid>
+        <description>&lt;img src="http://localhost:1313/p/11-27/bj.jpg" alt="Featured image of post 11-27 笔记" /&gt;&lt;h2 id=&#34;实验七-寻址方式在结构化数据访问中的应用&#34;&gt;实验七-寻址方式在结构化数据访问中的应用
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;45
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;46
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;47
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;48
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;49
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;50
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;51
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;52
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;53
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;54
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;55
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;56
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;57
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;58
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;59
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;60
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;61
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;62
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;63
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;64
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;65
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;66
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;67
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;68
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;69
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;70
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;71
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;72
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;73
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;74
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;75
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;76
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;77
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;78
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;79
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;80
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;81
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;82
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;83
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;84
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;85
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;86
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;87
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;88
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;89
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;90
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;91
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;assume cs:codesg
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;data segment
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;db &amp;#39;1975&amp;#39;,&amp;#39;1976&amp;#39;,&amp;#39;1977&amp;#39;,&amp;#39;1978&amp;#39;,&amp;#39;1979&amp;#39;,&amp;#39;1980&amp;#39;,&amp;#39;1981&amp;#39;,&amp;#39;1982&amp;#39;,&amp;#39;1983&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;db &amp;#39;1984&amp;#39;,&amp;#39;1985&amp;#39;,&amp;#39;1986&amp;#39;,&amp;#39;1987&amp;#39;,&amp;#39;1988&amp;#39;,&amp;#39;1989&amp;#39;,&amp;#39;1990&amp;#39;,&amp;#39;1991&amp;#39;,&amp;#39;1992&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;db &amp;#39;1993&amp;#39;,&amp;#39;1994&amp;#39;,&amp;#39;1995&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dd 16,22,382,1356,2390,8000,16000,24486,50065,97479,140417,197514
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dd 345980,590827,803530,1183000,1843000,2759000,3753000,4649000,5937000
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dw 3,7,9,13,28,38,130,220,476,778,1001,1442,2258,2793,4037,5635,8226
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dw 11542,11430,15257,17800
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;data ends
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;table segment
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  db 21 dup (&amp;#39;year summ ne ?? &amp;#39;)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;table ends
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;codesg segment
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;start:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov ax,data
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov ds,ax
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov si,0
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov bx,00d0h
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov cx,21
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  yearc:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov ax,[si]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov [bx],ax
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      add si,4
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      add bx,0010h
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      loop yearc
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov si,2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov bx,00d2h
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov cx,21
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  yearc1:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov ax,[si]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov [bx],ax
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      add si,4
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      add bx,0010h
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      loop yearc1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov si,0054h
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov bx,00d5h
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov cx,21
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  income:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov ax,[si]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov [bx],ax
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      add si,4
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      add bx,0010h
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      loop income
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov si,0056h
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov bx,00d7h
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov cx,21
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  income1:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov ax,[si]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov [bx],ax
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      add si,4
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      add bx,0010h
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      loop income1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov si,00a8h
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov bx,00dah
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov cx,21
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  people:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov ax,[si]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov [bx],ax
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      add si,2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      add bx,0010h
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      loop people
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov si,0054h
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov di,00ddh
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov bp,00a8h
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov bx,ds:[bp]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov cx,21
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  average:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov ax,[si]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov dx,[si+2]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      div bx
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov [di],ax
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      add si,4
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      add bp,2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov bx,ds:[bp]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      add di,0010h
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      loop average
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov ax,4c00h
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      int 21h
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;codesg ends
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;end start
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;用了5个循环分别解决数据替换问题&lt;/p&gt;
+&lt;p&gt;问题：嵌套循环的使用，各种寻址方式结合，地址和数据之间传输的区别&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mov ax,data
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mov ds,ax
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mov ax,table
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mov es,ax
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mov bx,0
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mov si,0
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mov di,0
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mov cx,21
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;计算人均收入并存放&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mov ax,54h[bx]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mov dx,56h[bx]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;div word ptr ds:0a8h[si]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mov es:0dh[di],ax
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        <item>
+        <title>11-26 笔记</title>
+        <link>http://localhost:1313/p/11-26/</link>
+        <pubDate>Wed, 26 Nov 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/11-26/</guid>
+        <description>&lt;img src="http://localhost:1313/p/11-26/bj.jpg" alt="Featured image of post 11-26 笔记" /&gt;&lt;h1 id=&#34;第八章-数据处理的两个基本问题&#34;&gt;第八章 数据处理的两个基本问题
+&lt;/h1&gt;&lt;p&gt;引言&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/diabzhangyinyan.png&#34;
+	width=&#34;1639&#34;
+	height=&#34;1013&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/diabzhangyinyan_hu_11de1838874cad50.png 480w, http://localhost:1313/p/11-26/diabzhangyinyan_hu_454959b5ccd8fbdb.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;diabzhangyinyan&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;161&#34;
+		data-flex-basis=&#34;388px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;定义描述性符号 reg 和 sreg&lt;/p&gt;
+&lt;p&gt;reg描述寄存器，sreg描述段寄存器&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/yinyanzhilingjihe.png&#34;
+	width=&#34;1579&#34;
+	height=&#34;968&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/yinyanzhilingjihe_hu_cc44009cc04158bf.png 480w, http://localhost:1313/p/11-26/yinyanzhilingjihe_hu_d0c0deccb7e64421.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;yinyanzhilingjihe&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;163&#34;
+		data-flex-basis=&#34;391px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;81-bxsidibp&#34;&gt;8.1 bx,si,di,bp
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.1zongjiejicunqi.png&#34;
+	width=&#34;1510&#34;
+	height=&#34;1009&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.1zongjiejicunqi_hu_755dff453e544135.png 480w, http://localhost:1313/p/11-26/8.1zongjiejicunqi_hu_5c72b4ebc5f925b2.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.1zongjiejicunqi&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;149&#34;
+		data-flex-basis=&#34;359px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.1zhiling.png&#34;
+	width=&#34;1625&#34;
+	height=&#34;978&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.1zhiling_hu_3011f7bb5f16eaed.png 480w, http://localhost:1313/p/11-26/8.1zhiling_hu_affb39a3621645fe.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.1zhiling&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;166&#34;
+		data-flex-basis=&#34;398px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.1zhilingyongfa.png&#34;
+	width=&#34;1570&#34;
+	height=&#34;1110&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.1zhilingyongfa_hu_23aca1d4715d6859.png 480w, http://localhost:1313/p/11-26/8.1zhilingyongfa_hu_581e632782ac1440.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.1zhilingyongfa&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;141&#34;
+		data-flex-basis=&#34;339px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.1zhengquedeyongfa.png&#34;
+	width=&#34;1637&#34;
+	height=&#34;1043&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.1zhengquedeyongfa_hu_846e1af513c3a209.png 480w, http://localhost:1313/p/11-26/8.1zhengquedeyongfa_hu_3c01a8ae9bff5b40.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.1zhengquedeyongfa&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;156&#34;
+		data-flex-basis=&#34;376px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;只有两个，且字母不能有重叠&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.1bpdeshiyong.png&#34;
+	width=&#34;1629&#34;
+	height=&#34;1121&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.1bpdeshiyong_hu_fd7d04f25a757c7d.png 480w, http://localhost:1313/p/11-26/8.1bpdeshiyong_hu_fa256f22892f39a1.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.1bpdeshiyong&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;145&#34;
+		data-flex-basis=&#34;348px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;82-机器指令处理的数据所在位置&#34;&gt;8.2 机器指令处理的数据所在位置
+&lt;/h2&gt;&lt;p&gt;绝大部分机器指令都是进行数据处理的指令，处理大致可分为三类&lt;/p&gt;
+&lt;p&gt;读取，写入，运算&lt;/p&gt;
+&lt;p&gt;在机器指令这一层来讲，并不关心数据的值是多少，而关系指令执行前一刻，它将要处理的数据所在的位置&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.2zhilingzhixingqian.png&#34;
+	width=&#34;1633&#34;
+	height=&#34;980&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.2zhilingzhixingqian_hu_3357a7ffd2821f47.png 480w, http://localhost:1313/p/11-26/8.2zhilingzhixingqian_hu_c6a1580b4defef18.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.2zhilingzhixingqian&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;166&#34;
+		data-flex-basis=&#34;399px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;指令缓冲器，特殊的寄存器，用来保存要执行的一条指令&lt;/p&gt;
+&lt;h2 id=&#34;83-汇编语言中数据位置的表达&#34;&gt;8.3 汇编语言中数据位置的表达
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;汇编语言种如何表达数据的位置&lt;/li&gt;
+&lt;li&gt;汇编语言种有三个概念来表达数据的位置
+&lt;ul&gt;
+&lt;li&gt;1.立即数 （idata）&lt;/li&gt;
+&lt;li&gt;2.寄存器&lt;/li&gt;
+&lt;li&gt;3.段地址（SA）和偏移地址（EA）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.3lijishu.png&#34;
+	width=&#34;1607&#34;
+	height=&#34;948&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.3lijishu_hu_ee5e282f84e4f443.png 480w, http://localhost:1313/p/11-26/8.3lijishu_hu_446feb96c545a368.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.3lijishu&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;169&#34;
+		data-flex-basis=&#34;406px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.3jicunqi.png&#34;
+	width=&#34;1552&#34;
+	height=&#34;903&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.3jicunqi_hu_7215b4322d4f4995.png 480w, http://localhost:1313/p/11-26/8.3jicunqi_hu_9cd324d95d82d00f.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.3jicunqi&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;171&#34;
+		data-flex-basis=&#34;412px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.3duandizhihepianyi.png&#34;
+	width=&#34;1627&#34;
+	height=&#34;1004&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.3duandizhihepianyi_hu_dd5f45173a95b3bb.png 480w, http://localhost:1313/p/11-26/8.3duandizhihepianyi_hu_e988a8f1f1fe147f.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.3duandizhihepianyi&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;162&#34;
+		data-flex-basis=&#34;388px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.3shilibiaoda.png&#34;
+	width=&#34;1603&#34;
+	height=&#34;890&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.3shilibiaoda_hu_602b480199a91115.png 480w, http://localhost:1313/p/11-26/8.3shilibiaoda_hu_ff350469f7a1f861.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.3shilibiaoda&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;180&#34;
+		data-flex-basis=&#34;432px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.3duandizhishili.png&#34;
+	width=&#34;1640&#34;
+	height=&#34;940&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.3duandizhishili_hu_cfdcb4500f9e2522.png 480w, http://localhost:1313/p/11-26/8.3duandizhishili_hu_92209784534872af.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.3duandizhishili&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;174&#34;
+		data-flex-basis=&#34;418px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;显性强制给出段地址&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.3xianxinggeichuduandizhi.png&#34;
+	width=&#34;1591&#34;
+	height=&#34;886&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.3xianxinggeichuduandizhi_hu_725920c43bd55387.png 480w, http://localhost:1313/p/11-26/8.3xianxinggeichuduandizhi_hu_6ce8bacd3b51c45.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.3xianxinggeichuduandizhi&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;179&#34;
+		data-flex-basis=&#34;430px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;84-寻址方式&#34;&gt;8.4 寻址方式
+&lt;/h2&gt;&lt;p&gt;当数据存放在内存中的时候，我们可以用多种方式来给定这个内存单元的偏移地址，这种定位内存单元的方法一般被称为寻址方式&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.4xunzhifangshixiaojie.png&#34;
+	width=&#34;1619&#34;
+	height=&#34;1180&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.4xunzhifangshixiaojie_hu_12f4c15c10cb6a8c.png 480w, http://localhost:1313/p/11-26/8.4xunzhifangshixiaojie_hu_ea25bfb5b926e99a.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.4xunzhifangshixiaojie&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;137&#34;
+		data-flex-basis=&#34;329px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;直接寻址&#34;&gt;直接寻址
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.4zhijiexunzhiguocheng.png&#34;
+	width=&#34;1849&#34;
+	height=&#34;1236&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.4zhijiexunzhiguocheng_hu_c509a8696ddf3482.png 480w, http://localhost:1313/p/11-26/8.4zhijiexunzhiguocheng_hu_136d645133abb536.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.4zhijiexunzhiguocheng&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;149&#34;
+		data-flex-basis=&#34;359px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;间接寻址&#34;&gt;间接寻址
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.4jianjiexunzhi.png&#34;
+	width=&#34;1739&#34;
+	height=&#34;1057&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.4jianjiexunzhi_hu_cae53406c9729ef8.png 480w, http://localhost:1313/p/11-26/8.4jianjiexunzhi_hu_58937b1d9411f8bc.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.4jianjiexunzhi&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;164&#34;
+		data-flex-basis=&#34;394px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;寄存器相对寻址&#34;&gt;寄存器相对寻址
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.4jicunqixiangduixunzhi.png&#34;
+	width=&#34;1762&#34;
+	height=&#34;1109&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.4jicunqixiangduixunzhi_hu_55ad197fda09cb7f.png 480w, http://localhost:1313/p/11-26/8.4jicunqixiangduixunzhi_hu_687ee628b6ab4f95.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.4jicunqixiangduixunzhi&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;158&#34;
+		data-flex-basis=&#34;381px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;84-基址变址寻址&#34;&gt;8.4 基址变址寻址
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;C:%5cblog%5cmy-blog%5ccontent%5cpost%5c11-2025%5c11.26.2025%5c8.4jizhibianzhixunzhi.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.4jizhibianzhixunzhi&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;相对基址变址寻址&#34;&gt;相对基址变址寻址
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.4xiangduijizhibianzhixunzhi.png&#34;
+	width=&#34;1710&#34;
+	height=&#34;1137&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.4xiangduijizhibianzhixunzhi_hu_bd32e723635ebb40.png 480w, http://localhost:1313/p/11-26/8.4xiangduijizhibianzhixunzhi_hu_9f2d4129210b7763.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.4xiangduijizhibianzhixunzhi&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;150&#34;
+		data-flex-basis=&#34;360px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;85-指令要处理的数据有多长&#34;&gt;8.5 指令要处理的数据有多长
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;8086CPu的指令，可以处理两种尺寸的数据，byte和word。所以在机器指令中要指明，指令进行的是在字操作还是字节操作&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;通过寄存器指明&#34;&gt;通过寄存器指明
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.5jicunqizhimingcaozuo.png&#34;
+	width=&#34;1635&#34;
+	height=&#34;1125&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.5jicunqizhimingcaozuo_hu_88a034c8ce4210f.png 480w, http://localhost:1313/p/11-26/8.5jicunqizhimingcaozuo_hu_214e6ad40efe0af8.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.5jicunqizhimingcaozuo&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;145&#34;
+		data-flex-basis=&#34;348px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.5zhimingcaozuo.png&#34;
+	width=&#34;1585&#34;
+	height=&#34;1122&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.5zhimingcaozuo_hu_de4dedecc67d9fd6.png 480w, http://localhost:1313/p/11-26/8.5zhimingcaozuo_hu_38d4041a46f21dd.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.5zhimingcaozuo&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;141&#34;
+		data-flex-basis=&#34;339px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;在没有寄存器名存在的情况下用操作符x-ptr指明内存单元的长度x在汇编指令中可以为word或byte&#34;&gt;在没有寄存器名存在的情况下，用操作符X ptr指明内存单元的长度，X在汇编指令中可以为word或byte
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.5xpyrzhiming.png&#34;
+	width=&#34;1611&#34;
+	height=&#34;991&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.5xpyrzhiming_hu_b2deb8b2d63402ae.png 480w, http://localhost:1313/p/11-26/8.5xpyrzhiming_hu_5de23b4113bff482.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.5xpyrzhiming&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;162&#34;
+		data-flex-basis=&#34;390px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在没有寄存器参与的内存单元访问指令中，用word ptr 或 byte ptr显性的指明索要访问的内存单元的长度是很必要的&lt;/li&gt;
+&lt;li&gt;否则，cpu无法得知所要访问的你单元是字单元还是字节单元&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.5debugchakan.png&#34;
+	width=&#34;1695&#34;
+	height=&#34;1150&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.5debugchakan_hu_c89a734ff0bba49c.png 480w, http://localhost:1313/p/11-26/8.5debugchakan_hu_ef83aed569c3a8f2.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.5debugchakan&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;147&#34;
+		data-flex-basis=&#34;353px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.5chulishuju.png&#34;
+	width=&#34;1513&#34;
+	height=&#34;758&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.5chulishuju_hu_9717a2145c4d6255.png 480w, http://localhost:1313/p/11-26/8.5chulishuju_hu_94c4967be1141242.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;chulishuju&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;199&#34;
+		data-flex-basis=&#34;479px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.5chulizhijieshuju.png&#34;
+	width=&#34;1604&#34;
+	height=&#34;1061&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.5chulizhijieshuju_hu_932471f0f775b81e.png 480w, http://localhost:1313/p/11-26/8.5chulizhijieshuju_hu_da0d7d2e4ac00ee5.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.5chulizhijieshuju&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;151&#34;
+		data-flex-basis=&#34;362px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;其他方法&#34;&gt;其他方法
+&lt;/h3&gt;&lt;p&gt;有些指令默认了访问的是字单元或字节单元&lt;/p&gt;
+&lt;p&gt;进行字操作&lt;/p&gt;
+&lt;h2 id=&#34;86-寻址方式的综合应用&#34;&gt;8.6 寻址方式的综合应用
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.6zongheyingy.png&#34;
+	width=&#34;1599&#34;
+	height=&#34;1206&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.6zongheyingy_hu_b141760878331bfd.png 480w, http://localhost:1313/p/11-26/8.6zongheyingy_hu_38b60cf4c55c3dfc.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.6zongheyingy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;132&#34;
+		data-flex-basis=&#34;318px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.6timufenxi.png&#34;
+	width=&#34;1638&#34;
+	height=&#34;1030&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.6timufenxi_hu_1ba01cddc72e3d19.png 480w, http://localhost:1313/p/11-26/8.6timufenxi_hu_75b99686648742e.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.6timufenxi&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;159&#34;
+		data-flex-basis=&#34;381px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;从要修改的内容，我们可以逐步的确定修改的方法&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;（1）我们要访问的数据是dec公司的记录，所以首先要确定dec公司记录的位置：&lt;font size=3 color=&#34;red&#34;&gt;R=seg:60&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;确定了公司记录的位置后，我们下面就进一步确定要访问的内容在记录中的位置&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;确定排名字段在记录中的位置：0ch&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;修改R+0ch处的数据&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;确定收入字段在记录中的位置:0EH&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;修改R+0EH处的数据&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;确定产品字段在记录中的位置：10h。要修改的产品字段是一个字符串（或一个数组），需要访问字符串中的每一个字符。所以我们要进一步确定每一个字符在字符串中的位置&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;确定第一个字符在产品字段中的位置：P=0&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;修改R+10H+P处的数：P=P+1&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;修改R+10H+P处的数据：P=P+1&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;修改R+10H+P处的数据&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.6chengxushili.png&#34;
+	width=&#34;1597&#34;
+	height=&#34;1155&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.6chengxushili_hu_f68d1caab2053d92.png 480w, http://localhost:1313/p/11-26/8.6chengxushili_hu_cdd0f5dc132e4c3a.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.6chengxushili&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;138&#34;
+		data-flex-basis=&#34;331px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;c语言描述&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.6xunzhifangshidecyuyanmiaoshu.png&#34;
+	width=&#34;1737&#34;
+	height=&#34;1169&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.6xunzhifangshidecyuyanmiaoshu_hu_4505fe7b0ee637e1.png 480w, http://localhost:1313/p/11-26/8.6xunzhifangshidecyuyanmiaoshu_hu_c36f00702a93beb2.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.6xunzhifangshidecyuyanmiaoshu&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;148&#34;
+		data-flex-basis=&#34;356px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;按c语言来写汇编语言&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.6huibianlijiecyuyan.png&#34;
+	width=&#34;1738&#34;
+	height=&#34;1095&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.6huibianlijiecyuyan_hu_974d4d5dc69cb1ca.png 480w, http://localhost:1313/p/11-26/8.6huibianlijiecyuyan_hu_b019f81ebc57698c.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.6huibianlijiecyuyan&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;158&#34;
+		data-flex-basis=&#34;380px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.6xunzhidezongheyingy.png&#34;
+	width=&#34;1571&#34;
+	height=&#34;1178&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.6xunzhidezongheyingy_hu_e0616334ac8c2fba.png 480w, http://localhost:1313/p/11-26/8.6xunzhidezongheyingy_hu_7ebd2ae865eb69e7.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.6xunzhidezongheyingy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;一般来说，我们用[ bx+idata+si ]的方式来访几条狗提中的数据&lt;/p&gt;
+&lt;p&gt;&lt;font size=3 color=&#34;red&#34;&gt;用bx定位整个结构体，用idata定位结构体中的某一个数据项，用si定位数组相中的每个元素&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.61tieqiedexunzhishuxie.png&#34;
+	width=&#34;1541&#34;
+	height=&#34;244&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.61tieqiedexunzhishuxie_hu_9f5fb1eb0e4d7d35.png 480w, http://localhost:1313/p/11-26/8.61tieqiedexunzhishuxie_hu_5cd3ee0353137146.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.61&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;631&#34;
+		data-flex-basis=&#34;1515px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.6zongjie.png&#34;
+	width=&#34;1706&#34;
+	height=&#34;789&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.6zongjie_hu_34e6590c07595b68.png 480w, http://localhost:1313/p/11-26/8.6zongjie_hu_1ae4e37cb00712e.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.6zongjie&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;216&#34;
+		data-flex-basis=&#34;518px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;87-div指令&#34;&gt;8.7 div指令
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;div是除法指令（division），使用div做出发的时候&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;除数：8位或16位，在寄存器中或内存单元中&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;被除数：（默认）放在ax或dx和ax中&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;除数 被除数&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;8位   16位（AX）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;16位  32位（DX+AX）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;结果：运算    8位    16位&lt;/p&gt;
+&lt;p&gt;​           商        AL      AX&lt;/p&gt;
+&lt;p&gt;​           余数     AH     DX&lt;/p&gt;
+&lt;p&gt;以上结果的16位和8位是看除数决定&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;div指令格式&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;div reg&lt;/li&gt;
+&lt;li&gt;div 内存单元&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.7divzhiling.png&#34;
+	width=&#34;1600&#34;
+	height=&#34;1163&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.7divzhiling_hu_c1abc95b9a75ecb.png 480w, http://localhost:1313/p/11-26/8.7divzhiling_hu_3c1706a7618c3cc8.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.7divzhiling&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;137&#34;
+		data-flex-basis=&#34;330px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.9divzhilingshil.png&#34;
+	width=&#34;1587&#34;
+	height=&#34;1192&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.9divzhilingshil_hu_8f8787f6ffe3abaf.png 480w, http://localhost:1313/p/11-26/8.9divzhilingshil_hu_4d419e04c2af4f13.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.9divzhilingshil&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;319px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;高位放于余数，低位放商&lt;/p&gt;
+&lt;h3 id=&#34;利用除法指令进行计算&#34;&gt;利用除法指令进行计算
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.7chufazhiling.png&#34;
+	width=&#34;1567&#34;
+	height=&#34;943&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.7chufazhiling_hu_52d38e2d373eda80.png 480w, http://localhost:1313/p/11-26/8.7chufazhiling_hu_35b80c0a82d9fa23.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.7chufazhiling&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;166&#34;
+		data-flex-basis=&#34;398px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.7chufazhilingfenxi.png&#34;
+	width=&#34;1622&#34;
+	height=&#34;1051&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.7chufazhilingfenxi_hu_5c2d7b6a8269cb1.png 480w, http://localhost:1313/p/11-26/8.7chufazhilingfenxi_hu_344d3b13de57b172.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.7chufazhilingfenxi&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;154&#34;
+		data-flex-basis=&#34;370px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;186A1H   1存放在dx中，86A1存放在ax中&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;assume cs:codesg
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;codesg segment
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;start:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov dx,1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov ax,86a1h 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov bx,100
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      div bx
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    mov ax,4c00h
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    int 21h
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;codesg ends
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;end start
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;编程实现2&#34;&gt;编程实现2
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.7bianchengshixian2.png&#34;
+	width=&#34;1614&#34;
+	height=&#34;1073&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.7bianchengshixian2_hu_fe5f6167934514ea.png 480w, http://localhost:1313/p/11-26/8.7bianchengshixian2_hu_d03dd9c841707071.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.7bianchengshixian2&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;150&#34;
+		data-flex-basis=&#34;361px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;88-伪指令-dd&#34;&gt;8.8 伪指令 dd
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;前面我们用db和dw定义字节型数据和字型数据&lt;/li&gt;
+&lt;li&gt;dd是用来定义dword（double word）双字型数据的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.8weizhilinghsili.png&#34;
+	width=&#34;1602&#34;
+	height=&#34;1076&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.8weizhilinghsili_hu_9b76606baa99e5aa.png 480w, http://localhost:1313/p/11-26/8.8weizhilinghsili_hu_6dbcff56896a7007.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.8weizhilinghsili&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;148&#34;
+		data-flex-basis=&#34;357px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;问题81&#34;&gt;问题8.1
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/wenti8.1wenti.png&#34;
+	width=&#34;1541&#34;
+	height=&#34;1169&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/wenti8.1wenti_hu_847ee7354c960de2.png 480w, http://localhost:1313/p/11-26/wenti8.1wenti_hu_3d62e420ff8898f0.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;wenti8.1wenti&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;131&#34;
+		data-flex-basis=&#34;316px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;assume cs:codesg,ds:datasg
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;datasg segment
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dd 100001
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dw 100
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dw 0
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;datasg ends
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;codesg segment
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;start:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov ax,datasg
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov ds,ax
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov ax,ds:[0]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov dx,ds:[2] 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov bx,ds:[4]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      div bx
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      mov ds:[6],ax
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    mov ax,4c00h
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    int 21h
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;codesg ends
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;end start
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/wenti8.1fenxi.png&#34;
+	width=&#34;1593&#34;
+	height=&#34;1128&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/wenti8.1fenxi_hu_db39310a735e85a6.png 480w, http://localhost:1313/p/11-26/wenti8.1fenxi_hu_98b8d30dea33fca4.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;wenti8.1fenxi&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;141&#34;
+		data-flex-basis=&#34;338px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/wenti8.1shixiandaima.png&#34;
+	width=&#34;1615&#34;
+	height=&#34;929&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/wenti8.1shixiandaima_hu_5b033f2d32392c2a.png 480w, http://localhost:1313/p/11-26/wenti8.1shixiandaima_hu_6e2345f5e949227e.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;wenti8.1shixiandaima&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;173&#34;
+		data-flex-basis=&#34;417px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;89-dup&#34;&gt;8.9 dup
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;dup是一个操作符，在汇编语言中同db，dw，dd等一样，也是由编译器识别处理的符号&lt;/li&gt;
+&lt;li&gt;它是和db，dw，dd等数据定义伪指令配合使用的，用来进行数据的重复&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.9dupdaimashili.png&#34;
+	width=&#34;1546&#34;
+	height=&#34;1109&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.9dupdaimashili_hu_d0e62067c7e4c94f.png 480w, http://localhost:1313/p/11-26/8.9dupdaimashili_hu_8bc73ba20de7cb4b.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.9dupdaimashili&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;139&#34;
+		data-flex-basis=&#34;334px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.9dudaimashilip.png&#34;
+	width=&#34;1560&#34;
+	height=&#34;1103&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.9dudaimashilip_hu_1f2ff48c5ecb3312.png 480w, http://localhost:1313/p/11-26/8.9dudaimashilip_hu_ae2f2c92c81867f2.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.9dudaimashilip&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;141&#34;
+		data-flex-basis=&#34;339px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/11-26/8.9dupshilibuy.png&#34;
+	width=&#34;1511&#34;
+	height=&#34;1192&#34;
+	srcset=&#34;http://localhost:1313/p/11-26/8.9dupshilibuy_hu_799b9cd309299202.png 480w, http://localhost:1313/p/11-26/8.9dupshilibuy_hu_165aa737e0c6c35d.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8.9dupshilibuy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;126&#34;
+		data-flex-basis=&#34;304px&#34;
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>11-25 笔记</title>
         <link>http://localhost:1313/p/11-25/</link>
         <pubDate>Tue, 25 Nov 2025 00:00:00 +0000</pubDate>

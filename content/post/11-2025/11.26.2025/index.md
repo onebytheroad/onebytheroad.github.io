@@ -1,6 +1,6 @@
 ---
 title: 11-26 笔记
-description: 
+description: 没有及时说出口的话，会变得越来越难说，最后便成了办不到的事
 date: 2025-11-26
 slug: 11-26
 image: bj.jpg
