@@ -364,14 +364,23 @@
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Test
@@ -379,9 +388,18 @@
 </span></span><span class="line"><span class="cl">运算结果在设置相关标记位后会被丢弃
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">作用是利用标志位进行验位跳转
+</span></span><span class="line"><span class="cl">SF = 将结果的最高位赋给SF标志位，例如结果最高位是1，SF就是1
+</span></span><span class="line"><span class="cl">看TEMP是不是0，如果TEMP是0，ZF位置1；如果TEMP不是0，ZF位置0
+</span></span><span class="line"><span class="cl">PF = 将TEMP的低8位，从第0位开始，逐位取同或。也就是第0位与第1位的同或结果，去和第2位同或，结果再去和第3位同或…直到和第7位同或。PF位是奇偶校验位，如果结果低8位中1的个数是偶数，PF=1；否则PF=0
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">SF：最高位赋值
-</span></span><span class="line"><span class="cl">ZF：test结果。est=0,zf=1。反之，
+</span></span><span class="line"><span class="cl">test eax，100b；b后缀意为二进制
+</span></span><span class="line"><span class="cl">jnz ******；如果eax右数第三个位为1，jnz将会跳转
+</span></span><span class="line"><span class="cl">jnz跳转的条件是ZF=0, ZF=0意味着ZF(零标志)没被置位，即逻辑与结果为1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Test的一个非常普遍的用法是用来测试一方寄存器是否为空：
+</span></span><span class="line"><span class="cl">test ecx, ecx
+</span></span><span class="line"><span class="cl">jz somewhere
+</span></span><span class="line"><span class="cl">如果ecx为零，设置ZF零标志为1，jz跳转。
 </span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
@@ -504,6 +522,25 @@
             
                 
 <article class="has-image">
+    <a href="/p/11-30/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/bj.jpg" loading="lazy" data-key="11-30" data-hash="/bj.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">11-30 笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/p/11-29/">
         
         
@@ -593,30 +630,6 @@
 
         <div class="article-details">
             <h2 class="article-title">11-25 笔记</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/11-24/">
-        
-        
-            <div class="article-image">
-                <img src="/p/11-24/bj.733cb7ba3f0e39deda261541470bbcdb_hu_38bc1ebfe3960a2c.jpg" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post 11-24 笔记"
-                        data-key="11-24" 
-                        data-hash="md5-czy3uj8OOd7aJhVBRwu82w==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">11-24 笔记</h2>
         </div>
     </a>
 </article>

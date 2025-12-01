@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="年年岁岁花相似，岁岁年年人不同">
 <title>11-29 笔记</title>
 
 <link rel='canonical' href='http://localhost:1313/p/11-29/'>
 
 <link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="11-29 笔记">
-<meta property='og:description' content="">
+<meta property='og:description' content="年年岁岁花相似，岁岁年年人不同">
 <meta property='og:url' content='http://localhost:1313/p/11-29/'>
 <meta property='og:site_name' content='雫的小站'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-11-29T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-11-29T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/p/11-29/bj.jpg' />
 <meta name="twitter:title" content="11-29 笔记">
-<meta name="twitter:description" content=""><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="年年岁岁花相似，岁岁年年人不同"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='http://localhost:1313/p/11-29/bj.jpg' />
         
         <link rel="stylesheet" href="http://localhost:1313/css/custom.min.css">
@@ -252,7 +252,38 @@
     </ol>
 </aside>
 
-    
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#第九章-转移指令">第九章 转移指令</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
 
             <main class="main full-width">
     <article class="has-image main-article">
@@ -287,6 +318,10 @@
         </h2>
     
         
+        <h3 class="article-subtitle">
+            年年岁岁花相似，岁岁年年人不同
+        </h3>
+        
     </div>
 
     
@@ -320,7 +355,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 0 分钟
+                    阅读时长: 3 分钟
                 </time>
             </div>
         
@@ -335,7 +370,314 @@
     <section class="article-content">
     
     
-    
+    <div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shl
+</span></span><span class="line"><span class="cl">mov bl, 8FH              ; BL = 10001111b
+</span></span><span class="line"><span class="cl">shi bl, 1        ; CF = 1, BL = 00011110b
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">CF中寄存最后一次移出的数字
+</span></span><span class="line"><span class="cl">最低位用0填充
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">shr
+</span></span><span class="line"><span class="cl">mov al, 0D0H       ; aL = 11010000b
+</span></span><span class="line"><span class="cl">shr al, 1		  ; aL = 01101000b, CF = 0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">cf中寄存最后一次移出数字，最高位填充0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cmp
+</span></span><span class="line"><span class="cl">比较两个无符号数
+</span></span><span class="line"><span class="cl">ZF CF 
+</span></span><span class="line"><span class="cl">cmp a.b
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">a == b
+</span></span><span class="line"><span class="cl">ZF = 1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">a &lt; b 
+</span></span><span class="line"><span class="cl">CF = 1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">a &gt; b                  a &gt;= b
+</span></span><span class="line"><span class="cl">CF == ZF == 0          CF == 0  ZF == 1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">比较的是两个有符号数，则符号标志位、零标志位和溢出标志位表示的两个操作数之间的关系
+</span></span><span class="line"><span class="cl">a &lt; b
+</span></span><span class="line"><span class="cl">SF != OF
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">a &gt; b
+</span></span><span class="line"><span class="cl">SF == OF
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">a == b
+</span></span><span class="line"><span class="cl">ZF = 1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">如果因为溢出导致了实际结果为负，那么逻辑上真正的结果必然为正。
+</span></span><span class="line"><span class="cl">如果因为溢出导致了实际结果为正，那么逻辑上真正的结果必然为负。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">跳转指令
+</span></span><span class="line"><span class="cl">基于无符号数比较的跳转
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">助记符	说明
+</span></span><span class="line"><span class="cl">JB	小于跳转
+</span></span><span class="line"><span class="cl">JNB	不小于跳转
+</span></span><span class="line"><span class="cl">JNBE	不小于或等于跳转
+</span></span><span class="line"><span class="cl">JA	大于跳转
+</span></span><span class="line"><span class="cl">JNA	不大于跳转
+</span></span><span class="line"><span class="cl">JNAE	不大于或等于跳转
+</span></span><span class="line"><span class="cl">基于相等性的跳转
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">助记符	说明
+</span></span><span class="line"><span class="cl">JE	相等跳转
+</span></span><span class="line"><span class="cl">JNE	不相等跳转
+</span></span><span class="line"><span class="cl">JCXZ	CX = 0 跳转
+</span></span><span class="line"><span class="cl">JECXZ	ECX = 0 跳转
+</span></span><span class="line"><span class="cl">JRCXZ	RCX = 0 跳转（64模式）
+</span></span><span class="line"><span class="cl">基于有符号数比较的跳转
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">助记符	说明
+</span></span><span class="line"><span class="cl">JG	大于跳转
+</span></span><span class="line"><span class="cl">JL	小于跳转
+</span></span><span class="line"><span class="cl">JNLE	不小于或等于跳转
+</span></span><span class="line"><span class="cl">JNGE	不大于活等于跳转
+</span></span><span class="line"><span class="cl">JGE	大于或等于跳转
+</span></span><span class="line"><span class="cl">JLE	小于或等于跳转
+</span></span><span class="line"><span class="cl">JNL	不小于跳转
+</span></span><span class="line"><span class="cl">JNG	不大于跳转
+</span></span><span class="line"><span class="cl">基于进位和零标志位的跳转
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">助记符	说明
+</span></span><span class="line"><span class="cl">JC	进位跳转（进位标志位置1）
+</span></span><span class="line"><span class="cl">JNC	无进位跳转（进位标志位清零）
+</span></span><span class="line"><span class="cl">JZ	为零跳转（零标志位置1）
+</span></span><span class="line"><span class="cl">JNZ	非零跳转（零标志位清零）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">检测条件	无符号数跳转	有符号数跳转	同义指令	检查的标志位
+</span></span><span class="line"><span class="cl">A == B		JE			JE				JZ			ZF = 1
+</span></span><span class="line"><span class="cl">A != B		JNE			JNE				JNZ			ZF = 0
+</span></span><span class="line"><span class="cl">A &lt; B		JB			JL			JNAE, JNGE	     CF = 1 (无符号)SF != OF (有符号)
+</span></span><span class="line"><span class="cl">A &gt;= B		JAE			JGE	JNB, 	 JNL			CF = 0 (无符号)SF == OF (有符号)
+</span></span><span class="line"><span class="cl">A &gt; B		JA			JG			JNBE, JNLE		CF=0 且 ZF=0 (无符号)ZF=0 且 SF==OF (有符号)
+</span></span><span class="line"><span class="cl">A &lt;= B		JBE			JLE			JNA, JNG		CF=1 或 ZF=1 (无符号)ZF=1 或 SF!=OF (有符号)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">逻辑指令
+</span></span><span class="line"><span class="cl">AND DST,SRC
+</span></span><span class="line"><span class="cl">OR dst，src
+</span></span><span class="line"><span class="cl">XOR dst，src
+</span></span><span class="line"><span class="cl">NOT orc 指令支持的寻址方式：除立即数寻址方式以外的其余寻址方式
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">指令支持的寻址方式：两个操作数不能同时为存储器寻址。即为除源操作数为立即数的情况外，原操作数和目的操作数必须有一个寄存器寻址方式。
+</span></span><span class="line"><span class="cl">令执行后CF 和OF 置零，AF无定义。
+</span></span><span class="line"><span class="cl">SF=1 指令执行后的结果为负数(符号位为1)
+</span></span><span class="line"><span class="cl">SF=0 指令执行后的结果为正数(符号位为0)
+</span></span><span class="line"><span class="cl">ZF=1 指令执行后的结果为零
+</span></span><span class="line"><span class="cl">ZF=0 指令执行后的结果不为零
+</span></span><span class="line"><span class="cl">PF=1 结果操作数中1的个数为偶数时置1
+</span></span><span class="line"><span class="cl">PF=0 结果操作数中1的个数为奇数时置0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">CWD: AX符号位拓展到DX
+</span></span><span class="line"><span class="cl">CDQ: EAX符号位拓展到EDX
+</span></span><span class="line"><span class="cl">CQO: RAX符号位拓展到RDX
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">CBW: AL符号位拓展到DX
+</span></span><span class="line"><span class="cl">CWDE: AX符号位拓展到EAX
+</span></span><span class="line"><span class="cl">CDQE: EAX符号位拓展到RAX
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="第九章-转移指令">第九章 转移指令
+</h1><p>操作符offset，用来取得标号的偏移地址</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">s:mov ax,bx
+</span></span><span class="line"><span class="cl">  mov si,offset s
+</span></span><span class="line"><span class="cl">  mov di,offset s0
+</span></span><span class="line"><span class="cl">  mov ax,cs:[si]
+</span></span><span class="line"><span class="cl">  mov cs:[di],axs0
+</span></span><span class="line"><span class="cl">s0:nop
+</span></span><span class="line"><span class="cl">   nop
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>用<code>offset</code> 可以复制标号地址然后使用</p>
+<p>无条件转移</p>
+<p><code>jmp</code> 可以只修改IP，也可以同时修改cs和ip</p>
+<p><code>jmp</code>转移的目的地址，转移的举例（段间，段内，）</p>
+<p><code>jmp short 标号</code> 转到标号处执行指令，实现段内短转移，对ip的修改范围是-128~127，向后移动127或者向前转移128歌字节</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">start:mov ax,0
+</span></span><span class="line"><span class="cl">      jmp short s
+</span></span><span class="line"><span class="cl">      add ax,1
+</span></span><span class="line"><span class="cl">    s:inc ax
+</span></span><span class="line"><span class="cl">codesg ends
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在cpu机器码中，对于<code>jmp short s</code>这段代码没有给机器码的详细描述</p>
+<p>cpu不需要具体的谜底地址就可以实现对ip的修改</p>
+<p><img src="/p/11-29/9.3jiqima.png"
+	width="1680"
+	height="631"
+	srcset="/p/11-29/9.3jiqima_hu_59af13174df65839.png 480w, /p/11-29/9.3jiqima_hu_e4709aeb3f9da893.png 1024w"
+	loading="lazy"
+	
+		alt="9.3jiqima"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="266"
+		data-flex-basis="638px"
+	
+></p>
+<p>补码进行的计算，计算出地址的偏移再位移</p>
+<p>jmp short 标号   为   (ip) = (ip)+ 8位位移</p>
+<p>8位位移=标号出的地址  -jmp后的第一个字节的地址</p>
+<p>short指明此处的唯一为8位位移</p>
+<p>由编译程序在编译时计算出</p>
+<p>范围为-128~127</p>
+<p><code> jmp near ptr 标号</code>功能为 (ip) = (ip)+ 16位位移</p>
+<p>进行段内近转移</p>
+
 </section>
 
 
@@ -368,6 +710,25 @@
     <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/11-30/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/bj.jpg" loading="lazy" data-key="11-30" data-hash="/bj.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">11-30 笔记</h2>
+        </div>
+    </a>
+</article>
+
             
                 
 <article class="has-image">
@@ -460,30 +821,6 @@
 
         <div class="article-details">
             <h2 class="article-title">11-25 笔记</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/11-24/">
-        
-        
-            <div class="article-image">
-                <img src="/p/11-24/bj.733cb7ba3f0e39deda261541470bbcdb_hu_38bc1ebfe3960a2c.jpg" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post 11-24 笔记"
-                        data-key="11-24" 
-                        data-hash="md5-czy3uj8OOd7aJhVBRwu82w==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">11-24 笔记</h2>
         </div>
     </a>
 </article>
