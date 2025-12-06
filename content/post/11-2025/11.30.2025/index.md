@@ -90,13 +90,9 @@ cx != 0 时什么也不做
 
 
 
-
-
 loop
 
 if( (cx) != 0 )   jmp short 标号
-
-
 
 # 第十章 call和ret
 

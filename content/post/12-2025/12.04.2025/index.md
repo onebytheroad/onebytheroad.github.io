@@ -1,14 +1,12 @@
 ---
 title: 12-04 笔记
-description: 
+description: 我想念那个不下雪的冬天
 date: 2025-12-04
 slug: 12-04
 image: bj.jpg
 categories:
   - 每日
 ---
-
-
 
 
 
