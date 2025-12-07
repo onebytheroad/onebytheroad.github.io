@@ -1,6 +1,6 @@
 ---
 title: 12-06 笔记
-description: 
+description: 我不再爱她，这是确定的，但也许我爱她。爱情太短，而遗忘太长
 date: 2025-12-06
 slug: 12-06
 image: bj.jpg
