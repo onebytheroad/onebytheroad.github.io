@@ -1,11 +1,11 @@
 ---
-title: 11-21 笔记
+title: 11-21 源程序
 description: 身无彩凤双飞翼，心有灵犀一点通
 date: 2025-11-21
 slug: 11-21
 image: bj.jpg
 categories:
-  - 每日
+  - 汇编语言
 ---
 
 ## 4.2 源程序

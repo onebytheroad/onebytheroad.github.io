@@ -2,16 +2,16 @@
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="春风若有怜花意，可否许我再少年。">
-<title>11-03 笔记</title>
+<title>11-03 指针定义与使用</title>
 
 <link rel='canonical' href='http://localhost:1313/p/11-03/'>
 
-<link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="11-03 笔记">
+<link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="11-03 指针定义与使用">
 <meta property='og:description' content="春风若有怜花意，可否许我再少年。">
 <meta property='og:url' content='http://localhost:1313/p/11-03/'>
 <meta property='og:site_name' content='雫的小站'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-11-03T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-11-03T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/p/11-03/bj.jpg' />
-<meta name="twitter:title" content="11-03 笔记">
+<meta name="twitter:title" content="11-03 指针定义与使用">
 <meta name="twitter:description" content="春风若有怜花意，可否许我再少年。"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='http://localhost:1313/p/11-03/bj.jpg' />
         
@@ -274,15 +274,28 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li>
+    <li><a href="#第十三课-指针">第十三课-指针</a>
       <ol>
-        <li>
+        <li><a href="#1指针定义与使用">（1）：指针定义与使用</a>
           <ol>
-            <li>
+            <li><a href="#变量在内存中的地址">变量在内存中的地址</a></li>
+            <li><a href="#指针定义">指针定义</a></li>
+            <li><a href="#指针的定义与初始化形式">指针的定义与初始化形式</a></li>
+            <li><a href="#p解引用运算符----与指针定义的不是一个东西">*p：解引用运算符    与指针定义的*不是一个东西</a></li>
+            <li><a href="#与">&amp;与*</a></li>
+            <li><a href="#与互为逆运算与">&amp;与*互为逆运算：*&amp;与&amp;*</a></li>
+            <li><a href="#易混淆">易混淆</a></li>
+            <li><a href="#指针的赋值与使用">指针的赋值与使用</a></li>
+            <li><a href="#指针类型与互相转换">指针类型与互相转换</a></li>
+            <li><a href="#void-p">void *p</a></li>
+            <li><a href="#字符指针">字符指针</a></li>
+            <li><a href="#sizeofpsizeogp">sizeof(p)\sizeog(*p)</a></li>
+            <li><a href="#指针的应用">指针的应用</a>
               <ol>
                 <li>
                   <ol>
                     <li><a href="#作业">作业</a></li>
+                    <li><a href="#作业-1">作业</a></li>
                   </ol>
                 </li>
               </ol>
@@ -311,7 +324,7 @@
                         width="800" 
                         height="557" 
                         loading="lazy"
-                        alt="Featured image of post 11-03 笔记" />
+                        alt="Featured image of post 11-03 指针定义与使用" />
                 
             </a>
         </div>
@@ -321,8 +334,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/%E6%AF%8F%E6%97%A5/" >
-                每日
+            <a href="/categories/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" >
+                C语言基础
             </a>
         
     </header>
@@ -330,7 +343,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/11-03/">11-03 笔记</a>
+            <a href="/p/11-03/">11-03 指针定义与使用</a>
         </h2>
     
         
@@ -371,7 +384,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 2 分钟
+                    阅读时长: 5 分钟
                 </time>
             </div>
         
@@ -386,7 +399,393 @@
     <section class="article-content">
     
     
-    <h5 id="作业">作业
+    <h1 id="第十三课-指针">第十三课-指针
+</h1><h2 id="1指针定义与使用">（1）：指针定义与使用
+</h2><h3 id="变量在内存中的地址">变量在内存中的地址
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.02.2025/bianliangdeneicundizhi.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="bianliangd"
+	
+	
+></p>
+<p>&amp;取值运算符</p>
+<h3 id="指针定义">指针定义
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.02.2025/zhizhen.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="zhizhen"
+	
+	
+></p>
+<p>指针也是变量，指针也有类型，指针存放的值是内存地址</p>
+<p>指针字节就是内存地址的长度</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">int main()
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">	int i = 1;
+</span></span><span class="line"><span class="cl">	int* p = &amp;i;
+</span></span><span class="line"><span class="cl">	printf(&#34;p=%p,&amp;i=%p,sizeof(p):%d\n&#34;, p, &amp;i, sizeof(p));
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	return 0;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="指针的定义与初始化形式">指针的定义与初始化形式
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.02.2025/zhenzhidingyiyuchushihua.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="zhenzhiding"
+	
+	
+></p>
+<p>初始化：1.指向某个变量的地址  2.指向一个分配的内存或者字符串常量  3.指向NULL</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">int i,*p；定义了一个整型i和整型指针，这里*与int一起 
+</span></span><span class="line"><span class="cl">p =&amp;i  野指针，指向随机值 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">char *p=(Char*)malloc(100);  在堆上分配了地址，赋值给了一个指针
+</span></span><span class="line"><span class="cl">char *str = &#34;hello world&#34;;   指向的是字符串变量地址
+</span></span><span class="line"><span class="cl">char c=&#39;A&#39;;  一个字符变量&#39;a&#39;
+</span></span><span class="line"><span class="cl">char *str = &amp;c;  一个指针str，把c的地址赋值给了str，指向字符变量c
+</span></span><span class="line"><span class="cl">char *pch= &amp;c ;
+</span></span><span class="line"><span class="cl">字符指针既可以指向字符串，也可以指向字符变量
+</span></span><span class="line"><span class="cl">赋值给指针的时候，赋值的类型一定要匹配
+</span></span><span class="line"><span class="cl">字符指针赋值给整型指针，需要强制转化
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="p解引用运算符----与指针定义的不是一个东西">*p：解引用运算符    与指针定义的*不是一个东西
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.02.2025/jieyinyuongyunsuanfu.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="jieyinyuongyunsuanfu"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">int *p1,*p2   中 “*” 是定义指针p1，p2
+</span></span><span class="line"><span class="cl">printf 中*p1 *p2 是解引用符
+</span></span><span class="line"><span class="cl">*p1 == a   *p2 == b    对 *p1+1 *p2+2 就是对a，b修改
+</span></span><span class="line"><span class="cl">但是必须要是可写的 
+</span></span><span class="line"><span class="cl">a是常量指针，指针的一种形式，指向的数组的首地址
+</span></span><span class="line"><span class="cl">p指向的字符串的首地址
+</span></span><span class="line"><span class="cl">对a和p进行解引用，*a为数组第一个元素，*p为字符串第一个
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>野指针和NULL都不能被解引用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt; </span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>	
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span><span class="o">*</span> <span class="n">s</span> <span class="o">=</span> <span class="s">&#34;hello world&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span><span class="o">*</span> <span class="n">p1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span><span class="o">*</span> <span class="n">p2</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;*p1=%d,*p2=%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">p1</span><span class="p">,</span> <span class="o">*</span><span class="n">p2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;a=%d,b=%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="o">*</span><span class="n">p1</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="o">*</span><span class="n">p2</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;a=%d,b=%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;*arr:%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">arr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;*s:%c</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="与">&amp;与*
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.02.2025/&amp;.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="&"
+	
+	
+></p>
+<pre><code>*arr = 100;
+*s = &quot;X&quot;;
+</code></pre>
+<p>*arr 指向数组第一个元素，可以使用指针修改</p>
+<p>*s指向静态常量区，修改会报错</p>
+<h3 id="与互为逆运算与">&amp;与*互为逆运算：*&amp;与&amp;*
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.02.2025/niyunsuan.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="niyunsuan"
+	
+	
+></p>
+<p>*运算符需要和指针联系在一起，a不是指针，所以&amp;*a会报错</p>
+<h3 id="易混淆">易混淆
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.02.2025/yihunxiao.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="yihunxiao"
+	
+	
+></p>
+<h3 id="指针的赋值与使用">指针的赋值与使用
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.02.2025/zhizhendefuzhiyushiyong.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="zhizhendefuzhi"
+	
+	
+></p>
+<p>*p2 = *p1  即j = i   j和i的值都变为&rsquo;a'</p>
+<p><strong>用双引号直接赋值的字符串是只读的，用数组或malloc创建的字符串是可修改的。</strong></p>
+<p>p2=p1 把p1的地址赋值给p2，相当于p2指向了p1的地址</p>
+<h3 id="指针类型与互相转换">指针类型与互相转换
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.02.2025/zhizhenleixingyuhuxiangzhuanhuan.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="zhizhenlei"
+	
+	
+></p>
+<p><img src="C:/blog/my-blog/content/post/11-2025/11.02.2025/lizi2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="lizi2"
+	
+	
+></p>
+<p>少了会导致数据丢失，多了可能会导致破坏其他内存地址。强制转化有可能会导致程序受到影响</p>
+<p>类型不一样宽度就不一样</p>
+<h3 id="void-p">void *p
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.02.2025/void.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="void"
+	
+	
+></p>
+<p>void *p  没有任何类型，和类型指针不一样</p>
+<p>void的指针概念中没有内存长度的概念，拿不到内存长度</p>
+<p>不能用*p来取值，取不了其中的值</p>
+<p>GCC里面的扩展，void默认为1字节</p>
+<p>主要用在函数参数定义的时候，可以接受任何类型的指针的赋值，万能指针型</p>
+<p>void赋值成别的类型需要强转，而解引用也需要转换</p>
+<p>一般用在函数的形参位置，不用做任何的强制转换，只是在内部需要转换</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">void *pv1 = p1 
+</span></span><span class="line"><span class="cl">只是对pv1的赋值，类型并未转换，GCC应该可以
+</span></span><span class="line"><span class="cl">sizeof(pv1)   指针本身是变量
+</span></span><span class="line"><span class="cl">sizeof(*pv1)  只是无法解引用
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="字符指针">字符指针
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.02.2025/zifuzhizhen.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="zifuzhizhen"
+	
+	
+></p>
+<h3 id="sizeofpsizeogp">sizeof(p)\sizeog(*p)
+</h3><p><img src="/sizeof%28p%29.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="sizeof(C:/blog/my-blog/content/post/11-2025/11.02.2025/sizeof(p).png)"
+	
+	
+></p>
+<p>sizeof(p)   指针对应的长度</p>
+<p>sizeof(*p)  指针对应类型的长度</p>
+<p>4 4 1 4   12   4  1  1</p>
+<h3 id="指针的应用">指针的应用
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.02.2025/yingyong.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="yingyong"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdbool.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="nf">is_system_little</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mh">0x1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">p</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="作业">作业
+</h5><p><img src="/p/11-03/zuoye2.png"
+	width="1910"
+	height="1292"
+	srcset="/p/11-03/zuoye2_hu_762f445cd5d870af.png 480w, /p/11-03/zuoye2_hu_27a0e02a5f5d6bf5.png 1024w"
+	loading="lazy"
+	
+		alt="zuoye2"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="147"
+		data-flex-basis="354px"
+	
+></p>
+<h5 id="作业-1">作业
 </h5><p>1.指针含义：指针是一个存放内存地址的变量.指针长度：长度由所属变量类型决定，char 即1字节，int 即4字节，如果五类型，由所在平台决定，x86即4个字节，x64即8个字节</p>
 <p>2.p是指针时，*p的情况需要做讨论，如果是没有与int之类的声明语句相结合，则为解引用符号，读取指针中存放的地址，如果与声明语句结合，则可能是二级指针</p>
 <p>3.通过char类型的指针指向int 类型的整数1，然后打印指针值，int类型占四个字节，而char指针只有一个字节，会丢失另外三字节的数据，看打印结果是1或者0就能判断是高位还是低位优先。</p>
@@ -530,8 +929,7 @@
 </span></span><span class="line"><span class="cl">类型不匹配 → 未定义行为
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>美化了博客，修复了一堆史山代码</p>
-
+</div>
 </section>
 
 
@@ -567,18 +965,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-30/">
+    <a href="/p/11-15/">
         
         
             <div class="article-image">
-                
-                    <img src="/bj.jpg" loading="lazy" data-key="11-30" data-hash="/bj.jpg"/>
+                <img src="/p/11-15/bj.a16604ad36919a2ee87388ff87281a01_hu_9e5044718131be7e.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 11-15 作业"
+                        data-key="11-15" 
+                        data-hash="md5-oWYErTaRmi7oc4j/hygaAQ==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-30 笔记</h2>
+            <h2 class="article-title">11-15 作业</h2>
         </div>
     </a>
 </article>
@@ -586,23 +989,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-29/">
+    <a href="/p/11-14/">
         
         
             <div class="article-image">
-                <img src="/p/11-29/bj.60013e3f00f58254a21112014daf3f28_hu_f49e52853cd86f55.jpg" 
+                <img src="/p/11-14/bj.d577405db0b641e0a671e01e6c32b3b8_hu_5c9e70a11824ff53.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-29 笔记"
-                        data-key="11-29" 
-                        data-hash="md5-YAE&#43;PwD1glSiERIBTa8/KA==">
+                        alt="Featured image of post 11-14 作业"
+                        data-key="11-14" 
+                        data-hash="md5-1XdAXbC2QeCmceAebDKzuA==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-29 笔记</h2>
+            <h2 class="article-title">11-14 作业</h2>
         </div>
     </a>
 </article>
@@ -610,23 +1013,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-28/">
+    <a href="/p/11-13/">
         
         
             <div class="article-image">
-                <img src="/p/11-28/bj.6d148dab18c6c1baea6098318eaface2_hu_4e132fbee8d0b475.jpg" 
+                <img src="/p/11-13/bj.c319198b3d02ce40ea9c75f5a419c871_hu_26b15fc36ffa70d.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-28 笔记"
-                        data-key="11-28" 
-                        data-hash="md5-bRSNqxjGwbrqYJgxjq&#43;s4g==">
+                        alt="Featured image of post 11-13 作业"
+                        data-key="11-13" 
+                        data-hash="md5-wxkZiz0CzkDqnHX1pBnIcQ==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-28 笔记</h2>
+            <h2 class="article-title">11-13 作业</h2>
         </div>
     </a>
 </article>
@@ -634,23 +1037,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-27/">
+    <a href="/p/11-12/">
         
         
             <div class="article-image">
-                <img src="/p/11-27/bj.82b7b84c3ec267628100612ae18a037f_hu_c4b47f8dd6ff8e67.jpg" 
+                <img src="/p/11-12/bj.ad77c93609bb7b7605a81180b007dcdc_hu_17f111edc709b5c7.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-27 笔记"
-                        data-key="11-27" 
-                        data-hash="md5-gre4TD7CZ2KBAGEq4YoDfw==">
+                        alt="Featured image of post 11-12 作业"
+                        data-key="11-12" 
+                        data-hash="md5-rXfJNgm7e3YFqBGAsAfc3A==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-27 笔记</h2>
+            <h2 class="article-title">11-12 作业</h2>
         </div>
     </a>
 </article>
@@ -658,23 +1061,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-26/">
+    <a href="/p/11-11/">
         
         
             <div class="article-image">
-                <img src="/p/11-26/bj.8e20f3ed06dc4fa57c2513213cc51884_hu_8728ad2704bb5069.jpg" 
+                <img src="/p/11-11/bj.939ac470f1f843a30170be56807c38ab_hu_d57086257fb1c61d.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-26 笔记"
-                        data-key="11-26" 
-                        data-hash="md5-jiDz7QbcT6V8JRMhPMUYhA==">
+                        alt="Featured image of post 11-11 递归"
+                        data-key="11-11" 
+                        data-hash="md5-k5rEcPH4Q6MBcL5WgHw4qw==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-26 笔记</h2>
+            <h2 class="article-title">11-11 递归</h2>
         </div>
     </a>
 </article>

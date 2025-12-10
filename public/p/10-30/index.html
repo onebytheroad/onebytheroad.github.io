@@ -2,16 +2,16 @@
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="相见时难别亦难，东风无力百花残。">
-<title>10-30 笔记</title>
+<title>10-30 程序中的字符串</title>
 
 <link rel='canonical' href='http://localhost:1313/p/10-30/'>
 
-<link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="10-30 笔记">
+<link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="10-30 程序中的字符串">
 <meta property='og:description' content="相见时难别亦难，东风无力百花残。">
 <meta property='og:url' content='http://localhost:1313/p/10-30/'>
 <meta property='og:site_name' content='雫的小站'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-10-30T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-10-30T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/p/10-30/bj.jpg' />
-<meta name="twitter:title" content="10-30 笔记">
+<meta name="twitter:title" content="10-30 程序中的字符串">
 <meta name="twitter:description" content="相见时难别亦难，东风无力百花残。"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='http://localhost:1313/p/10-30/bj.jpg' />
         
@@ -276,26 +276,20 @@
   <ol>
     <li>
       <ol>
-        <li><a href="#3字符串api">（3）：字符串API</a>
+        <li><a href="#2程序中的字符串">(2):程序中的字符串</a>
           <ol>
             <li>
               <ol>
-                <li><a href="#常见操作和库函数">常见操作和库函数</a></li>
-                <li><a href="#字符串库函数应用">字符串库函数应用</a>
-                  <ol>
-                    <li>
-                      <ol>
-                        <li><a href="#示例代码">示例代码</a></li>
-                        <li><a href="#作业">作业：</a></li>
-                        <li><a href="#zuoye"><img src="zuoye.png" alt="zuoye"></a></li>
-                      </ol>
-                    </li>
-                  </ol>
-                </li>
+                <li><a href="#程序中使用字符串-堆上">程序中使用字符串 堆上</a></li>
+                <li><a href="#字符串的遍历">字符串的遍历</a></li>
+                <li><a href="#字符串做参数">字符串做参数</a></li>
+                <li><a href="#字符串与字符数组">字符串与字符数组</a></li>
               </ol>
             </li>
+            <li><a href="#字符串数组">字符串数组</a></li>
           </ol>
         </li>
+        <li></li>
       </ol>
     </li>
   </ol>
@@ -318,7 +312,7 @@
                         width="800" 
                         height="588" 
                         loading="lazy"
-                        alt="Featured image of post 10-30 笔记" />
+                        alt="Featured image of post 10-30 程序中的字符串" />
                 
             </a>
         </div>
@@ -328,8 +322,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/%E6%AF%8F%E6%97%A5/" >
-                每日
+            <a href="/categories/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" >
+                C语言基础
             </a>
         
     </header>
@@ -337,7 +331,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/10-30/">10-30 笔记</a>
+            <a href="/p/10-30/">10-30 程序中的字符串</a>
         </h2>
     
         
@@ -378,7 +372,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 3 分钟
+                    阅读时长: 2 分钟
                 </time>
             </div>
         
@@ -393,7 +387,111 @@
     <section class="article-content">
     
     
-    <p>作业</p>
+    <h2 id="2程序中的字符串">(2):程序中的字符串
+</h2><p><img src="C:/blog/my-blog/content/post/10-2025/10.29.2025/chengxuzhongshiyongzifuchuan.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="chengxuzhongshiyongzifuchuan"
+	
+	
+></p>
+<p>1.赋值给了字符指针，其字符存放在静态常量区，赋值是将字符内存的首地址赋给了该指针</p>
+<p>通过指针++，可以不断的扫描该字符，直到遇到\0字符为止</p>
+<p>2.赋值给了字符数组 str2   ，与上面不同，是将静态区的字符拷贝到str2数组里面，而且字符数组的内存是可以修改的，元素个数，即包含0字符在内的所有字符</p>
+<p>3.该字符数组包含了100个元素，赋值的字符串没有100个元素，多余的部分默认为0</p>
+<p>4.该字符数组占12个字符，相当于整体的字符串赋值进入，sizeof(str4)=12,但是如果用strlen来计算字符串的值的话，会在第一个\0截断</p>
+<h4 id="程序中使用字符串-堆上">程序中使用字符串 堆上
+</h4><p><img src="C:/blog/my-blog/content/post/10-2025/10.29.2025/duishang.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="duishang"
+	
+	
+></p>
+<p><img src="C:/blog/my-blog/content/post/10-2025/10.29.2025/zifuchuan.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="zifuchuan"
+	
+	
+></p>
+<p>可以存在全局数组里面，可以用指针指向，可以拷贝到栈上，可以从堆里分配字节来存放</p>
+<p>堆上用了之后需要free，否则会造成内存的泄露</p>
+<p>s2指向了hello world的地址，不能通过s2来更改数组里元素的值   <strong>编译发现不了，但是程序会崩溃</strong></p>
+<p>静态常量区是不可以修改的</p>
+<h4 id="字符串的遍历">字符串的遍历
+</h4><p><img src="C:/blog/my-blog/content/post/10-2025/10.29.2025/zifuchuanbianli.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="zifuchuanbianli"
+	
+	
+></p>
+<h4 id="字符串做参数">字符串做参数
+</h4><p><img src="C:/blog/my-blog/content/post/10-2025/10.29.2025/zifuchuanzuohanshucanshu.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="zifuchuanzuohanshucanshu"
+	
+	
+></p>
+<h4 id="字符串与字符数组">字符串与字符数组
+</h4><p><img src="C:/blog/my-blog/content/post/10-2025/10.29.2025/zifuchuanyuzifushuzu.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="zifuchuanyuzifushuzu"
+	
+	
+></p>
+<p>1.纯粹的字符数组</p>
+<p>2.可以当作一个字符串</p>
+<p>3.作为字符数组有5个元素，作为字符串有前面三个元素</p>
+<p>4.即是数组也是字符串</p>
+<h3 id="字符串数组">字符串数组
+</h3><p><img src="C:/blog/my-blog/content/post/10-2025/10.29.2025/zifuchuanshuzu.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="zifuchuanshuzu"
+	
+	
+></p>
+<p>作业</p>
+<p><img src="/p/10-30/zuoye.png"
+	width="1917"
+	height="1293"
+	srcset="/p/10-30/zuoye_hu_5088ad8c1c9d31bd.png 480w, /p/10-30/zuoye_hu_68eb85c49ddfcdfe.png 1024w"
+	loading="lazy"
+	
+		alt="zuoye"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="148"
+		data-flex-basis="355px"
+	
+></p>
+<p>作业</p>
 <p>1.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -436,398 +534,8 @@
 </span></span><span class="line"><span class="cl">char s2[] = &#34;hello world&#34;   定义了一个数组，存放了字符串
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="3字符串api">（3）：字符串API
-</h2><h4 id="常见操作和库函数">常见操作和库函数
-</h4><p>定义了标准的用来操作字符串的库函数，叫做api</p>
-<p><img src="/p/10-30/zifuchuanchangjiancaozuo.png"
-	width="1915"
-	height="1296"
-	srcset="/p/10-30/zifuchuanchangjiancaozuo_hu_61a594a0622e3069.png 480w, /p/10-30/zifuchuanchangjiancaozuo_hu_d1623b9e310d37ba.png 1024w"
-	loading="lazy"
-	
-		alt="zifuchuanchangjiancaozuo"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="147"
-		data-flex-basis="354px"
-	
-></p>
-<p>第一套：str  操作多字节字符串</p>
-<p>第二套：wcs   计算宽字节字符串</p>
-<p>第三套：_tcs     #include &lt;tchar.h&gt;    既可以是多字节也可以是宽字节</p>
-<p><strong>建议统一使用第三种方式来定义字符串</strong>   比较灵活，可以自动切换</p>
-<h4 id="字符串库函数应用">字符串库函数应用
-</h4><p><img src="/p/10-30/zifuchuankuhanshunyingyong.png"
-	width="1907"
-	height="1296"
-	srcset="/p/10-30/zifuchuankuhanshunyingyong_hu_79c167a3f7959b30.png 480w, /p/10-30/zifuchuankuhanshunyingyong_hu_45c0680597bb2154.png 1024w"
-	loading="lazy"
-	
-		alt="zifuchuankuhanshunyingyong"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="147"
-		data-flex-basis="353px"
-	
-></p>
-<h6 id="示例代码">示例代码
-</h6><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span><span class="lnt">55
-</span><span class="lnt">56
-</span><span class="lnt">57
-</span><span class="lnt">58
-</span><span class="lnt">59
-</span><span class="lnt">60
-</span><span class="lnt">61
-</span><span class="lnt">62
-</span><span class="lnt">63
-</span><span class="lnt">64
-</span><span class="lnt">65
-</span><span class="lnt">66
-</span><span class="lnt">67
-</span><span class="lnt">68
-</span><span class="lnt">69
-</span><span class="lnt">70
-</span><span class="lnt">71
-</span><span class="lnt">72
-</span><span class="lnt">73
-</span><span class="lnt">74
-</span><span class="lnt">75
-</span><span class="lnt">76
-</span><span class="lnt">77
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;tchar.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#pragma warning(disable:4996)
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="o">*</span><span class="n">s1</span> <span class="o">=</span> <span class="s">&#34;hello world 1&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="kt">wchar_t</span> <span class="o">*</span><span class="n">s2</span> <span class="o">=</span> <span class="sa">L</span><span class="s">&#34;hello world 2&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="n">TCHAR</span> <span class="o">*</span><span class="n">s3</span> <span class="o">=</span> <span class="nf">_T</span><span class="p">(</span><span class="s">&#34;hello world 3&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">buf1</span><span class="p">[</span><span class="mi">128</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">};</span>
-</span></span><span class="line"><span class="cl">	<span class="kt">wchar_t</span> <span class="n">buf2</span><span class="p">[</span><span class="mi">128</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">};</span>
-</span></span><span class="line"><span class="cl">	<span class="n">TCHAR</span> <span class="n">buf3</span><span class="p">[</span><span class="mi">128</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;s1:%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">s1</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;s2:%ws</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">s2</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="nf">_tprintf</span><span class="p">(</span><span class="nf">_T</span><span class="p">(</span><span class="s">&#34;s3:%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">),</span> <span class="n">s3</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="c1">//tcs 处理方法
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//_tcscpy(buf3,s3);
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// int min_len3 = 128 &gt; len3 ? len3 : 127;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//_tcscpy_s(buf3, 128, s3);
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//_tprintf(_T(&#34;buf3:%s\n&#34;), buf3);
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	
-</span></span><span class="line"><span class="cl">	<span class="c1">// printf(&#34;%d,%d,%d\n&#34;, len1, len2, len3);
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="c1">// 两个字符串进行比较
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">char</span><span class="o">*</span> <span class="n">st1</span> <span class="o">=</span> <span class="s">&#34;hello world&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="kt">char</span><span class="o">*</span> <span class="n">st2</span> <span class="o">=</span> <span class="s">&#34;hello china&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="c1">//if (strcmp(st1, st2) == 0)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//{
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//	printf(&#34;%s==%s\n&#34;, st1, st2);
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//}
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//else
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//{
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//	printf(&#34;%s!=%s\n&#34;, st1, st2);
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//}
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl">	<span class="c1">//if (strnicmp(st1, st2,5) == 0)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//{
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//	printf(&#34;%s==%s\n&#34;, st1, st2);
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//}
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//else
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//{
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//	printf(&#34;%s!=%s\n&#34;, st1, st2);
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//}
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl">	<span class="c1">//返回位置地址
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//strchr从左往右找strrchr从右往左找
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//比如在上述的path路径中找冒号
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//path:c:\doc\test\mallocfree.txt
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl">	<span class="c1">//strchr(path, &#39;:&#39;);//该函数返回的是path中冒号的指针值，所以应该是:
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">char</span> <span class="o">*</span><span class="n">p</span><span class="o">=</span><span class="nf">strchr</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="sc">&#39;:&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">p</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;found it:%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="k">else</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;not found it</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="c1">//对于单独找出文件名部分，从右往左找，找斜线位置，再斜线加一
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;filename:%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="nf">strrchr</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="sc">&#39;\\&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;filename:%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="nf">strrchr</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="sc">&#39;.&#39;</span><span class="p">)</span> <span class="p">);</span><span class="c1">//求拓展名
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"> 
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>strcmp 两个字符串进行整体的比较，有一个字符不对就不相等，相等返回0，如果第一个大于第二个返回正数，小则负数</p>
-<p>strncmp表示前n个字符，只要前n个字符相同返回0</p>
-<p>stricmp 比较大小时候忽略大小写</p>
-<p>strnicmp 比较前面n个字符是否一样并且忽略大小写</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">	//计算字符串的长度
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	size_t len1 = strlen(s1);
-</span></span><span class="line"><span class="cl">	size_t len2 = wcslen(s3);
-</span></span><span class="line"><span class="cl">	size_t len3 = _tcslen(s3);
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	//拷贝字符串
-</span></span><span class="line"><span class="cl">	//不安全的,只是可以使用	strcpy(buf1, s1);    
-</span></span><span class="line"><span class="cl">	// strcpy_s(buf1, 128, s1);   会将拷贝字符串与限定字节大小作比较，如果大于则不会拷贝
-</span></span><span class="line"><span class="cl">	// printf(&#34;buf1:%d\n&#34;, buf1);
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	//  linux平台拷贝
-</span></span><span class="line"><span class="cl">	// 	需要定义长度，计算实际拷贝大小，防止内存溢出
-</span></span><span class="line"><span class="cl">	//  int min_len = sizeof(buf1) &gt; len1 ? len1 : sizeof(buf1) - 1
-</span></span><span class="line"><span class="cl">	//	strncpy(buf1, s1,min_len);
-</span></span><span class="line"><span class="cl">	//  printf(&#34;buf1:%s\n&#34;,buf1);
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	//宽字符的处理
-</span></span><span class="line"><span class="cl">	//wcscpy(buf2, s2);
-</span></span><span class="line"><span class="cl">	//wcscpy_s(buf2,123, s2);
-</span></span><span class="line"><span class="cl">	//int min_len2 = sizeof(buf2) / sizeof(wchar_t) &gt; len2 ? len2 : sizeof(wchar_t) - 1;
-</span></span><span class="line"><span class="cl">	//wcsncpy(buf2, s2,min_len2);
-</span></span><span class="line"><span class="cl">	//printf(&#34;buf2:%ws\n&#34;, buf2);
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">	//字符串拼接
-</span></span><span class="line"><span class="cl">	char path[260] = &#34;c:\\doc\\test\\&#34;;
-</span></span><span class="line"><span class="cl">	char* filename = &#34;mallocfree.txt&#34;;
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	//对path来说，filename过长会超出范围，导致缓存区溢出，strcat不检查
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	strcat(path, filename);
-</span></span><span class="line"><span class="cl">	printf(&#34;path:%s\n&#34;, path);
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">	//strstr  从一个字符串中找到子串
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	char* p1 = strstr(s1, &#34;orl&#34;);
-</span></span><span class="line"><span class="cl">	if (p1 != NULL)
-</span></span><span class="line"><span class="cl">	{
-</span></span><span class="line"><span class="cl">		printf(&#34;p1:%s\n&#34;, p1);
-</span></span><span class="line"><span class="cl">	}
-</span></span><span class="line"><span class="cl">	else
-</span></span><span class="line"><span class="cl">	{
-</span></span><span class="line"><span class="cl">		printf(&#34;not found it\n&#34;);
-</span></span><span class="line"><span class="cl">	}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><pre><code>//strtok   拆分字符串
-
-char ip[] = &quot;192.168.100.1&quot;;
-const char *delim = &quot;.&quot;;//分隔符可以多设定几个，比如&quot;._ &quot;
-char* next = NULL;
-
-char* p2 = strtok_s(ip, delim,&amp;next);//char *p2 = strtok(ip, delim);
-while (p2 != NULL)
-{
-	printf(&quot;%s\n&quot;, p2);
-	p2 = strtok_s(NULL, delim,&amp;next);//拆分之后会记住地址，不用传参到null位置
-}
-</code></pre>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">	//strstr  从一个字符串中找到子串
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	char* p1 = strstr(s1, &#34;orl&#34;);
-</span></span><span class="line"><span class="cl">	if (p1 != NULL)
-</span></span><span class="line"><span class="cl">	{
-</span></span><span class="line"><span class="cl">		printf(&#34;p1:%s\n&#34;, p1);
-</span></span><span class="line"><span class="cl">	}
-</span></span><span class="line"><span class="cl">	else
-</span></span><span class="line"><span class="cl">	{
-</span></span><span class="line"><span class="cl">		printf(&#34;not found it\n&#34;);
-</span></span><span class="line"><span class="cl">	}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">	//字符串，整数，浮点数转换方法
-</span></span><span class="line"><span class="cl">	
-</span></span><span class="line"><span class="cl">	char *value = &#34;3.1415&#34;;
-</span></span><span class="line"><span class="cl">	float f = atof(value);
-</span></span><span class="line"><span class="cl">	printf(&#34;f:%f\n&#34;, f);
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	char* v1 = &#34;123&#34;;
-</span></span><span class="line"><span class="cl">	int i = atoi(v1);
-</span></span><span class="line"><span class="cl">	printf(&#34;i:%d\n&#34;, i);
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	TCHAR *v2 = _T(&#34;678&#34;);
-</span></span><span class="line"><span class="cl">	int v = _ttol(v2);
-</span></span><span class="line"><span class="cl">	printf(&#34;v:%d\n&#34;, v);
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h6 id="作业">作业：
-</h6><h6 id="zuoye"><img src="/p/10-30/zuoye.png"
-	width="1917"
-	height="1293"
-	srcset="/p/10-30/zuoye_hu_5088ad8c1c9d31bd.png 480w, /p/10-30/zuoye_hu_68eb85c49ddfcdfe.png 1024w"
-	loading="lazy"
-	
-		alt="zuoye"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="148"
-		data-flex-basis="355px"
-	
->
-</h6>
+</div><h2 id="">
+</h2>
 </section>
 
 
@@ -863,18 +571,23 @@ while (p2 != NULL)
             
                 
 <article class="has-image">
-    <a href="/p/11-30/">
+    <a href="/p/11-15/">
         
         
             <div class="article-image">
-                
-                    <img src="/bj.jpg" loading="lazy" data-key="11-30" data-hash="/bj.jpg"/>
+                <img src="/p/11-15/bj.a16604ad36919a2ee87388ff87281a01_hu_9e5044718131be7e.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 11-15 作业"
+                        data-key="11-15" 
+                        data-hash="md5-oWYErTaRmi7oc4j/hygaAQ==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-30 笔记</h2>
+            <h2 class="article-title">11-15 作业</h2>
         </div>
     </a>
 </article>
@@ -882,23 +595,23 @@ while (p2 != NULL)
             
                 
 <article class="has-image">
-    <a href="/p/11-29/">
+    <a href="/p/11-14/">
         
         
             <div class="article-image">
-                <img src="/p/11-29/bj.60013e3f00f58254a21112014daf3f28_hu_f49e52853cd86f55.jpg" 
+                <img src="/p/11-14/bj.d577405db0b641e0a671e01e6c32b3b8_hu_5c9e70a11824ff53.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-29 笔记"
-                        data-key="11-29" 
-                        data-hash="md5-YAE&#43;PwD1glSiERIBTa8/KA==">
+                        alt="Featured image of post 11-14 作业"
+                        data-key="11-14" 
+                        data-hash="md5-1XdAXbC2QeCmceAebDKzuA==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-29 笔记</h2>
+            <h2 class="article-title">11-14 作业</h2>
         </div>
     </a>
 </article>
@@ -906,23 +619,23 @@ while (p2 != NULL)
             
                 
 <article class="has-image">
-    <a href="/p/11-28/">
+    <a href="/p/11-13/">
         
         
             <div class="article-image">
-                <img src="/p/11-28/bj.6d148dab18c6c1baea6098318eaface2_hu_4e132fbee8d0b475.jpg" 
+                <img src="/p/11-13/bj.c319198b3d02ce40ea9c75f5a419c871_hu_26b15fc36ffa70d.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-28 笔记"
-                        data-key="11-28" 
-                        data-hash="md5-bRSNqxjGwbrqYJgxjq&#43;s4g==">
+                        alt="Featured image of post 11-13 作业"
+                        data-key="11-13" 
+                        data-hash="md5-wxkZiz0CzkDqnHX1pBnIcQ==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-28 笔记</h2>
+            <h2 class="article-title">11-13 作业</h2>
         </div>
     </a>
 </article>
@@ -930,23 +643,23 @@ while (p2 != NULL)
             
                 
 <article class="has-image">
-    <a href="/p/11-27/">
+    <a href="/p/11-12/">
         
         
             <div class="article-image">
-                <img src="/p/11-27/bj.82b7b84c3ec267628100612ae18a037f_hu_c4b47f8dd6ff8e67.jpg" 
+                <img src="/p/11-12/bj.ad77c93609bb7b7605a81180b007dcdc_hu_17f111edc709b5c7.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-27 笔记"
-                        data-key="11-27" 
-                        data-hash="md5-gre4TD7CZ2KBAGEq4YoDfw==">
+                        alt="Featured image of post 11-12 作业"
+                        data-key="11-12" 
+                        data-hash="md5-rXfJNgm7e3YFqBGAsAfc3A==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-27 笔记</h2>
+            <h2 class="article-title">11-12 作业</h2>
         </div>
     </a>
 </article>
@@ -954,23 +667,23 @@ while (p2 != NULL)
             
                 
 <article class="has-image">
-    <a href="/p/11-26/">
+    <a href="/p/11-11/">
         
         
             <div class="article-image">
-                <img src="/p/11-26/bj.8e20f3ed06dc4fa57c2513213cc51884_hu_8728ad2704bb5069.jpg" 
+                <img src="/p/11-11/bj.939ac470f1f843a30170be56807c38ab_hu_d57086257fb1c61d.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-26 笔记"
-                        data-key="11-26" 
-                        data-hash="md5-jiDz7QbcT6V8JRMhPMUYhA==">
+                        alt="Featured image of post 11-11 递归"
+                        data-key="11-11" 
+                        data-hash="md5-k5rEcPH4Q6MBcL5WgHw4qw==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-26 笔记</h2>
+            <h2 class="article-title">11-11 递归</h2>
         </div>
     </a>
 </article>

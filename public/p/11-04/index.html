@@ -2,16 +2,16 @@
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="每个人的心中都会有一个可望而不可及的人，可惜生活不是电影，而我也缺一点点运气">
-<title>11-04 笔记</title>
+<title>11-04 二级指针</title>
 
 <link rel='canonical' href='http://localhost:1313/p/11-04/'>
 
-<link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="11-04 笔记">
+<link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="11-04 二级指针">
 <meta property='og:description' content="每个人的心中都会有一个可望而不可及的人，可惜生活不是电影，而我也缺一点点运气">
 <meta property='og:url' content='http://localhost:1313/p/11-04/'>
 <meta property='og:site_name' content='雫的小站'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-11-04T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-11-04T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/p/11-04/bj.jpg' />
-<meta name="twitter:title" content="11-04 笔记">
+<meta name="twitter:title" content="11-04 二级指针">
 <meta name="twitter:description" content="每个人的心中都会有一个可望而不可及的人，可惜生活不是电影，而我也缺一点点运气"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='http://localhost:1313/p/11-04/bj.jpg' />
         
@@ -294,59 +294,6 @@
         </li>
       </ol>
     </li>
-    <li><a href="#第十四课-内存管理">第十四课-内存管理</a>
-      <ol>
-        <li><a href="#1内存分类与寻址">（1）：内存分类与寻址</a>
-          <ol>
-            <li><a href="#程序内存布局">程序内存布局</a></li>
-            <li><a href="#堆和栈的区别">堆和栈的区别</a></li>
-            <li><a href="#寻址模式">寻址模式</a>
-              <ol>
-                <li><a href="#分段用起始地址加偏移地址来表示位置">分段：用起始地址加偏移地址来表示位置</a></li>
-                <li><a href="#扁平模型">扁平模型</a>
-                  <ol>
-                    <li><a href="#作业-1">作业</a></li>
-                  </ol>
-                </li>
-              </ol>
-            </li>
-          </ol>
-        </li>
-        <li><a href="#2内存分配">（2）：内存分配</a>
-          <ol>
-            <li><a href="#malloccallocrealloc">malloc/calloc/realloc</a>
-              <ol>
-                <li>
-                  <ol>
-                    <li><a href="#作业-2">作业</a></li>
-                  </ol>
-                </li>
-              </ol>
-            </li>
-          </ol>
-        </li>
-        <li></li>
-        <li><a href="#3内存泄漏预防与检测">（3）：内存泄漏预防与检测</a>
-          <ol>
-            <li><a href="#内存泄漏">内存泄漏</a></li>
-            <li><a href="#api不正确调用造成内存泄漏">API不正确调用造成内存泄漏</a></li>
-            <li><a href="#预防内存泄漏--1">预防内存泄漏 -1</a></li>
-            <li><a href="#预防内存泄漏-2">预防内存泄漏-2</a></li>
-            <li><a href="#预防内存泄漏-3">预防内存泄漏-3</a></li>
-            <li><a href="#预防内存泄漏-4">预防内存泄漏-4</a></li>
-            <li><a href="#内存泄漏之后的检测">内存泄漏之后的检测</a>
-              <ol>
-                <li>
-                  <ol>
-                    <li><a href="#作业-3">作业</a></li>
-                  </ol>
-                </li>
-              </ol>
-            </li>
-          </ol>
-        </li>
-      </ol>
-    </li>
   </ol>
 </nav>
         </div>
@@ -367,7 +314,7 @@
                         width="800" 
                         height="539" 
                         loading="lazy"
-                        alt="Featured image of post 11-04 笔记" />
+                        alt="Featured image of post 11-04 二级指针" />
                 
             </a>
         </div>
@@ -377,8 +324,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/%E6%AF%8F%E6%97%A5/" >
-                每日
+            <a href="/categories/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" >
+                C语言基础
             </a>
         
     </header>
@@ -386,7 +333,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/11-04/">11-04 笔记</a>
+            <a href="/p/11-04/">11-04 二级指针</a>
         </h2>
     
         
@@ -427,7 +374,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 6 分钟
+                    阅读时长: 2 分钟
                 </time>
             </div>
         
@@ -709,445 +656,7 @@
 </span></span><span class="line"><span class="cl">}
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="第十四课-内存管理">第十四课-内存管理
-</h1><p>物理内存，cpu根据物理地址在物理内存中存储数据</p>
-<h2 id="1内存分类与寻址">（1）：内存分类与寻址
-</h2><p><img src="/p/11-04/xunineicun.png"
-	width="1917"
-	height="1298"
-	srcset="/p/11-04/xunineicun_hu_7e5ac821eb2917d1.png 480w, /p/11-04/xunineicun_hu_947016741889d0d6.png 1024w"
-	loading="lazy"
-	
-		alt="xunineicun"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="147"
-		data-flex-basis="354px"
-	
-></p>
-<p>R0，内核空间，最高权限。R3，进程空间</p>
-<p>加载程序，就是把数据加载到程序的进程空间中部署运行</p>
-<h3 id="程序内存布局">程序内存布局
-</h3><p><img src="/p/11-04/neicunbuju.png"
-	width="1857"
-	height="1301"
-	srcset="/p/11-04/neicunbuju_hu_8daff5a72e51caa6.png 480w, /p/11-04/neicunbuju_hu_98b766a7f7144d6b.png 1024w"
-	loading="lazy"
-	
-		alt="neicunbuju"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="142"
-		data-flex-basis="342px"
-	
-></p>
-<p>data 初始化的全局变量，静态变量</p>
-<p>rdata 常量</p>
-<h3 id="堆和栈的区别">堆和栈的区别
-</h3><p><img src="/p/11-04/duihezhan.png"
-	width="1862"
-	height="1288"
-	srcset="/p/11-04/duihezhan_hu_28a7ee3ee160f2af.png 480w, /p/11-04/duihezhan_hu_eb53077862f46433.png 1024w"
-	loading="lazy"
-	
-		alt="duihezhan"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="144"
-		data-flex-basis="346px"
-	
-></p>
-<p>堆上的内存需要释放，否则会造成内存些泄露</p>
-<p>栈：自动分配内存，内存大小相对较小且固定，后进先出</p>
-<p>堆：手动分配内存，可以动态调整大小，大小受限于计算机</p>
-<p>指针函数不能返回栈上的地址，函数执行完了之后源地址已经销毁了</p>
-<p>内存碎片：存在着内存，但是无法分配到空闲的内存</p>
-<p><img src="/p/11-04/neicundizhifenleihexunzhimoshi.png"
-	width="1877"
-	height="1283"
-	srcset="/p/11-04/neicundizhifenleihexunzhimoshi_hu_9ec1d933671c4881.png 480w, /p/11-04/neicundizhifenleihexunzhimoshi_hu_2e16ccd0536e0086.png 1024w"
-	loading="lazy"
-	
-		alt="neicundi"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="146"
-		data-flex-basis="351px"
-	
-></p>
-<p>进程的地址空间是私有的，可能拥有相同的，类似的逻辑地址</p>
-<h3 id="寻址模式">寻址模式
-</h3><p><img src="/p/11-04/sunzhimoshi.png"
-	width="1907"
-	height="1301"
-	srcset="/p/11-04/sunzhimoshi_hu_a9d2136b8b19f9d1.png 480w, /p/11-04/sunzhimoshi_hu_35c2309f17c855da.png 1024w"
-	loading="lazy"
-	
-		alt="sunzhimoshi"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="146"
-		data-flex-basis="351px"
-	
-></p>
-<h4 id="分段用起始地址加偏移地址来表示位置">分段：用起始地址加偏移地址来表示位置
-</h4><p>段的起始地址，低4位设置成零用来让16位寄存器表示段地址</p>
-<p>两个寄存器，一个寄存器中拿到起始地址，然后左移四位，加上段的偏移</p>
-<p>左移四位，低四位是0，未存放，也就是存放时右移四位</p>
-<p>cs 代码段起始地址， ds 数据段起始地址</p>
-<h4 id="扁平模型">扁平模型
-</h4><p>不需要设置起始地址，能够直接用一个寄存器寻址整个地址空间</p>
-<p>实模式，段寄存器中的地址加偏移能得到物理地址</p>
-<p>保护模式，地址使用虚拟地址，通过页表段表来映射得到物理地址</p>
-<p><img src="/p/11-04/leixingzongjie.png"
-	width="1888"
-	height="1308"
-	srcset="/p/11-04/leixingzongjie_hu_7c28b5d1ed676bf4.png 480w, /p/11-04/leixingzongjie_hu_c83788d5e79553e0.png 1024w"
-	loading="lazy"
-	
-		alt="leixingzongjie"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="144"
-		data-flex-basis="346px"
-	
-></p>
-<p>保护模式中无需参与计算</p>
-<p><img src="/p/11-04/xunzhi.png"
-	width="1928"
-	height="1295"
-	srcset="/p/11-04/xunzhi_hu_299a2a3d9155bd01.png 480w, /p/11-04/xunzhi_hu_e5f475a51133d159.png 1024w"
-	loading="lazy"
-	
-		alt="xunzhi"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="148"
-		data-flex-basis="357px"
-	
-></p>
-<p>段选择符加段表和偏移量得到线性地址</p>
-<p>CR3寄存器，获得页目录，确定页表项，通过偏移找到物理地址</p>
-<h5 id="作业-1">作业
-</h5><p><img src="/p/11-04/zuoye1.png"
-	width="1914"
-	height="1291"
-	srcset="/p/11-04/zuoye1_hu_542ef080966b0ce2.png 480w, /p/11-04/zuoye1_hu_3fbdef4e91b0b8b9.png 1024w"
-	loading="lazy"
-	
-		alt="zuoye1"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="148"
-		data-flex-basis="355px"
-	
-></p>
-<p>1.底层是静态区，存放了变量，数据，常量；往上是代码区，存放源代码；再往上是堆，一个手动管理的内存池；然后最后是栈，调用函数时存放变量的区域</p>
-<p>2.程序内存分为四个区域，内核区，两个非法区，进程区。内核区和进程区占4GB，内核区的权限最高，进程区R3的权限，非法区域用来隔绝两个区域的相互影响，只占64kb</p>
-<p>3.栈是函数调用时的临时存储区，由系统自动分配，后进先出，效率较高</p>
-<p>堆是由程序员手动分配的内存池，大小由计算机硬件决定，调用灵活，但是效率稍低</p>
-<p>4.分段模型是在计算机寄存器只有16位用来寻址的方法，计算机地址总线有20位，寄存器无法完全存储，于是采用分段模型的方式来存储，将20位总内存大小1m的内存分为16个64kb的段，然后规定最后四位都为0的方式，省略四位零，然后用两个寄存器，一个用来表示起始地址，另一个用来表示偏移量，这样用来将逻辑地址转换为物理地址</p>
-<p>平坦模型，则是计算机发展之后，一个寄存器能够完成将逻辑地址转换为物理地址之后发展出来的方式，能用一个寄存器去遍历所有的地址线</p>
-<p>5.实模式，没有保护，用分段模型构建的物理地址，可以读写任何内存位置</p>
-<p>保护模式，需要页表将虚拟地址转换为物理地址</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">直接物理内存访问：程序看到的地址就是真实的物理内存地址。一个程序可以读写任何内存位置，包括操作系统的核心代码。
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">无权限分级：没有“内核态”和“用户态”之分。所有代码都以最高权限运行。
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">内存空间小：由于16位架构和寻址方式限制，最多只能访问 1MB 内存。
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">虚拟内存：程序运行在独立的“虚拟地址空间”中，由CPU和操作系统负责映射到真实的物理内存。程序A无法直接访问程序B的内存。
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">权限分级：通常有4个特权级（Ring 0 ~ Ring 3）。操作系统内核运行在最高特权级（Ring 0），应用程序运行在最低特权级（Ring 3）。应用程序想执行特权指令（如操作硬件）会被CPU拒绝。
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">内存分段与分页：通过复杂的描述符表和页表来管理内存访问，提供了隔离和保护机制。
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">支持大内存：可以访问远超过1MB的物理和虚拟内存（如4GB甚至更多）。
-</span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="2内存分配">（2）：内存分配
-</h2><p>静态区，代码区，栈，堆，如何编译一个10m的程序</p>
-<p>全局数组，全局变量， 必然存放在静态区</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt; </span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdbool.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;malloc.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">g_iNum</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">g_Aarrat</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&#34;hello worlf&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">127</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">128</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">};</span><span class="c1">//栈
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="kt">char</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="mi">256</span><span class="p">);</span><span class="c1">//堆上，需要内存分配函数，nalloc是一个函数名，返回的变量名是一个void类型*指针
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">free</span><span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nf">memset</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">);</span><span class="c1">//内存初始化为0
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">strcpy_s</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="s">&#34;hello world&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nf">free</span><span class="p">(</span><span class="n">p</span><span class="p">);</span><span class="c1">//释放，把值重新放入到内存去，但是指针指向未必其余的
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
-</span></span><span class="line"><span class="cl">    <span class="n">p</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>如果一个数组里面全是0，编译器不会打开数组将值存放在内存，可以压缩成一个存放</p>
-<p>比如  g_data区有10*1024*1024的数组，全是0即被压缩，如果有存放字符，就会开辟一个区域存放</p>
-<h3 id="malloccallocrealloc">malloc/calloc/realloc
-</h3><p><img src="/p/11-04/malloccalloc.png"
-	width="1896"
-	height="1294"
-	srcset="/p/11-04/malloccalloc_hu_55f7524998b6dd44.png 480w, /p/11-04/malloccalloc_hu_bda9e5bfed6341a.png 1024w"
-	loading="lazy"
-	
-		alt="malloccalloc"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="146"
-		data-flex-basis="351px"
-	
-></p>
-<h5 id="作业-2">作业
-</h5><p><img src="/p/11-04/zuoye2.png"
-	width="1200"
-	height="796"
-	srcset="/p/11-04/zuoye2_hu_cb17fea74d2cb27f.png 480w, /p/11-04/zuoye2_hu_579397237c7f5269.png 1024w"
-	loading="lazy"
-	
-		alt="zuoye2"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="150"
-		data-flex-basis="361px"
-	
-></p>
-<p>1.静态区存放全局变量，静态变量，从静态区分配内存只能从最开始的声明变量，内存由声明类型决定，不由程序员决定</p>
-<p>2.栈的内存是在函数调用时由机器分配使用，根据所写函数的声明类型定义来决定，不受程序员控制</p>
-<p>3.从堆上分配内存需要使用特定的函数，比如malloc，calloc，用来在堆上划取一部分内存来使用</p>
-<p>4.栈是函数调用时的临时存储区，由系统自动分配，后进先出，效率较高</p>
-<p>堆是由程序员手动分配的内存池，大小由计算机硬件决定，调用灵活，但是效率稍低</p>
-<h2 id="">
-</h2><h2 id="3内存泄漏预防与检测">（3）：内存泄漏预防与检测
-</h2><h3 id="内存泄漏">内存泄漏
-</h3><p><img src="/p/11-04/neicunxielou.png"
-	width="1924"
-	height="1302"
-	srcset="/p/11-04/neicunxielou_hu_499fcae65f8e403e.png 480w, /p/11-04/neicunxielou_hu_4a26d5474688e18.png 1024w"
-	loading="lazy"
-	
-		alt="neicunxielou"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="147"
-		data-flex-basis="354px"
-	
-></p>
-<p>忘记了将调用的堆的内存释放，即内存泄漏</p>
-<p>系统内存耗尽后，系统会将磁盘的一部分用来存储内存的数据，导致系统性能大幅下降</p>
-<p>图中传参的代码，传的是值，而函数中定义的是指针，调用时并没有真正传入，但是堆上的内存会分配，导致程序崩溃，释放内存也没有用</p>
-<h3 id="api不正确调用造成内存泄漏">API不正确调用造成内存泄漏
-</h3><p><img src="/p/11-04/APIbuzhengquediaoyong.png"
-	width="1917"
-	height="1291"
-	srcset="/p/11-04/APIbuzhengquediaoyong_hu_ed993ddd21e32c08.png 480w, /p/11-04/APIbuzhengquediaoyong_hu_f047719678831b9f.png 1024w"
-	loading="lazy"
-	
-		alt="APIbuzhengquediaoyong"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="148"
-		data-flex-basis="356px"
-	
-></p>
-<h3 id="预防内存泄漏--1">预防内存泄漏 -1
-</h3><p><img src="/p/11-04/-1.png"
-	width="1835"
-	height="533"
-	srcset="/p/11-04/-1_hu_e5eb4c0662b456b4.png 480w, /p/11-04/-1_hu_1235cfc7e36d8c17.png 1024w"
-	loading="lazy"
-	
-		alt="-1"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="344"
-		data-flex-basis="826px"
-	
-></p>
-<h3 id="预防内存泄漏-2">预防内存泄漏-2
-</h3><p><img src="/p/11-04/-2.png"
-	width="1911"
-	height="1299"
-	srcset="/p/11-04/-2_hu_7cbb1720bf50b90b.png 480w, /p/11-04/-2_hu_e5cfca0a13bca684.png 1024w"
-	loading="lazy"
-	
-		alt="-2"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="147"
-		data-flex-basis="353px"
-	
-></p>
-<p>集中处理内存泄漏</p>
-<h3 id="预防内存泄漏-3">预防内存泄漏-3
-</h3><p><img src="/p/11-04/-3.png"
-	width="1893"
-	height="1307"
-	srcset="/p/11-04/-3_hu_8c79dda6d93a4558.png 480w, /p/11-04/-3_hu_56471eebd3793d58.png 1024w"
-	loading="lazy"
-	
-		alt="-3"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="144"
-		data-flex-basis="347px"
-	
-></p>
-<h3 id="预防内存泄漏-4">预防内存泄漏-4
-</h3><p><img src="/p/11-04/-4.png"
-	width="1917"
-	height="1299"
-	srcset="/p/11-04/-4_hu_96aca99ce9908468.png 480w, /p/11-04/-4_hu_6bfd194d0930c273.png 1024w"
-	loading="lazy"
-	
-		alt="-4"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="147"
-		data-flex-basis="354px"
-	
-></p>
-<h3 id="内存泄漏之后的检测">内存泄漏之后的检测
-</h3><p><img src="/p/11-04/xielouzhihou.png"
-	width="1898"
-	height="1302"
-	srcset="/p/11-04/xielouzhihou_hu_d4fe484296557262.png 480w, /p/11-04/xielouzhihou_hu_bf43e02b128f7452.png 1024w"
-	loading="lazy"
-	
-		alt="xielouzhihou"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="145"
-		data-flex-basis="349px"
-	
-></p>
-<p>realloc会检查原来内存的容量，不够会开辟新的内存地址</p>
-<h5 id="作业-3">作业
-</h5><p><img src="/p/11-04/zuoye3.png"
-	width="718"
-	height="350"
-	srcset="/p/11-04/zuoye3_hu_b3b81a67075270b1.png 480w, /p/11-04/zuoye3_hu_a65d106f455f1216.png 1024w"
-	loading="lazy"
-	
-		alt="zuoye3"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="205"
-		data-flex-basis="492px"
-	
-></p>
-<p>1.写代码的时候，声明函数之后跟上释放，让划取和释放成对出现</p>
-<p>或者用goto集中处理所有的堆</p>
-<p>用内存使用计数，使用时+1，释放时-1，最后看是否还有+1</p>
-<p>2.用容器封存指向所划取堆的首地址的指针，在调用完成后检查是否有未释放的指针留存</p>
-
 </section>
 
 
@@ -1183,18 +692,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-30/">
+    <a href="/p/11-15/">
         
         
             <div class="article-image">
-                
-                    <img src="/bj.jpg" loading="lazy" data-key="11-30" data-hash="/bj.jpg"/>
+                <img src="/p/11-15/bj.a16604ad36919a2ee87388ff87281a01_hu_9e5044718131be7e.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 11-15 作业"
+                        data-key="11-15" 
+                        data-hash="md5-oWYErTaRmi7oc4j/hygaAQ==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-30 笔记</h2>
+            <h2 class="article-title">11-15 作业</h2>
         </div>
     </a>
 </article>
@@ -1202,23 +716,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-29/">
+    <a href="/p/11-14/">
         
         
             <div class="article-image">
-                <img src="/p/11-29/bj.60013e3f00f58254a21112014daf3f28_hu_f49e52853cd86f55.jpg" 
+                <img src="/p/11-14/bj.d577405db0b641e0a671e01e6c32b3b8_hu_5c9e70a11824ff53.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-29 笔记"
-                        data-key="11-29" 
-                        data-hash="md5-YAE&#43;PwD1glSiERIBTa8/KA==">
+                        alt="Featured image of post 11-14 作业"
+                        data-key="11-14" 
+                        data-hash="md5-1XdAXbC2QeCmceAebDKzuA==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-29 笔记</h2>
+            <h2 class="article-title">11-14 作业</h2>
         </div>
     </a>
 </article>
@@ -1226,23 +740,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-28/">
+    <a href="/p/11-13/">
         
         
             <div class="article-image">
-                <img src="/p/11-28/bj.6d148dab18c6c1baea6098318eaface2_hu_4e132fbee8d0b475.jpg" 
+                <img src="/p/11-13/bj.c319198b3d02ce40ea9c75f5a419c871_hu_26b15fc36ffa70d.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-28 笔记"
-                        data-key="11-28" 
-                        data-hash="md5-bRSNqxjGwbrqYJgxjq&#43;s4g==">
+                        alt="Featured image of post 11-13 作业"
+                        data-key="11-13" 
+                        data-hash="md5-wxkZiz0CzkDqnHX1pBnIcQ==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-28 笔记</h2>
+            <h2 class="article-title">11-13 作业</h2>
         </div>
     </a>
 </article>
@@ -1250,23 +764,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-27/">
+    <a href="/p/11-12/">
         
         
             <div class="article-image">
-                <img src="/p/11-27/bj.82b7b84c3ec267628100612ae18a037f_hu_c4b47f8dd6ff8e67.jpg" 
+                <img src="/p/11-12/bj.ad77c93609bb7b7605a81180b007dcdc_hu_17f111edc709b5c7.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-27 笔记"
-                        data-key="11-27" 
-                        data-hash="md5-gre4TD7CZ2KBAGEq4YoDfw==">
+                        alt="Featured image of post 11-12 作业"
+                        data-key="11-12" 
+                        data-hash="md5-rXfJNgm7e3YFqBGAsAfc3A==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-27 笔记</h2>
+            <h2 class="article-title">11-12 作业</h2>
         </div>
     </a>
 </article>
@@ -1274,23 +788,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-26/">
+    <a href="/p/11-11/">
         
         
             <div class="article-image">
-                <img src="/p/11-26/bj.8e20f3ed06dc4fa57c2513213cc51884_hu_8728ad2704bb5069.jpg" 
+                <img src="/p/11-11/bj.939ac470f1f843a30170be56807c38ab_hu_d57086257fb1c61d.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-26 笔记"
-                        data-key="11-26" 
-                        data-hash="md5-jiDz7QbcT6V8JRMhPMUYhA==">
+                        alt="Featured image of post 11-11 递归"
+                        data-key="11-11" 
+                        data-hash="md5-k5rEcPH4Q6MBcL5WgHw4qw==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-26 笔记</h2>
+            <h2 class="article-title">11-11 递归</h2>
         </div>
     </a>
 </article>

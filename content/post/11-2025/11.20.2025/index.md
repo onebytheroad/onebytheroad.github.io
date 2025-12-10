@@ -1,11 +1,11 @@
 ---
-title: 11-20 笔记
+title: 11-20 第一个程序
 description: 我望人群就像望天上的繁星，一直看得见，一直离得远
 date: 2025-11-20
 slug: 11-20
 image: bj.jpg
 categories:
-  - 每日
+  - 汇编语言
 ---
 
 # 第四章 第一个程序

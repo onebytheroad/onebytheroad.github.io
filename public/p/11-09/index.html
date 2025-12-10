@@ -2,16 +2,16 @@
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="花开堪折直须折，莫待无花空折枝">
-<title>11-09 笔记</title>
+<title>11-09 位运算</title>
 
 <link rel='canonical' href='http://localhost:1313/p/11-09/'>
 
-<link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="11-09 笔记">
+<link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="11-09 位运算">
 <meta property='og:description' content="花开堪折直须折，莫待无花空折枝">
 <meta property='og:url' content='http://localhost:1313/p/11-09/'>
 <meta property='og:site_name' content='雫的小站'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-11-09T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-11-09T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/p/11-09/bj.jpg' />
-<meta name="twitter:title" content="11-09 笔记">
+<meta name="twitter:title" content="11-09 位运算">
 <meta name="twitter:description" content="花开堪折直须折，莫待无花空折枝"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='http://localhost:1313/p/11-09/bj.jpg' />
         
@@ -274,14 +274,13 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#第十八课-宏">第十八课-宏</a>
+    <li><a href="#第十六课-位运算">第十六课-位运算</a>
       <ol>
-        <li><a href="#1宏的定义">（1）：宏的定义</a>
+        <li><a href="#1位运算概述">（1）：位运算概述</a>
           <ol>
-            <li><a href="#例子">例子</a></li>
-            <li><a href="#宏定义优缺点">宏定义优缺点</a></li>
-            <li><a href="#带参数的宏定义-max">带参数的宏定义-MAX</a></li>
-            <li><a href="#带参数的宏与函数优缺点比较">带参数的宏与函数优缺点比较</a>
+            <li><a href="#复习二进制位">复习二进制位</a></li>
+            <li><a href="#位运算定义">位运算定义</a></li>
+            <li><a href="#运算符">运算符</a>
               <ol>
                 <li>
                   <ol>
@@ -296,15 +295,11 @@
             </li>
           </ol>
         </li>
-        <li><a href="#2宏的应用与注意事项">（2）：宏的应用与注意事项</a>
+        <li><a href="#2与运算-">（2）：与运算 &amp;</a>
           <ol>
-            <li><a href="#两个数的交换">两个数的交换</a></li>
-            <li><a href="#软件生产宏定义">软件生产宏定义</a></li>
-            <li><a href="#宏应用">宏应用</a></li>
-            <li><a href="#宏的注意事项">宏的注意事项</a></li>
-            <li><a href="#和">#和##</a></li>
-            <li><a href="#定义一个宏来计算一个数的平方">定义一个宏来计算一个数的平方</a></li>
-            <li><a href="#宏的二义性">宏的二义性</a>
+            <li><a href="#程序表示">程序表示</a></li>
+            <li><a href="#清除整数a二进制中最右边的1">清除整数a二进制中最右边的1</a></li>
+            <li><a href="#各种性质">各种性质</a>
               <ol>
                 <li>
                   <ol>
@@ -319,13 +314,9 @@
             </li>
           </ol>
         </li>
-        <li><a href="#3条件编译">（3）：条件编译</a>
+        <li><a href="#3或运算--">（3）：或运算  |</a>
           <ol>
-            <li><a href="#条件编译形式1">条件编译形式1</a></li>
-            <li><a href="#条件编译方式3">条件编译方式3</a></li>
-            <li><a href="#条件编译方式4">条件编译方式4</a></li>
-            <li><a href="#条件编译实际工程例子">条件编译实际工程例子</a></li>
-            <li><a href="#头文件的预编译">头文件的预编译</a>
+            <li><a href="#或运算程序">或运算程序</a>
               <ol>
                 <li>
                   <ol>
@@ -340,21 +331,71 @@
             </li>
           </ol>
         </li>
-      </ol>
-    </li>
-    <li><a href="#第十九课-递归">第十九课-递归</a>
-      <ol>
-        <li><a href="#1递归定义">（1）：递归定义</a>
+        <li><a href="#4异或运算----">（4）：异或运算    ^</a>
           <ol>
-            <li><a href="#阶乘">阶乘</a></li>
-            <li><a href="#斐波那契数列">斐波那契数列</a></li>
-            <li><a href="#递归的优缺点">递归的优缺点</a>
+            <li><a href="#异或的程序表达">异或的程序表达</a></li>
+            <li><a href="#异或运算的性质">异或运算的性质</a></li>
+            <li><a href="#单指针实现双链表">单指针实现双链表</a>
               <ol>
                 <li>
                   <ol>
                     <li>
                       <ol>
                         <li><a href="#作业-3">作业</a></li>
+                      </ol>
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+        <li><a href="#5取反运算">（5）：取反运算</a>
+          <ol>
+            <li><a href="#程序表示-1">程序表示</a>
+              <ol>
+                <li>
+                  <ol>
+                    <li>
+                      <ol>
+                        <li><a href="#作业-4">作业</a></li>
+                      </ol>
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+        <li><a href="#6移位运算-----">（6）：移位运算   &laquo;  &raquo;</a>
+          <ol>
+            <li><a href="#左移运算符-">左移运算符 ：&laquo;</a></li>
+            <li><a href="#右移运算符">右移运算符</a>
+              <ol>
+                <li>
+                  <ol>
+                    <li>
+                      <ol>
+                        <li><a href="#作业-5">作业</a></li>
+                      </ol>
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+        <li><a href="#7位运算综合运用">（7）：位运算综合运用</a>
+          <ol>
+            <li><a href="#将第n位置0或者置1">将第N位置0或者置1</a></li>
+            <li><a href="#对称加密">对称加密</a></li>
+            <li><a href="#实际项目运用">实际项目运用</a>
+              <ol>
+                <li>
+                  <ol>
+                    <li>
+                      <ol>
+                        <li><a href="#作业-6">作业</a></li>
                       </ol>
                     </li>
                   </ol>
@@ -385,7 +426,7 @@
                         width="800" 
                         height="467" 
                         loading="lazy"
-                        alt="Featured image of post 11-09 笔记" />
+                        alt="Featured image of post 11-09 位运算" />
                 
             </a>
         </div>
@@ -395,8 +436,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/%E6%AF%8F%E6%97%A5/" >
-                每日
+            <a href="/categories/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" >
+                C语言基础
             </a>
         
     </header>
@@ -404,7 +445,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/11-09/">11-09 笔记</a>
+            <a href="/p/11-09/">11-09 位运算</a>
         </h2>
     
         
@@ -460,815 +501,522 @@
     <section class="article-content">
     
     
-    <h1 id="第十八课-宏">第十八课-宏
-</h1><h2 id="1宏的定义">（1）：宏的定义
-</h2><p><img src="/p/11-09/hongdingyi.png"
-	width="1887"
-	height="1272"
-	srcset="/p/11-09/hongdingyi_hu_c792c0bc3e8f456a.png 480w, /p/11-09/hongdingyi_hu_be01e07dcbe1834d.png 1024w"
+    <h1 id="第十六课-位运算">第十六课-位运算
+</h1><h2 id="1位运算概述">（1）：位运算概述
+</h2><h3 id="复习二进制位">复习二进制位
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/erjinzhiwei.png"
+	
+	
+	
 	loading="lazy"
 	
-		alt="hongdingyi"
+		alt="erjinzhiwei"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="148"
-		data-flex-basis="356px"
 	
 ></p>
-<h3 id="例子">例子
-</h3><p><img src="/p/11-09/hongdingyilizi.png"
-	width="1889"
-	height="1283"
-	srcset="/p/11-09/hongdingyilizi_hu_2d5b0dc23874166f.png 480w, /p/11-09/hongdingyilizi_hu_75ff68bb73e05240.png 1024w"
+<p><em>扩展位数的时候，用符号为去填充多出来的位数</em></p>
+<h3 id="位运算定义">位运算定义
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/weiyunsuandedingyi.png"
+	
+	
+	
 	loading="lazy"
 	
-		alt="hongdingyilizi"
+		alt="weiyunsuan"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="147"
-		data-flex-basis="353px"
 	
 ></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;tchar.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl"><span class="cp">#define PI 3.14
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">float</span> <span class="nf">calc_circle_area</span><span class="p">(</span><span class="kt">float</span> <span class="n">r</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">PI</span> <span class="o">*</span> <span class="n">r</span> <span class="o">*</span> <span class="n">r</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;s:%.2lf&#34;</span><span class="p">,</span> <span class="nf">calc_circle_area</span><span class="p">(</span><span class="mf">1.1f</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><strong>宏定义不带分号</strong></p>
-<h3 id="宏定义优缺点">宏定义优缺点
-</h3><p><img src="/p/11-09/hongdingyiyouquedian.png"
-	width="1914"
-	height="1289"
-	srcset="/p/11-09/hongdingyiyouquedian_hu_b2820be2b5f9cbd.png 480w, /p/11-09/hongdingyiyouquedian_hu_65a65d07d54ea723.png 1024w"
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>&amp;</th>
+          <th>|</th>
+          <th>~</th>
+          <th>^</th>
+          <th>&laquo;</th>
+          <th>&raquo;</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>and</td>
+          <td>or</td>
+          <td>not</td>
+          <td>xor</td>
+          <td>shl</td>
+          <td>shr</td>
+      </tr>
+      <tr>
+          <td>与</td>
+          <td>或</td>
+          <td>取反</td>
+          <td>异或</td>
+          <td>左移</td>
+          <td>右移</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="运算符">运算符
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/yunsuanfu.png"
+	
+	
+	
 	loading="lazy"
 	
-		alt="hongdingyiyouquedian"
+		alt="yunsuanfu"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="148"
-		data-flex-basis="356px"
 	
 ></p>
-<p>c++ 中可以设置常变量</p>
-<h3 id="带参数的宏定义-max">带参数的宏定义-MAX
-</h3><p><img src="/p/11-09/daicanshuhongdingyi.png"
-	width="1899"
-	height="1291"
-	srcset="/p/11-09/daicanshuhongdingyi_hu_4b8a723416f6d9b2.png 480w, /p/11-09/daicanshuhongdingyi_hu_a0388d76c2b28175.png 1024w"
-	loading="lazy"
-	
-		alt="daicanshuhongdingyi"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="147"
-		data-flex-basis="353px"
-	
-></p>
-<p>理解宏展开：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;tchar.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl"><span class="cp">#define MAX(X,Y) X&gt;Y?X:Y
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;max:%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="nf">MAX</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;max:%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="nf">MAX</span><span class="p">(</span><span class="mi">1</span><span class="o">&amp;</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="o">-</span><span class="mi">2</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="err">原封不动的打包替换</span>
-</span></span><span class="line"><span class="cl"><span class="err">第二个</span>
-</span></span><span class="line"><span class="cl"><span class="mi">1</span><span class="o">&amp;</span><span class="mi">7</span><span class="o">&gt;</span><span class="mi">5</span><span class="o">-</span><span class="mi">2</span><span class="o">?</span><span class="mi">1</span><span class="o">&amp;</span><span class="mi">7</span><span class="o">:</span><span class="mi">5</span><span class="o">-</span><span class="mi">1</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="err">先算减法，然后比较运算，然后与运算，然后三目运算</span>
-</span></span><span class="line"><span class="cl"><span class="mi">1</span><span class="o">&amp;</span><span class="mi">1</span><span class="o">?</span><span class="mi">1</span><span class="o">&amp;</span><span class="mi">7</span><span class="o">:</span><span class="mi">4</span>
-</span></span><span class="line"><span class="cl"><span class="mi">1</span><span class="o">?</span><span class="mi">1</span><span class="o">:</span><span class="mi">4</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="err">修改的话，可以给</span><span class="n">x</span> <span class="n">y整个变量打上括号</span><span class="err">，这样替换位置的时候先算括号里的</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="err">如果使用</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">getmax</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span> <span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">x</span><span class="o">&gt;</span><span class="n">y</span><span class="o">?</span><span class="nl">x</span><span class="p">:</span><span class="n">y</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="err">不加括号也可以使用</span>
-</span></span><span class="line"><span class="cl"><span class="err">宏定义会直接替换，函数的话会计算之后再传参</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="带参数的宏与函数优缺点比较">带参数的宏与函数优缺点比较
-</h3><p><img src="/p/11-09/daicanshudehongyouquedian.png"
-	width="1913"
-	height="1293"
-	srcset="/p/11-09/daicanshudehongyouquedian_hu_17ae080b396ff6a3.png 480w, /p/11-09/daicanshudehongyouquedian_hu_32222117c3b86ce5.png 1024w"
-	loading="lazy"
-	
-		alt="daican"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="147"
-		data-flex-basis="355px"
-	
-></p>
-<p>函数有出栈和入栈的调用过程，效率低于宏</p>
-<p>函数还有参数的安全检测，比如参数的类型，如果穿的参数不匹配对应的类型，则无法匹配</p>
 <h6 id="作业">作业
-</h6><p><img src="/p/11-09/zuoye1.png"
-	width="1911"
-	height="980"
-	srcset="/p/11-09/zuoye1_hu_eae8d6a247c4a652.png 480w, /p/11-09/zuoye1_hu_fee7c369ddaa9ced.png 1024w"
+</h6><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/zuoye6.png"
+	
+	
+	
 	loading="lazy"
 	
-		alt="zuoye1"
+		alt="zuoye6"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="195"
-		data-flex-basis="468px"
 	
 ></p>
-<ol>
-<li>
-<p>不带参数，优点：效率高，</p>
-<p>缺点：无法调试，无法修改</p>
-<p>带参数，优点：效率高，直接替换，没有进出栈</p>
-<p>缺点：直接替换而无法进行计算，以及不能进行类型检查</p>
-</li>
-<li>
-<p>#define calcula_array(arr) (sizeof(arr)/sizeof(arr[0]))</p>
-</li>
-<li>
-<p>#define a=a^b,b=a^b,a=a^b</p>
-</li>
-</ol>
-<h2 id="2宏的应用与注意事项">（2）：宏的应用与注意事项
-</h2><h3 id="两个数的交换">两个数的交换
-</h3><p><img src="/p/11-09/jiaohuan.png"
-	width="1644"
-	height="1290"
-	srcset="/p/11-09/jiaohuan_hu_35891b3efd67fa69.png 480w, /p/11-09/jiaohuan_hu_a183b955a2c8fceb.png 1024w"
+<p>1.一个bit为二进制中的一个为数位，一个byte由八个数位组成，成为一个字节</p>
+<p>2.~最高，单目运算  &laquo; &raquo; 次之  然后是  &amp;  ^   |</p>
+<p>3.不可以，整型是用32位补码形式存放。浮点数的存储方式与整数不一样，包含了一位符号位还有指数位，所以不能使用移位运算</p>
+<p>4.一种是逻辑运算符一种是位运算符，单个是针对于数的二进制表达进行位移动，两个是对于两个表达之间的真假判断</p>
+<p>5.都是  &ldquo;x = x &amp; 某数&rdquo; 的含义</p>
+<h2 id="2与运算-">（2）：与运算 &amp;
+</h2><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/yuyunsuan.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="yuyunsuan"
+	
+	
+></p>
+<h3 id="程序表示">程序表示
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/yuyunsuanchengxubiaoshi.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="yuyunsuanchengxubiaoshi"
+	
+	
+></p>
+<p>7，的二进制表示为0111，一个数与7进行与运算，得到的数，就是其末尾3位</p>
+<p>16，0xF</p>
+<p>子网掩码 255.255.255.0 -&gt; 0xFFFFFF00</p>
+<p>ip:192.168.1.100</p>
+<p>前三个字节是网络号。最后一个字节是主机号</p>
+<p>子网掩码，进行与运算获取网络号</p>
+<h3 id="清除整数a二进制中最右边的1">清除整数a二进制中最右边的1
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/qingchu1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="qingchu1"
+	
+	
+></p>
+<h3 id="各种性质">各种性质
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/xingzhiyu.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="xingzhiyu"
+	
+	
+></p>
+<h6 id="作业-1">作业
+</h6><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/zuoye7.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="zuoye7"
+	
+	
+></p>
+<p>1.与运算中，与1运算的值都为本身，与0预算的值都为0，获取低三位低八位，只需要使 0000 0111 , 0000 0000 1111 1111  满足除需要的位数其余数字为0即可获得</p>
+<p>2.某一位为1，也是，假设判断第四位为1，0000 1000  如果结果为1则为1</p>
+<h2 id="3或运算--">（3）：或运算  |
+</h2><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/huoyunsuan.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="huoyunsuan"
+	
+	
+></p>
+<h3 id="或运算程序">或运算程序
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/huoyunsuanchengxu.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="huoyunsuanchengxu"
+	
+	
+></p>
+<h6 id="作业-2">作业
+</h6><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/zuoye8.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="zuoye8"
+	
+	
+></p>
+<p>或运算算法，有1即结果为1,所以只需要确保计算的某位置的数为1即可</p>
+<h2 id="4异或运算----">（4）：异或运算    ^
+</h2><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/yihuoyunsuan.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="yihuoyunsuan"
+	
+	
+></p>
+<p>异或运算，相同为0，不同为1、</p>
+<h3 id="异或的程序表达">异或的程序表达
+</h3><p><img src="C:%5cblog%5cmy-blog%5ccontent%5cpost%5c11.08.2025%5cyihuodechengxubiaoda.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="yihuodechengxubiaoda"
+	
+	
+></p>
+<h3 id="异或运算的性质">异或运算的性质
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/yihuoyunsuandexingzhi.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="yihuoyun"
+	
+	
+></p>
+<p>xor eax eax  自己与自己异或，结果为0</p>
+<p>两个数的交换</p>
+<p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/jiaohuan.png"
+	
+	
+	
 	loading="lazy"
 	
 		alt="jiaohuan"
 	
 	
-		class="gallery-image" 
-		data-flex-grow="127"
-		data-flex-basis="305px"
-	
 ></p>
-<p>宏写法</p>
-<p><img src="/p/11-09/hongjiaohuan.png"
-	width="1912"
-	height="1296"
-	srcset="/p/11-09/hongjiaohuan_hu_9815c0ae9175ceba.png 480w, /p/11-09/hongjiaohuan_hu_6fafc3af1f91b82f.png 1024w"
-	loading="lazy"
+<p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/2.png"
 	
-		alt="hongjiaohuan"
 	
 	
-		class="gallery-image" 
-		data-flex-grow="147"
-		data-flex-basis="354px"
-	
-></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;tchar.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl"><span class="cp">#define SWAP(a,b) \
-</span></span></span><span class="line"><span class="cl"><span class="cp">	int tmp; \
-</span></span></span><span class="line"><span class="cl"><span class="cp">	tmp = a; \
-</span></span></span><span class="line"><span class="cl"><span class="cp">	a = b; \
-</span></span></span><span class="line"><span class="cl"><span class="cp">	b = tmp; 
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;a is not less than b</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;a:%d,b:%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="nf">SWAP</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;a:%d,b:%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>会有一个问题</p>
-<p>即，如果在if条件下，原宏定义为使用括号，如果条件下未用括号，会导致宏展开的语句也没有括号，使得程序报错</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">即
-</span></span><span class="line"><span class="cl">if(a&gt;b)
-</span></span><span class="line"><span class="cl">	SWAP(a,b);
-</span></span><span class="line"><span class="cl">else
-</span></span><span class="line"><span class="cl">	printf()
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">两种办法解决
-</span></span><span class="line"><span class="cl">第一种是语句加上括号
-</span></span><span class="line"><span class="cl">第二种是在原宏定义加上do while 
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">#define SWAP(a,b) \
-</span></span><span class="line"><span class="cl">do{  \	
-</span></span><span class="line"><span class="cl">	int tmp; \
-</span></span><span class="line"><span class="cl">	tmp = a; \
-</span></span><span class="line"><span class="cl">	a = b; \
-</span></span><span class="line"><span class="cl">	b = tmp; \
-</span></span><span class="line"><span class="cl">   }while(0)
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="软件生产宏定义">软件生产宏定义
-</h3><p><img src="/p/11-09/hongdingyihjuli.png"
-	width="1927"
-	height="1155"
-	srcset="/p/11-09/hongdingyihjuli_hu_8aefd97e23b1076e.png 480w, /p/11-09/hongdingyihjuli_hu_b275b5946a68aa62.png 1024w"
-	loading="lazy"
-	
-		alt="hongdingyihjuli"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="166"
-		data-flex-basis="400px"
-	
-></p>
-<h3 id="宏应用">宏应用
-</h3><p><img src="/p/11-09/hongyingyong.png"
-	width="1915"
-	height="1290"
-	srcset="/p/11-09/hongyingyong_hu_f6c8a87556a79094.png 480w, /p/11-09/hongyingyong_hu_3697aa04380ea028.png 1024w"
-	loading="lazy"
-	
-		alt="hongyingyong"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="148"
-		data-flex-basis="356px"
-	
-></p>
-<p>偏移语句中未对0进行解引用，不会引起报错</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;tchar.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_S</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">ch</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="n">S</span><span class="p">,</span><span class="o">*</span><span class="n">PS</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="cp">#define OFFSETOF(s,m)  (size_t)(&amp;(((s *)0)-&gt;m))
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;offset of i:%d,   ch:%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="nf">OFFSETOF</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">i</span><span class="p">),</span> <span class="nf">OFFSETOF</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">ch</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><strong>常用</strong>   链表中某一个数据的偏移</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;tchar.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl"><span class="cp">#define ARRAYSIZE(a) sizeof(a)/sizeof(a[0])
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">ch</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&#34;hello world&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;items of ch is :%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="nf">ARRAYSIZE</span><span class="p">(</span><span class="n">ch</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>计算数组中元素个数</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">abs(a-b)   -&gt; a-b的绝对值  abs是math文件里的函数
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">#define MAX(A,B) ((a)+(b)+abs((a)-(b)))/2
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>不用比较 if 来计算a和b的最大值</p>
-<h3 id="宏的注意事项">宏的注意事项
-</h3><p><img src="/p/11-09/zhuyishixiang.png"
-	width="1905"
-	height="1293"
-	srcset="/p/11-09/zhuyishixiang_hu_16beb56eb46a730a.png 480w, /p/11-09/zhuyishixiang_hu_58a45043ae43b370.png 1024w"
-	loading="lazy"
-	
-		alt="zhuyishixiang"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="147"
-		data-flex-basis="353px"
-	
-></p>
-<p>字符串中属于字符串的一部分，不会宏展开</p>
-<p><img src="/p/11-09/zhuyishixiang1.png"
-	width="1894"
-	height="1299"
-	srcset="/p/11-09/zhuyishixiang1_hu_e21dc5e172f348de.png 480w, /p/11-09/zhuyishixiang1_hu_9ec1640a7d793b1.png 1024w"
-	loading="lazy"
-	
-		alt="zhuyishixiang1"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="145"
-		data-flex-basis="349px"
-	
-></p>
-<p>2.宏名的标识符不能用数字开头</p>
-<p>3.双引号必须完整</p>
-<p>4.标识符必须完整</p>
-<h3 id="和">#和##
-</h3><p><img src="/#he##.png"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<h3 id="定义一个宏来计算一个数的平方">定义一个宏来计算一个数的平方
-</h3><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#define power(x)   ((x)*(x))
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="宏的二义性">宏的二义性
-</h3><p><img src="/p/11-09/hongdeeryixing.png"
-	width="1900"
-	height="1285"
-	srcset="/p/11-09/hongdeeryixing_hu_c03af0eab79c9745.png 480w, /p/11-09/hongdeeryixing_hu_ed8dc5179c0c11dc.png 1024w"
-	loading="lazy"
-	
-		alt="hongdeeryixing"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="147"
-		data-flex-basis="354px"
-	
-></p>
-<h6 id="作业-1">作业
-</h6><p><img src="/p/11-09/zuoye2.png"
-	width="1915"
-	height="1297"
-	srcset="/p/11-09/zuoye2_hu_9861dc2f11a3243e.png 480w, /p/11-09/zuoye2_hu_96c9c7454a11af56.png 1024w"
-	loading="lazy"
-	
-		alt="zuoye2"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="147"
-		data-flex-basis="354px"
-	
-></p>
-<ol>
-<li>偏移：相对于结构体所在内存地址的相对字节数</li>
-</ol>
-<p>#define  (size_t) &amp;(((s *)0)-&gt;m)</p>
-<ol start="2">
-<li>#define calcula_array(arr) sizeof(arr)/sizrof(arr[0])</li>
-<li>#define (a+b+abs(a-b)/2)</li>
-<li>#是字符串化，将宏参数转化为字符串</li>
-<li>##是拼接，用于将两个参数连接起来</li>
-</ol>
-<h2 id="3条件编译">（3）：条件编译
-</h2><p><img src="/p/11-09/tiaojianbianyi.png"
-	width="1922"
-	height="1299"
-	srcset="/p/11-09/tiaojianbianyi_hu_7c43e283fb780b.png 480w, /p/11-09/tiaojianbianyi_hu_b7a2c0d612a5487d.png 1024w"
-	loading="lazy"
-	
-		alt="tiaojianbianyi"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="147"
-		data-flex-basis="355px"
-	
-></p>
-<h3 id="条件编译形式1">条件编译形式1
-</h3><p><img src="/p/11-09/tiaojianbianyixingshi1.png"
-	width="1927"
-	height="1284"
-	srcset="/p/11-09/tiaojianbianyixingshi1_hu_a34ec376d21edc93.png 480w, /p/11-09/tiaojianbianyixingshi1_hu_c55b9ae2baf14f26.png 1024w"
-	loading="lazy"
-	
-		alt="tiaojia1"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="150"
-		data-flex-basis="360px"
-	
-></p>
-<p><img src="/p/11-09/bianyixingshi2.png"
-	width="1871"
-	height="1260"
-	srcset="/p/11-09/bianyixingshi2_hu_36cf65aa12c54783.png 480w, /p/11-09/bianyixingshi2_hu_1661505a37ddbf38.png 1024w"
-	loading="lazy"
-	
-		alt="bianyixingshi2"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="148"
-		data-flex-basis="356px"
-	
-></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;tchar.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl"><span class="cp">#define WINVER 6.1
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl"><span class="cp">#ifdef WINVER
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;WINVER is defined</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="cp">#else
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;WINVER is not defined</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="cp">#endif
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="条件编译方式3">条件编译方式3
-</h3><p><img src="/p/11-09/tiaojianbianyi3.png"
-	width="1893"
-	height="1294"
-	srcset="/p/11-09/tiaojianbianyi3_hu_de5ccbe6f285fd1f.png 480w, /p/11-09/tiaojianbianyi3_hu_b4afd7c77bae4d4.png 1024w"
-	loading="lazy"
-	
-		alt="tiaojianbianyi3"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="146"
-		data-flex-basis="351px"
-	
-></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;tchar.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl"><span class="cp">#define DEBUG 1
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="cp">#if DEBUG
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;c:%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">c</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="cp">#endif
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="err">判断真假</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="条件编译方式4">条件编译方式4
-</h3><p><img src="/p/11-09/bianyifangshi4.png"
-	width="1429"
-	height="1232"
-	srcset="/p/11-09/bianyifangshi4_hu_6f3d2b6baf1304d8.png 480w, /p/11-09/bianyifangshi4_hu_fe776ba8045413b.png 1024w"
-	loading="lazy"
-	
-		alt="bianyif"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="115"
-		data-flex-basis="278px"
-	
-></p>
-<h3 id="条件编译实际工程例子">条件编译实际工程例子
-</h3><p><img src="/p/11-09/tiaojianbianyigongchengshijilizi.png"
-	width="1902"
-	height="1301"
-	srcset="/p/11-09/tiaojianbianyigongchengshijilizi_hu_1a8a24dec4af40bd.png 480w, /p/11-09/tiaojianbianyigongchengshijilizi_hu_39b3e826ce961618.png 1024w"
-	loading="lazy"
-	
-		alt="tiaojianbiany"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="146"
-		data-flex-basis="350px"
-	
-></p>
-<p><img src="/p/11-09/1.png"
-	width="1827"
-	height="1086"
-	srcset="/p/11-09/1_hu_8a16f2e5edc549c4.png 480w, /p/11-09/1_hu_7cfe82b62524da8f.png 1024w"
-	loading="lazy"
-	
-		alt="1"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="168"
-		data-flex-basis="403px"
-	
-></p>
-<h3 id="头文件的预编译">头文件的预编译
-</h3><p><img src="/p/11-09/touwenjian.png"
-	width="1819"
-	height="1309"
-	srcset="/p/11-09/touwenjian_hu_4ce8d9ffbe2c20c8.png 480w, /p/11-09/touwenjian_hu_29e2262d263abe81.png 1024w"
-	loading="lazy"
-	
-		alt="touwenjian"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="138"
-		data-flex-basis="333px"
-	
-></p>
-<p><img src="/p/11-09/2.png"
-	width="465"
-	height="377"
-	srcset="/p/11-09/2_hu_6158de35ffae8e12.png 480w, /p/11-09/2_hu_ff3fa0129670c7f6.png 1024w"
 	loading="lazy"
 	
 		alt="2"
 	
 	
-		class="gallery-image" 
-		data-flex-grow="123"
-		data-flex-basis="296px"
-	
 ></p>
-<p>避免同一个头文件被多次编译</p>
-<p><img src="/p/11-09/3.png"
-	width="914"
-	height="980"
-	srcset="/p/11-09/3_hu_fe159b27af2ca152.png 480w, /p/11-09/3_hu_834e791fb26372fe.png 1024w"
+<h3 id="单指针实现双链表">单指针实现双链表
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/danzhizhenshuanglianbiaop.png"
+	
+	
+	
 	loading="lazy"
 	
-		alt="3"
+		alt="danzhizhen"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="93"
-		data-flex-basis="223px"
 	
 ></p>
-<h6 id="作业-2">作业
-</h6><p><img src="/p/11-09/zuoye3.png"
-	width="1600"
-	height="666"
-	srcset="/p/11-09/zuoye3_hu_c804ad7b3f8b582.png 480w, /p/11-09/zuoye3_hu_1e7f68ad0b25c6c7.png 1024w"
+<p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/qiujiedian.png"
+	
+	
+	
 	loading="lazy"
 	
-		alt="zuoye3"
+		alt="qiujiedian"
 	
 	
-		class="gallery-image" 
-		data-flex-grow="240"
-		data-flex-basis="576px"
+></p>
+<h6 id="作业-3">作业
+</h6><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/zuoye9.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="zuoye9"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1.异或运算，相同为0，相反取1
+</span></span><span class="line"><span class="cl">设a ，b 两个数
+</span></span><span class="line"><span class="cl">int a,b;
+</span></span><span class="line"><span class="cl">a = a xor b
+</span></span><span class="line"><span class="cl">b = &#39;a&#39; xor b = a xor b xor b = a xor 0 = a
+</span></span><span class="line"><span class="cl">a = &#39;a&#39; xor &#39;b&#39; = a xor b xor a = b xor 0 = b
+</span></span><span class="line"><span class="cl">所以 
+</span></span><span class="line"><span class="cl">a = b
+</span></span><span class="line"><span class="cl">b = a
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.链表暂定</p>
+<h2 id="5取反运算">（5）：取反运算
+</h2><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/qufanyunsuan.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="qufanyunsuan"
+	
+	
+></p>
+<p>必须是1个字节，2个或者4个</p>
+<h3 id="程序表示-1">程序表示
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/qufanyunsuanchengxubiaoshi.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="qufanyunsuan"
+	
+	
+></p>
+<p><em>不存在复合运算</em></p>
+<h6 id="作业-4">作业
+</h6><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/zuoye10.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="zuoye10"
+	
+	
+></p>
+<p>先计算 ~0xFFFEFFFF  即 1111 1111 1111 1110 1111 1111 1111 1111  取反  0000 0000 0000 0001 0000 0000 0000 0000</p>
+<p>然后计算 0x12345678  即  0001 0010 0011 0100 0101 0110 0111 1000 与其取或，即把其中一位变成1即可</p>
+<p>结果：0001 0010 0011 0101 0101 0110 0111 1000  = 0x12355678</p>
+<h2 id="6移位运算-----">（6）：移位运算   &laquo;  &raquo;
+</h2><h3 id="左移运算符-">左移运算符 ：&laquo;
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/zuoyiyunsuanfu.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="zuoyiyunsuanfu"
+	
+	
+></p>
+<p>举例</p>
+<p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/zuoyiyunsuanjuli.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="zuoyiyunsuanjuli"
+	
+	
+></p>
+<h3 id="右移运算符">右移运算符
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/youyiyunsuanfu.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="youyiyunsuanfu"
+	
+	
+></p>
+<p>分为逻辑右移和算数右移</p>
+<p>c语言中右移运算符为算数右移</p>
+<p>java   &raquo;&gt;逻辑   &raquo;算数</p>
+<h6 id="作业-5">作业
+</h6><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/zuoye11.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="zuoye11"
+	
+	
+></p>
+<p>1.左移n位，空出来的用0填充  右移n位，空出来的用符号位填充</p>
+<p>2.等于将这个数乘以/除以  2^N次方</p>
+<p>3.(0x12345678 = 0001 0010 0011 0100 0101 0110 0111 1000  &raquo; 24)  = 0000 0000 0000 0000 0000 0000 0001 0010  &amp;  (0xFF=1111 1111)</p>
+<p>结果为 0001 0010 =0x12</p>
+<h2 id="7位运算综合运用">（7）：位运算综合运用
+</h2><h3 id="将第n位置0或者置1">将第N位置0或者置1
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/0zhi1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="0zhi1"
+	
+	
+></p>
+<h3 id="对称加密">对称加密
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/yihuojiami.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="yihuojiami"
+	
+	
+></p>
+<h3 id="实际项目运用">实际项目运用
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/shijiyunyong.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="shijiyunyong"
+	
+	
+></p>
+<h6 id="作业-6">作业
+</h6><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/zuoye12.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="zuoye12"
+	
 	
 ></p>
 <ol>
 <li>
-<p>减少头文件的的重复编译</p>
+<p>127 -&gt;  0111 1111  左移1位，然后用0填充，再加1   1111 1110 加1   结果是1111 1111,  255   (?)</p>
+</li>
+<li>
+<p>-1 -&gt; 1111 1111 右移1位，然后用符号位填充，1111 1111 再加1   结果是 1 0000 0000  -256   (?)</p>
+</li>
+<li>
+<p>算数运算符优先，也就是1&laquo;5   0000 0001    0010 0000  结果是，乘以2的5次方，32</p>
+</li>
+<li>
+<p>15 &amp; 240 换成二进制   0000 1111    1111 0000     与运算，与1运算为本身  , 0</p>
+</li>
+<li>
+<p>0000 1010   ^   0000 1100    异或运算，相同取0，相反取1   即  0000 0110   ，6</p>
+</li>
+<li>
+<p>与1111 1111 0000 0000 0000 0000 0000 0000  进行与运算</p>
+</li>
+<li>
+<p>1向左移动100位，除以7的余数，  0000 0111取余  (?)</p>
+</li>
+<li>
+<p>1~1024  00 0000 0001   -  10 0000 0000   异或取值范围   相同0，不同1   最大即2047，最小(?)  1025  还包含0</p>
+</li>
+<li>
+<p>(?)</p>
+</li>
+</ol>
+<p>解析：</p>
+<p>字符型，-128~127 第一题左移转为十进制254，超出范围，截断，1111 1110 表示为 -2,-2+1=-1</p>
+<p>第二题，右移一位，保持-1，再加1，结果为0</p>
+<p>思路，循环加移位，先将浮点数转换为整数，因为浮点数与整数的编码方式不同，如果直接转换成2进制会出现问题，所以</p>
+<p>需要转换成整数并且一位一位打印</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt; </span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdbool.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;malloc.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#define mask 0x1
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float</span> <span class="n">f</span> <span class="o">=</span> <span class="mf">1.0f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)(</span><span class="o">&amp;</span><span class="n">f</span><span class="p">),</span> <span class="n">j</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">31</span><span class="p">;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">--</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="p">(</span><span class="n">k</span> <span class="o">&gt;&gt;</span> <span class="n">j</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">mask</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">网络：</span><span class="nl">https</span><span class="p">:</span><span class="c1">//www.zhihu.com/question/457946470
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>结果如下</p>
+<p><img src="/diyizhiongsuanfa.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="diyizhiongsuanfa"
+	
+	
+></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1308,190 +1056,62 @@
 </span><span class="lnt">35
 </span><span class="lnt">36
 </span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">ai</span>
-</span></span><span class="line"><span class="cl"><span class="err">条件编译的主要用途：</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt; </span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdbool.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;malloc.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdint.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">print_float_bits</span><span class="p">(</span><span class="kt">float</span> <span class="n">f</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 1. 将 f 的二进制表示转为 uint32_t
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">uint32_t</span> <span class="n">u</span> <span class="o">=</span> <span class="o">*</span><span class="p">((</span><span class="kt">uint32_t</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">f</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="err">平台适配</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 2. 分别提取符号位(1 bit)、指数位(8 bits)、尾数位(23 bits)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//    并打印每一位
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 符号位: bit 31
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 指数位: bit 30~23
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 尾数位: bit 22~0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;符号位(1): &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="p">(</span><span class="n">u</span> <span class="o">&gt;&gt;</span> <span class="mi">31</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">c</span>
-</span></span><span class="line"><span class="cl"><span class="cp">#ifdef _WIN32
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="c1">// Windows 专用代码
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#elif defined(__linux__)
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="c1">// Linux 专用代码
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#endif
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="err">调试代码开关</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">指数位(8): &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">23</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="p">(</span><span class="n">u</span> <span class="o">&gt;&gt;</span> <span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">c</span>
-</span></span><span class="line"><span class="cl"><span class="cp">#ifdef DEBUG
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;调试信息</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="cp">#endif
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="err">功能模块化</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">尾数位(23): &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">22</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="p">(</span><span class="n">u</span> <span class="o">&gt;&gt;</span> <span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">c</span>
-</span></span><span class="line"><span class="cl"><span class="cp">#if FEATURE_A
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="c1">// 功能A的代码
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#endif
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="err">头文件保护</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">print_float_bits</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">c</span>
-</span></span><span class="line"><span class="cl"><span class="cp">#ifndef HEADER_H
-</span></span></span><span class="line"><span class="cl"><span class="cp">#define HEADER_H
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">// 头文件内容
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#endif
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="err">不同版本构建</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">c</span>
-</span></span><span class="line"><span class="cl"><span class="cp">#if VERSION &gt; 2
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="c1">// 新版本功能
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#endif
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="err">好处：同一份源码可编译出不同功能的程序，避免运行时判断的开销。</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div></li>
-<li>
-<p>三种形式，分支语句形式，布尔语句形式，是否进行宏定义形式</p>
-</li>
-</ol>
-<h1 id="第十九课-递归">第十九课-递归
-</h1><h2 id="1递归定义">（1）：递归定义
-</h2><p><img src="/p/11-09/digui.png"
-	width="1909"
-	height="1294"
-	srcset="/p/11-09/digui_hu_dea213ddd9ef8c9e.png 480w, /p/11-09/digui_hu_5480d7dbaddc38fa.png 1024w"
+</div><p>结果：</p>
+<p><img src="/suanfadierzhong.png"
+	
+	
+	
 	loading="lazy"
 	
-		alt="digui"
+		alt="suanfadierzhong"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="147"
-		data-flex-basis="354px"
 	
 ></p>
-<p>函数内部，直接或者间接的调用自身</p>
-<p>递归首先需要有至少一个递归出口，即终止条件，不能无限调用自己</p>
-<p>递归式，原问题划分成子问题，子问题解决性质一样，这样子问题解决之后原问题也会被解决</p>
-<h3 id="阶乘">阶乘
-</h3><p><img src="/p/11-09/jiecheng.png"
-	width="1920"
-	height="1272"
-	srcset="/p/11-09/jiecheng_hu_8f57cf14c4885483.png 480w, /p/11-09/jiecheng_hu_f13140bb9a0c528d.png 1024w"
-	loading="lazy"
-	
-		alt="jiecheng"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="150"
-		data-flex-basis="362px"
-	
-></p>
-<p>定义fact无符号数</p>
-<p>满足n==0或==1，即一个递归出口</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">int fact(unsigned int n)
-</span></span><span class="line"><span class="cl">{
-</span></span><span class="line"><span class="cl">	if(n==0 || n==1)
-</span></span><span class="line"><span class="cl">	{
-</span></span><span class="line"><span class="cl">		return 1;
-</span></span><span class="line"><span class="cl">	}
-</span></span><span class="line"><span class="cl">	return n * fact(n-1);
-</span></span><span class="line"><span class="cl">}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="斐波那契数列">斐波那契数列
-</h3><p><img src="/p/11-09/feibonaqishulie.png"
-	width="1892"
-	height="1170"
-	srcset="/p/11-09/feibonaqishulie_hu_4f2132a85bc9f661.png 480w, /p/11-09/feibonaqishulie_hu_c33ae5e49d14983f.png 1024w"
-	loading="lazy"
-	
-		alt="feibonaqishulie"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="161"
-		data-flex-basis="388px"
-	
-></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">unsigned int feibo(unsigned int n)
-</span></span><span class="line"><span class="cl">{
-</span></span><span class="line"><span class="cl">	if(n==1 || n==2)
-</span></span><span class="line"><span class="cl">	{
-</span></span><span class="line"><span class="cl">		return 1;
-</span></span><span class="line"><span class="cl">	}
-</span></span><span class="line"><span class="cl">	return feibo(n-1)+feibo(n-2);
-</span></span><span class="line"><span class="cl">}
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">printf(&#34;feibo(6)=%d\n&#34;,feibo(6))
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="递归的优缺点">递归的优缺点
-</h3><p><img src="/p/11-09/youquedian.png"
-	width="1875"
-	height="1297"
-	srcset="/p/11-09/youquedian_hu_f971ba55f5e3ee59.png 480w, /p/11-09/youquedian_hu_71a7420da2cdf61c.png 1024w"
-	loading="lazy"
-	
-		alt="youquedian"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="144"
-		data-flex-basis="346px"
-	
-></p>
-<h6 id="作业-3">作业
-</h6><p><img src="/p/11-09/zuoye4.png"
-	width="1408"
-	height="807"
-	srcset="/p/11-09/zuoye4_hu_c6a9e97f2dc593c5.png 480w, /p/11-09/zuoye4_hu_b0392ba81e83831b.png 1024w"
-	loading="lazy"
-	
-		alt="zuoye4"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="174"
-		data-flex-basis="418px"
-	
-></p>
-<ol>
-<li>
-<p>两个，一个是递归的出口，二个是递归式，递归式需要满足符合原式的子式，并且能求解问题</p>
-</li>
-<li>
-<p>递归优点：简洁明了  缺点：效率较低，容易导致栈溢出</p>
-<p>迭代优点：效率高，  缺点：代码编写难度高</p>
-</li>
-</ol>
 
 </section>
 
@@ -1528,18 +1148,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-30/">
+    <a href="/p/11-15/">
         
         
             <div class="article-image">
-                
-                    <img src="/bj.jpg" loading="lazy" data-key="11-30" data-hash="/bj.jpg"/>
+                <img src="/p/11-15/bj.a16604ad36919a2ee87388ff87281a01_hu_9e5044718131be7e.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 11-15 作业"
+                        data-key="11-15" 
+                        data-hash="md5-oWYErTaRmi7oc4j/hygaAQ==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-30 笔记</h2>
+            <h2 class="article-title">11-15 作业</h2>
         </div>
     </a>
 </article>
@@ -1547,23 +1172,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-29/">
+    <a href="/p/11-14/">
         
         
             <div class="article-image">
-                <img src="/p/11-29/bj.60013e3f00f58254a21112014daf3f28_hu_f49e52853cd86f55.jpg" 
+                <img src="/p/11-14/bj.d577405db0b641e0a671e01e6c32b3b8_hu_5c9e70a11824ff53.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-29 笔记"
-                        data-key="11-29" 
-                        data-hash="md5-YAE&#43;PwD1glSiERIBTa8/KA==">
+                        alt="Featured image of post 11-14 作业"
+                        data-key="11-14" 
+                        data-hash="md5-1XdAXbC2QeCmceAebDKzuA==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-29 笔记</h2>
+            <h2 class="article-title">11-14 作业</h2>
         </div>
     </a>
 </article>
@@ -1571,23 +1196,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-28/">
+    <a href="/p/11-13/">
         
         
             <div class="article-image">
-                <img src="/p/11-28/bj.6d148dab18c6c1baea6098318eaface2_hu_4e132fbee8d0b475.jpg" 
+                <img src="/p/11-13/bj.c319198b3d02ce40ea9c75f5a419c871_hu_26b15fc36ffa70d.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-28 笔记"
-                        data-key="11-28" 
-                        data-hash="md5-bRSNqxjGwbrqYJgxjq&#43;s4g==">
+                        alt="Featured image of post 11-13 作业"
+                        data-key="11-13" 
+                        data-hash="md5-wxkZiz0CzkDqnHX1pBnIcQ==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-28 笔记</h2>
+            <h2 class="article-title">11-13 作业</h2>
         </div>
     </a>
 </article>
@@ -1595,23 +1220,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-27/">
+    <a href="/p/11-12/">
         
         
             <div class="article-image">
-                <img src="/p/11-27/bj.82b7b84c3ec267628100612ae18a037f_hu_c4b47f8dd6ff8e67.jpg" 
+                <img src="/p/11-12/bj.ad77c93609bb7b7605a81180b007dcdc_hu_17f111edc709b5c7.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-27 笔记"
-                        data-key="11-27" 
-                        data-hash="md5-gre4TD7CZ2KBAGEq4YoDfw==">
+                        alt="Featured image of post 11-12 作业"
+                        data-key="11-12" 
+                        data-hash="md5-rXfJNgm7e3YFqBGAsAfc3A==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-27 笔记</h2>
+            <h2 class="article-title">11-12 作业</h2>
         </div>
     </a>
 </article>
@@ -1619,23 +1244,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-26/">
+    <a href="/p/11-11/">
         
         
             <div class="article-image">
-                <img src="/p/11-26/bj.8e20f3ed06dc4fa57c2513213cc51884_hu_8728ad2704bb5069.jpg" 
+                <img src="/p/11-11/bj.939ac470f1f843a30170be56807c38ab_hu_d57086257fb1c61d.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-26 笔记"
-                        data-key="11-26" 
-                        data-hash="md5-jiDz7QbcT6V8JRMhPMUYhA==">
+                        alt="Featured image of post 11-11 递归"
+                        data-key="11-11" 
+                        data-hash="md5-k5rEcPH4Q6MBcL5WgHw4qw==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-26 笔记</h2>
+            <h2 class="article-title">11-11 递归</h2>
         </div>
     </a>
 </article>

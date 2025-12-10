@@ -1,11 +1,11 @@
 ---
-title: 11-14 笔记
+title: 11-14 作业
 description: 何时归故里，同她笑一场
 date: 2025-11-14
 slug: 11-14
 image: bj.jpg
 categories:
-  - 每日
+  - c语言基础
 ---
 
 5.从标准输入读入 `R×C` 矩阵，将其：

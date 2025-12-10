@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="什么都没有">
+<title>虚拟机使用</title>
+
+<link rel='canonical' href='http://localhost:1313/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BD%BF%E7%94%A8/'>
+
+<link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="虚拟机使用">
+<meta property='og:description' content="什么都没有">
+<meta property='og:url' content='http://localhost:1313/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BD%BF%E7%94%A8/'>
+<meta property='og:site_name' content='雫的小站'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-01T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-01T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/bj.jpg' />
+<meta name="twitter:title" content="虚拟机使用">
+<meta name="twitter:description" content="什么都没有"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/bj.jpg' />
+        
+        <link rel="stylesheet" href="http://localhost:1313/css/custom.min.css">
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🌸</text></svg>">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "dark");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_f37ea70955b02a87.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">雫的小站</a></h1>
+            <h2 class="site-description">Don&#39;t leave me</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="http://localhost:1313/en/" >English</option>
+                                
+                                    <option value="http://localhost:1313/" selected>中文</option>
+                                
+                                    <option value="http://localhost:1313/ar/" >عربي</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BD%BF%E7%94%A8/">
+                
+                    <img src="/bj.jpg" loading="lazy" alt="Featured image of post 虚拟机使用" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E8%99%9A%E6%8B%9F%E6%9C%BA/" >
+                虚拟机
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BD%BF%E7%94%A8/">虚拟机使用</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            什么都没有
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2025-09-01T00:00:00Z'>Sep 01, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 2 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>创建虚拟机：unbuntu 24.04.3</p>
+<p>新建虚拟机 <code>自定义，典型</code> 都可以</p>
+<p>自定义 &ndash;&gt; 稍后安装操作系统 &ndash;&gt; 系统加版本</p>
+<p>&ndash;&gt;  名称加位置 &ndash;&gt; 磁盘大小（直接创建一个磁盘会限制虚拟机总大小，最好选择拆分多个文件）内存小于自己电脑内存，满足使用即可，网络选择<code>NAT</code>即可</p>
+<p><img src="/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BD%BF%E7%94%A8/isoyingxiang.png"
+	width="1526"
+	height="981"
+	srcset="/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BD%BF%E7%94%A8/isoyingxiang_hu_6a0cfa413c9ad3f9.png 480w, /p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BD%BF%E7%94%A8/isoyingxiang_hu_ec7db80d14d9acaa.png 1024w"
+	loading="lazy"
+	
+		alt="isoyingxiang"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="155"
+		data-flex-basis="373px"
+	
+></p>
+<p>然后启动,安装桌面版</p>
+<p>1.尽量英文环境，中文环境可能会有bug</p>
+<p>2.一些组件</p>
+<p>3.&gt;不连接互联网，减少联网更新组件，后续需要升级自己用升级程序升级</p>
+<p>4.更新，&gt;不更新</p>
+<p>5.&gt;交互式安装和自动安装</p>
+<p>6.软件包，defalut 基础包 ，extended 拓展包</p>
+<p>7.专有软件</p>
+<p>8.磁盘的分区使用</p>
+<p><img src="/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BD%BF%E7%94%A8/useubuntuins8.png"
+	width="777"
+	height="387"
+	srcset="/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BD%BF%E7%94%A8/useubuntuins8_hu_766a4665933eaf36.png 480w, /p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BD%BF%E7%94%A8/useubuntuins8_hu_e41c871376d74239.png 1024w"
+	loading="lazy"
+	
+		alt="useubuntuins8"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="200"
+		data-flex-basis="481px"
+	
+></p>
+<p>9.设置用户名，计算机的名字，密码</p>
+<p><img src="/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BD%BF%E7%94%A8/unbentux856pasw.png"
+	width="887"
+	height="533"
+	srcset="/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BD%BF%E7%94%A8/unbentux856pasw_hu_953869e9197e4464.png 480w, /p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BD%BF%E7%94%A8/unbentux856pasw_hu_d169f0e844e81358.png 1024w"
+	loading="lazy"
+	
+		alt="unbentux856pasw"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="166"
+		data-flex-basis="399px"
+	
+></p>
+<p>10.时区</p>
+<p>11.总结</p>
+<p>第一次启动之后的快速配置</p>
+<p>skip for now  &ndash;&gt; not share   而后finish</p>
+<p>完成操作系统安装</p>
+<p><strong>实现虚拟机与宿主机之间文本内容，文件的快速复制和粘贴</strong></p>
+<p>两个组件，开源实现</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">pen</span><span class="o">-</span><span class="n">vm</span><span class="o">-</span><span class="n">tools</span>
+</span></span><span class="line"><span class="cl"><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">pen</span><span class="o">-</span><span class="n">vm</span><span class="o">-</span><span class="n">tools</span><span class="o">-</span><span class="n">desktop</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>命令行输入 <code>sudo apt install pen-vm-tools-desktop </code></p>
+<p>VM中 &ndash;&gt; 虚拟机 &ndash;&gt; 安装vmtools 也可以实现</p>
+<p><strong>优化系统设置</strong></p>
+<p>1.更新系统，选择镜像</p>
+<p>sofaware&amp;updates 软件与更新</p>
+<p>download中可以测试最快的源，增加下载速度</p>
+<p><code>sudo apt update &amp;&amp; sudo apt upgrade -y</code></p>
+<p>检查更新并安装最新的软件包</p>
+<p>2.正确的驱动，选择了显卡驱动的会自动安装，额外驱动程序</p>
+<p><img src="/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BD%BF%E7%94%A8/unbuntuyouhuaxit2.png"
+	width="920"
+	height="572"
+	srcset="/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BD%BF%E7%94%A8/unbuntuyouhuaxit2_hu_cc8e4baa9490a6ec.png 480w, /p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BD%BF%E7%94%A8/unbuntuyouhuaxit2_hu_330783719162930c.png 1024w"
+	loading="lazy"
+	
+		alt="unbuntuyouhuaxit2"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="160"
+		data-flex-basis="386px"
+	
+></p>
+<p>3.安装必备app</p>
+<p>应用中心</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo apt install vlc gimp gparted synaptic
+</span></span><span class="line"><span class="cl">安装vlc媒体播放器
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">chrome 中心下载，然后包处运行
+</span></span><span class="line"><span class="cl">sudo dpkg -i ...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>4.preload 提升应用启动速度（不能从app里安装）</p>
+<p>5.个性化仪表板（dash），自定义删除，添加，排列。键盘可以快捷启动应用</p>
+<p>6.系统备份，timeshift, 创建系统快照。</p>
+<p><code>sudo apt install timeshift</code></p>
+<p>7.切换主题，暗色主题</p>
+<p>settings &ndash;&gt; appearance</p>
+<p>8.优化dns提升网络速度，配置谷歌dns提升网络访问速度(8.8.8.8, 8.8.4.4)</p>
+<p><img src="/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BD%BF%E7%94%A8/unbuntuyouhuaw.png"
+	width="1046"
+	height="689"
+	srcset="/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BD%BF%E7%94%A8/unbuntuyouhuaw_hu_40e4ce2f4dab575a.png 480w, /p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BD%BF%E7%94%A8/unbuntuyouhuaw_hu_564ca95cd6eff91f.png 1024w"
+	loading="lazy"
+	
+		alt="unbuntuyouhuaw"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="151"
+		data-flex-basis="364px"
+	
+></p>
+<p><img src="/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BD%BF%E7%94%A8/unbuntuyouhuawl.png"
+	width="905"
+	height="642"
+	srcset="/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BD%BF%E7%94%A8/unbuntuyouhuawl_hu_8dc80978327179d4.png 480w, /p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BD%BF%E7%94%A8/unbuntuyouhuawl_hu_954908af8d3d7fc.png 1024w"
+	loading="lazy"
+	
+		alt="unbuntuyouhuawl"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="140"
+		data-flex-basis="338px"
+	
+></p>
+<p>9.优化火狐浏览器性能：在 about:config 中启用硬件加速和渲染优化</p>
+<p>10.Ubuntu Restricted Extras编解码支持</p>
+<p><code>sudo apt install ubuntu-restricted-extras</code></p>
+<p>11.夜间模式  settings -&gt;display -&gt; night light 影响色温</p>
+<p>12.安装 GNOME Tweaks：安装系统调整工具，注意避免修改光标主题。</p>
+<p><code>gnone-browser-connector</code></p>
+<p>13.图标包主题，个性化桌面</p>
+<p>14.自定义桌面搜索功能</p>
+<p>15.个性化设置，图标大小等</p>
+<p>16.分数缩放，显示设置</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <div class="disqus-container">
+    
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2025 Example Person
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.32.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        
+        
+<script src="https://cdn.jsdelivr.net/gh/ZhaoUncle/image@main/static/mouse-click.js"></script>
+<canvas width="1777" height="841" style="position: fixed; left: 0px; top: 0px; z-index: 2147483647; pointer-events: none;"></canvas>
+
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<a href="#" id="back-to-top" title="返回顶部"></a>
+
+
+<style>
+  #back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 55px;
+    width: 55px;
+    height: 55px;
+    border-radius: 7px;
+    background-color: rgba(64, 158, 255, 0.5);
+    box-shadow: var(--shadow-l2);
+    font-size: 30px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+  }
+
+  #back-to-top:before {
+    content: ' ';
+    display: inline-block;
+    position: relative;
+    top: 0;
+    transform: rotate(135deg);
+    height: 10px;
+    width: 10px;
+    border-width: 0 0 2px 2px;
+    border-color: var(--back-to-top-color);
+    border-style: solid;
+  }
+
+  #back-to-top:hover:before {
+    border-color: #2674e0;
+  }
+
+   
+  @media screen and (max-width: 768px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      font-size: 10px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1024px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 40px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1280px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 55px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1536px) {
+    #back-to-top {
+      visibility: hidden;
+    }
+  }
+</style>
+
+
+<script>
+  function backToTop() {
+    document.documentElement.scrollIntoView({
+      behavior: 'smooth',
+    })
+  }
+
+  window.onload = function () {
+    let scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop
+    let totopBtn = this.document.getElementById('back-to-top')
+    if (scrollTop > 0) {
+      totopBtn.style.display = 'inline'
+    } else {
+      totopBtn.style.display = 'none'
+    }
+  }
+
+  window.onscroll = function () {
+    let scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop
+    let totopBtn = this.document.getElementById('back-to-top')
+    if (scrollTop < 200) {
+      totopBtn.style.display = 'none'
+    } else {
+      totopBtn.style.display = 'inline'
+      totopBtn.addEventListener('click', backToTop, false)
+    }
+  }
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Ukenn2112/UkennWeb@3.0/index/web.js">
+
+</script>
+
+
+
+        
+        <script>
+        
+        function initGlobalMusicPlayer() {
+            if (!document.getElementById('global-music-player')) {
+                const playerHTML = `
+                    <div id="global-music-player" style="position: fixed; bottom: 20px; right: 20px; z-index: 99999; background: red; border: 3px solid blue; padding: 15px;">
+                        <audio id="bgMusic" loop>
+                            <source src="/music/background.mp3" type="audio/mpeg">
+                        </audio>
+                        <button id="musicToggle" style="background: green; color: white; border: none; padding: 15px 20px; border-radius: 50%; cursor: pointer; font-size: 20px;">
+                            🎵 播放
+                        </button>
+                        <div id="musicStatus" style="margin-top: 10px; font-size: 14px; color: black; font-weight: bold;">
+                            点击播放
+                        </div>
+                    </div>
+                `;
+                document.body.insertAdjacentHTML('beforeend', playerHTML);
+                
+                
+                const audio = document.getElementById('bgMusic');
+                const toggleBtn = document.getElementById('musicToggle');
+                const status = document.getElementById('musicStatus');
+                
+                
+                const savedState = localStorage.getItem('globalMusicState');
+                const savedTime = localStorage.getItem('globalMusicTime');
+                
+                
+                if (savedTime) {
+                    audio.currentTime = parseFloat(savedTime);
+                }
+                
+                function updateButtonState(isPlaying) {
+                    if (isPlaying) {
+                        status.textContent = '🎶 播放中...';
+                        toggleBtn.innerHTML = '⏸ 暂停';
+                        toggleBtn.style.background = 'orange';
+                    } else {
+                        status.textContent = '⏹ 已暂停';
+                        toggleBtn.innerHTML = '🎵 播放';
+                        toggleBtn.style.background = 'green';
+                    }
+                }
+                
+                
+                function tryAutoResume() {
+                    const savedState = localStorage.getItem('globalMusicState');
+                    if (savedState === 'playing') {
+                        
+                        audio.muted = true;
+                        audio.play().then(() => {
+                            audio.muted = false;
+                            updateButtonState(true);
+                        }).catch(error => {
+                            
+                            status.textContent = '点击恢复播放';
+                            updateButtonState(false);
+                        });
+                    }
+                }
+                
+                
+                setTimeout(tryAutoResume, 1000);
+                
+                
+                let userInteracted = false;
+                const interactionEvents = ['click', 'touchstart', 'keydown', 'scroll'];
+                
+                interactionEvents.forEach(eventType => {
+                    document.addEventListener(eventType, function() {
+                        if (!userInteracted) {
+                            userInteracted = true;
+                            const savedState = localStorage.getItem('globalMusicState');
+                            if (savedState === 'playing' && audio.paused) {
+                                audio.play().then(() => {
+                                    updateButtonState(true);
+                                });
+                            }
+                        }
+                    }, { once: true, passive: true });
+                });
+                
+                toggleBtn.addEventListener('click', function() {
+                    userInteracted = true; 
+                    if (audio.paused) {
+                        audio.play().then(() => {
+                            updateButtonState(true);
+                            localStorage.setItem('globalMusicState', 'playing');
+                        }).catch(error => {
+                            status.textContent = '❌ 播放失败';
+                        });
+                    } else {
+                        audio.pause();
+                        updateButtonState(false);
+                        localStorage.setItem('globalMusicState', 'paused');
+                    }
+                });
+                
+                
+                audio.addEventListener('timeupdate', function() {
+                    localStorage.setItem('globalMusicTime', audio.currentTime);
+                });
+                
+                
+                window.addEventListener('beforeunload', function() {
+                    localStorage.setItem('globalMusicTime', audio.currentTime);
+                    localStorage.setItem('globalMusicState', audio.paused ? 'paused' : 'playing');
+                });
+
+                
+                audio.addEventListener('loadeddata', function() {
+                    console.log('音频加载完成，尝试恢复播放状态');
+                });
+            }
+        }
+
+        
+        function initSakuraEffect() {
+            if (!document.getElementById('sakura-container')) {
+                const sakuraHTML = `
+                    <div id="sakura-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998; overflow: hidden;"></div>
+                `;
+                document.body.insertAdjacentHTML('beforeend', sakuraHTML);
+                
+                
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes sakuraFall {
+                        0% { transform: translateY(-100px) rotate(0deg); opacity: 0.8; }
+                        100% { transform: translateY(100vh) rotate(180deg); opacity: 0; }
+                    }
+                    .sakura { position: absolute; top: -50px; font-size: 18px; animation: sakuraFall linear forwards; user-select: none; pointer-events: none; }
+                `;
+                document.head.appendChild(style);
+                
+                let sakuraCount = 0;
+                const maxSakuras = 10;
+                
+                function createSakura() {
+                    if (sakuraCount >= maxSakuras) return;
+                    
+                    const sakura = document.createElement('div');
+                    sakura.className = 'sakura';
+                    sakura.innerHTML = '🌸';
+                    sakura.style.left = Math.random() * 100 + 'vw';
+                    sakura.style.fontSize = (16 + Math.random() * 16) + 'px';
+                    sakura.style.animationDuration = (10 + Math.random() * 10) + 's';
+                    sakura.style.animationDelay = (Math.random() * 3) + 's';
+                    
+                    document.getElementById('sakura-container').appendChild(sakura);
+                    sakuraCount++;
+                    
+                    setTimeout(() => {
+                        if (sakura.parentNode) {
+                            sakura.remove();
+                            sakuraCount--;
+                        }
+                    }, 20000);
+                }
+                
+                setTimeout(() => {
+                    setInterval(createSakura, 1200);
+                    for (let i = 0; i < 5; i++) {
+                        setTimeout(createSakura, i * 800);
+                    }
+                }, 2000);
+            }
+        }
+
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            initGlobalMusicPlayer();
+            initSakuraEffect();
+        });
+
+        
+        setTimeout(function() {
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/gh/hustcc/canvas-nest.js@1.0.1/dist/canvas-nest.min.js';
+            script.async = true;
+            document.body.appendChild(script);
+        }, 1500);
+        </script>
+    </body>
+</html>

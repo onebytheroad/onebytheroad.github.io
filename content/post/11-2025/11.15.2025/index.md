@@ -1,11 +1,11 @@
 ---
-title: 11-15 笔记
+title: 11-15 作业
 description: 夜阑卧听风吹雨，铁马冰河入梦来
 date: 2025-11-15
 slug: 11-15
 image: bj.jpg
 categories:
-  - 每日
+  - c语言基础
 ---
 
 2.
@@ -273,20 +273,3 @@ static int main()
 	return 0;
 }
 ```
-
-# 1.1 机器语言
-
-引言
-
-![yinyan](yinyan.png)
-
-课程的目的主要是研究如何让硬件更有效率的工作
-
-# 1.2 汇编语言的产生
-
-![chansheng](chansheng.png)
-
-寄存器：cpu中可以储存数据的期间，一个cpu可以有多个寄存器
-
-寄存器的代号表示有不同作用的寄存器
-

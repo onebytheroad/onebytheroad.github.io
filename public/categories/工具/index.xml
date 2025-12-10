@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>工具 on 雫的小站</title>
+        <link>http://localhost:1313/categories/%E5%B7%A5%E5%85%B7/</link>
+        <description>Recent content in 工具 on 雫的小站</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>Example Person</copyright>
+        <lastBuildDate>Sun, 07 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>12-07 IDA</title>
+        <link>http://localhost:1313/p/12-07/</link>
+        <pubDate>Sun, 07 Dec 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/12-07/</guid>
+        <description>&lt;img src="http://localhost:1313/p/12-07/gui.jpg" alt="Featured image of post 12-07 IDA" /&gt;&lt;p&gt;IDA:&lt;/p&gt;
+&lt;p&gt;字符串定位&lt;/p&gt;
+&lt;p&gt;view -&amp;gt; open subviews -&amp;gt; strings&lt;/p&gt;
+&lt;p&gt;交叉引用窗口，找出什么代码使用了这个字符串&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;X&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;tab,F5 反汇编，&lt;/p&gt;
+&lt;p&gt;编译过程中给函数命的名会变为数字，反汇编窗口中可以进行重新命名,右键rename&lt;/p&gt;
+&lt;p&gt;左边框 ctrl + f 直接搜索函数名&lt;/p&gt;
+&lt;p&gt;如果有不可见字符，ida一般会用一个名字来代替返回的字符串&lt;/p&gt;
+&lt;p&gt;提取数据 lazyida&lt;/p&gt;
+&lt;p&gt;R键可以切换&lt;/p&gt;
+&lt;p&gt;基础加密：凯撒加密，异或加密&lt;/p&gt;
+&lt;p&gt;base64编码（使用64个可打印字符编码所有的数据）逆向，根据特征常量确定标准算法&lt;/p&gt;
+&lt;p&gt;特征常量，不变的字符串，&lt;/p&gt;
+&lt;p&gt;base64编码变表逆向&lt;/p&gt;
+&lt;p&gt;魔改表，利用base64编码原理，&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;data = &amp;#39;&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;a = T5[T4.data(ch)]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;在原编码表中找魔改码的位置，然后打印&lt;/p&gt;
+&lt;p&gt;ida 动态调试&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/12-07/tiaoshiidad.png&#34;
+	width=&#34;1008&#34;
+	height=&#34;688&#34;
+	srcset=&#34;http://localhost:1313/p/12-07/tiaoshiidad_hu_94bad818d46cf170.png 480w, http://localhost:1313/p/12-07/tiaoshiidad_hu_3e08f48be32ac8d8.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;tiaoshiidad&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;146&#34;
+		data-flex-basis=&#34;351px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;不依赖于外部输入，每次输入后程序内部调取加密的字符串&lt;/p&gt;
+&lt;p&gt;执行程序，在12行处中断然后看str是什么&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/12-07/debugchuangk.png&#34;
+	width=&#34;2354&#34;
+	height=&#34;1089&#34;
+	srcset=&#34;http://localhost:1313/p/12-07/debugchuangk_hu_9585a56017472c7d.png 480w, http://localhost:1313/p/12-07/debugchuangk_hu_ae9084db31afe8ca.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;debugchuangk&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;216&#34;
+		data-flex-basis=&#34;518px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;伪代码，寄存器，内存，栈&lt;/p&gt;
+&lt;p&gt;断点F2，步入F7，步过F8&lt;/p&gt;
+&lt;p&gt;利用动态调试观察某一些加密函数的返回值来判断加密类型&lt;/p&gt;
+&lt;p&gt;1&lt;/p&gt;
+&lt;p&gt;调试中单步步过，如果程序未继续执行，也就是进入阻塞状态，输入函数卡住&lt;/p&gt;
+&lt;p&gt;内存跳转 G&lt;/p&gt;
+&lt;p&gt;创建字符串 A&lt;/p&gt;
+&lt;p&gt;ida代码修复，数组识别&lt;/p&gt;
+&lt;p&gt;1.返回值&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

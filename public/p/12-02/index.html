@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="遇见你是我最大的幸福">
+<title>12-02 标志寄存器</title>
+
+<link rel='canonical' href='http://localhost:1313/p/12-02/'>
+
+<link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="12-02 标志寄存器">
+<meta property='og:description' content="遇见你是我最大的幸福">
+<meta property='og:url' content='http://localhost:1313/p/12-02/'>
+<meta property='og:site_name' content='雫的小站'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-12-02T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-12-02T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/p/12-02/bj.jpg' />
+<meta name="twitter:title" content="12-02 标志寄存器">
+<meta name="twitter:description" content="遇见你是我最大的幸福"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/p/12-02/bj.jpg' />
+        
+        <link rel="stylesheet" href="http://localhost:1313/css/custom.min.css">
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🌸</text></svg>">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "dark");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_f37ea70955b02a87.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">雫的小站</a></h1>
+            <h2 class="site-description">Don&#39;t leave me</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="http://localhost:1313/en/" >English</option>
+                                
+                                    <option value="http://localhost:1313/" selected>中文</option>
+                                
+                                    <option value="http://localhost:1313/ar/" >عربي</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li>
+          <ol>
+            <li><a href="#标志寄存器flag寄存器">标志寄存器（flag寄存器）</a></li>
+            <li><a href="#adc-指令">adc 指令</a></li>
+            <li><a href="#sbb-指令">sbb 指令</a></li>
+            <li><a href="#cmp-指令">cmp 指令</a></li>
+            <li><a href="#条件转移指令">条件转移指令</a></li>
+            <li><a href="#df标志和串传送指令">DF标志和串传送指令</a></li>
+            <li><a href="#pushf-和-popf">pushf 和 popf</a></li>
+            <li><a href="#debug-中flag寄存器的表示">debug 中flag寄存器的表示</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/12-02/">
+                <img src="/p/12-02/bj_hu_e8604d99e0314d86.jpg"
+                        srcset="/p/12-02/bj_hu_e8604d99e0314d86.jpg 800w, /p/12-02/bj_hu_f50974d1da0447e6.jpg 1600w"
+                        width="800" 
+                        height="600" 
+                        loading="lazy"
+                        alt="Featured image of post 12-02 标志寄存器" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/" >
+                汇编语言
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/12-02/">12-02 标志寄存器</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            遇见你是我最大的幸福
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2025-12-02T00:00:00Z'>Dec 02, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 5 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h3 id="标志寄存器flag寄存器">标志寄存器（flag寄存器）
+</h3><p>==flag寄存器每一都有专门的含义，用于记录特定的信息==</p>
+<p><code>flag 寄存器 结构</code></p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: left">15</th>
+          <th>14</th>
+          <th>13</th>
+          <th>12</th>
+          <th>11</th>
+          <th>10</th>
+          <th>9</th>
+          <th>8</th>
+          <th>7</th>
+          <th>6</th>
+          <th>5</th>
+          <th>4</th>
+          <th>3</th>
+          <th>2</th>
+          <th>1</th>
+          <th>0</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>OF</td>
+          <td>DF</td>
+          <td>IF</td>
+          <td>TF</td>
+          <td>SF</td>
+          <td>ZF</td>
+          <td></td>
+          <td>AF</td>
+          <td></td>
+          <td>PF</td>
+          <td></td>
+          <td>CF</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>ZF 标志</p>
+<p>零标志位，记录执行指令后的结果是否为0</p>
+<p>结果为<code>0 -&gt; ZF = 1</code>     结果不为<code>0 -&gt; ZF = 0</code></p>
+<p>为1为0的背后逻辑：标记计算结果是否为0，标记为真，即<code>ZF = 1</code> 说明成立，标记为假，等于0，说明不成立</p>
+<p>PF 标志</p>
+<p>奇数偶数标志位，记录执行后结果中的 1 的个数是否为偶数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mov al,1
+</span></span><span class="line"><span class="cl">add al,10
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ax = 0000 1011
+</span></span><span class="line"><span class="cl">num(1) = 3
+</span></span><span class="line"><span class="cl">PF = 0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">if ax = 0000 0011
+</span></span><span class="line"><span class="cl">num(1) = 2
+</span></span><span class="line"><span class="cl">PF = 1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>SF 标志</p>
+<p>符号标志位。记录执行指令后结果是否为负数</p>
+<p>结果为负 <code>SF = 1</code> ，  结果为正  <code>SF = 0 </code></p>
+<p>计算机中的数分为有符号数和无符号数两种，两种数表示的范围不一样，同一段二进制码不同的表达会表示不同的数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">00000001B  无符号数1.有符号数+1
+</span></span><span class="line"><span class="cl">10000001B  无符号数129，有符号数-127
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>CF 标志</p>
+<p>进位标志位。用来记录借位或进位。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mov al,98H
+</span></span><span class="line"><span class="cl">add al,al  两个8为数据相加大于8为可容纳值时，会产生从最高有效位想更高维的进位，之前只是说这会导致数据丢失
+</span></span><span class="line"><span class="cl">           其实在运算的时候会将他记录在一个特殊寄存器的某一位中，8086中是用CF来记录
+</span></span><span class="line"><span class="cl">           执行后 (al) = 30H , CF = 1
+</span></span><span class="line"><span class="cl">add al,al  执行后 (al) = 60H , CF = 0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">mov al,97h 减法的借位值也会记录下来
+</span></span><span class="line"><span class="cl">sub al,98h 执行后 (al) = FFH , CF = 1
+</span></span><span class="line"><span class="cl">sub al,al  执行后 (al) = 0 , CF = 0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>OF 标志</p>
+<p>溢出标志位。记录了有符号数运算的结果是否发生了溢出。发生溢出：OF = 1 ,未发生溢出 ： OF = 0</p>
+<p>cpu在执行计算指令的时候，就包含了两种含义：无符号数运算和有符号数运算。</p>
+<p>而OF和CF的存储实际上是相互独立的，对于同一个计算结果从两个不同的角度来储存，区别只在于调用从哪那个方向理解</p>
+<h3 id="adc-指令">adc 指令
+</h3><p>adc是带进位加法指令，利用CF上记录的进位值</p>
+<p><code>adc 操作对象1 操作对象2</code></p>
+<p><code>操作对象1 = 操作对象1 + 操作对象2 + CF</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">adc ax,bx
+</span></span><span class="line"><span class="cl">(ax) = (ax) + (bx) + CF
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">例子：
+</span></span><span class="line"><span class="cl">mov ax,2
+</span></span><span class="line"><span class="cl">mov bx,1
+</span></span><span class="line"><span class="cl">sub bx,ax
+</span></span><span class="line"><span class="cl">adc ax,1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">(ax) = 4  (ax) + 1 + CF = 2 + 1 + 1 = 4
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">mov ax,1
+</span></span><span class="line"><span class="cl">add aax,ax
+</span></span><span class="line"><span class="cl">adc ax,3
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">(ax) = 5  (ax) + 3 + CF = 2 + 3 + 0 =5
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">mov al,98H
+</span></span><span class="line"><span class="cl">add al,al
+</span></span><span class="line"><span class="cl">adc al,3
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">(al) = 34H (al) + 3 + CF = 30H + 3 + 1 = 34H
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>指令意义：</p>
+<p>可以对高位进行相加</p>
+<p>如果数据的位数大于16，并且相加还有进位的情况，那么单纯的用add就无法进行计算</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">计算 1ef000h + 201000h
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">mov ax,001eh
+</span></span><span class="line"><span class="cl">mov bx,0f0000h
+</span></span><span class="line"><span class="cl">add bx,1000h
+</span></span><span class="line"><span class="cl">adc ax,0020h
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">计算 1ef0001000h + 2010001ef0h
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">mov ax,001eh
+</span></span><span class="line"><span class="cl">mov bx,0f000h
+</span></span><span class="line"><span class="cl">mov cx,1000h
+</span></span><span class="line"><span class="cl">add cx,1ef0h
+</span></span><span class="line"><span class="cl">adc bx,1000h
+</span></span><span class="line"><span class="cl">adc ax,0020h
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="sbb-指令">sbb 指令
+</h3><p>带借位减法指令，利用CF记录的借位值</p>
+<p><code>sbb 操作对象1 操作对象2</code></p>
+<p><code>操作对象1 = 操作对象1 - 操作对象2 - CF</code></p>
+<p><code>sbb ax,bx    (ax) = (ax) - (bx) - CF</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">计算003e1000h - 00202000h
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">mov bx,1000h
+</span></span><span class="line"><span class="cl">mov ax,003eh
+</span></span><span class="line"><span class="cl">sub bx,2000h
+</span></span><span class="line"><span class="cl">sbb ax,0020h
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="cmp-指令">cmp 指令
+</h3><p>比较指令，功能相当于减法，只是不保存结果</p>
+<p><code>cmp指令格式：cmp 操作对象1 操作对象2</code></p>
+<p><code>计算  操作对象1 - 操作对象2  </code></p>
+<p>执行cmp指令后，会影响flag寄存器的变化，通过这些变化可以得出比较的结果</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cmp ax,bx
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ax =  bx   结果为0          zf = 1
+</span></span><span class="line"><span class="cl">ax != bx   结果不为0        zf = 0
+</span></span><span class="line"><span class="cl">ax &lt;  bx   产生借位         cf = 1
+</span></span><span class="line"><span class="cl">ax &gt;= bx   不借位           cf = 0 zf可能
+</span></span><span class="line"><span class="cl">ax &gt;  bx   不借位不为0       cf = 0 &amp;&amp; zf =0
+</span></span><span class="line"><span class="cl">ax &lt;= bx   可能借位可能为0   cf = 1 或 zf = 1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>负数的记录，<code>SF = 1 </code>并不能说明<code>cmp ax,bx</code>中 ax 比 bx 小</p>
+<p>因为数在运算过程中可能会导致溢出，并不能用寄存器来单纯的说明计算结果</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mov ah,08ah
+</span></span><span class="line"><span class="cl">mov bh,070h
+</span></span><span class="line"><span class="cl">cmp ah,bh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>结果<code>sf = 0</code> <code>(ah) - (bh) = 1AH</code>,在逻辑上运算的结果是<code>(-118) - 112 = -230</code> ，sf记录实际结果的正负，所以sf = 0</p>
+<p>但不能因此说明在逻辑上的正确结果，而逻辑结果的正负才是cmp指令应该得到的真正结果</p>
+<p>逻辑结果和实际结果产生差别的原因是因为计算之间产生的溢出</p>
+<p>所以想得到逻辑结果需要同时考察SF和OF</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cmp ah,bh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">1; sf=1,of=0
+</span></span><span class="line"><span class="cl">of=0 说明没有溢出，逻辑正负=实际正负
+</span></span><span class="line"><span class="cl">sf=1 实际为0，逻辑为负，所以(ah) &lt; (bh)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">2; sf=1,of=1
+</span></span><span class="line"><span class="cl">of=1 说明有溢出，逻辑正负!=实际正负
+</span></span><span class="line"><span class="cl">sf=1 实际为负
+</span></span><span class="line"><span class="cl">实际结果为负，而又有溢出，说明是由于溢出导致了实际结果为负，逻辑上的真正结果为正 (ah) &gt; (bh)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">3; sf=0;of=1
+</span></span><span class="line"><span class="cl">of=1 说明有溢出，逻辑正负!=实际正负
+</span></span><span class="line"><span class="cl">sf=0 实际为正
+</span></span><span class="line"><span class="cl">实际结果为正，又有溢出，说明溢出导致为正，实际结果为负 (ah) &lt; (bh)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">4; sf=0,of=0
+</span></span><span class="line"><span class="cl">of=0 无溢出
+</span></span><span class="line"><span class="cl">sf=0 为正
+</span></span><span class="line"><span class="cl">(ah) &gt;= (bh)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="条件转移指令">条件转移指令
+</h3><p>转移：修改IP</p>
+<p><code>cmp同时进行两种比较。根据cmp的结果进行的转移的指令也分为两种</code></p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>指令</th>
+          <th>含义</th>
+          <th>检测相关标志位</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>je</td>
+          <td>等于则转移</td>
+          <td>zf=1</td>
+      </tr>
+      <tr>
+          <td>jne</td>
+          <td>不等于则转移</td>
+          <td>zf=0</td>
+      </tr>
+      <tr>
+          <td>jb</td>
+          <td>低于则转移</td>
+          <td>cf=1</td>
+      </tr>
+      <tr>
+          <td>jnb</td>
+          <td>不低于则转移</td>
+          <td>cf=0</td>
+      </tr>
+      <tr>
+          <td>ja</td>
+          <td>高于则转移</td>
+          <td>cf=0 &amp;&amp; zf=0</td>
+      </tr>
+      <tr>
+          <td>jna</td>
+          <td>不高于则转移</td>
+          <td>cf = 1 | zf =1</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><code>e = equal  b = below  a = above  n = not</code></p>
+<p>je的相等且转移的含义来源于与cmp指令的配合使用，实际上检测的是CF是否等于1，如果不与cmp配合使用就有可能不表示相等</p>
+<h3 id="df标志和串传送指令">DF标志和串传送指令
+</h3><p>方向标志位，串处理指令，控制每次操作后si，di的增减</p>
+<p><code>df = 0 </code> 每次操作后si，di递增</p>
+<p><code>df = 1 </code> 每次操作后si，di递减</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">movsb
+</span></span><span class="line"><span class="cl">((es) * 16 + (di)) = ((ds) * 16 + (si))
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">if df = 0
+</span></span><span class="line"><span class="cl">   (si) = (si) + 1
+</span></span><span class="line"><span class="cl">   (di) = (di) + 1
+</span></span><span class="line"><span class="cl">if df = 1
+</span></span><span class="line"><span class="cl">   (si) = (si) - 1
+</span></span><span class="line"><span class="cl">   (di) = (di) - 1
+</span></span><span class="line"><span class="cl">   
+</span></span><span class="line"><span class="cl">将ds:si指向的内存单元中的字节送入es:di中，然后根据标志寄存器df的值，将si或di递减
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">当然也可以传送一个字
+</span></span><span class="line"><span class="cl">movsw
+</span></span><span class="line"><span class="cl">将ds:si指向的内存字单元中的字送入es:di中，然后根据标志寄存器df的值，将si和di递增2或递减2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">rep
+</span></span><span class="line"><span class="cl">根据cx的值，重复执行后面的串传送指令。由于每执行一次movsb指令si和di都会递增或者递减指向后一个或者前一个单元，则rep movsb就可以循环实现(cx)个字符的传送
+</span></span><span class="line"><span class="cl">也可以使用rep movsw
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">由于df控制着执行指令后si和di的转移方向
+</span></span><span class="line"><span class="cl">所以需要由指令对其进行控制，来控制si和di的转移方向
+</span></span><span class="line"><span class="cl">cld：将标志器df位置0
+</span></span><span class="line"><span class="cl">std：将标志器df位置1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="pushf-和-popf">pushf 和 popf
+</h3><p>pushf 将标志寄存器的值压栈</p>
+<p>popf 从栈中弹出数据送入标志寄存器</p>
+<h3 id="debug-中flag寄存器的表示">debug 中flag寄存器的表示
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>标志</th>
+          <th>为1</th>
+          <th>为0</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>of</td>
+          <td>OV</td>
+          <td>NV</td>
+      </tr>
+      <tr>
+          <td>sf</td>
+          <td>NG</td>
+          <td>PL</td>
+      </tr>
+      <tr>
+          <td>zf</td>
+          <td>ZR</td>
+          <td>NZ</td>
+      </tr>
+      <tr>
+          <td>pf</td>
+          <td>PE</td>
+          <td>PO</td>
+      </tr>
+      <tr>
+          <td>cf</td>
+          <td>CY</td>
+          <td>NC</td>
+      </tr>
+      <tr>
+          <td>df</td>
+          <td>DN</td>
+          <td>UP</td>
+      </tr>
+  </tbody>
+</table></div>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/12-06/">
+        
+        
+            <div class="article-image">
+                <img src="/p/12-06/bj.2a867bdf019bc18164c4e331c520012f_hu_d825c6ce53c8507.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 12-06 汇编编写"
+                        data-key="12-06" 
+                        data-hash="md5-KoZ73wGbwYFkxOMxxSABLw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">12-06 汇编编写</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/12-05/">
+        
+        
+            <div class="article-image">
+                <img src="/p/12-05/bj.5fd30f0c63ce2c19f95a7a5adcb80477_hu_39f5fc0f85f3418a.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 12-05 汇编编写"
+                        data-key="12-05" 
+                        data-hash="md5-X9MPDGPOLBn5Wnpa3LgEdw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">12-05 汇编编写</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/12-04/">
+        
+        
+            <div class="article-image">
+                <img src="/p/12-04/bj.ae66fbb470d49a25c0db7234c5f92918_hu_d7e72db24ae69883.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 12-04 汇编编写"
+                        data-key="12-04" 
+                        data-hash="md5-rmb7tHDUmiXA23I0xfkpGA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">12-04 汇编编写</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/12-03/">
+        
+        
+            <div class="article-image">
+                <img src="/p/12-03/bj.84b397e4934578eadf7ef2928bf00f05_hu_26b44697610aa75.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 12-03 内中断"
+                        data-key="12-03" 
+                        data-hash="md5-hLOX5JNFeOrffvKSi/APBQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">12-03 内中断</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/12-01/">
+        
+        
+            <div class="article-image">
+                <img src="/p/12-01/bj.9718f2f5e21e1b3498d7ab6c07b65df5_hu_8338b98929b28019.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 12-01 子程序"
+                        data-key="12-01" 
+                        data-hash="md5-lxjy9eIeGzSY16tsB7Zd9Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">12-01 子程序</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2025 Example Person
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.32.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        
+        
+<script src="https://cdn.jsdelivr.net/gh/ZhaoUncle/image@main/static/mouse-click.js"></script>
+<canvas width="1777" height="841" style="position: fixed; left: 0px; top: 0px; z-index: 2147483647; pointer-events: none;"></canvas>
+
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<a href="#" id="back-to-top" title="返回顶部"></a>
+
+
+<style>
+  #back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 55px;
+    width: 55px;
+    height: 55px;
+    border-radius: 7px;
+    background-color: rgba(64, 158, 255, 0.5);
+    box-shadow: var(--shadow-l2);
+    font-size: 30px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+  }
+
+  #back-to-top:before {
+    content: ' ';
+    display: inline-block;
+    position: relative;
+    top: 0;
+    transform: rotate(135deg);
+    height: 10px;
+    width: 10px;
+    border-width: 0 0 2px 2px;
+    border-color: var(--back-to-top-color);
+    border-style: solid;
+  }
+
+  #back-to-top:hover:before {
+    border-color: #2674e0;
+  }
+
+   
+  @media screen and (max-width: 768px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      font-size: 10px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1024px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 40px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1280px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 55px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1536px) {
+    #back-to-top {
+      visibility: hidden;
+    }
+  }
+</style>
+
+
+<script>
+  function backToTop() {
+    document.documentElement.scrollIntoView({
+      behavior: 'smooth',
+    })
+  }
+
+  window.onload = function () {
+    let scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop
+    let totopBtn = this.document.getElementById('back-to-top')
+    if (scrollTop > 0) {
+      totopBtn.style.display = 'inline'
+    } else {
+      totopBtn.style.display = 'none'
+    }
+  }
+
+  window.onscroll = function () {
+    let scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop
+    let totopBtn = this.document.getElementById('back-to-top')
+    if (scrollTop < 200) {
+      totopBtn.style.display = 'none'
+    } else {
+      totopBtn.style.display = 'inline'
+      totopBtn.addEventListener('click', backToTop, false)
+    }
+  }
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Ukenn2112/UkennWeb@3.0/index/web.js">
+
+</script>
+
+
+
+        
+        <script>
+        
+        function initGlobalMusicPlayer() {
+            if (!document.getElementById('global-music-player')) {
+                const playerHTML = `
+                    <div id="global-music-player" style="position: fixed; bottom: 20px; right: 20px; z-index: 99999; background: red; border: 3px solid blue; padding: 15px;">
+                        <audio id="bgMusic" loop>
+                            <source src="/music/background.mp3" type="audio/mpeg">
+                        </audio>
+                        <button id="musicToggle" style="background: green; color: white; border: none; padding: 15px 20px; border-radius: 50%; cursor: pointer; font-size: 20px;">
+                            🎵 播放
+                        </button>
+                        <div id="musicStatus" style="margin-top: 10px; font-size: 14px; color: black; font-weight: bold;">
+                            点击播放
+                        </div>
+                    </div>
+                `;
+                document.body.insertAdjacentHTML('beforeend', playerHTML);
+                
+                
+                const audio = document.getElementById('bgMusic');
+                const toggleBtn = document.getElementById('musicToggle');
+                const status = document.getElementById('musicStatus');
+                
+                
+                const savedState = localStorage.getItem('globalMusicState');
+                const savedTime = localStorage.getItem('globalMusicTime');
+                
+                
+                if (savedTime) {
+                    audio.currentTime = parseFloat(savedTime);
+                }
+                
+                function updateButtonState(isPlaying) {
+                    if (isPlaying) {
+                        status.textContent = '🎶 播放中...';
+                        toggleBtn.innerHTML = '⏸ 暂停';
+                        toggleBtn.style.background = 'orange';
+                    } else {
+                        status.textContent = '⏹ 已暂停';
+                        toggleBtn.innerHTML = '🎵 播放';
+                        toggleBtn.style.background = 'green';
+                    }
+                }
+                
+                
+                function tryAutoResume() {
+                    const savedState = localStorage.getItem('globalMusicState');
+                    if (savedState === 'playing') {
+                        
+                        audio.muted = true;
+                        audio.play().then(() => {
+                            audio.muted = false;
+                            updateButtonState(true);
+                        }).catch(error => {
+                            
+                            status.textContent = '点击恢复播放';
+                            updateButtonState(false);
+                        });
+                    }
+                }
+                
+                
+                setTimeout(tryAutoResume, 1000);
+                
+                
+                let userInteracted = false;
+                const interactionEvents = ['click', 'touchstart', 'keydown', 'scroll'];
+                
+                interactionEvents.forEach(eventType => {
+                    document.addEventListener(eventType, function() {
+                        if (!userInteracted) {
+                            userInteracted = true;
+                            const savedState = localStorage.getItem('globalMusicState');
+                            if (savedState === 'playing' && audio.paused) {
+                                audio.play().then(() => {
+                                    updateButtonState(true);
+                                });
+                            }
+                        }
+                    }, { once: true, passive: true });
+                });
+                
+                toggleBtn.addEventListener('click', function() {
+                    userInteracted = true; 
+                    if (audio.paused) {
+                        audio.play().then(() => {
+                            updateButtonState(true);
+                            localStorage.setItem('globalMusicState', 'playing');
+                        }).catch(error => {
+                            status.textContent = '❌ 播放失败';
+                        });
+                    } else {
+                        audio.pause();
+                        updateButtonState(false);
+                        localStorage.setItem('globalMusicState', 'paused');
+                    }
+                });
+                
+                
+                audio.addEventListener('timeupdate', function() {
+                    localStorage.setItem('globalMusicTime', audio.currentTime);
+                });
+                
+                
+                window.addEventListener('beforeunload', function() {
+                    localStorage.setItem('globalMusicTime', audio.currentTime);
+                    localStorage.setItem('globalMusicState', audio.paused ? 'paused' : 'playing');
+                });
+
+                
+                audio.addEventListener('loadeddata', function() {
+                    console.log('音频加载完成，尝试恢复播放状态');
+                });
+            }
+        }
+
+        
+        function initSakuraEffect() {
+            if (!document.getElementById('sakura-container')) {
+                const sakuraHTML = `
+                    <div id="sakura-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998; overflow: hidden;"></div>
+                `;
+                document.body.insertAdjacentHTML('beforeend', sakuraHTML);
+                
+                
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes sakuraFall {
+                        0% { transform: translateY(-100px) rotate(0deg); opacity: 0.8; }
+                        100% { transform: translateY(100vh) rotate(180deg); opacity: 0; }
+                    }
+                    .sakura { position: absolute; top: -50px; font-size: 18px; animation: sakuraFall linear forwards; user-select: none; pointer-events: none; }
+                `;
+                document.head.appendChild(style);
+                
+                let sakuraCount = 0;
+                const maxSakuras = 10;
+                
+                function createSakura() {
+                    if (sakuraCount >= maxSakuras) return;
+                    
+                    const sakura = document.createElement('div');
+                    sakura.className = 'sakura';
+                    sakura.innerHTML = '🌸';
+                    sakura.style.left = Math.random() * 100 + 'vw';
+                    sakura.style.fontSize = (16 + Math.random() * 16) + 'px';
+                    sakura.style.animationDuration = (10 + Math.random() * 10) + 's';
+                    sakura.style.animationDelay = (Math.random() * 3) + 's';
+                    
+                    document.getElementById('sakura-container').appendChild(sakura);
+                    sakuraCount++;
+                    
+                    setTimeout(() => {
+                        if (sakura.parentNode) {
+                            sakura.remove();
+                            sakuraCount--;
+                        }
+                    }, 20000);
+                }
+                
+                setTimeout(() => {
+                    setInterval(createSakura, 1200);
+                    for (let i = 0; i < 5; i++) {
+                        setTimeout(createSakura, i * 800);
+                    }
+                }, 2000);
+            }
+        }
+
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            initGlobalMusicPlayer();
+            initSakuraEffect();
+        });
+
+        
+        setTimeout(function() {
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/gh/hustcc/canvas-nest.js@1.0.1/dist/canvas-nest.min.js';
+            script.async = true;
+            document.body.appendChild(script);
+        }, 1500);
+        </script>
+    </body>
+</html>

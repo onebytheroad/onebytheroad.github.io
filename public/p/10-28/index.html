@@ -2,16 +2,16 @@
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="千里孤坟，无处话凄凉。">
-<title>10-28 笔记</title>
+<title>10-28 二维数组</title>
 
 <link rel='canonical' href='http://localhost:1313/p/10-28/'>
 
-<link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="10-28 笔记">
+<link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="10-28 二维数组">
 <meta property='og:description' content="千里孤坟，无处话凄凉。">
 <meta property='og:url' content='http://localhost:1313/p/10-28/'>
 <meta property='og:site_name' content='雫的小站'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-10-28T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-10-28T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/p/10-28/bj.jpg' />
-<meta name="twitter:title" content="10-28 笔记">
+<meta name="twitter:title" content="10-28 二维数组">
 <meta name="twitter:description" content="千里孤坟，无处话凄凉。"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='http://localhost:1313/p/10-28/bj.jpg' />
         
@@ -274,25 +274,11 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li>
-      <ol>
-        <li>
-          <ol>
-            <li><a href="#字符数组">字符数组</a></li>
-          </ol>
-        </li>
-      </ol>
-    </li>
     <li><a href="#第十课-数组">第十课-数组</a>
       <ol>
         <li><a href="#2二维数组">（2）：二维数组</a></li>
         <li><a href="#3数组重要注意事项">（3）：数组重要注意事项</a></li>
         <li><a href="#4数组应用">（4）：数组应用</a></li>
-      </ol>
-    </li>
-    <li><a href="#第十一课-字符串">第十一课-字符串</a>
-      <ol>
-        <li><a href="#1字符串定义">（1）：字符串定义</a></li>
       </ol>
     </li>
   </ol>
@@ -315,7 +301,7 @@
                         width="800" 
                         height="561" 
                         loading="lazy"
-                        alt="Featured image of post 10-28 笔记" />
+                        alt="Featured image of post 10-28 二维数组" />
                 
             </a>
         </div>
@@ -325,8 +311,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/%E6%AF%8F%E6%97%A5/" >
-                每日
+            <a href="/categories/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" >
+                C语言基础
             </a>
         
     </header>
@@ -334,7 +320,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/10-28/">10-28 笔记</a>
+            <a href="/p/10-28/">10-28 二维数组</a>
         </h2>
     
         
@@ -375,7 +361,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 8 分钟
+                    阅读时长: 5 分钟
                 </time>
             </div>
         
@@ -390,211 +376,7 @@
     <section class="article-content">
     
     
-    <h3 id="字符数组">字符数组
-</h3><p><img src="/p/10-28/zifushuzu.png"
-	width="1920"
-	height="1292"
-	srcset="/p/10-28/zifushuzu_hu_465948bdd417358.png 480w, /p/10-28/zifushuzu_hu_7ced6b74bab103cf.png 1024w"
-	loading="lazy"
-	
-		alt="zifushuzu"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="148"
-		data-flex-basis="356px"
-	
-></p>
-<p>strlen(str1)是非法的，str1不是一个字符串</p>
-<p>strlen会从左到右遍历所有元素直到找到最后的0为止，然后减去0，用来计算str1会导致内存溢出</p>
-<p>字符串的规定就是最后一位是0</p>
-<p><img src="/p/10-28/1.png"
-	width="1926"
-	height="1293"
-	srcset="/p/10-28/1_hu_95e7472219e182d3.png 480w, /p/10-28/1_hu_dca7c745078bd476.png 1024w"
-	loading="lazy"
-	
-		alt="1"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="148"
-		data-flex-basis="357px"
-	
-></p>
-<p>a必须是实参，如果是形参的话会导致计算出错，形参的a会退化成指针，一个指针的长度是四个字节或者说是八个字节</p>
-<p>作业：</p>
-<p><img src="/p/10-28/zuoye1.png"
-	width="1923"
-	height="1296"
-	srcset="/p/10-28/zuoye1_hu_685c93cd98e4ebf8.png 480w, /p/10-28/zuoye1_hu_6558daa88bbb683.png 1024w"
-	loading="lazy"
-	
-		alt="zuoye1"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="148"
-		data-flex-basis="356px"
-	
-></p>
-<p>1.随机访问：指能通过  a[下标值]  直接访问到数组中这个下标所在的值   原因：数组的存储方式是按照顺序一个一个字节数相同，连续排列的组合，通过长度乘以下标值能够直接找到对应的内存地址，所以数组能够支持随机访问</p>
-<p>2.在C语言中，数组的长度是固定的，因此无法直接删除数组中的某一项。通常通过<strong>覆盖法</strong>或<strong>辅助数组法</strong>来实现删除操作。</p>
-<ol>
-<li>覆盖法</li>
-</ol>
-<p>确定需要删除元素的下标位置，然后从此位置开始将后续元素全部往前移动一位，而后更新数组长度或者将最后一位换为0</p>
-<p>代码示例：(百度复制)</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">void</span> <span class="nf">removeElement</span><span class="p">(</span><span class="kt">int</span> <span class="n">arr</span><span class="p">[],</span> <span class="kt">int</span> <span class="o">*</span><span class="n">size</span><span class="p">,</span> <span class="kt">int</span> <span class="n">index</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">   <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="o">*</span><span class="n">size</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">       <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;索引超出范围</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">       <span class="k">return</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">   <span class="p">}</span>
-</span></span><span class="line"><span class="cl">   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">index</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="o">*</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">       <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">   <span class="p">}</span>
-</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="o">*</span><span class="n">size</span><span class="p">)</span><span class="o">--</span><span class="p">;</span> <span class="c1">// 更新数组长度
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">arr</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">};</span>
-</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// 要删除的元素索引
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="nf">removeElement</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">size</span><span class="p">,</span> <span class="n">index</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">       <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-</span></span><span class="line"><span class="cl">   <span class="p">}</span>
-</span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ol start="2">
-<li>辅助数组</li>
-</ol>
-<p>创建一个新的数组，然后将除了删除元素的其他元素复制到新数组，再复制回去</p>
-<p>代码示例：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">void</span> <span class="nf">removeElement</span><span class="p">(</span><span class="kt">int</span> <span class="n">arr</span><span class="p">[],</span> <span class="kt">int</span> <span class="o">*</span><span class="n">size</span><span class="p">,</span> <span class="kt">int</span> <span class="n">index</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">   <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="o">*</span><span class="n">size</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">       <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;索引超出范围</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">       <span class="k">return</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">   <span class="p">}</span>
-</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">temp</span><span class="p">[</span><span class="o">*</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="o">*</span><span class="n">size</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">       <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">!=</span> <span class="n">index</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">           <span class="n">temp</span><span class="p">[</span><span class="n">j</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">       <span class="p">}</span>
-</span></span><span class="line"><span class="cl">   <span class="p">}</span>
-</span></span><span class="line"><span class="cl">   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">       <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">   <span class="p">}</span>
-</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="o">*</span><span class="n">size</span><span class="p">)</span><span class="o">--</span><span class="p">;</span> <span class="c1">// 更新数组长度
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">arr</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">};</span>
-</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// 要删除的元素索引
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="nf">removeElement</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">size</span><span class="p">,</span> <span class="n">index</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">       <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-</span></span><span class="line"><span class="cl">   <span class="p">}</span>
-</span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>3.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#define array_number[int a[],int len]
-</span></span><span class="line"><span class="cl">	len = sizeof(a)/sizeof(a[]);
-</span></span><span class="line"><span class="cl">	return 0;
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>4.数组溢出：访问到数组未定义的内存地址</p>
-<p>现象：如果是内存中未定义的地址，进入非法区域，会导致程序崩溃</p>
-<p>或者是访问到其他数据所在的地址，导致数据破坏影响程序运行</p>
-<p>或者是得到一些未定义的垃圾值</p>
-<p>c语言并不检测数组溢出，所以这算是一个隐性的bug</p>
-<p>注意事项</p>
-<p><img src="/p/10-28/shuzuchushihua.png"
-	width="1916"
-	height="1306"
-	srcset="/p/10-28/shuzuchushihua_hu_96f13d2c259ab2ee.png 480w, /p/10-28/shuzuchushihua_hu_43276dd10522dab8.png 1024w"
-	loading="lazy"
-	
-		alt="shuzuchushihua"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="146"
-		data-flex-basis="352px"
-	
-></p>
-<p>右边，在定义时候打了；   也就是没有进行初始化，用循环进行遍历初始化</p>
-<h1 id="第十课-数组">第十课-数组
+    <h1 id="第十课-数组">第十课-数组
 </h1><h2 id="2二维数组">（2）：二维数组
 </h2><p><img src="/p/10-28/erweishuzu.png"
 	width="1920"
@@ -1404,136 +1186,6 @@
 		data-flex-basis="359px"
 	
 ></p>
-<h1 id="第十一课-字符串">第十一课-字符串
-</h1><h2 id="1字符串定义">（1）：字符串定义
-</h2><p><img src="/p/10-28/zifuchuan.png"
-	width="1804"
-	height="647"
-	srcset="/p/10-28/zifuchuan_hu_5fad751a356855d3.png 480w, /p/10-28/zifuchuan_hu_423cbe2a73f9f934.png 1024w"
-	loading="lazy"
-	
-		alt="zifuchuan"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="278"
-		data-flex-basis="669px"
-	
-></p>
-<p>定义：</p>
-<p><img src="/p/10-28/zifuchuandingyi.png"
-	width="1920"
-	height="1295"
-	srcset="/p/10-28/zifuchuandingyi_hu_31a39a0cb6d71467.png 480w, /p/10-28/zifuchuandingyi_hu_16e70b42b3b3da51.png 1024w"
-	loading="lazy"
-	
-		alt="zifuchuandingyi"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="148"
-		data-flex-basis="355px"
-	
-></p>
-<p>&lsquo;0&rsquo;&ndash;&gt;48</p>
-<p>&lsquo;\0&rsquo;&ndash;&gt;0</p>
-<p>遇到\0字符串即结束</p>
-<p>转义字符：</p>
-<p><img src="/p/10-28/zhuanyizifu.png"
-	width="1923"
-	height="1296"
-	srcset="/p/10-28/zhuanyizifu_hu_1f74c06274807c47.png 480w, /p/10-28/zhuanyizifu_hu_57833af4ded5247c.png 1024w"
-	loading="lazy"
-	
-		alt="zhuanyizifu"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="148"
-		data-flex-basis="356px"
-	
-></p>
-<p>c语言中字符串是用双引号包裹起来的，需要用转移字符表示此处双引号只是一个引号</p>
-<p><img src="/p/10-28/changjianzhuanyi.png"
-	width="1056"
-	height="721"
-	srcset="/p/10-28/changjianzhuanyi_hu_1ad89fb031549238.png 480w, /p/10-28/changjianzhuanyi_hu_21ca6e6f567c34a0.png 1024w"
-	loading="lazy"
-	
-		alt="changjianzhuanyi"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="146"
-		data-flex-basis="351px"
-	
-></p>
-<p>单引号包裹起来的字符叫字符常量</p>
-<p>字符串常量：</p>
-<p><img src="/p/10-28/zifuchuanchangliang.png"
-	width="1917"
-	height="1291"
-	srcset="/p/10-28/zifuchuanchangliang_hu_18de4380bfeeaef3.png 480w, /p/10-28/zifuchuanchangliang_hu_e4facd7f627fedad.png 1024w"
-	loading="lazy"
-	
-		alt="zifuchuanchangliang"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="148"
-		data-flex-basis="356px"
-	
-></p>
-<p>“hello world”  字符常量</p>
-<p>‘a’是一个字符，&ldquo;a&quot;是一个字符串</p>
-<p>“123”是一个字符串，123是一个整数值   可以调用函数互相切换</p>
-<p>“1”.‘1’,1   字符串，字符，整数</p>
-<p>“0”，‘0’，‘\0’，0，NULL    字符串，字符，字符，整数，指针</p>
-<p>“”  空字符串，仍然有看不见的0字节</p>
-<p>char *str = &ldquo;hello world&rdquo;      字符指针  ，字符串存放在静态常量区，赋值给了字符指针，指向了常量区</p>
-<p>char str[]= &ldquo;hello world&rdquo;      字符常量区的字符赋值给了这个字符数组，并且有0字节，一共12个字节</p>
-<p>str1指向静态常量区，静态常量区不能更改   (str1+1)=&lsquo;a&rsquo; 会报错</p>
-<p>str2[1]=&lsquo;1&rsquo;;</p>
-<p><strong>字符不可以赋值给指针，地址可以赋值给指针</strong></p>
-<p><img src="/p/10-28/zifuchuanzhonglei.png"
-	width="1906"
-	height="1293"
-	srcset="/p/10-28/zifuchuanzhonglei_hu_fafcbae0853bbf81.png 480w, /p/10-28/zifuchuanzhonglei_hu_e58d8f150c601477.png 1024w"
-	loading="lazy"
-	
-		alt="zifuchuanzhonglei"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="147"
-		data-flex-basis="353px"
-	
-></p>
-<p>L&rsquo;a&rsquo;  占两个字节   unicode编码</p>
-<p>&lsquo;a&rsquo; 占一个字节</p>
-<p>作业：</p>
-<p><img src="/p/10-28/zuoye5.png"
-	width="1919"
-	height="1296"
-	srcset="/p/10-28/zuoye5_hu_b6c3a9480f75c56f.png 480w, /p/10-28/zuoye5_hu_f285fcf05ef2c3ee.png 1024w"
-	loading="lazy"
-	
-		alt="zuoye5"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="148"
-		data-flex-basis="355px"
-	
-></p>
-<ol>
-<li>0:一个整数，数值    &lsquo;0&rsquo;一个字符常量，值类型   &ldquo;0&rdquo;  一个表示0的字符串    &lsquo;\0&rsquo; 一个字符变量</li>
-<li>“123” 一个字符串  123 一个整数数值</li>
-<li>用\转义符，表示此引号不具有特殊含义</li>
-<li>用双引号括起来,然后内部再用两个斜杠来表示</li>
-<li>9，1-8八个字符再加上\0的末尾不可见字符</li>
-<li>区别在于每一个元素所占字节数，未标注L 所用是ASCII编码，每一个元素占一个字节，标注L所用UNICODE编码，每一个元素占两个字节</li>
-</ol>
 
 </section>
 
@@ -1570,18 +1222,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-30/">
+    <a href="/p/11-15/">
         
         
             <div class="article-image">
-                
-                    <img src="/bj.jpg" loading="lazy" data-key="11-30" data-hash="/bj.jpg"/>
+                <img src="/p/11-15/bj.a16604ad36919a2ee87388ff87281a01_hu_9e5044718131be7e.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 11-15 作业"
+                        data-key="11-15" 
+                        data-hash="md5-oWYErTaRmi7oc4j/hygaAQ==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-30 笔记</h2>
+            <h2 class="article-title">11-15 作业</h2>
         </div>
     </a>
 </article>
@@ -1589,23 +1246,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-29/">
+    <a href="/p/11-14/">
         
         
             <div class="article-image">
-                <img src="/p/11-29/bj.60013e3f00f58254a21112014daf3f28_hu_f49e52853cd86f55.jpg" 
+                <img src="/p/11-14/bj.d577405db0b641e0a671e01e6c32b3b8_hu_5c9e70a11824ff53.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-29 笔记"
-                        data-key="11-29" 
-                        data-hash="md5-YAE&#43;PwD1glSiERIBTa8/KA==">
+                        alt="Featured image of post 11-14 作业"
+                        data-key="11-14" 
+                        data-hash="md5-1XdAXbC2QeCmceAebDKzuA==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-29 笔记</h2>
+            <h2 class="article-title">11-14 作业</h2>
         </div>
     </a>
 </article>
@@ -1613,23 +1270,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-28/">
+    <a href="/p/11-13/">
         
         
             <div class="article-image">
-                <img src="/p/11-28/bj.6d148dab18c6c1baea6098318eaface2_hu_4e132fbee8d0b475.jpg" 
+                <img src="/p/11-13/bj.c319198b3d02ce40ea9c75f5a419c871_hu_26b15fc36ffa70d.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-28 笔记"
-                        data-key="11-28" 
-                        data-hash="md5-bRSNqxjGwbrqYJgxjq&#43;s4g==">
+                        alt="Featured image of post 11-13 作业"
+                        data-key="11-13" 
+                        data-hash="md5-wxkZiz0CzkDqnHX1pBnIcQ==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-28 笔记</h2>
+            <h2 class="article-title">11-13 作业</h2>
         </div>
     </a>
 </article>
@@ -1637,23 +1294,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-27/">
+    <a href="/p/11-12/">
         
         
             <div class="article-image">
-                <img src="/p/11-27/bj.82b7b84c3ec267628100612ae18a037f_hu_c4b47f8dd6ff8e67.jpg" 
+                <img src="/p/11-12/bj.ad77c93609bb7b7605a81180b007dcdc_hu_17f111edc709b5c7.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-27 笔记"
-                        data-key="11-27" 
-                        data-hash="md5-gre4TD7CZ2KBAGEq4YoDfw==">
+                        alt="Featured image of post 11-12 作业"
+                        data-key="11-12" 
+                        data-hash="md5-rXfJNgm7e3YFqBGAsAfc3A==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-27 笔记</h2>
+            <h2 class="article-title">11-12 作业</h2>
         </div>
     </a>
 </article>
@@ -1661,23 +1318,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-26/">
+    <a href="/p/11-11/">
         
         
             <div class="article-image">
-                <img src="/p/11-26/bj.8e20f3ed06dc4fa57c2513213cc51884_hu_8728ad2704bb5069.jpg" 
+                <img src="/p/11-11/bj.939ac470f1f843a30170be56807c38ab_hu_d57086257fb1c61d.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-26 笔记"
-                        data-key="11-26" 
-                        data-hash="md5-jiDz7QbcT6V8JRMhPMUYhA==">
+                        alt="Featured image of post 11-11 递归"
+                        data-key="11-11" 
+                        data-hash="md5-k5rEcPH4Q6MBcL5WgHw4qw==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-26 笔记</h2>
+            <h2 class="article-title">11-11 递归</h2>
         </div>
     </a>
 </article>

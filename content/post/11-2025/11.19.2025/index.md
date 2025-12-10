@@ -1,11 +1,11 @@
 ---
-title: 11-19 笔记
+title: 11-19 寄存器下
 description: 绿蚁新醅酒，红泥小火炉
 date: 2025-11-19
 slug: 11-19
 image: bj.jpg
 categories:
-  - 每日
+  - 汇编语言
 ---
 
 ## 3.6 栈

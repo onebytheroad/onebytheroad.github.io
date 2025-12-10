@@ -1,12 +1,698 @@
 ---
-title: 11-02 笔记
+title: 11-02 函数
 description: 我爱你，没有别的什么，只是爱你
 date: 2025-11-02
 slug: 11-02
 image: bj.jpg
 categories:
-    - 每日
+    - c语言基础
 ---
+
+# 第十二课-函数
+
+## （1）：函数定义与应用
+
+### 定义
+
+![hanshudingyi](C:/blog/my-blog/content/post/11-2025/11.01.2025/hanshudingyi.png)
+
+### 定义形式与调用，调试
+
+![hanshudingyixingshiyudiaoyong'](C:/blog/my-blog/content/post/11-2025/11.01.2025/hanshudingyixingshiyudiaoyong'.png)
+
+输入参数：外部传递给函数
+
+输出参数：函数计算的结果，可以通过输出方式传递给调用值；也能用return方式返回给调用值
+
+有的函数即做了输出参数也做了输入参数
+
+变参函数：函数的参数个数可以变化，比如printf函数在打印的时候，可以打印多个
+
+### 函数应用，头文件写法（导出函数和变量）
+
+![hanshuyingyongtouwenjian](C:/blog/my-blog/content/post/11-2025/11.01.2025/hanshuyingyongtouwenjian.png)
+
+```
+#include <stdio.h>
+#include <stdbool.h>
+
+int myadd(int x, int y)//声明的时候可以不用形参，只加两个类型也可以
+{
+	int res;
+	res = x + y;
+	return x + y;
+}
+
+int getmax(int x, int y)
+{
+	return x > y ? x : y;
+}
+
+bool leep_year(int year)
+{
+	(year % 4 == 0) && (year % 100 || year % 400 == 0);
+}
+
+char mytolower(char ch)
+{
+	if (ch >= 'A' && ch <= 'Z')
+	{
+		ch += 'a' - 'A';
+	}
+
+	return ch;
+}
+
+void swap(int x, int y)//整数进行交换就不需要返回值
+{
+	int tmp = x;
+	x = y;
+	y = tmp;
+}
+
+暂时如此，后续实验出现问题有更改
+1.使用bool类型需要包含头文件
+这是在myfunc.c里面打的函数，跟main函数不在同一个源文件里
+```
+
+#### 写头文件
+
+~~~
+#pragma once
+#include <stdbool.h>
+
+int myadd(int x, int y);        //保证头文件项目在编译的时候只被包含一次
+int getmax(int x, int y);       //然后将刚刚写的函数全部放在里面声明
+bool leep_year(int year);       //再到源文件里写包含
+char mytolower(char ch);        //自己写的源文件用""。引号是从当前目录开始查找
+void swap(int x, int y);        //而<>是从系统目录开始查找
+~~~
+
+预编译
+
+```
+#ifndef _MYFUNC_H_
+#define _MYFUNC_H_
+
+int myadd(int x, int y);        
+int getmax(int x, int y);      
+bool leep_year(int year);       
+char mytolower(char ch);       
+void swap(int x, int y);        
+
+#endif
+```
+
+swap运行之后函数的值没有发生交换
+
+**形参和实参的区别**
+
+在函数内部完成了形参的交换，但实际上设定的函数实参没有发生改变
+
+采用的传参方法叫传值，传值是不能改变实参的，传值是将实参的值拷贝到了形参的位置，改变形参并不会改变实参，上述定义的函数都是采用传值的方法运行的
+
+### main函数参数的使用
+
+![mainhanshucanshushiyong](C:/blog/my-blog/content/post/11-2025/11.01.2025/mainhanshucanshushiyong.png)
+
+例子:
+
+![shili](C:/blog/my-blog/content/post/11-2025/11.01.2025/shili.png)
+
+```
+#include <stdio.h>
+#include <string.h>
+#include <tchar.h>
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+
+	if (argc != 2)
+	{
+		printf("Invalid parameters\n");
+		return 0;
+	}
+	
+	for (int i = 0; i < argc; i++)
+	{
+		_tprintf(_T("%s\n"), argv[i]);
+	}
+	
+	return 0;
+}
+
+exe中-->属性-->调试-->命令参数
+```
+
+argv中，argv[0]永远是我们程序自身，此程序中拿两个参数，即自身和在调试中输入的命令行参数，两个
+
+### 函数定义注意事项
+
+![hanshudingyizhuyishixiang](C:/blog/my-blog/content/post/11-2025/11.01.2025/hanshudingyizhuyishixiang.png)
+
+*功能单一*   方便维护，可模块化
+
+![mokuaihua](C:/blog/my-blog/content/post/11-2025/11.01.2025/mokuaihua.png)
+
+输入输出，设计函数的接口
+
+局部变量要进行初始化
+
+严进宽出：严格判断是否合法，长度是否合理，类型是否匹配
+
+assert  断严
+
+复杂度  时间短  尽量不分配内存
+
+边界考虑：特殊情况，考虑所有的情况，大于小于，多了少了，内存是否重叠
+
+功能测试：调用，测试，不同的测试用语
+
+return不可以返回指向栈内存，栈内存在结束时会被释放
+
+#### 逆置字符串
+
+定义了函数
+
+~~~
+#include <stdio.h>
+#include <string.h>
+#include <tchar.h>
+
+void reverse_str(char* str)
+{
+
+	int len = 0;
+	char* s = str;
+	while (*s != '\0')
+	{
+		s++;
+		len++;
+	}
+
+	for (int i=0; i < len / 2; i++)
+	{
+		char ch = str[i];
+		str[i] = str[len - 1 - i];
+		str[len - 1 - i] = ch;
+	}
+
+	return str;
+}
+
+int main()
+{
+	char* str = "hello world";
+
+	printf("str before:%s\n", str);
+	reverse_str(str);
+	printf("str after:%s\n", str);
+	return 0;
+}
+
+
+改为char str[] = "hello world";
+就不会崩溃，这样是在栈上分配的地址，栈上的地址是可读可写的
+~~~
+
+在进行逆置字符串的操作，这一段内存必须是可读可写的，上述代码会崩溃
+
+用指针指向的 “hello world”  是存储在静态常量区是不能读写的
+
+该函数设计上问题：
+
+1.没有模块化
+
+也就是需要把计算字符串长度这一段代码单独弄出来形成一个函数
+
+```
+#include <stdio.h>
+#include <string.h>
+#include <tchar.h>
+
+int mystrlen(const char* str)
+{
+	int len = 0;
+	char* s =(char *) str;
+	while (*s != '\0')
+	{
+		s++;
+		len++;
+	}
+
+	return len;
+}
+
+
+void reverse_str(char* str)
+{
+	int len = mystrlen(str);
+
+	for (int i=0; i < len / 2; i++)
+	{
+		char ch = str[i];
+		str[i] = str[len - 1 - i];
+		str[len - 1 - i] = ch;
+	}
+
+	return str;
+}
+
+int main()
+{
+	char str[] = "hello world";
+
+	printf("str before:%s\n", str);
+	reverse_str(str);
+	printf("str after:%s\n", str);
+	return 0;
+}
+
+```
+
+### 库函数
+
+![kuhanshu](C:/blog/my-blog/content/post/11-2025/11.01.2025/kuhanshu.png)
+
+
+
+```
+#include <stdio.h>
+#include <Windows.h>
+
+int main()
+{
+	char *filename="d:\\docs\\1.doc";   //1.txt 可行，改成1.doc不行，所以打错误代码
+	int res =remove(filename);
+	if(res==0)
+	{
+		printf("delted!\n");
+	}
+	else
+	{
+		printf("failed\n");
+	}
+	
+	errno_t err=GetLastError();
+	printf("err:%d\n",err)
+	//通过错误码32，tool中搜索得知是因为文件正在运行
+	
+	
+	return 0;
+}
+```
+
+### 面向对象和面向过程
+
+![mianxiangduixiang](C:/blog/my-blog/content/post/11-2025/11.01.2025/mianxiangduixianghemianxianguocheng.png)
+
+面向过程：抽象出解决问题的步骤，然后用函数表达步骤，解决的时候一一调用
+
+面向对象：抽象出问题里面的对象，然后分析对象的行为，解决问题是对象发生了什么样的行为，调用对象的行为
+
+##### 作业
+
+![zuoye2](C:/blog/my-blog/content/post/11-2025/11.01.2025/zuoye2.png)
+
+1.
+
+```
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h> 
+
+int main()
+{
+	char str[] = "hello world";
+	int len = sizeof(str) / 2 - 1;
+	char* p1 = str[0];
+	char* p2 = str[len];
+
+	for (int i = 0; i <len; )
+	{
+		for (int j = len+1 ; j < strlen(str); )
+		{
+			char tep = str[i];
+			str[i] = str[j];
+			str[j] = tep;
+			++i;
+			++j;
+
+		}
+	}
+
+	for (int i = 0; i < sizeof(str); i++)
+	{
+		printf("%c", str[i]);
+	}
+	return 0;
+}
+
+```
+
+2.
+
+```
+
+```
+
+
+
+
+
+## （2）：函数传参
+
+![hanshuchuancan](C:/blog/my-blog/content/post/11-2025/11.01.2025/hanshuchuancan.png)
+
+传引用是c++里面的
+
+c语言里面有两种，函数里面传参有三种
+
+#### 传值
+
+拷贝实参的值，无法改变实参
+
+func1  形参x是a的值的拷贝，x与a独立
+
+#### 传指针
+
+拷贝实参的地址，可以改变实参
+
+func2 形参*x是a的地址的拷贝，x就是a     引用中取用了a的地址
+
+#### 传引用
+
+void func3(int &x)
+
+传过来引用的地址，可以改变实参，x就是a 
+
+如果一个函数有多个参数，每一个参数可以有不同的传值方法
+
+**指针可能会指向错误的内存的地址，难以驾驭，可能破坏程序**
+
+![sikao](C:/blog/my-blog/content/post/11-2025/11.01.2025/sikao.png)
+
+在传引用的情况下，形参就是实参的别名，代表的就是实参
+
+### 传值还是传指针
+
+![chuanzhihaishi](C:/blog/my-blog/content/post/11-2025/11.01.2025/chuanzhihaishichuanzhizhen.png)
+
+并非函数设定的指针，在传参的时候就是在传指针，而是看传的实参，是否是传的指针
+
+func2(&c2)  //传c2的地址，是传指针，传指针的指针，二级指针
+
+~~~
+void func1(char *c);
+void func2(char **c);
+
+int main(void)
+{
+	char c1;
+	char *c2;
+
+	func1(&c1);
+	func1(c2);
+	
+	//func1(&c2)错误,func1本身是一级指针，&c2取地址就二级指针了，就是语法错误
+	
+	func(&c2);
+	return 0;
+	
+	
+	
+}
+~~~
+
+ #### swap-交换
+
+![swap jiaohuan](C:/blog/my-blog/content/post/11-2025/11.01.2025/swap jiaohuan.png)
+
+ ```
+#include <stdio.h>
+#include <string.h>
+#include <tchar.h>
+
+void swap1(int x,int y)
+{
+	int tep = x;
+	x = y;
+	y = tep;
+}
+
+void swap2(int *x, int *y)
+{
+	int tep = *x;
+	*x = *y;
+	*y = tep;
+}
+
+void swap3(int &x, int &y)
+{
+	int tep = x;
+	x = y;
+	y = tep;
+}
+int main()
+{
+	int x = 10;
+	int y = 20;
+
+
+	swap1(x,y);
+	printf("x:%d,y:%d\n", x,y);
+
+	swap2(&x,&y);
+	printf("x:%d,y:%d\n", x, y);
+
+	x = 10;
+	y = 20;
+
+
+	swap3(x,y);
+	printf("x:%d,y:%d\n", x, y);
+
+
+	return 0;
+}
+
+ ```
+
+### 函数用参数作为返回值
+
+![hanshuyongcanshuzuofanhuizhi](C:\blog\my-blog\content\post\11.01.2025\hanshuyongcanshuzuofanhuizhi.png)
+
+做输出参数的时候，必须使用传指针或者传引用，因为传值无法改变实参
+
+```
+#include <stdio.h>
+#include <string.h>
+
+int add1(int x, int y)
+{
+	return x + y;
+}
+
+void add2(int x, int y, int* sum)
+{
+	if (sum == NULL)
+		return;
+	*sum = x + y;
+}
+
+void add3(int x, int y, int& sum)
+{
+	sum = x + y;
+}
+
+void add4(int* x, int y)
+{
+	*x = *x + y;
+}
+
+void add5(int &x, int y)
+{
+	x = x + y;
+}
+
+
+int main()
+{
+	int a = 10;
+	int b = 20;
+	int sum = 0;
+
+	sum = add1(a, b);
+	printf("sum:%d\n", sum);
+
+	add2(a, b,&sum);
+	printf("sum:%d\n", sum);
+
+	add3(a, b,sum);
+	printf("sum:%d\n", sum);
+
+	add4(&a, b);
+	printf("sum:%d\n", sum);
+	
+	a= 10;
+		add5(a,b);
+	printf("sum:%d\n", sum);
+	return 0;
+}
+```
+
+
+
+### 数组做函数参数 ，防溢出
+
+![shuzuzuohanshucanshu](C:/blog/my-blog/content/post/11-2025/11.01.2025/shuzuzuohanshucanshu.png)
+
+右边程序，函数设定中<10，但是main函数引用函数时设定了9个元素也就是0-8的数组，会导致内存溢出
+
+```
+第一种，多设置一个参数
+#include <stdio.h>
+#include <string.h>
+
+void print_array(int a[],size_t len)
+{
+	for (int i = 0; i < len; i++)
+	{
+		printf("%d ", a[i]);
+	}
+	printf("\n");
+}
+
+int main()
+{
+	int a[9] = { 3,7,2,3,4,5,1,5,6};
+
+	print_array(a,9);
+
+
+	return 0;
+}
+```
+
+~~~
+第二种
+#include <stdio.h>
+#include <string.h>
+
+void print_array(int (&a)[10])
+{
+	for (int i = 0; i <10; i++)
+	{
+		printf("%d ", a[i]);
+	}
+	printf("\n");
+}
+
+int main()
+{
+	int a[9] = { 3,7,2,3,4,5,1,5,6};
+
+	print_array(a);
+
+
+	return 0;
+}
+
+取值10个元素的一维数组，在编译阶段就无法将九个元素的数组传参过去。
+只接收十个数组的函数
+~~~
+
+分析问题
+
+![fenxiwenti](C:/blog/my-blog/content/post/11-2025/11.01.2025/fenxiwenti.png)
+
+```
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h> 
+
+void GetMemory(char **p)
+{
+	*p = (char*)malloc(100);
+}
+void Test(char* s)
+{
+	char* str = NULL;
+	GetMemory(&str);
+	strcpy_s(str,100,s);
+	printf(str);
+
+}
+
+malloc 需要头文件
+```
+
+##### 作业
+
+![zuoye3](C:/blog/my-blog/content/post/11-2025/11.01.2025/zuoye3.png)
+
+1.
+
+```
+fun(c)   输出  9   fun函数设定c[]，忽略了函数长度的影响，但是此题没有涉及函数长度的语句，结果不变
+fun2(c)  输出  9   fun2函数设定&c，也就是传递指针，c数组指针传递过去，计算元素个数为9
+fun3(c)  输出  报错  fun3中，（&c）[9]限制了输入数组的长度必须为9，但是原数组是1-8八个元素，所以报错
+
+解析： 8 1 9
+第一个，数组参数退化为指针，char c[]在函数参数中等价于char *c 即sizeof(char*)，与数组内容无关，只与指针类型有关
+第二个，
+第三个，(&c)[9]限定的九个元素里是包含了'\0'这个元素的，所以实际上对于a[8]来说元素个数是符合条件的
+```
+
+2.
+
+~~~
+1.传递空指针，会导致程序崩溃
+2.手动分配内存，可能会出现导入字节数大于100的情况
+
+ai解答：
+getmemory函数定义指针值，test传递值应该二级指针
+或者get函数定义数组，返回指针
+
+1.
+void GetMemory(char** p)  // 传指针的地址
+{
+    *p = (char*)malloc(100);
+}
+
+void Test(char* s)
+{
+    char* str = NULL;
+    GetMemory(&str);  // 传str的地址
+    if(str != NULL) {
+        strcpy(str, s);
+        printf("%s", str);
+        free(str);
+    }
+}
+
+2.
+char* GetMemory()
+{
+    return (char*)malloc(100);
+}
+
+void Test(char* s)
+{
+    char* str = GetMemory();
+    if(str != NULL) {
+        strcpy(str, s);
+        printf("%s", str);
+        free(str);
+    }
+}
+~~~
+
+
+
+
+
+
 
 ## （3）：函数调用约定
 
@@ -277,215 +963,3 @@ int main()
 }
 
 ```
-
-
-
-# 第十三课-指针
-
-## （1）：指针定义与使用
-
-### 变量在内存中的地址
-
-![bianliangd](bianliangdeneicundizhi.png)
-
- &取值运算符
-
-### 指针定义
-
-![zhizhen](zhizhen.png)
-
-指针也是变量，指针也有类型，指针存放的值是内存地址
-
-指针字节就是内存地址的长度
-
-```
-int main()
-{
-	int i = 1;
-	int* p = &i;
-	printf("p=%p,&i=%p,sizeof(p):%d\n", p, &i, sizeof(p));
-
-
-	return 0;
-}
-
-```
-
-### 指针的定义与初始化形式
-
-![zhenzhiding](zhenzhidingyiyuchushihua.png)
-
-初始化：1.指向某个变量的地址  2.指向一个分配的内存或者字符串常量  3.指向NULL
-
-```
-int i,*p；定义了一个整型i和整型指针，这里*与int一起 
-p =&i  野指针，指向随机值 
-```
-
- ```
- char *p=(Char*)malloc(100);  在堆上分配了地址，赋值给了一个指针
- char *str = "hello world";   指向的是字符串变量地址
- char c='A';  一个字符变量'a'
- char *str = &c;  一个指针str，把c的地址赋值给了str，指向字符变量c
- char *pch= &c ;
- 字符指针既可以指向字符串，也可以指向字符变量
- 赋值给指针的时候，赋值的类型一定要匹配
- 字符指针赋值给整型指针，需要强制转化
- ```
-
-### *p：解引用运算符    与指针定义的\*不是一个东西
-
-![jieyinyuongyunsuanfu](jieyinyuongyunsuanfu.png)
-
-  ```
-  int *p1,*p2   中 “*” 是定义指针p1，p2
-  printf 中*p1 *p2 是解引用符
-  *p1 == a   *p2 == b    对 *p1+1 *p2+2 就是对a，b修改
-  但是必须要是可写的 
-  a是常量指针，指针的一种形式，指向的数组的首地址
-  p指向的字符串的首地址
-  对a和p进行解引用，*a为数组第一个元素，*p为字符串第一个
-  ```
-
-野指针和NULL都不能被解引用
-
-```
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h> 
-
-
-
-int main()
-{	
-	int a = 100;
-	int b = 10;
-
-	int arr[10] = { 2,3,4,6,7,8 };
-	char* s = "hello world";
-
-	int* p1 = &a;
-	int* p2 = &b;
-
-	printf("*p1=%d,*p2=%d\n", *p1, *p2);
-	printf("a=%d,b=%d\n", a, b);
-
-	*p1 += 1;
-	*p2 += 1;
-
-	printf("a=%d,b=%d\n", a, b);
-
-	printf("*arr:%d\n", *arr);
-
-	printf("*s:%c\n", *s);
-
-	return 0;
-}
-
-```
-
-### &与*
-
-![&](&.png)
-
-	*arr = 100;
-	*s = "X";
-
-*arr 指向数组第一个元素，可以使用指针修改
-
-*s指向静态常量区，修改会报错
-
-### &与*互为逆运算：\*&与&\*
-
-![niyunsuan](niyunsuan.png)
-
-*运算符需要和指针联系在一起，a不是指针，所以&\*a会报错
-
-### 易混淆
-
-![yihunxiao](yihunxiao.png)
-
-### 指针的赋值与使用
-
-![zhizhendefuzhi](zhizhendefuzhiyushiyong.png)
-
-*p2 = *p1  即j = i   j和i的值都变为'a'
-
-**用双引号直接赋值的字符串是只读的，用数组或malloc创建的字符串是可修改的。**
-
-p2=p1 把p1的地址赋值给p2，相当于p2指向了p1的地址
-
-### 指针类型与互相转换
-
-![zhizhenlei](zhizhenleixingyuhuxiangzhuanhuan.png)
-
-
-
-![lizi2](lizi2.png)
-
-少了会导致数据丢失，多了可能会导致破坏其他内存地址。强制转化有可能会导致程序受到影响
-
-类型不一样宽度就不一样
-
-### void *p
-
-![void](void.png)
-
-void *p  没有任何类型，和类型指针不一样
-
-void的指针概念中没有内存长度的概念，拿不到内存长度
-
-不能用*p来取值，取不了其中的值
-
-GCC里面的扩展，void默认为1字节
-
-主要用在函数参数定义的时候，可以接受任何类型的指针的赋值，万能指针型
-
-void赋值成别的类型需要强转，而解引用也需要转换
-
-一般用在函数的形参位置，不用做任何的强制转换，只是在内部需要转换
-
- ~~~
- void *pv1 = p1 
- 只是对pv1的赋值，类型并未转换，GCC应该可以
- sizeof(pv1)   指针本身是变量
- sizeof(*pv1)  只是无法解引用
- ~~~
-
-### 字符指针
-
-![zifuzhizhen](zifuzhizhen.png)
-
-### sizeof(p)\sizeog(*p)
-
-![sizeof(p)](sizeof(p).png)
-
-sizeof(p)   指针对应的长度
-
-sizeof(*p)  指针对应类型的长度
-
-4 4 1 4   12   4  1  1
-
-### 指针的应用
-
-![yingyong](yingyong.png)
-
-```
-#include <stdbool.h>
-
-bool is_system_little()
-{
-	int x = 0x1;
-	char* p = (char*)&x;
-
-	if (*p == 1)
-		return true;
-	else
-		return false;
-
-}
-```
-
-##### 作业
-
-![zuoye2](zuoye2.png)

@@ -1,16 +1,83 @@
 ---
-title: 10-29 笔记
+title: 10-29 字符串定义
 description: 只想在睡前再听见你的蜜语甜言
 date: 2025-10-29
 slug: 10-29
 image: bj.jpg
 categories:
-    - 每日
+    - c语言基础
 ---
 
+# 第十一课-字符串
+
+## （1）：字符串定义
+
+![zifuchuan](C:/blog/my-blog/content/post/10-2025/10.28.2025/zifuchuan.png)
+
+定义：
+
+![zifuchuandingyi](C:/blog/my-blog/content/post/10-2025/10.28.2025/zifuchuandingyi.png)
+
+'0'-->48
+
+'\0'-->0
+
+遇到\0字符串即结束 
+
+转义字符：
+
+![zhuanyizifu](C:/blog/my-blog/content/post/10-2025/10.28.2025/zhuanyizifu.png)
+
+c语言中字符串是用双引号包裹起来的，需要用转移字符表示此处双引号只是一个引号
+
+![changjianzhuanyi](C:/blog/my-blog/content/post/10-2025/10.28.2025/changjianzhuanyi.png)
+
+ 单引号包裹起来的字符叫字符常量
+
+字符串常量：
+
+![zifuchuanchangliang](C:/blog/my-blog/content/post/10-2025/10.28.2025/zifuchuanchangliang.png)
+
+“hello world”  字符常量
+
+‘a’是一个字符，"a"是一个字符串
+
+“123”是一个字符串，123是一个整数值   可以调用函数互相切换
+
+“1”.‘1’,1   字符串，字符，整数    
+
+“0”，‘0’，‘\0’，0，NULL    字符串，字符，字符，整数，指针
+
+“”  空字符串，仍然有看不见的0字节
+
+char *str = "hello world"      字符指针  ，字符串存放在静态常量区，赋值给了字符指针，指向了常量区
+
+char str[]= "hello world"      字符常量区的字符赋值给了这个字符数组，并且有0字节，一共12个字节
 
 
 
+str1指向静态常量区，静态常量区不能更改   (str1+1)='a' 会报错
+
+str2[1]='1';
+
+**字符不可以赋值给指针，地址可以赋值给指针**
+
+![zifuchuanzhonglei](C:/blog/my-blog/content/post/10-2025/10.28.2025/zifuchuanzhonglei.png)
+
+L'a'  占两个字节   unicode编码
+
+'a' 占一个字节
+
+作业：
+
+![zuoye5](C:/blog/my-blog/content/post/10-2025/10.28.2025/zuoye5.png)
+
+1.   0:一个整数，数值    '0'一个字符常量，值类型   "0"  一个表示0的字符串    '\0' 一个字符变量
+2.   “123” 一个字符串  123 一个整数数值
+3.   用\转义符，表示此引号不具有特殊含义
+4.   用双引号括起来,然后内部再用两个斜杠来表示
+5.   9，1-8八个字符再加上\0的末尾不可见字符
+6.   区别在于每一个元素所占字节数，未标注L 所用是ASCII编码，每一个元素占一个字节，标注L所用UNICODE编码，每一个元素占两个字节
 
 考核1
 
@@ -475,58 +542,3 @@ int main() {
 }
 ```
 
-## (2):程序中的字符串
-
-![chengxuzhongshiyongzifuchuan](chengxuzhongshiyongzifuchuan.png)
-
-1.赋值给了字符指针，其字符存放在静态常量区，赋值是将字符内存的首地址赋给了该指针
-
-通过指针++，可以不断的扫描该字符，直到遇到\0字符为止
-
-2.赋值给了字符数组 str2   ，与上面不同，是将静态区的字符拷贝到str2数组里面，而且字符数组的内存是可以修改的，元素个数，即包含0字符在内的所有字符
-
-3.该字符数组包含了100个元素，赋值的字符串没有100个元素，多余的部分默认为0
-
-4.该字符数组占12个字符，相当于整体的字符串赋值进入，sizeof(str4)=12,但是如果用strlen来计算字符串的值的话，会在第一个\0截断
-
-#### 程序中使用字符串 堆上
-
-![duishang](duishang.png)
-
-![zifuchuan](zifuchuan.png)
-
-可以存在全局数组里面，可以用指针指向，可以拷贝到栈上，可以从堆里分配字节来存放
-
-堆上用了之后需要free，否则会造成内存的泄露
-
-s2指向了hello world的地址，不能通过s2来更改数组里元素的值   **编译发现不了，但是程序会崩溃**
-
-静态常量区是不可以修改的
-
-#### 字符串的遍历
-
-![zifuchuanbianli](zifuchuanbianli.png)
-
-#### 字符串做参数
-
-![zifuchuanzuohanshucanshu](zifuchuanzuohanshucanshu.png)
-
-#### 字符串与字符数组
-
-![zifuchuanyuzifushuzu](zifuchuanyuzifushuzu.png)
-
-1.纯粹的字符数组
-
-2.可以当作一个字符串
-
-3.作为字符数组有5个元素，作为字符串有前面三个元素
-
-4.即是数组也是字符串
-
-### 字符串数组
-
-![zifuchuanshuzu](zifuchuanshuzu.png)
-
-作业
-
-![zuoye](zuoye.png)

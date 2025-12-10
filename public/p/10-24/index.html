@@ -2,16 +2,16 @@
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="人面不知何处去，桃花依旧笑春风。">
-<title>10-24 笔记</title>
+<title>10-24 输入输出 stdio</title>
 
 <link rel='canonical' href='http://localhost:1313/p/10-24/'>
 
-<link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="10-24 笔记">
+<link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="10-24 输入输出 stdio">
 <meta property='og:description' content="人面不知何处去，桃花依旧笑春风。">
 <meta property='og:url' content='http://localhost:1313/p/10-24/'>
 <meta property='og:site_name' content='雫的小站'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-10-24T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-10-24T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/p/10-24/bj.jpg' />
-<meta name="twitter:title" content="10-24 笔记">
+<meta name="twitter:title" content="10-24 输入输出 stdio">
 <meta name="twitter:description" content="人面不知何处去，桃花依旧笑春风。"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='http://localhost:1313/p/10-24/bj.jpg' />
         
@@ -295,7 +295,7 @@
                         width="800" 
                         height="720" 
                         loading="lazy"
-                        alt="Featured image of post 10-24 笔记" />
+                        alt="Featured image of post 10-24 输入输出 stdio" />
                 
             </a>
         </div>
@@ -305,8 +305,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/%E6%AF%8F%E6%97%A5/" >
-                每日
+            <a href="/categories/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" >
+                C语言基础
             </a>
         
     </header>
@@ -314,7 +314,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/10-24/">10-24 笔记</a>
+            <a href="/p/10-24/">10-24 输入输出 stdio</a>
         </h2>
     
         
@@ -355,7 +355,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 1 分钟
+                    阅读时长: 3 分钟
                 </time>
             </div>
         
@@ -370,13 +370,7 @@
     <section class="article-content">
     
     
-    <p>栈增长，高地址到低地址</p>
-<p>数据存入，低地址到高地址</p>
-<p>esp  ding ebp di</p>
-<p>eip 保存吓一跳要执行的指令的地址</p>
-<p>leave指令相当于</p>
-<p>rip64 eip32</p>
-<h1 id="第六个输入输出--stdio">第六个：输入输出  stdio
+    <h1 id="第六个输入输出--stdio">第六个：输入输出  stdio
 </h1><p><img src="/p/10-24/biaozhunshuru.png"
 	width="1918"
 	height="1297"
@@ -481,6 +475,172 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>其中scanf会提示4996的错误，调用scanf可能会导致数据溢出带来的安全风险。</p>
+<p><img src="/p/10-24/geshihua.png"
+	width="1912"
+	height="1300"
+	srcset="/p/10-24/geshihua_hu_dea80ffc07070ccc.png 480w, /p/10-24/geshihua_hu_449b5d836ba3f978.png 1024w"
+	loading="lazy"
+	
+		alt="geshihua"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="147"
+		data-flex-basis="352px"
+	
+></p>
+<p>输出16进制前缀的整数</p>
+<p>%#x\n 即可，如果想用0补充位数不够显示的，比如15转化为16进制为f，想要显示0f就&quot;%02x\n&quot;</p>
+<p>输出64位整数</p>
+<p><code>__int64 value=100I64</code></p>
+<p><code>printf(&quot;%I64d\n&quot;,value)</code></p>
+<p>hd，短整型。d，标准整形。ld，长整型</p>
+<p>无符号：%u 来打印</p>
+<p>%f 单精度浮点数   %lf 双精度浮点数  %.7lf  保留到7位双精度浮点数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#pragma warning(disable : 4996)
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//char c;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//wchar_t wc;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//float f;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//double d;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">80</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Please input a string:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">scanf</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="n">buf</span><span class="p">);</span>    <span class="c1">//数组名称代表了内存地址，之前的所有数都需要取内存地址输入
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">buf</span><span class="p">);</span> <span class="c1">//scanf函数遇到空格即退出函数，
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>浮点数和整数可以不设定长度，因为长度固定且已知</p>
+<p>字符，字符串等都需要设定长度，如果输入超过设定长度的数，那么多出来的数会破坏原本存储在内存空间里的其他的数据，导致其他破坏</p>
+<p>scanf_s(&quot;%s,buf,80&quot;)</p>
+<p>gets_s(&quot;%s,buf,80&quot;)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#pragma warning(disable : 4996)
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">wchar_t</span> <span class="n">C</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kt">short</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">long</span> <span class="n">l</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kr">__int64</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">100</span><span class="n">I64</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kt">float</span> <span class="n">f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">double</span> <span class="n">d</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">80</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Please input the data:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">scanf</span><span class="p">(</span><span class="s">&#34;%c%hd%d%ld%I64d%f%lf%s&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">c</span><span class="p">,</span><span class="o">&amp;</span><span class="n">s</span><span class="p">,</span><span class="o">&amp;</span><span class="n">i</span><span class="p">,</span><span class="o">&amp;</span><span class="n">l</span><span class="p">,</span><span class="o">&amp;</span><span class="n">value</span><span class="p">,</span><span class="o">&amp;</span><span class="n">f</span><span class="p">,</span><span class="o">&amp;</span><span class="n">d</span><span class="p">,</span><span class="n">buf</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;c:%c s:%hd i:%d l:%ld value:%I64d f:%f lf:%lf buf:%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">c</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">buf</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>多重输出，加宽字节会出bug导致无法输出。</p>
+<p><img src="/p/10-24/jingcheng.png"
+	width="1911"
+	height="1294"
+	srcset="/p/10-24/jingcheng_hu_e48334c37f4a85e9.png 480w, /p/10-24/jingcheng_hu_a8cee082343b1390.png 1024w"
+	loading="lazy"
+	
+		alt="jingcheng"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="147"
+		data-flex-basis="354px"
+	
+></p>
+<p>fd，文件描述符表，每个进程独立拥有的指向任何一打开的文件，管道，设备等任何资源的引用或句柄，一种资源调配的数字编号</p>
+<p><img src="/p/10-24/zuoye1.png"
+	width="1920"
+	height="1294"
+	srcset="/p/10-24/zuoye1_hu_b56239e15e9d61e7.png 480w, /p/10-24/zuoye1_hu_a907db902384afcb.png 1024w"
+	loading="lazy"
+	
+		alt="zuoye1"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="148"
+		data-flex-basis="356px"
+	
+></p>
+<p>1.输入一个变量需要用取值符&amp;获取其内存地址，字符串不需要，字符串的数组存储在计算机</p>
+<p>2.scanf函数调用&quot;%ws&quot;或&quot;%S&quot;,用w加s或者大写s来输入，printf(&quot;%S&quot;)同样用%S来表示输出</p>
+<p>3.scanf不检测缓存区，只将输入值原封不动导入，如果大于其原本设置的内存长度，会挤压其内存空间中其他数据，导致数据错误等安全问题。scanf_s能够检测缓存区，比scanf更安全</p>
+<p>溢出检测</p>
+<p>4.scanf遇到空格即会退出函数，gets会包括空格一起输入</p>
+<p>5.gets与gets_s和scanf与scanf_s一样，是否检测缓存区的问题</p>
+<p>6.getch不显示输入字符，按下任意一个键即返回.</p>
+<p>getchar显示输入字符，需要按下回车键才返回</p>
+<p>7._getch是新的安全的函数,安全在哪：1.函数内部对线程的调动上锁，防止字符或者字节在调用的过程中被不同线程影响。2.两次不同的调用，来增加安全</p>
+<p>8.代码中某些函数过时，有安全风险，没有安全检测，容易产生安全漏洞</p>
 
 </section>
 
@@ -517,18 +677,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-30/">
+    <a href="/p/11-15/">
         
         
             <div class="article-image">
-                
-                    <img src="/bj.jpg" loading="lazy" data-key="11-30" data-hash="/bj.jpg"/>
+                <img src="/p/11-15/bj.a16604ad36919a2ee87388ff87281a01_hu_9e5044718131be7e.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 11-15 作业"
+                        data-key="11-15" 
+                        data-hash="md5-oWYErTaRmi7oc4j/hygaAQ==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-30 笔记</h2>
+            <h2 class="article-title">11-15 作业</h2>
         </div>
     </a>
 </article>
@@ -536,23 +701,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-29/">
+    <a href="/p/11-14/">
         
         
             <div class="article-image">
-                <img src="/p/11-29/bj.60013e3f00f58254a21112014daf3f28_hu_f49e52853cd86f55.jpg" 
+                <img src="/p/11-14/bj.d577405db0b641e0a671e01e6c32b3b8_hu_5c9e70a11824ff53.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-29 笔记"
-                        data-key="11-29" 
-                        data-hash="md5-YAE&#43;PwD1glSiERIBTa8/KA==">
+                        alt="Featured image of post 11-14 作业"
+                        data-key="11-14" 
+                        data-hash="md5-1XdAXbC2QeCmceAebDKzuA==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-29 笔记</h2>
+            <h2 class="article-title">11-14 作业</h2>
         </div>
     </a>
 </article>
@@ -560,23 +725,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-28/">
+    <a href="/p/11-13/">
         
         
             <div class="article-image">
-                <img src="/p/11-28/bj.6d148dab18c6c1baea6098318eaface2_hu_4e132fbee8d0b475.jpg" 
+                <img src="/p/11-13/bj.c319198b3d02ce40ea9c75f5a419c871_hu_26b15fc36ffa70d.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-28 笔记"
-                        data-key="11-28" 
-                        data-hash="md5-bRSNqxjGwbrqYJgxjq&#43;s4g==">
+                        alt="Featured image of post 11-13 作业"
+                        data-key="11-13" 
+                        data-hash="md5-wxkZiz0CzkDqnHX1pBnIcQ==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-28 笔记</h2>
+            <h2 class="article-title">11-13 作业</h2>
         </div>
     </a>
 </article>
@@ -584,23 +749,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-27/">
+    <a href="/p/11-12/">
         
         
             <div class="article-image">
-                <img src="/p/11-27/bj.82b7b84c3ec267628100612ae18a037f_hu_c4b47f8dd6ff8e67.jpg" 
+                <img src="/p/11-12/bj.ad77c93609bb7b7605a81180b007dcdc_hu_17f111edc709b5c7.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-27 笔记"
-                        data-key="11-27" 
-                        data-hash="md5-gre4TD7CZ2KBAGEq4YoDfw==">
+                        alt="Featured image of post 11-12 作业"
+                        data-key="11-12" 
+                        data-hash="md5-rXfJNgm7e3YFqBGAsAfc3A==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-27 笔记</h2>
+            <h2 class="article-title">11-12 作业</h2>
         </div>
     </a>
 </article>
@@ -608,23 +773,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-26/">
+    <a href="/p/11-11/">
         
         
             <div class="article-image">
-                <img src="/p/11-26/bj.8e20f3ed06dc4fa57c2513213cc51884_hu_8728ad2704bb5069.jpg" 
+                <img src="/p/11-11/bj.939ac470f1f843a30170be56807c38ab_hu_d57086257fb1c61d.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-26 笔记"
-                        data-key="11-26" 
-                        data-hash="md5-jiDz7QbcT6V8JRMhPMUYhA==">
+                        alt="Featured image of post 11-11 递归"
+                        data-key="11-11" 
+                        data-hash="md5-k5rEcPH4Q6MBcL5WgHw4qw==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-26 笔记</h2>
+            <h2 class="article-title">11-11 递归</h2>
         </div>
     </a>
 </article>

@@ -1,12 +1,376 @@
 ---
-title: 11-11 笔记
+title: 11-11 递归
 description: 世事一场大梦，人生几度秋凉？
 date: 2025-11-11
 slug: 11-11
 image: bj.jpg
 categories:
-    - 每日
+    - c语言基础
 ---
+
+# 第十九课-递归
+
+## （1）：递归定义
+
+![digui](C:/blog/my-blog/content/post/11-2025/11.09.2025/digui.png)
+
+函数内部，直接或者间接的调用自身
+
+递归首先需要有至少一个递归出口，即终止条件，不能无限调用自己
+
+递归式，原问题划分成子问题，子问题解决性质一样，这样子问题解决之后原问题也会被解决
+
+### 阶乘
+
+![jiecheng](C:/blog/my-blog/content/post/11-2025/11.09.2025/jiecheng.png)
+
+定义fact无符号数
+
+满足n==0或==1，即一个递归出口
+
+```
+int fact(unsigned int n)
+{
+	if(n==0 || n==1)
+	{
+		return 1;
+	}
+	return n * fact(n-1);
+}
+```
+
+### 斐波那契数列
+
+![feibonaqishulie](C:/blog/my-blog/content/post/11-2025/11.09.2025/feibonaqishulie.png)
+
+```
+unsigned int feibo(unsigned int n)
+{
+	if(n==1 || n==2)
+	{
+		return 1;
+	}
+	return feibo(n-1)+feibo(n-2);
+}
+
+printf("feibo(6)=%d\n",feibo(6))
+```
+
+### 递归的优缺点
+
+![youquedian](C:/blog/my-blog/content/post/11-2025/11.09.2025/youquedian.png)
+
+###### 作业
+
+![zuoye4](C:/blog/my-blog/content/post/11-2025/11.09.2025/zuoye4.png)
+
+1. 两个，一个是递归的出口，二个是递归式，递归式需要满足符合原式的子式，并且能求解问题
+
+2. 递归优点：简洁明了  缺点：效率较低，容易导致栈溢出
+
+   迭代优点：效率高，  缺点：代码编写难度高
+
+## （2）：递归的应用
+
+![diguiyingyong](C:/blog/my-blog/content/post/11-2025/11.10.2025/diguiyingyong.png)
+
+问题1
+
+```
+int mystrlen(const char* str)
+{
+	if (str == NULL || *str == '\0')
+	{
+		return 0;
+	}
+	return 1 + mystrlen(str + 1);
+
+	//一句话计算出非空字符串的长度
+	//(str==NULL || *str=='\0')?0:1+mystelen(str+1)
+}
+```
+
+ 问题2
+
+```
+void reverse_print(const char *str)
+{
+	if(str==NULL || *str=='\0')
+	{
+		return;
+	}
+	reverse_print(str+1);
+	printf("%c",*str);
+}
+```
+
+直接定义*指向内存地址是静态区不可更改，需要改成在栈上才可以更改
+
+比如：
+
+char *str=
+
+char buf[] = 
+
+问题3
+
+```
+void reverse_str(char *str,int len)
+{
+	if (str == NULL || *str == '\0' || len==0)
+	{
+		return 0;
+	}
+
+	reverse_str(str + 1,len-2);
+
+	char tmp = *str;
+	*str = *(str + len - 1);
+	*(str + len -1)=tmp;
+
+	return;
+}
+```
+
+ ### 运用递归
+
+![yunyongdigui](C:/blog/my-blog/content/post/11-2025/11.10.2025/yunyongdigui.png)
+
+###### 作业
+
+![zuoye1](C:/blog/my-blog/content/post/11-2025/11.10.2025/zuoye1.png)
+
+1. 寻找解决问题的子式，也就是寻找一个式子能让递归一直嵌套下去直到嵌套到递归出口
+
+2. 递归或者循环解决
+
+   
+
+   ```
+   int fibonacci(int n) {
+       if(n == 0) {
+           return 0;
+       } else if(n == 1) {
+           return 1;
+       } else {
+           return fibonacci(n-1) + fibonacci(n-2);
+       }
+   }
+   
+   int main() {
+       int n;
+       printf("请输入一个整数：");
+       scanf("%d", &n);
+       printf("斐波那契数列的第%d项为：%d\n", n, fibonacci(n));
+       return 0;
+   }
+   
+   
+   #include<stdio.h>
+   
+   // 斐波那契数列函数
+   int fibonacci(int n) {
+       if(n <= 1) {
+           return n;
+       }
+       int a = 0, b = 1;
+       for(int i = 2; i <= n; i++) {
+           int temp = a + b;
+           a = b;
+           b = temp;
+       }
+       return b;
+   }
+   
+   int main() {
+       int n;
+       printf("请输入一个整数：");
+       scanf("%d", &n);
+       printf("斐波那契数列的第%d项为：%d\n", n, fibonacci(n));
+       return 0;
+   }
+   ```
+
+   
+
+   # 第二十课-文件
+
+## （1）：文件概念
+
+### 文件分类
+
+![wenjianfenle](C:/blog/my-blog/content/post/11-2025/11.10.2025/wenjianfenlei.png)
+
+ ### 文件系统
+
+![wenjianxitong](C:/blog/my-blog/content/post/11-2025/11.10.2025/wenjianxitong.png)
+
+### 文本文件与二进制文件
+
+![wenbenwenjian](C:/blog/my-blog/content/post/11-2025/11.10.2025/wenbenwenjian.png)
+
+字符编码
+
+
+
+基于值编码
+
+###### 作业
+
+![zuoye2](C:/blog/my-blog/content/post/11-2025/11.10.2025/zuoye2.png)
+
+1. 文本文件，基于字符编码的方式编写
+2. 二进制文件，基于值编码的方式的文件 
+3. 文件系统：管理，读写，调用一个文件的数据结构
+
+FAT  ZFS
+
+
+
+
+
+## （2）：文件创建、打开与读写
+
+![wenjian](C:/blog/my-blog/content/post/11-2025/11.10.2025/wenjianchuangjian,dakaiyuguanbi.png)
+
+```
+fopen("newfile.txt","w,ccs=UTF-8");
+第一个参数是路径，路径分为相对路径和绝对路径
+第二个参数是文件的打开方式，
+r 读   w  写    
+
+文本方式打开，存在换行之间的转换
+
+css 用来指定文件打开的编码
+
+默认为ascii编码，可以通过读取文件头的形式来获取文本所用的编码方式
+```
+
+*记得关闭文件，否则会一直有程序或者进程占用文件使用*
+
+fopen也是老函数，需要安全的调用，
+
+fopen_s(&pfile)指针的值
+
+~~~
+_mkdir 创建文件夹的指令
+<direct.h> 包含
+~~~
+
+### 代码演示
+
+创建
+
+```
+ 
+#include <stdio.h>
+#include <direct.h>
+
+int create_file()
+{
+	char* path = "d:\\1111111111111\\mallocfree.txt";
+
+	FILE *file = fopen(path, "w");
+	if (file == NULL)
+	{
+		return -1;
+	}
+	fclose(file);
+	return 0;
+}
+
+int main()
+{
+	create_file();
+
+	return 0;
+}
+```
+
+打开
+
+```
+ 
+int open_file()
+{
+	char* path = "d:\\111111111111\\mallocfree.txt";
+
+	FILE* file = NULL;
+	errno_t err = fopen_s(&file, path,"r");
+	if (err != 0 || file == NULL)
+	{
+		return -1;
+	}
+	fclose(file);
+
+	return 0;
+}
+```
+
+创建文件夹
+
+```
+int create_dir()
+{
+	char* dirpath = "d:\\1111111111111\\mf\\";
+
+	int res = _mkdir(dirpath);
+
+	return res;
+}
+```
+
+### 文件的读写
+
+![duxie](C:/blog/my-blog/content/post/11-2025/11.10.2025/duxie.png)
+
+buffer  数据    size  字节数   ntime  写入多少长度   fp  文件指针
+
+```
+#include <stdio.h>
+#include <direct.h>
+#include <windows.h>
+
+void binaryio_demo()
+{
+	char* filepath = "d:\\1111111111111\\binary_io.txt";
+	
+	FILE* file = NULL;
+	errno_t err = fopen_s(&file, filepath, "w");
+	if (err != 0 || file == NULL)
+	{
+		return -1;
+	}
+	fwrite("hello world", strlen("hello world") + 1, 1, file);
+	int date = 100;
+	fwrite(&date, sizeof(date), 1, file);
+
+	fclose(file);
+
+	err = fopen_s(&file, filepath, "r");
+	if (err != 0 || file == NULL)
+	{
+		return -1;
+	}
+	char buf[128] = { 0 };
+	fread(buf, strlen("hello world") + 1, 1, file);
+	
+
+	int value = 0;
+	fread(&value, sizeof(value), 1, file);
+	printf("buf:%s,value:%d", buf,value);
+
+	fclose(file);
+}
+
+int main()
+{
+	
+	binaryio_demo();
+
+	return 0;
+}
+```
 
 ### 文件的读写
 

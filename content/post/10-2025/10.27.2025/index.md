@@ -1,108 +1,12 @@
 ---
-title: 10-27 笔记
+title: 10-27 一维数组
 description: 希望我们永远都能从对方的眼神中读出对对方的关心.
 date: 2025-10-27
 slug: 10-27
 image: bj.jpg
 categories:
-    - 每日
+    - c语言基础
 ---
-
-![zuoye1](zuoye1.png)
-
-补作业代码4
-
-```
-用while来写
-#include <stdio.h>
-#include <stdlib.h>
-
-int main()
-{
-	int a=0,b=0;
-	printf("Please input two shuzi:\n");
-	scanf_s("%d,%d", &a, &b);
-	
-	while (a / b > 0)
-	{
-		printf("%d",a);
-		goto out;
-	}
-
-	printf("%d",b);
-
-	out:
-	return 0;
-}
-```
-
-用一个while和goto来写。
-
-if除了报错就是程序运行不完善，还在重写。
-
- 除了goto不知道如何在循环执行完了之后忽略后续printf直接到return
-
-
-
-![zuoye2](zuoye2.png)
-
-思路缺陷：
-
-1.怎么将第二次相除之后的结果是否为0和除数代入下一次运算的被除数
-
-2.循环中如何使用，应该使用几个变量来写入代码
-
-以下是网络搜索思路：
-
-```
-#include <stdio.h>
-#include <stdlib.h>
-
-int main()
-{
-	int a, b, t;
-	printf("请输入两个数字:\n");
-	scanf_s("%d,%d", &a, &b);
-
-	while (a % b != 0)
-	{
-		t = b;//存上一轮的除数
-		b = a % b;//这一轮的余数做下一轮的除数
-		a = t;//做下一轮的被除数
-	}
-	printf("%d", b);//最后剩下的除数就是答案
-	return 0;
-
-}
-```
-
-多设置了一个变量在循环体内赋值，更改算式的值，用的是while循环语句
-
-
-
-```
-#include <stdio.h>
-
-int main(void)
-{
-    int x, y, gcd;
-    printf("请输入两个正整数：");
-    scanf("%d%d", &x, &y);
-    if(x < y)
-        gcd = x;
-    else
-        gcd = y;
-    while(x % gcd ||y % gcd)
-        gcd--;
-    printf("gcd = %d\n", gcd);
-
-    return 0;
-}
-```
-
-用if和while语句并且加上逻辑判断符，先判断大小，
-
-
 
 # 第十课-数组
 
@@ -213,10 +117,6 @@ boid print_array(int a[],int len)
 print_array(a,number)
 ```
 
-
-
-
-
 sizeof(a)   a数组所占的长度
 
 sizeof(a[0])  a数组中第一个元素所占的长度
@@ -225,3 +125,123 @@ sizeof(a[0])  a数组中第一个元素所占的长度
 
 即sizeof(a)/sizeof(a[0])
 
+### 字符数组
+
+![zifushuzu](C:/blog/my-blog/content/post/10-2025/10.28.2025/zifushuzu.png)
+
+strlen(str1)是非法的，str1不是一个字符串
+
+strlen会从左到右遍历所有元素直到找到最后的0为止，然后减去0，用来计算str1会导致内存溢出
+
+字符串的规定就是最后一位是0
+
+![1](C:/blog/my-blog/content/post/10-2025/10.28.2025/1.png)
+
+a必须是实参，如果是形参的话会导致计算出错，形参的a会退化成指针，一个指针的长度是四个字节或者说是八个字节
+
+作业：
+
+![zuoye1](C:/blog/my-blog/content/post/10-2025/10.28.2025/zuoye1.png)
+
+1.随机访问：指能通过  a[下标值]  直接访问到数组中这个下标所在的值   原因：数组的存储方式是按照顺序一个一个字节数相同，连续排列的组合，通过长度乘以下标值能够直接找到对应的内存地址，所以数组能够支持随机访问
+
+2.在C语言中，数组的长度是固定的，因此无法直接删除数组中的某一项。通常通过**覆盖法**或**辅助数组法**来实现删除操作。
+
+1) 覆盖法
+
+确定需要删除元素的下标位置，然后从此位置开始将后续元素全部往前移动一位，而后更新数组长度或者将最后一位换为0
+
+代码示例：(百度复制)
+
+```
+#include <stdio.h>
+void removeElement(int arr[], int *size, int index) {
+   if (index < 0 || index >= *size) {
+       printf("索引超出范围\n");
+       return;
+   }
+   for (int i = index; i < *size - 1; i++) {
+       arr[i] = arr[i + 1];
+   }
+   (*size)--; // 更新数组长度
+}
+int main() {
+   int arr[] = {1, 2, 3, 4, 5};
+   int size = 5;
+   int index = 2; // 要删除的元素索引
+   removeElement(arr, &size, index);
+   for (int i = 0; i < size; i++) {
+       printf("%d ", arr[i]);
+   }
+   return 0;
+}
+```
+
+2) 辅助数组
+
+创建一个新的数组，然后将除了删除元素的其他元素复制到新数组，再复制回去
+
+代码示例：
+
+```
+#include <stdio.h>
+void removeElement(int arr[], int *size, int index) {
+   if (index < 0 || index >= *size) {
+       printf("索引超出范围\n");
+       return;
+   }
+   int temp[*size - 1];
+   int j = 0;
+   for (int i = 0; i < *size; i++) {
+       if (i != index) {
+           temp[j++] = arr[i];
+       }
+   }
+   for (int i = 0; i < j; i++) {
+       arr[i] = temp[i];
+   }
+   (*size)--; // 更新数组长度
+}
+int main() {
+   int arr[] = {1, 2, 3, 4, 5};
+   int size = 5;
+   int index = 2; // 要删除的元素索引
+   removeElement(arr, &size, index);
+   for (int i = 0; i < size; i++) {
+       printf("%d ", arr[i]);
+   }
+   return 0;
+}
+```
+
+
+
+
+
+3.
+
+```
+#define array_number[int a[],int len]
+	len = sizeof(a)/sizeof(a[]);
+	return 0;
+```
+
+4.数组溢出：访问到数组未定义的内存地址
+
+现象：如果是内存中未定义的地址，进入非法区域，会导致程序崩溃
+
+或者是访问到其他数据所在的地址，导致数据破坏影响程序运行
+
+或者是得到一些未定义的垃圾值
+
+c语言并不检测数组溢出，所以这算是一个隐性的bug
+
+
+
+
+
+注意事项
+
+![shuzuchushihua](C:/blog/my-blog/content/post/10-2025/10.28.2025/shuzuchushihua.png)
+
+ 右边，在定义时候打了；   也就是没有进行初始化，用循环进行遍历初始化

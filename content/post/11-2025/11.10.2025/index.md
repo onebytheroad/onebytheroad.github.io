@@ -1,312 +1,404 @@
 ---
-title: 11-10 笔记
+title: 11-10 宏
 description: 偏我来时不逢春，恰我走时春又至
 date: 2025-11-10
 slug: 11-10
 image: bj.jpg
 categories:
-    - 每日
+    - c语言基础
 ---
 
-## （2）：递归的应用
+# 第十八课-宏
 
-![diguiyingyong](diguiyingyong.png)
+## （1）：宏的定义
 
-问题1
+![hongdingyi](C:/blog/my-blog/content/post/11-2025/11.09.2025/hongdingyi.png)
 
-```
-int mystrlen(const char* str)
-{
-	if (str == NULL || *str == '\0')
-	{
-		return 0;
-	}
-	return 1 + mystrlen(str + 1);
+### 例子
 
-	//一句话计算出非空字符串的长度
-	//(str==NULL || *str=='\0')?0:1+mystelen(str+1)
-}
-```
-
- 问题2
-
-```
-void reverse_print(const char *str)
-{
-	if(str==NULL || *str=='\0')
-	{
-		return;
-	}
-	reverse_print(str+1);
-	printf("%c",*str);
-}
-```
-
-直接定义*指向内存地址是静态区不可更改，需要改成在栈上才可以更改
-
-比如：
-
-char *str=
-
-char buf[] = 
-
-问题3
-
-```
-void reverse_str(char *str,int len)
-{
-	if (str == NULL || *str == '\0' || len==0)
-	{
-		return 0;
-	}
-
-	reverse_str(str + 1,len-2);
-
-	char tmp = *str;
-	*str = *(str + len - 1);
-	*(str + len -1)=tmp;
-
-	return;
-}
-```
-
- ### 运用递归
-
-![yunyongdigui](yunyongdigui.png)
-
-###### 作业
-
-![zuoye1](zuoye1.png)
-
-1. 寻找解决问题的子式，也就是寻找一个式子能让递归一直嵌套下去直到嵌套到递归出口
-
-2. 递归或者循环解决
-
-   
-
-   ```
-   int fibonacci(int n) {
-       if(n == 0) {
-           return 0;
-       } else if(n == 1) {
-           return 1;
-       } else {
-           return fibonacci(n-1) + fibonacci(n-2);
-       }
-   }
-   
-   int main() {
-       int n;
-       printf("请输入一个整数：");
-       scanf("%d", &n);
-       printf("斐波那契数列的第%d项为：%d\n", n, fibonacci(n));
-       return 0;
-   }
-   
-   
-   #include<stdio.h>
-   
-   // 斐波那契数列函数
-   int fibonacci(int n) {
-       if(n <= 1) {
-           return n;
-       }
-       int a = 0, b = 1;
-       for(int i = 2; i <= n; i++) {
-           int temp = a + b;
-           a = b;
-           b = temp;
-       }
-       return b;
-   }
-   
-   int main() {
-       int n;
-       printf("请输入一个整数：");
-       scanf("%d", &n);
-       printf("斐波那契数列的第%d项为：%d\n", n, fibonacci(n));
-       return 0;
-   }
-   ```
-   
-   
-   
-   # 第二十课-文件
-
-## （1）：文件概念
-
-### 文件分类
-
-![wenjianfenle](wenjianfenlei.png)
-
- ### 文件系统
-
-![wenjianxitong](wenjianxitong.png)
-
-### 文本文件与二进制文件
-
-![wenbenwenjian](wenbenwenjian.png)
-
-字符编码
-
-
-
-基于值编码
-
-###### 作业
-
-![zuoye2](zuoye2.png)
-
-1. 文本文件，基于字符编码的方式编写
-2. 二进制文件，基于值编码的方式的文件 
-3. 文件系统：管理，读写，调用一个文件的数据结构
-
-FAT  ZFS
-
-
-
-
-
-## （2）：文件创建、打开与读写
-
-![wenjian](wenjianchuangjian,dakaiyuguanbi.png)
-
-```
-fopen("newfile.txt","w,ccs=UTF-8");
-第一个参数是路径，路径分为相对路径和绝对路径
-第二个参数是文件的打开方式，
-r 读   w  写    
-
-文本方式打开，存在换行之间的转换
-
-css 用来指定文件打开的编码
-
-默认为ascii编码，可以通过读取文件头的形式来获取文本所用的编码方式
-```
-
-*记得关闭文件，否则会一直有程序或者进程占用文件使用*
-
-fopen也是老函数，需要安全的调用，
-
-fopen_s(&pfile)指针的值
-
-~~~
-_mkdir 创建文件夹的指令
-<direct.h> 包含
-~~~
-
-### 代码演示
-
-创建
-
-```
- 
-#include <stdio.h>
-#include <direct.h>
-
-int create_file()
-{
-	char* path = "d:\\1111111111111\\mallocfree.txt";
-
-	FILE *file = fopen(path, "w");
-	if (file == NULL)
-	{
-		return -1;
-	}
-	fclose(file);
-	return 0;
-}
-
-int main()
-{
-	create_file();
-
-	return 0;
-}
-```
-
-打开
-
-```
- 
-int open_file()
-{
-	char* path = "d:\\111111111111\\mallocfree.txt";
-
-	FILE* file = NULL;
-	errno_t err = fopen_s(&file, path,"r");
-	if (err != 0 || file == NULL)
-	{
-		return -1;
-	}
-	fclose(file);
-
-	return 0;
-}
-```
-
-创建文件夹
-
-```
-int create_dir()
-{
-	char* dirpath = "d:\\1111111111111\\mf\\";
-
-	int res = _mkdir(dirpath);
-
-	return res;
-}
-```
-
-### 文件的读写
-
-![duxie](duxie.png)
-
-buffer  数据    size  字节数   ntime  写入多少长度   fp  文件指针
+![hongdingyilizi](C:/blog/my-blog/content/post/11-2025/11.09.2025/hongdingyilizi.png)
 
 ```
 #include <stdio.h>
-#include <direct.h>
-#include <windows.h>
+#include <tchar.h>
+#include <string.h>
+#include <stdlib.h>
 
-void binaryio_demo()
+#define PI 3.14
+float calc_circle_area(float r)
 {
-	char* filepath = "d:\\1111111111111\\binary_io.txt";
-	
-	FILE* file = NULL;
-	errno_t err = fopen_s(&file, filepath, "w");
-	if (err != 0 || file == NULL)
-	{
-		return -1;
-	}
-	fwrite("hello world", strlen("hello world") + 1, 1, file);
-	int date = 100;
-	fwrite(&date, sizeof(date), 1, file);
-
-	fclose(file);
-
-	err = fopen_s(&file, filepath, "r");
-	if (err != 0 || file == NULL)
-	{
-		return -1;
-	}
-	char buf[128] = { 0 };
-	fread(buf, strlen("hello world") + 1, 1, file);
-	
-
-	int value = 0;
-	fread(&value, sizeof(value), 1, file);
-	printf("buf:%s,value:%d", buf,value);
-
-	fclose(file);
+	return PI * r * r;
 }
+int main()
+{
+
+	printf("s:%.2lf", calc_circle_area(1.1f));
+	return 0;
+}
+```
+
+**宏定义不带分号**
+
+### 宏定义优缺点
+
+![hongdingyiyouquedian](C:/blog/my-blog/content/post/11-2025/11.09.2025/hongdingyiyouquedian.png)
+
+c++ 中可以设置常变量 
+
+### 带参数的宏定义-MAX
+
+![daicanshuhongdingyi](C:/blog/my-blog/content/post/11-2025/11.09.2025/daicanshuhongdingyi.png)
+
+理解宏展开：
+
+```
+#include <stdio.h>
+#include <tchar.h>
+#include <string.h>
+#include <stdlib.h>
+
+#define MAX(X,Y) X>Y?X:Y
 
 int main()
 {
-	
-	binaryio_demo();
+	printf("max:%d\n", MAX(7, 2));
+
+	printf("max:%d\n", MAX(1&7, 5-2));
+	return 0;
+}
+
+原封不动的打包替换
+第二个
+1&7>5-2?1&7:5-1
+
+先算减法，然后比较运算，然后与运算，然后三目运算
+1&1?1&7:4
+1?1:4
+
+修改的话，可以给x y整个变量打上括号，这样替换位置的时候先算括号里的
+
+如果使用
+int getmax(int x , int y)
+{
+	return x>y?x:y;
+}
+不加括号也可以使用
+宏定义会直接替换，函数的话会计算之后再传参
+```
+
+### 带参数的宏与函数优缺点比较
+
+![daican](C:/blog/my-blog/content/post/11-2025/11.09.2025/daicanshudehongyouquedian.png)
+
+函数有出栈和入栈的调用过程，效率低于宏
+
+函数还有参数的安全检测，比如参数的类型，如果穿的参数不匹配对应的类型，则无法匹配
+
+###### 作业
+
+![zuoye1](C:/blog/my-blog/content/post/11-2025/11.09.2025/zuoye1.png)
+
+1. 不带参数，优点：效率高，
+
+   缺点：无法调试，无法修改
+
+   带参数，优点：效率高，直接替换，没有进出栈  
+
+   缺点：直接替换而无法进行计算，以及不能进行类型检查
+
+2. #define calcula_array(arr) (sizeof(arr)/sizeof(arr[0]))
+
+3. #define a=a^b,b=a^b,a=a^b
+
+## （2）：宏的应用与注意事项
+
+### 两个数的交换
+
+![jiaohuan](C:/blog/my-blog/content/post/11-2025/11.09.2025/jiaohuan.png)
+
+宏写法
+
+![hongjiaohuan](C:/blog/my-blog/content/post/11-2025/11.09.2025/hongjiaohuan.png)
+
+```
+#include <stdio.h>
+#include <tchar.h>
+#include <string.h>
+#include <stdlib.h>
+
+#define SWAP(a,b) \
+	int tmp; \
+	tmp = a; \
+	a = b; \
+	b = tmp; 
+
+
+int main()
+{
+	int a = 10;
+	int b = 25;
+	printf("a is not less than b\n");
+	printf("a:%d,b:%d\n", a, b);
+	SWAP(a, b);
+	printf("a:%d,b:%d\n", a, b);
+	return 0;
+}
+
+```
+
+会有一个问题
+
+即，如果在if条件下，原宏定义为使用括号，如果条件下未用括号，会导致宏展开的语句也没有括号，使得程序报错
+
+```
+即
+if(a>b)
+	SWAP(a,b);
+else
+	printf()
+
+两种办法解决
+第一种是语句加上括号
+第二种是在原宏定义加上do while 
+
+#define SWAP(a,b) \
+do{  \	
+	int tmp; \
+	tmp = a; \
+	a = b; \
+	b = tmp; \
+   }while(0)
+
+```
+
+### 软件生产宏定义
+
+![hongdingyihjuli](C:/blog/my-blog/content/post/11-2025/11.09.2025/hongdingyihjuli.png)
+
+### 宏应用
+
+![hongyingyong](C:/blog/my-blog/content/post/11-2025/11.09.2025/hongyingyong.png)
+
+偏移语句中未对0进行解引用，不会引起报错
+
+```
+#include <stdio.h>
+#include <tchar.h>
+#include <string.h>
+#include <stdlib.h>
+
+typedef struct _S
+{
+	int i;
+	char ch;
+
+}S,*PS;
+
+#define OFFSETOF(s,m)  (size_t)(&(((s *)0)->m))
+
+int main()
+{
+	printf("offset of i:%d,   ch:%d\n",
+		OFFSETOF(S, i), OFFSETOF(S, ch));
 
 	return 0;
 }
 ```
 
+**常用**   链表中某一个数据的偏移
+
+```
+#include <stdio.h>
+#include <tchar.h>
+#include <string.h>
+#include <stdlib.h>
+
+#define ARRAYSIZE(a) sizeof(a)/sizeof(a[0])
+
+int main()
+{
+	char ch[] = "hello world";
+
+	printf("items of ch is :%d\n", ARRAYSIZE(ch));
+
+	return 0;
+}
+
+```
+
+计算数组中元素个数
+
+```
+abs(a-b)   -> a-b的绝对值  abs是math文件里的函数
+
+#define MAX(A,B) ((a)+(b)+abs((a)-(b)))/2
+```
+
+不用比较 if 来计算a和b的最大值
+
+### 宏的注意事项
+
+![zhuyishixiang](C:/blog/my-blog/content/post/11-2025/11.09.2025/zhuyishixiang.png)
+
+字符串中属于字符串的一部分，不会宏展开
+
+![zhuyishixiang1](C:/blog/my-blog/content/post/11-2025/11.09.2025/zhuyishixiang1.png)
+
+2.宏名的标识符不能用数字开头
+
+3.双引号必须完整
+
+4.标识符必须完整
+
+###  #和##
+
+![](C:/blog/my-blog/content/post/11-2025/11.09.2025/%23he%23%23.png)
+
+### 定义一个宏来计算一个数的平方
+
+```
+#define power(x)   ((x)*(x))
+```
+
+### 宏的二义性
+
+![hongdeeryixing](C:/blog/my-blog/content/post/11-2025/11.09.2025/hongdeeryixing.png)
+
+###### 作业
+
+![zuoye2](C:/blog/my-blog/content/post/11-2025/11.09.2025/zuoye2.png)
+
+1. 偏移：相对于结构体所在内存地址的相对字节数
+
+#define  (size_t) &(((s *)0)->m)
+
+2. #define calcula_array(arr) sizeof(arr)/sizrof(arr[0])
+3. #define (a+b+abs(a-b)/2)
+4. #是字符串化，将宏参数转化为字符串
+5. ##是拼接，用于将两个参数连接起来
+
+## （3）：条件编译
+
+![tiaojianbianyi](C:/blog/my-blog/content/post/11-2025/11.09.2025/tiaojianbianyi.png)
+
+### 条件编译形式1
+
+![tiaojia1](C:/blog/my-blog/content/post/11-2025/11.09.2025/tiaojianbianyixingshi1.png)
+
+![bianyixingshi2](C:/blog/my-blog/content/post/11-2025/11.09.2025/bianyixingshi2.png)
+
+```
+#include <stdio.h>
+#include <tchar.h>
+#include <string.h>
+#include <stdlib.h>
+
+#define WINVER 6.1
+int main()
+{
+#ifdef WINVER
+	printf("WINVER is defined\n");
+#else
+	printf("WINVER is not defined\n");
+#endif
+	return 0;
+}
+
+```
+
+ ###  条件编译方式3
+
+![tiaojianbianyi3](C:/blog/my-blog/content/post/11-2025/11.09.2025/tiaojianbianyi3.png)
+
+```
+#include <stdio.h>
+#include <tchar.h>
+#include <string.h>
+#include <stdlib.h>
+
+#define DEBUG 1
+
+int main()
+{
+	int a = 10;
+	int b = 15;
+	int c = a + b;
+#if DEBUG
+	printf("c:%d\n",c);
+
+#endif
+
+	return 0;
+}
+判断真假
+```
+
+### 条件编译方式4
+
+![bianyif](C:/blog/my-blog/content/post/11-2025/11.09.2025/bianyifangshi4.png)
+
+### 条件编译实际工程例子
+
+![tiaojianbiany](C:/blog/my-blog/content/post/11-2025/11.09.2025/tiaojianbianyigongchengshijilizi.png)
+
+![1](C:/blog/my-blog/content/post/11-2025/11.09.2025/1.png)
+
+### 头文件的预编译
+
+![touwenjian](C:/blog/my-blog/content/post/11-2025/11.09.2025/touwenjian.png)
+
+![2](C:/blog/my-blog/content/post/11-2025/11.09.2025/2.png)
+
+避免同一个头文件被多次编译
+
+![3](C:/blog/my-blog/content/post/11-2025/11.09.2025/3.png)
+
+###### 作业
+
+![zuoye3](C:/blog/my-blog/content/post/11-2025/11.09.2025/zuoye3.png)
+
+1. 减少头文件的的重复编译
+
+   ```
+   ai
+   条件编译的主要用途：
+   
+   平台适配
+   
+   c
+   #ifdef _WIN32
+       // Windows 专用代码
+   #elif defined(__linux__)
+       // Linux 专用代码
+   #endif
+   调试代码开关
+   
+   c
+   #ifdef DEBUG
+       printf("调试信息\n");
+   #endif
+   功能模块化
+   
+   c
+   #if FEATURE_A
+       // 功能A的代码
+   #endif
+   头文件保护
+   
+   c
+   #ifndef HEADER_H
+   #define HEADER_H
+   // 头文件内容
+   #endif
+   不同版本构建
+   
+   c
+   #if VERSION > 2
+       // 新版本功能
+   #endif
+   好处：同一份源码可编译出不同功能的程序，避免运行时判断的开销。
+   ```
+
+   
+
+2. 三种形式，分支语句形式，布尔语句形式，是否进行宏定义形式

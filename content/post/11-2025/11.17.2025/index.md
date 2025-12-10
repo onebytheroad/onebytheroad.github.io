@@ -1,12 +1,143 @@
 ---
-title: 11-17 笔记
+title: 11-17 寄存器
 description: 平生不会相思，才会相思，便害相思
 date: 2025-11-17
 slug: 11-17
 image: bj.jpg
 categories:
-  - 每日
+  - 汇编语言
 ---
+
+# 第二章  寄存器（cpu工作原理）
+
+## CPU，寄存器
+
+一个典型的CPU由运算器，控制器，寄存器等器件组成，器件靠内部总线相连
+
+区别：
+
+内部总线实现CPU内部各个器件之间的联系
+
+外部总线实现CPU和主板上其他器件的联系
+
+
+
+## 2.1 通用寄存器
+
+8086CPU由14个寄存器，名称为AX,BZ,CX,DX,SI,DI,SP,BP,IP,CS,SS,DS,ES,PSW
+
+8086CPU所有的寄存器都是16位的，可以存放两个字节
+
+AX,BX,CX,DX 通常用来存放一般性数据被称之为通用寄存器
+
+AX作例子
+
+![2.1jicunqicunfang](C:/blog/my-blog/content/post/11-2025/11.16.2025/2.1jicunqicunfang.png)
+
+
+
+![2.1hexcunchuqingk](C:/blog/my-blog/content/post/11-2025/11.16.2025/2.1hexcunchuqingk.png)
+
+
+
+![2.1jicunqidfenwei](C:/blog/my-blog/content/post/11-2025/11.16.2025/2.1jicunqidfenwei.png)
+
+
+
+![2.1 jicunqi8weio](C:/blog/my-blog/content/post/11-2025/11.16.2025/2.1 jicunqi8weio.png)
+
+## 2.2 字在寄存器中的存储
+
+字  word = 2B  8086  8位升级到16位， 把一次性读取16位的内存单元称之为字
+
+## 2.3 几条汇编指令
+
+![2.3huibianzhil](C:/blog/my-blog/content/post/11-2025/11.16.2025/2.3huibianzhil.png)
+
+示例：
+
+![2.3huibianshili](C:\blog\my-blog\content\post\11-2025\11.16.2025\2.3huibianshili.png)
+
+8226H+8226H   进位溢出  1044C  答案是044C
+
+这里的1被放到了进制位中去（请听下回分解）
+
+![2.3seconshili](C:/blog/my-blog/content/post/11-2025/11.16.2025/2.3seconshili.png)
+
+0000H  其中，AH代表了ax的高位，AL代表了ax的低位
+
+add ah，bl  就是对ax的高位和bx的低位进行运算
+
+答案不等于0158H，AH和AL是两个分开的存储，溢出了不会互相进入，会抛到另一个地方
+
+如果是ax则为0158H
+
+###### 监测点2.1
+
+![jiancedian2.1](C:/blog/my-blog/content/post/11-2025/11.16.2025/jiancedian2.1.png)
+
+另附             add al,6						ax=
+
+​		    add al.al						ax=
+
+​		    mov ax,cx						ax=
+
+
+
+```
+AX = F4A3H
+
+AX = 31A3H
+
+AX = 3123H
+
+AX = 6246H
+
+BX = 826CH
+
+CX = 6246H
+
+AX = 826CH
+
+AX = 04D8H
+
+AX = 0482H
+
+AX = 6C82H
+
+AX = D882H
+
+AX = D888H
+
+AX = D810H
+
+AX = 6246H
+```
+
+
+
+（2）只能使用目前削过的汇编指令，最多能够使用四条指令，编程计算2的4次方
+
+add ax,0008H
+
+add ax,0008H
+
+
+
+```
+add ax,2
+add ax,ax
+add ax,ax
+add ax,ax
+```
+
+## 2.4 物理地址
+
+cpu访问内存单元是要给出内存单元的地址，所有的内存单元构成的存储空间是一个一位的线性空间。
+
+我们将这个唯一的地址成为物理地址。
+
+线性空间里的每一个存储单元都有唯一的地址，这个唯一的地址称为物理地址
 
 ## 2.5 16位结构的cpu
 

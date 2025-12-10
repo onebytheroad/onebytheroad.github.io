@@ -1,466 +1,322 @@
 ---
-title: 11-09 笔记
+title: 11-09 位运算
 description: 花开堪折直须折，莫待无花空折枝
 date: 2025-11-09
 slug: 11-09
 image: bj.jpg
 categories:
-    - 每日
+    - c语言基础
 ---
 
-# 第十八课-宏
+# 第十六课-位运算
 
-## （1）：宏的定义
+## （1）：位运算概述
 
-![hongdingyi](hongdingyi.png)
+### 复习二进制位
 
-### 例子
+![erjinzhiwei](C:/blog/my-blog/content/post/11-2025/11.08.2025/erjinzhiwei.png)
 
-![hongdingyilizi](hongdingyilizi.png)
+*扩展位数的时候，用符号为去填充多出来的位数*
 
-```
-#include <stdio.h>
-#include <tchar.h>
-#include <string.h>
-#include <stdlib.h>
+### 位运算定义
 
-#define PI 3.14
-float calc_circle_area(float r)
-{
-	return PI * r * r;
-}
-int main()
-{
+![weiyunsuan](C:/blog/my-blog/content/post/11-2025/11.08.2025/weiyunsuandedingyi.png)
 
-	printf("s:%.2lf", calc_circle_area(1.1f));
-	return 0;
-}
-```
 
-**宏定义不带分号**
 
-### 宏定义优缺点
+| &    | \|   | ~    | ^    | <<   | >>   |
+| ---- | ---- | ---- | ---- | ---- | ---- |
+| and  | or   | not  | xor  | shl  | shr  |
+| 与   | 或   | 取反 | 异或 | 左移 | 右移 |
 
-![hongdingyiyouquedian](hongdingyiyouquedian.png)
 
-c++ 中可以设置常变量 
 
-### 带参数的宏定义-MAX
+### 运算符
 
-![daicanshuhongdingyi](daicanshuhongdingyi.png)
-
-理解宏展开：
-
-```
-#include <stdio.h>
-#include <tchar.h>
-#include <string.h>
-#include <stdlib.h>
-
-#define MAX(X,Y) X>Y?X:Y
-
-int main()
-{
-	printf("max:%d\n", MAX(7, 2));
-
-	printf("max:%d\n", MAX(1&7, 5-2));
-	return 0;
-}
-
-原封不动的打包替换
-第二个
-1&7>5-2?1&7:5-1
-
-先算减法，然后比较运算，然后与运算，然后三目运算
-1&1?1&7:4
-1?1:4
-
-修改的话，可以给x y整个变量打上括号，这样替换位置的时候先算括号里的
-
-如果使用
-int getmax(int x , int y)
-{
-	return x>y?x:y;
-}
-不加括号也可以使用
-宏定义会直接替换，函数的话会计算之后再传参
-```
-
-### 带参数的宏与函数优缺点比较
-
-![daican](daicanshudehongyouquedian.png)
-
-函数有出栈和入栈的调用过程，效率低于宏
-
-函数还有参数的安全检测，比如参数的类型，如果穿的参数不匹配对应的类型，则无法匹配
+![yunsuanfu](C:/blog/my-blog/content/post/11-2025/11.08.2025/yunsuanfu.png)
 
 ###### 作业
 
-![zuoye1](zuoye1.png)
+![zuoye6](C:/blog/my-blog/content/post/11-2025/11.08.2025/zuoye6.png)
 
-1. 不带参数，优点：效率高，
+1.一个bit为二进制中的一个为数位，一个byte由八个数位组成，成为一个字节
 
-   缺点：无法调试，无法修改
+2.~最高，单目运算  << >> 次之  然后是  &  ^   |
 
-   带参数，优点：效率高，直接替换，没有进出栈  
+3.不可以，整型是用32位补码形式存放。浮点数的存储方式与整数不一样，包含了一位符号位还有指数位，所以不能使用移位运算
 
-   缺点：直接替换而无法进行计算，以及不能进行类型检查
+4.一种是逻辑运算符一种是位运算符，单个是针对于数的二进制表达进行位移动，两个是对于两个表达之间的真假判断
 
-2. #define calcula_array(arr) (sizeof(arr)/sizeof(arr[0]))
+5.都是  "x = x & 某数" 的含义
 
-3. #define a=a^b,b=a^b,a=a^b
+## （2）：与运算 &
 
-## （2）：宏的应用与注意事项
+![yuyunsuan](C:/blog/my-blog/content/post/11-2025/11.08.2025/yuyunsuan.png)
 
-### 两个数的交换
+### 程序表示
 
-![jiaohuan](jiaohuan.png)
+![yuyunsuanchengxubiaoshi](C:/blog/my-blog/content/post/11-2025/11.08.2025/yuyunsuanchengxubiaoshi.png)
 
-宏写法
+7，的二进制表示为0111，一个数与7进行与运算，得到的数，就是其末尾3位
 
-![hongjiaohuan](hongjiaohuan.png)
+16，0xF
 
-```
-#include <stdio.h>
-#include <tchar.h>
-#include <string.h>
-#include <stdlib.h>
+子网掩码 255.255.255.0 -> 0xFFFFFF00
 
-#define SWAP(a,b) \
-	int tmp; \
-	tmp = a; \
-	a = b; \
-	b = tmp; 
+ip:192.168.1.100  
 
+前三个字节是网络号。最后一个字节是主机号
 
-int main()
-{
-	int a = 10;
-	int b = 25;
-	printf("a is not less than b\n");
-	printf("a:%d,b:%d\n", a, b);
-	SWAP(a, b);
-	printf("a:%d,b:%d\n", a, b);
-	return 0;
-}
+子网掩码，进行与运算获取网络号
 
-```
+### 清除整数a二进制中最右边的1
 
-会有一个问题
+![qingchu1](C:/blog/my-blog/content/post/11-2025/11.08.2025/qingchu1.png)
 
-即，如果在if条件下，原宏定义为使用括号，如果条件下未用括号，会导致宏展开的语句也没有括号，使得程序报错
+### 各种性质
 
-```
-即
-if(a>b)
-	SWAP(a,b);
-else
-	printf()
-
-两种办法解决
-第一种是语句加上括号
-第二种是在原宏定义加上do while 
-
-#define SWAP(a,b) \
-do{  \	
-	int tmp; \
-	tmp = a; \
-	a = b; \
-	b = tmp; \
-   }while(0)
-
-```
-
-### 软件生产宏定义
-
-![hongdingyihjuli](hongdingyihjuli.png)
-
-### 宏应用
-
-![hongyingyong](hongyingyong.png)
-
-偏移语句中未对0进行解引用，不会引起报错
-
-```
-#include <stdio.h>
-#include <tchar.h>
-#include <string.h>
-#include <stdlib.h>
-
-typedef struct _S
-{
-	int i;
-	char ch;
-
-}S,*PS;
-
-#define OFFSETOF(s,m)  (size_t)(&(((s *)0)->m))
-
-int main()
-{
-	printf("offset of i:%d,   ch:%d\n",
-		OFFSETOF(S, i), OFFSETOF(S, ch));
-
-	return 0;
-}
-```
-
-**常用**   链表中某一个数据的偏移
-
-```
-#include <stdio.h>
-#include <tchar.h>
-#include <string.h>
-#include <stdlib.h>
-
-#define ARRAYSIZE(a) sizeof(a)/sizeof(a[0])
-
-int main()
-{
-	char ch[] = "hello world";
-
-	printf("items of ch is :%d\n", ARRAYSIZE(ch));
-
-	return 0;
-}
-
-```
-
-计算数组中元素个数
-
-```
-abs(a-b)   -> a-b的绝对值  abs是math文件里的函数
-
-#define MAX(A,B) ((a)+(b)+abs((a)-(b)))/2
-```
-
-不用比较 if 来计算a和b的最大值
-
-### 宏的注意事项
-
-![zhuyishixiang](zhuyishixiang.png)
-
-字符串中属于字符串的一部分，不会宏展开
-
-![zhuyishixiang1](zhuyishixiang1.png)
-
-2.宏名的标识符不能用数字开头
-
-3.双引号必须完整
-
-4.标识符必须完整
-
-###  #和##
-
-![](#he##.png)
-
-### 定义一个宏来计算一个数的平方
-
-```
-#define power(x)   ((x)*(x))
-```
-
-### 宏的二义性
-
-![hongdeeryixing](hongdeeryixing.png)
+![xingzhiyu](C:/blog/my-blog/content/post/11-2025/11.08.2025/xingzhiyu.png)
 
 ###### 作业
 
-![zuoye2](zuoye2.png)
+![zuoye7](C:/blog/my-blog/content/post/11-2025/11.08.2025/zuoye7.png)
 
-1. 偏移：相对于结构体所在内存地址的相对字节数
+1.与运算中，与1运算的值都为本身，与0预算的值都为0，获取低三位低八位，只需要使 0000 0111 , 0000 0000 1111 1111  满足除需要的位数其余数字为0即可获得
 
-#define  (size_t) &(((s *)0)->m)
+2.某一位为1，也是，假设判断第四位为1，0000 1000  如果结果为1则为1
 
-2. #define calcula_array(arr) sizeof(arr)/sizrof(arr[0])
-3. #define (a+b+abs(a-b)/2)
-4.  #是字符串化，将宏参数转化为字符串
-5.  ##是拼接，用于将两个参数连接起来
 
-## （3）：条件编译
 
-![tiaojianbianyi](tiaojianbianyi.png)
+## （3）：或运算  |
 
-### 条件编译形式1
+![huoyunsuan](C:/blog/my-blog/content/post/11-2025/11.08.2025/huoyunsuan.png)
 
-![tiaojia1](tiaojianbianyixingshi1.png)
+### 或运算程序 
 
-![bianyixingshi2](bianyixingshi2.png)
-
-```
-#include <stdio.h>
-#include <tchar.h>
-#include <string.h>
-#include <stdlib.h>
-
-#define WINVER 6.1
-int main()
-{
-#ifdef WINVER
-	printf("WINVER is defined\n");
-#else
-	printf("WINVER is not defined\n");
-#endif
-	return 0;
-}
-
-```
-
- ###  条件编译方式3
-
-![tiaojianbianyi3](tiaojianbianyi3.png)
-
-```
-#include <stdio.h>
-#include <tchar.h>
-#include <string.h>
-#include <stdlib.h>
-
-#define DEBUG 1
-
-int main()
-{
-	int a = 10;
-	int b = 15;
-	int c = a + b;
-#if DEBUG
-	printf("c:%d\n",c);
-
-#endif
-
-	return 0;
-}
-判断真假
-```
-
-### 条件编译方式4
-
-![bianyif]( bianyifangshi4.png)
-
-### 条件编译实际工程例子
-
-![tiaojianbiany](tiaojianbianyigongchengshijilizi.png)
-
-![1](1.png)
-
-### 头文件的预编译
-
-![touwenjian](touwenjian.png)
-
-![2](2.png)
-
-避免同一个头文件被多次编译
-
-![3](3.png)
+![huoyunsuanchengxu](C:/blog/my-blog/content/post/11-2025/11.08.2025/huoyunsuanchengxu.png)
 
 ###### 作业
 
-![zuoye3](zuoye3.png)
+![zuoye8](C:/blog/my-blog/content/post/11-2025/11.08.2025/zuoye8.png)
 
-1. 减少头文件的的重复编译
+或运算算法，有1即结果为1,所以只需要确保计算的某位置的数为1即可
 
-   ```
-   ai
-   条件编译的主要用途：
-   
-   平台适配
-   
-   c
-   #ifdef _WIN32
-       // Windows 专用代码
-   #elif defined(__linux__)
-       // Linux 专用代码
-   #endif
-   调试代码开关
-   
-   c
-   #ifdef DEBUG
-       printf("调试信息\n");
-   #endif
-   功能模块化
-   
-   c
-   #if FEATURE_A
-       // 功能A的代码
-   #endif
-   头文件保护
-   
-   c
-   #ifndef HEADER_H
-   #define HEADER_H
-   // 头文件内容
-   #endif
-   不同版本构建
-   
-   c
-   #if VERSION > 2
-       // 新版本功能
-   #endif
-   好处：同一份源码可编译出不同功能的程序，避免运行时判断的开销。
-   ```
+## （4）：异或运算    ^
 
-   
+![yihuoyunsuan](C:/blog/my-blog/content/post/11-2025/11.08.2025/yihuoyunsuan.png)
 
-2. 三种形式，分支语句形式，布尔语句形式，是否进行宏定义形式
+异或运算，相同为0，不同为1、
 
-# 第十九课-递归
+### 异或的程序表达
 
-## （1）：递归定义
+![yihuodechengxubiaoda](C:\blog\my-blog\content\post\11.08.2025\yihuodechengxubiaoda.png)
 
-![digui](digui.png)
+###  异或运算的性质
 
-函数内部，直接或者间接的调用自身
+![yihuoyun](C:/blog/my-blog/content/post/11-2025/11.08.2025/yihuoyunsuandexingzhi.png)
 
-递归首先需要有至少一个递归出口，即终止条件，不能无限调用自己
+xor eax eax  自己与自己异或，结果为0
 
-递归式，原问题划分成子问题，子问题解决性质一样，这样子问题解决之后原问题也会被解决
+两个数的交换
 
-### 阶乘
+![jiaohuan](C:/blog/my-blog/content/post/11-2025/11.08.2025/jiaohuan.png)
 
-![jiecheng](jiecheng.png)
 
-定义fact无符号数
 
-满足n==0或==1，即一个递归出口
+![2](C:/blog/my-blog/content/post/11-2025/11.08.2025/2.png)
 
-```
-int fact(unsigned int n)
-{
-	if(n==0 || n==1)
-	{
-		return 1;
-	}
-	return n * fact(n-1);
-}
-```
+### 单指针实现双链表
 
-### 斐波那契数列
+![danzhizhen](C:/blog/my-blog/content/post/11-2025/11.08.2025/danzhizhenshuanglianbiaop.png)
 
-![feibonaqishulie](feibonaqishulie.png)
-
-```
-unsigned int feibo(unsigned int n)
-{
-	if(n==1 || n==2)
-	{
-		return 1;
-	}
-	return feibo(n-1)+feibo(n-2);
-}
-
-printf("feibo(6)=%d\n",feibo(6))
-```
-
-### 递归的优缺点
-
-![youquedian](youquedian.png)
+![qiujiedian](C:/blog/my-blog/content/post/11-2025/11.08.2025/qiujiedian.png)
 
 ###### 作业
 
-![zuoye4](zuoye4.png)
+![zuoye9](C:/blog/my-blog/content/post/11-2025/11.08.2025/zuoye9.png)
 
-1. 两个，一个是递归的出口，二个是递归式，递归式需要满足符合原式的子式，并且能求解问题
+```
+1.异或运算，相同为0，相反取1
+设a ，b 两个数
+int a,b;
+a = a xor b
+b = 'a' xor b = a xor b xor b = a xor 0 = a
+a = 'a' xor 'b' = a xor b xor a = b xor 0 = b
+所以 
+a = b
+b = a
+```
 
-2. 递归优点：简洁明了  缺点：效率较低，容易导致栈溢出
+2.链表暂定
 
-   迭代优点：效率高，  缺点：代码编写难度高
+## （5）：取反运算
+
+![qufanyunsuan](C:/blog/my-blog/content/post/11-2025/11.08.2025/qufanyunsuan.png)
+
+必须是1个字节，2个或者4个
+
+### 程序表示
+
+![qufanyunsuan](C:/blog/my-blog/content/post/11-2025/11.08.2025/qufanyunsuanchengxubiaoshi.png)
+
+*不存在复合运算*
+
+###### 作业
+
+![zuoye10](C:/blog/my-blog/content/post/11-2025/11.08.2025/zuoye10.png)
+
+先计算 ~0xFFFEFFFF  即 1111 1111 1111 1110 1111 1111 1111 1111  取反  0000 0000 0000 0001 0000 0000 0000 0000 
+
+然后计算 0x12345678  即  0001 0010 0011 0100 0101 0110 0111 1000 与其取或，即把其中一位变成1即可
+
+结果：0001 0010 0011 0101 0101 0110 0111 1000  = 0x12355678
+
+## （6）：移位运算   <<  >>
+
+### 左移运算符 ：<<
+
+![zuoyiyunsuanfu](C:/blog/my-blog/content/post/11-2025/11.08.2025/zuoyiyunsuanfu.png)
+
+举例
+
+![zuoyiyunsuanjuli](C:/blog/my-blog/content/post/11-2025/11.08.2025/zuoyiyunsuanjuli.png)
+
+### 右移运算符
+
+![youyiyunsuanfu](C:/blog/my-blog/content/post/11-2025/11.08.2025/youyiyunsuanfu.png)
+
+分为逻辑右移和算数右移
+
+c语言中右移运算符为算数右移
+
+java   >>>逻辑   >>算数
+
+###### 作业
+
+![zuoye11](C:/blog/my-blog/content/post/11-2025/11.08.2025/zuoye11.png)
+
+1.左移n位，空出来的用0填充  右移n位，空出来的用符号位填充
+
+2.等于将这个数乘以/除以  2^N次方
+
+3.(0x12345678 = 0001 0010 0011 0100 0101 0110 0111 1000  >> 24)  = 0000 0000 0000 0000 0000 0000 0001 0010  &  (0xFF=1111 1111)
+
+结果为 0001 0010 =0x12
+
+
+
+## （7）：位运算综合运用
+
+### 将第N位置0或者置1
+
+![0zhi1](C:/blog/my-blog/content/post/11-2025/11.08.2025/0zhi1.png)
+
+### 对称加密
+
+![yihuojiami](C:/blog/my-blog/content/post/11-2025/11.08.2025/yihuojiami.png)
+
+### 实际项目运用
+
+![shijiyunyong](C:/blog/my-blog/content/post/11-2025/11.08.2025/shijiyunyong.png)
+
+###### 作业
+
+![zuoye12](C:/blog/my-blog/content/post/11-2025/11.08.2025/zuoye12.png)
+
+1.  127 ->  0111 1111  左移1位，然后用0填充，再加1   1111 1110 加1   结果是1111 1111,  255   (?)
+2.  -1 -> 1111 1111 右移1位，然后用符号位填充，1111 1111 再加1   结果是 1 0000 0000  -256   (?)
+
+3.  算数运算符优先，也就是1<<5   0000 0001    0010 0000  结果是，乘以2的5次方，32
+
+4.  15 & 240 换成二进制   0000 1111    1111 0000     与运算，与1运算为本身  , 0
+
+5.  0000 1010   ^   0000 1100    异或运算，相同取0，相反取1   即  0000 0110   ，6
+6.  与1111 1111 0000 0000 0000 0000 0000 0000  进行与运算
+7.  1向左移动100位，除以7的余数，  0000 0111取余  (?)
+8.  1~1024  00 0000 0001   -  10 0000 0000   异或取值范围   相同0，不同1   最大即2047，最小(?)  1025  还包含0
+
+9.  (?)
+
+
+
+解析：
+
+字符型，-128~127 第一题左移转为十进制254，超出范围，截断，1111 1110 表示为 -2,-2+1=-1
+
+第二题，右移一位，保持-1，再加1，结果为0
+
+思路，循环加移位，先将浮点数转换为整数，因为浮点数与整数的编码方式不同，如果直接转换成2进制会出现问题，所以
+
+需要转换成整数并且一位一位打印
+
+```
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h> 
+#include <stdbool.h>
+#include <malloc.h>
+
+#define mask 0x1
+
+int main()
+{
+	float f = 1.0f;
+	
+	int k = *(int*)(&f), j;
+	for (j = 31; j >= 0; j--)
+		printf("%d", (k >> j) & mask);
+	return 0;
+}
+
+网络：https://www.zhihu.com/question/457946470
+```
+
+结果如下
+
+![diyizhiongsuanfa](diyizhiongsuanfa.png)
+
+```
+ai
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h> 
+#include <stdbool.h>
+#include <malloc.h>
+#include <stdint.h>
+
+void print_float_bits(float f) {
+    // 1. 将 f 的二进制表示转为 uint32_t
+    uint32_t u = *((uint32_t*)&f);
+
+    // 2. 分别提取符号位(1 bit)、指数位(8 bits)、尾数位(23 bits)
+    //    并打印每一位
+    // 符号位: bit 31
+    // 指数位: bit 30~23
+    // 尾数位: bit 22~0
+
+    printf("符号位(1): ");
+    printf("%d", (u >> 31) & 1);
+
+    printf("\n指数位(8): ");
+    for (int i = 30; i >= 23; i--) {
+        printf("%d", (u >> i) & 1);
+    }
+
+    printf("\n尾数位(23): ");
+    for (int i = 22; i >= 0; i--) {
+        printf("%d", (u >> i) & 1);
+    }
+    printf("\n");
+}
+
+int main()
+{
+    print_float_bits(1.0f);
+
+    return 0;
+}
+```
+
+结果：
+
+![suanfadierzhong](suanfadierzhong.png)

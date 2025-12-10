@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="摸">
-<title>11-06 笔记</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="摸摸摸鱼鱼鱼">
+<title>11-06 结构体定义与使用</title>
 
 <link rel='canonical' href='http://localhost:1313/p/11-06/'>
 
-<link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="11-06 笔记">
-<meta property='og:description' content="摸">
+<link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="11-06 结构体定义与使用">
+<meta property='og:description' content="摸摸摸鱼鱼鱼">
 <meta property='og:url' content='http://localhost:1313/p/11-06/'>
 <meta property='og:site_name' content='雫的小站'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-11-06T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-11-06T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/bj.jpg' />
-<meta name="twitter:title" content="11-06 笔记">
-<meta name="twitter:description" content="摸"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:1313/bj.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-11-06T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-11-06T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/p/11-06/bj.jpg' />
+<meta name="twitter:title" content="11-06 结构体定义与使用">
+<meta name="twitter:description" content="摸摸摸鱼鱼鱼"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/p/11-06/bj.jpg' />
         
         <link rel="stylesheet" href="http://localhost:1313/css/custom.min.css">
         <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🌸</text></svg>">
@@ -252,15 +252,75 @@
     </ol>
 </aside>
 
-    
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#第十五课-结构体">第十五课-结构体</a>
+      <ol>
+        <li><a href="#1结构体定义与使用">（1）：结构体定义与使用</a>
+          <ol>
+            <li><a href="#基本类型与构建类型">基本类型与构建类型</a>
+              <ol>
+                <li><a href="#结构体定义">结构体定义</a></li>
+              </ol>
+            </li>
+            <li><a href="#初始化定义初始化与成员访问">初始化定义，初始化与成员访问</a></li>
+            <li><a href="#结构体的指针访问-">结构体的指针访问：-&gt;</a></li>
+            <li><a href="#运算符">运算符</a></li>
+            <li><a href="#结构体中的结构体">结构体中的结构体</a></li>
+            <li><a href="#结构体中的指针">结构体中的指针</a>
+              <ol>
+                <li>
+                  <ol>
+                    <li><a href="#作业">作业</a></li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
 
             <main class="main full-width">
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
             <a href="/p/11-06/">
-                
-                    <img src="/bj.jpg" loading="lazy" alt="Featured image of post 11-06 笔记" />
+                <img src="/p/11-06/bj_hu_4f2cf5bb4e084216.jpg"
+                        srcset="/p/11-06/bj_hu_4f2cf5bb4e084216.jpg 800w, /p/11-06/bj_hu_e591de4b0b908ee9.jpg 1600w"
+                        width="800" 
+                        height="633" 
+                        loading="lazy"
+                        alt="Featured image of post 11-06 结构体定义与使用" />
                 
             </a>
         </div>
@@ -270,8 +330,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/%E6%AF%8F%E6%97%A5/" >
-                每日
+            <a href="/categories/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" >
+                C语言基础
             </a>
         
     </header>
@@ -279,12 +339,12 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/11-06/">11-06 笔记</a>
+            <a href="/p/11-06/">11-06 结构体定义与使用</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            摸
+            摸摸摸鱼鱼鱼
         </h3>
         
     </div>
@@ -320,7 +380,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 1 分钟
+                    阅读时长: 3 分钟
                 </time>
             </div>
         
@@ -335,8 +395,649 @@
     <section class="article-content">
     
     
-    <p>c语言练习实例21-39</p>
-<p>看了一些代码实例。</p>
+    <h1 id="第十五课-结构体">第十五课-结构体
+</h1><h2 id="1结构体定义与使用">（1）：结构体定义与使用
+</h2><h3 id="基本类型与构建类型">基本类型与构建类型
+</h3><p><img src="/p/11-06/jibenleixing.png"
+	width="1945"
+	height="1290"
+	srcset="/p/11-06/jibenleixing_hu_a6afad711f4d824c.png 480w, /p/11-06/jibenleixing_hu_ec019ed8eccde8e0.png 1024w"
+	loading="lazy"
+	
+		alt="jibenleixing"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="150"
+		data-flex-basis="361px"
+	
+></p>
+<h4 id="结构体定义">结构体定义
+</h4><p><img src="/p/11-06/jiegoutidingyi.png"
+	width="1912"
+	height="1301"
+	srcset="/p/11-06/jiegoutidingyi_hu_439bf32e34d34fea.png 480w, /p/11-06/jiegoutidingyi_hu_c4e5985d5b452eb3.png 1024w"
+	loading="lazy"
+	
+		alt="jiegoutidingyi"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="146"
+		data-flex-basis="352px"
+	
+></p>
+<p>一般形式</p>
+<p><img src="C:/blog/my-blog/content/post/11-2025/11.05.2025/dingyideyibanxingshi.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="dingyideyibanxingshi"
+	
+	
+></p>
+<p>第三种没有结构体名称，不能在用来定义新的变量名，只能在这起到临时的变量名1，变量名2的作用</p>
+<h3 id="初始化定义初始化与成员访问">初始化定义，初始化与成员访问
+</h3><p><img src="/p/11-06/dingyichushihuafangwen.png"
+	width="1901"
+	height="1254"
+	srcset="/p/11-06/dingyichushihuafangwen_hu_529d8b34c6c2493e.png 480w, /p/11-06/dingyichushihuafangwen_hu_39eae5fa1f09372d.png 1024w"
+	loading="lazy"
+	
+		alt="dingyichushihuafangwen"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="151"
+		data-flex-basis="363px"
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt; </span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdbool.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;malloc.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_student</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">id</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">sex</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">score</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">student</span><span class="p">,</span> <span class="o">*</span><span class="n">pstudent</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">student</span> <span class="n">s1</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1001</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="s">&#34;tom&#34;</span><span class="p">,</span><span class="sc">&#39;m&#39;</span><span class="p">,</span><span class="mf">80.5</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="n">student</span> <span class="n">s2</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s2</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="mi">1001</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s2</span><span class="p">.</span><span class="n">age</span> <span class="o">=</span> <span class="mi">19</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">strcpy_s</span><span class="p">(</span><span class="n">s2</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#34;tom&#34;</span><span class="p">);</span><span class="c1">//名字是数组，需要用stucpy拷贝进去
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">s2</span><span class="p">.</span><span class="n">sex</span> <span class="o">=</span> <span class="sc">&#39;M&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s2</span><span class="p">.</span><span class="n">score</span> <span class="o">=</span> <span class="mf">99.5f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;id:%d,age:%d,name:%s,sex:%c,%f</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">s1</span><span class="p">.</span><span class="n">id</span><span class="p">,</span><span class="n">s1</span><span class="p">.</span><span class="n">age</span><span class="p">,</span><span class="n">s1</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="n">s1</span><span class="p">.</span><span class="n">sex</span><span class="p">,</span><span class="n">s1</span><span class="p">.</span><span class="n">score</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;id:%d,age:%d,name:%s,sex:%c,%f</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">s2</span><span class="p">.</span><span class="n">id</span><span class="p">,</span><span class="n">s2</span><span class="p">.</span><span class="n">age</span><span class="p">,</span><span class="n">s2</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="n">s2</span><span class="p">.</span><span class="n">sex</span><span class="p">,</span><span class="n">s2</span><span class="p">.</span><span class="n">score</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="结构体的指针访问-">结构体的指针访问：-&gt;
+</h3><p><img src="/p/11-06/jiegoutidezhizhen.png"
+	width="1919"
+	height="1295"
+	srcset="/p/11-06/jiegoutidezhizhen_hu_f68a5a385732a8ae.png 480w, /p/11-06/jiegoutidezhizhen_hu_319798090d6ea1d8.png 1024w"
+	loading="lazy"
+	
+		alt="jiegoutidezhizhen"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="148"
+		data-flex-basis="355px"
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    student* ps1 = &amp;s1;
+</span></span><span class="line"><span class="cl">    pstudent ps2 = &amp;s2;//pstudent = student *
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    printf(&#34;id:%d,age:%d,name:%s,sex:%c,%f\n&#34;, ps1-&gt;id, ps1-&gt;age, ps1-&gt;name, ps1-&gt;sex, ps1-&gt;score);
+</span></span><span class="line"><span class="cl">    printf(&#34;id:%d,age:%d,name:%s,sex:%c,%f\n&#34;, ps2-&gt;id, ps2-&gt;age, ps2-&gt;name, ps2-&gt;sex, ps2-&gt;score);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意，长度，加减</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    //ps1+1
+</span></span><span class="line"><span class="cl">    //sizeof(ps1) 指针大小，根据平台  ,sizeof(*ps1) = sizeof(student)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    printf(&#34;sizeof(ps1)=%d,sizeof(*ps1)=%d,sizeof(student)=%d\n&#34;, sizeof(ps1),sizeof(*ps1),sizeof(student));
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    printf(&#34;ps1:%p,ps1+1:%p\n&#34;, ps1, ps1 + 1);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在堆上分配内存来表示结构体</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    student* ps3 = (student*)malloc(sizeof(student));
+</span></span><span class="line"><span class="cl">    if (ps3 == NULL)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        return -1;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    memset(ps3, 0, sizeof(student));
+</span></span><span class="line"><span class="cl">    ps3-&gt;id = 25;
+</span></span><span class="line"><span class="cl">    ps3-&gt;age = 21;
+</span></span><span class="line"><span class="cl">    strcpy_s(ps3-&gt;name, 20, &#34;leilei&#34;);
+</span></span><span class="line"><span class="cl">    ps3-&gt;sex = &#39;m&#39;;
+</span></span><span class="line"><span class="cl">    ps3-&gt;score = 86.5f;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    printf(&#34;id:%d,age:%d,name:%s,sex:%c,%f\n&#34;, ps3-&gt;id, ps3-&gt;age, ps3-&gt;name, ps3-&gt;sex, ps3-&gt;score);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    free(ps3);
+</span></span><span class="line"><span class="cl">    ps3 = NULL;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意，在free之后，ps3指针依旧指向之前的地址，如果后续还要使用ps3指针，需要重新设为null，否是使用则是垃圾值</p>
+<h3 id="运算符">运算符
+</h3><p><img src="/p/11-06/yunsuanfu.png"
+	width="1899"
+	height="1297"
+	srcset="/p/11-06/yunsuanfu_hu_d136437c1f6caf81.png 480w, /p/11-06/yunsuanfu_hu_1fc96d3907a8ba9.png 1024w"
+	loading="lazy"
+	
+		alt="yunsuanfu"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="146"
+		data-flex-basis="351px"
+	
+></p>
+<p>*pstdt-&gt;sex  第一个，箭头优先级高，箭头指向运算之后，所表示的值不是一个地址，无法解引用</p>
+<p>*pstdt-&gt;name  依旧是箭头优先级高，取出了name，name是数组名，代表数组指针，可以解引用</p>
+<p>*pstdt.sex  点号优先级高，指针没有点号这个运算</p>
+<p>(*pstdt).sex  解引用指针，解出来是结构体的名字</p>
+<h3 id="结构体中的结构体">结构体中的结构体
+</h3><p><img src="/p/11-06/jiegoutizhongdejiegouti.png"
+	width="1063"
+	height="687"
+	srcset="/p/11-06/jiegoutizhongdejiegouti_hu_ec3e597ad50091c4.png 480w, /p/11-06/jiegoutizhongdejiegouti_hu_e5004007e1adea3f.png 1024w"
+	loading="lazy"
+	
+		alt="jiegoutizhongdejiegouti"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="154"
+		data-flex-basis="371px"
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt; </span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdbool.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;malloc.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_date</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">year</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">month</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">day</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="n">date</span><span class="p">,</span> <span class="o">*</span><span class="n">pdate</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_student</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">id</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">sex</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">score</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">date</span> <span class="n">birthday</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">student</span><span class="p">,</span> <span class="o">*</span><span class="n">pstudent</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">student</span> <span class="n">s1</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1001</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="s">&#34;tom&#34;</span><span class="p">,</span><span class="sc">&#39;m&#39;</span><span class="p">,</span><span class="mf">80.5f</span><span class="p">,{</span><span class="mi">1995</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">}</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="n">student</span> <span class="n">s2</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s2</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="mi">1001</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s2</span><span class="p">.</span><span class="n">age</span> <span class="o">=</span> <span class="mi">19</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">strcpy_s</span><span class="p">(</span><span class="n">s2</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#34;tom&#34;</span><span class="p">);</span><span class="c1">//名字是数组，需要用stucpy拷贝进去
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">s2</span><span class="p">.</span><span class="n">sex</span> <span class="o">=</span> <span class="sc">&#39;M&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s2</span><span class="p">.</span><span class="n">score</span> <span class="o">=</span> <span class="mf">99.5f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s2</span><span class="p">.</span><span class="n">birthday</span><span class="p">.</span><span class="n">year</span> <span class="o">=</span> <span class="mi">1997</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s2</span><span class="p">.</span><span class="n">birthday</span><span class="p">.</span><span class="n">month</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s2</span><span class="p">.</span><span class="n">birthday</span><span class="p">.</span><span class="n">day</span> <span class="o">=</span> <span class="mi">21</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;id:%d,age:%d,name:%s,sex:%c,%f,year:%d,month:%d,day:%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">s1</span><span class="p">.</span><span class="n">id</span><span class="p">,</span><span class="n">s1</span><span class="p">.</span><span class="n">age</span><span class="p">,</span><span class="n">s1</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="n">s1</span><span class="p">.</span><span class="n">sex</span><span class="p">,</span><span class="n">s1</span><span class="p">.</span><span class="n">score</span><span class="p">,</span> <span class="n">s2</span><span class="p">.</span><span class="n">birthday</span><span class="p">.</span><span class="n">year</span><span class="p">,</span> <span class="n">s2</span><span class="p">.</span><span class="n">birthday</span><span class="p">.</span><span class="n">month</span><span class="p">,</span> <span class="n">s2</span><span class="p">.</span><span class="n">birthday</span><span class="p">.</span><span class="n">day</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;id:%d,age:%d,name:%s,sex:%c,%f</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">s2</span><span class="p">.</span><span class="n">id</span><span class="p">,</span><span class="n">s2</span><span class="p">.</span><span class="n">age</span><span class="p">,</span><span class="n">s2</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="n">s2</span><span class="p">.</span><span class="n">sex</span><span class="p">,</span><span class="n">s2</span><span class="p">.</span><span class="n">score</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">student</span><span class="o">*</span> <span class="n">ps1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">s1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pstudent</span> <span class="n">ps2</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">s2</span><span class="p">;</span><span class="c1">//pstudent = student *
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;id:%d,age:%d,name:%s,sex:%c,%f</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">ps1</span><span class="o">-&gt;</span><span class="n">id</span><span class="p">,</span> <span class="n">ps1</span><span class="o">-&gt;</span><span class="n">age</span><span class="p">,</span> <span class="n">ps1</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="n">ps1</span><span class="o">-&gt;</span><span class="n">sex</span><span class="p">,</span> <span class="n">ps1</span><span class="o">-&gt;</span><span class="n">score</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;id:%d,age:%d,name:%s,sex:%c,%f</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">ps2</span><span class="o">-&gt;</span><span class="n">id</span><span class="p">,</span> <span class="n">ps2</span><span class="o">-&gt;</span><span class="n">age</span><span class="p">,</span> <span class="n">ps2</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="n">ps2</span><span class="o">-&gt;</span><span class="n">sex</span><span class="p">,</span> <span class="n">ps2</span><span class="o">-&gt;</span><span class="n">score</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//ps1+1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//sizeof(ps1) 指针大小，根据平台  ,sizeof(*ps1) = sizeof(student)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;sizeof(ps1)=%d,sizeof(*ps1)=%d,sizeof(student)=%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">ps1</span><span class="p">),</span><span class="k">sizeof</span><span class="p">(</span><span class="o">*</span><span class="n">ps1</span><span class="p">),</span><span class="k">sizeof</span><span class="p">(</span><span class="n">student</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;ps1:%p,ps1+1:%p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">ps1</span><span class="p">,</span> <span class="n">ps1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;sizeof(student *):%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">student</span><span class="o">*</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">student</span><span class="o">*</span> <span class="n">ps3</span> <span class="o">=</span> <span class="p">(</span><span class="n">student</span><span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">student</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">ps3</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">memset</span><span class="p">(</span><span class="n">ps3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">student</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ps3</span><span class="o">-&gt;</span><span class="n">id</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ps3</span><span class="o">-&gt;</span><span class="n">age</span> <span class="o">=</span> <span class="mi">21</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">strcpy_s</span><span class="p">(</span><span class="n">ps3</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#34;leilei&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ps3</span><span class="o">-&gt;</span><span class="n">sex</span> <span class="o">=</span> <span class="sc">&#39;m&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ps3</span><span class="o">-&gt;</span><span class="n">score</span> <span class="o">=</span> <span class="mf">86.5f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ps3</span><span class="o">-&gt;</span><span class="n">birthday</span><span class="p">.</span><span class="n">year</span><span class="o">=</span><span class="mi">1996</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ps3</span><span class="o">-&gt;</span><span class="n">birthday</span><span class="p">.</span><span class="n">month</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ps3</span><span class="o">-&gt;</span><span class="n">birthday</span><span class="p">.</span><span class="n">day</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;id:%d,age:%d,name:%s,sex:%c,%f,year:%d,month:%d,day:%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">ps3</span><span class="o">-&gt;</span><span class="n">id</span><span class="p">,</span> <span class="n">ps3</span><span class="o">-&gt;</span><span class="n">age</span><span class="p">,</span> <span class="n">ps3</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="n">ps3</span><span class="o">-&gt;</span><span class="n">sex</span><span class="p">,</span> <span class="n">ps3</span><span class="o">-&gt;</span><span class="n">score</span><span class="p">,</span><span class="n">ps3</span><span class="o">-&gt;</span><span class="n">birthday</span><span class="p">.</span><span class="n">year</span><span class="p">,</span> <span class="n">ps3</span><span class="o">-&gt;</span><span class="n">birthday</span><span class="p">.</span><span class="n">month</span><span class="p">,</span> <span class="n">ps3</span><span class="o">-&gt;</span><span class="n">birthday</span><span class="p">.</span><span class="n">day</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nf">free</span><span class="p">(</span><span class="n">ps3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ps3</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="结构体中的指针">结构体中的指针
+</h3><p><img src="/p/11-06/jiegoutizhongdezhizhen.png"
+	width="1899"
+	height="1296"
+	srcset="/p/11-06/jiegoutizhongdezhizhen_hu_660dece731c4094c.png 480w, /p/11-06/jiegoutizhongdezhizhen_hu_5a6d15c623bd9eeb.png 1024w"
+	loading="lazy"
+	
+		alt="jiegouti"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="146"
+		data-flex-basis="351px"
+	
+></p>
+<p>结构体中有指针必须要为这个指针赋值一个有效的内存</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt; </span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdbool.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;malloc.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_student</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">id</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span><span class="o">*</span> <span class="n">name</span><span class="p">;</span><span class="c1">//char name[20]  有指针的话，需要专门为指针指定内存
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">char</span> <span class="n">sex</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">score</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="n">student</span><span class="p">,</span> <span class="o">*</span> <span class="n">pstudent</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">student</span> <span class="n">s1</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">11</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="s">&#34;tom&#34;</span><span class="p">,</span><span class="sc">&#39;m&#39;</span><span class="p">,</span><span class="mf">97.5f</span> <span class="p">};</span><span class="c1">//tom存储在静态常量区，name可以指向
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">student</span> <span class="n">s2</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">s2</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s2</span><span class="p">.</span><span class="n">age</span> <span class="o">=</span> <span class="mi">22</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">s2</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span><span class="c1">//指向了堆上的内存
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">s2</span><span class="p">.</span><span class="n">name</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">memset</span><span class="p">(</span><span class="n">s2</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">strcpy_s</span><span class="p">(</span><span class="n">s2</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="s">&#34;lily&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s2</span><span class="p">.</span><span class="n">sex</span> <span class="o">=</span> <span class="sc">&#39;F&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s2</span><span class="p">.</span><span class="n">score</span> <span class="o">=</span> <span class="mf">94.5f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">student</span><span class="o">*</span> <span class="n">s3</span> <span class="o">=</span> <span class="p">(</span><span class="n">student</span><span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">student</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">s3</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">free</span><span class="p">(</span><span class="n">s2</span><span class="p">.</span><span class="n">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">memset</span><span class="p">(</span><span class="n">s3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">student</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s3</span><span class="o">-&gt;</span><span class="n">id</span><span class="o">=</span><span class="mi">18</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s3</span><span class="o">-&gt;</span><span class="n">age</span> <span class="o">=</span> <span class="mi">23</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s3</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">s3</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="nf">free</span><span class="p">(</span><span class="n">s3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">memset</span><span class="p">(</span><span class="n">s3</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nf">strcpy_s</span><span class="p">(</span><span class="n">s3</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#34;david&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s3</span><span class="o">-&gt;</span><span class="n">sex</span> <span class="o">=</span> <span class="sc">&#39;M&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s3</span><span class="o">-&gt;</span><span class="n">score</span> <span class="o">=</span> <span class="mf">87.5f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;s1:name:%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">s1</span><span class="p">.</span><span class="n">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;s2:name:%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">s2</span><span class="p">.</span><span class="n">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;s3:name:%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">s3</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nf">free</span><span class="p">(</span><span class="n">s2</span><span class="p">.</span><span class="n">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s2</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nf">free</span><span class="p">(</span><span class="n">s3</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s3</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nf">free</span><span class="p">(</span><span class="n">s3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s3</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>赋值要注意进行深拷贝</p>
+<p><img src="/p/11-06/lianbiaoheshu.png"
+	width="1917"
+	height="1291"
+	srcset="/p/11-06/lianbiaoheshu_hu_fab60166e98912fb.png 480w, /p/11-06/lianbiaoheshu_hu_6051797f3ab1e7f6.png 1024w"
+	loading="lazy"
+	
+		alt="lianbiaoheshu"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="148"
+		data-flex-basis="356px"
+	
+></p>
+<p>左边，链表节点  右边，二叉树</p>
+<h5 id="作业">作业
+</h5><p><img src="/p/11-06/zuoye.png"
+	width="1919"
+	height="1010"
+	srcset="/p/11-06/zuoye_hu_e21ca298edf160e.png 480w, /p/11-06/zuoye_hu_90965816b2175130.png 1024w"
+	loading="lazy"
+	
+		alt="zuoye"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="190"
+		data-flex-basis="456px"
+	
+></p>
+<p>1.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">typedef struct _date
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">int value;
+</span></span><span class="line"><span class="cl">struct _date *next
+</span></span><span class="line"><span class="cl">}date,*pdate;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.</p>
+<p>.运算符加载结构体名称后面，用来访问非指针结构体的内部数据</p>
+<p>-&gt;用来放在指针结构体名称后，访问结构体内数据</p>
+<p>3.结构体在函数中被调用的时候就是在栈上运行</p>
+<p>而在堆上运行需要手动在堆上分配内存</p>
+<p>4.链表看不懂。。。。</p>
 
 </section>
 
@@ -373,18 +1074,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-30/">
+    <a href="/p/11-15/">
         
         
             <div class="article-image">
-                
-                    <img src="/bj.jpg" loading="lazy" data-key="11-30" data-hash="/bj.jpg"/>
+                <img src="/p/11-15/bj.a16604ad36919a2ee87388ff87281a01_hu_9e5044718131be7e.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 11-15 作业"
+                        data-key="11-15" 
+                        data-hash="md5-oWYErTaRmi7oc4j/hygaAQ==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-30 笔记</h2>
+            <h2 class="article-title">11-15 作业</h2>
         </div>
     </a>
 </article>
@@ -392,23 +1098,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-29/">
+    <a href="/p/11-14/">
         
         
             <div class="article-image">
-                <img src="/p/11-29/bj.60013e3f00f58254a21112014daf3f28_hu_f49e52853cd86f55.jpg" 
+                <img src="/p/11-14/bj.d577405db0b641e0a671e01e6c32b3b8_hu_5c9e70a11824ff53.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-29 笔记"
-                        data-key="11-29" 
-                        data-hash="md5-YAE&#43;PwD1glSiERIBTa8/KA==">
+                        alt="Featured image of post 11-14 作业"
+                        data-key="11-14" 
+                        data-hash="md5-1XdAXbC2QeCmceAebDKzuA==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-29 笔记</h2>
+            <h2 class="article-title">11-14 作业</h2>
         </div>
     </a>
 </article>
@@ -416,23 +1122,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-28/">
+    <a href="/p/11-13/">
         
         
             <div class="article-image">
-                <img src="/p/11-28/bj.6d148dab18c6c1baea6098318eaface2_hu_4e132fbee8d0b475.jpg" 
+                <img src="/p/11-13/bj.c319198b3d02ce40ea9c75f5a419c871_hu_26b15fc36ffa70d.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-28 笔记"
-                        data-key="11-28" 
-                        data-hash="md5-bRSNqxjGwbrqYJgxjq&#43;s4g==">
+                        alt="Featured image of post 11-13 作业"
+                        data-key="11-13" 
+                        data-hash="md5-wxkZiz0CzkDqnHX1pBnIcQ==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-28 笔记</h2>
+            <h2 class="article-title">11-13 作业</h2>
         </div>
     </a>
 </article>
@@ -440,23 +1146,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-27/">
+    <a href="/p/11-12/">
         
         
             <div class="article-image">
-                <img src="/p/11-27/bj.82b7b84c3ec267628100612ae18a037f_hu_c4b47f8dd6ff8e67.jpg" 
+                <img src="/p/11-12/bj.ad77c93609bb7b7605a81180b007dcdc_hu_17f111edc709b5c7.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-27 笔记"
-                        data-key="11-27" 
-                        data-hash="md5-gre4TD7CZ2KBAGEq4YoDfw==">
+                        alt="Featured image of post 11-12 作业"
+                        data-key="11-12" 
+                        data-hash="md5-rXfJNgm7e3YFqBGAsAfc3A==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-27 笔记</h2>
+            <h2 class="article-title">11-12 作业</h2>
         </div>
     </a>
 </article>
@@ -464,23 +1170,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-26/">
+    <a href="/p/11-11/">
         
         
             <div class="article-image">
-                <img src="/p/11-26/bj.8e20f3ed06dc4fa57c2513213cc51884_hu_8728ad2704bb5069.jpg" 
+                <img src="/p/11-11/bj.939ac470f1f843a30170be56807c38ab_hu_d57086257fb1c61d.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-26 笔记"
-                        data-key="11-26" 
-                        data-hash="md5-jiDz7QbcT6V8JRMhPMUYhA==">
+                        alt="Featured image of post 11-11 递归"
+                        data-key="11-11" 
+                        data-hash="md5-k5rEcPH4Q6MBcL5WgHw4qw==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-26 笔记</h2>
+            <h2 class="article-title">11-11 递归</h2>
         </div>
     </a>
 </article>

@@ -2,16 +2,16 @@
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="人生若只如初见，何事秋风悲画扇">
-<title>11-07 笔记</title>
+<title>11-07 结构体指针，应用</title>
 
 <link rel='canonical' href='http://localhost:1313/p/11-07/'>
 
-<link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="11-07 笔记">
+<link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="11-07 结构体指针，应用">
 <meta property='og:description' content="人生若只如初见，何事秋风悲画扇">
 <meta property='og:url' content='http://localhost:1313/p/11-07/'>
 <meta property='og:site_name' content='雫的小站'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-11-07T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-11-07T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/p/11-07/bj.jpg' />
-<meta name="twitter:title" content="11-07 笔记">
+<meta name="twitter:title" content="11-07 结构体指针，应用">
 <meta name="twitter:description" content="人生若只如初见，何事秋风悲画扇"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='http://localhost:1313/p/11-07/bj.jpg' />
         
@@ -295,6 +295,67 @@
             </li>
           </ol>
         </li>
+        <li><a href="#3结构体浅拷贝深拷贝">（3）：结构体浅拷贝深拷贝</a>
+          <ol>
+            <li>
+              <ol>
+                <li><a href="#结构体赋值时的拷贝">结构体赋值时的拷贝</a>
+                  <ol>
+                    <li><a href="#浅拷贝和深拷贝">浅拷贝和深拷贝</a></li>
+                    <li><a href="#深拷贝的实现">深拷贝的实现</a></li>
+                    <li><a href="#图解">图解</a></li>
+                  </ol>
+                </li>
+                <li><a href="#copy-on-writr">copy-on-writr</a>
+                  <ol>
+                    <li>
+                      <ol>
+                        <li><a href="#作业-1">作业</a></li>
+                      </ol>
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+        <li><a href="#4结构体应用">（4）：结构体应用</a>
+          <ol>
+            <li>
+              <ol>
+                <li><a href="#结构体数组">结构体数组</a>
+                  <ol>
+                    <li><a href="#结构体做函数参数">结构体做函数参数</a>
+                      <ol>
+                        <li><a href="#作业-2">作业</a></li>
+                      </ol>
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+        <li><a href="#5sizeof计算结构体长度">（5）：sizeof计算结构体长度</a>
+          <ol>
+            <li><a href="#基本类型">基本类型</a></li>
+            <li><a href="#结构体对齐-自然对齐">结构体对齐-自然对齐</a></li>
+            <li><a href="#pragma-packn">pragma pack(n)</a></li>
+            <li><a href="#栈空间对齐">栈空间对齐</a>
+              <ol>
+                <li>
+                  <ol>
+                    <li>
+                      <ol>
+                        <li><a href="#作业-3">作业</a></li>
+                      </ol>
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </li>
       </ol>
     </li>
   </ol>
@@ -317,7 +378,7 @@
                         width="800" 
                         height="518" 
                         loading="lazy"
-                        alt="Featured image of post 11-07 笔记" />
+                        alt="Featured image of post 11-07 结构体指针，应用" />
                 
             </a>
         </div>
@@ -327,8 +388,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/%E6%AF%8F%E6%97%A5/" >
-                每日
+            <a href="/categories/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" >
+                C语言基础
             </a>
         
     </header>
@@ -336,7 +397,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/11-07/">11-07 笔记</a>
+            <a href="/p/11-07/">11-07 结构体指针，应用</a>
         </h2>
     
         
@@ -377,7 +438,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 6 分钟
+                    阅读时长: 8 分钟
                 </time>
             </div>
         
@@ -1230,7 +1291,340 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
+</div><h2 id="3结构体浅拷贝深拷贝">（3）：结构体浅拷贝深拷贝
+</h2><h4 id="结构体赋值时的拷贝">结构体赋值时的拷贝
+</h4><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/jiegoutifuzhi.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="jiegoutifuzhi"
+	
+	
+></p>
+<p>是否能像图中一样，s1赋值之后，直接用s1来拷贝到其他结构体</p>
+<h5 id="浅拷贝和深拷贝">浅拷贝和深拷贝
+</h5><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/qiamkaobeishenkkaobei.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="qiamkaobei"
+	
+	
+></p>
+<p>左，如果结构体中不包含指针变量，那么s2=s1是正确的</p>
+<p>右，结构体中的拷贝默认是浅拷贝，在赋值的同时也把指针所指向的的地址一起拷贝过去，而且s2中还未给指针分配内存，会导致s1和s2共享分配的100个字节的内存</p>
+<p>如果free(s1.p)，那么s2.p就变成了野指针，指向了一个无效的内存地址</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;malloc.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_struct1</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="n">struct1</span><span class="p">,</span><span class="o">*</span><span class="n">pstruct1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_struct2</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="n">struct2</span><span class="p">,</span> <span class="o">*</span><span class="n">pstruct2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">struct1</span> <span class="n">s1</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">100</span><span class="p">,</span><span class="sc">&#39;A&#39;</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">	<span class="n">struct1</span> <span class="n">s2</span><span class="o">=</span><span class="n">s1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;s1:a:%d,c:%c</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">s1</span><span class="p">.</span><span class="n">a</span><span class="p">,</span> <span class="n">s1</span><span class="p">.</span><span class="n">c</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;s2:a:%d,c:%c</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">s2</span><span class="p">.</span><span class="n">a</span><span class="p">,</span> <span class="n">s2</span><span class="p">.</span><span class="n">c</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">struct2</span> <span class="n">s3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">s3</span><span class="p">.</span><span class="n">a</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">s3</span><span class="p">.</span><span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="mi">16</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">s3</span><span class="p">.</span><span class="n">p</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nf">memset</span><span class="p">(</span><span class="n">s3</span><span class="p">.</span><span class="n">p</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">strcpy_s</span><span class="p">(</span><span class="n">s3</span><span class="p">.</span><span class="n">p</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="s">&#34;hello world&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">struct2</span> <span class="n">s4</span><span class="o">=</span><span class="n">s3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;s3:a:%d,p:%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">s3</span><span class="p">.</span><span class="n">a</span><span class="p">,</span> <span class="n">s3</span><span class="p">.</span><span class="n">p</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;s4:a:%d,p:%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">s4</span><span class="p">.</span><span class="n">a</span><span class="p">,</span> <span class="n">s4</span><span class="p">.</span><span class="n">p</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nf">free</span><span class="p">(</span><span class="n">s3</span><span class="p">.</span><span class="n">p</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;s4:a:%d,p:%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">s4</span><span class="p">.</span><span class="n">a</span><span class="p">,</span> <span class="n">s4</span><span class="p">.</span><span class="n">p</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
+</div><p>debug</p>
+<p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/qiankaobeidebug.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="qiankaobeidebug"
+	
+	
+></p>
+<h5 id="深拷贝的实现">深拷贝的实现
+</h5><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/shenkaobeideshixian.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="sh"
+	
+	
+></p>
+<p>需要程序员手动去分配内存</p>
+<h5 id="图解">图解
+</h5><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/qianshenjkaobeitujie.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="qianshenj"
+	
+	
+></p>
+<p>互有瑕疵</p>
+<h4 id="copy-on-writr">copy-on-writr
+</h4><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/copy-on-write.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="copy-on-write"
+	
+	
+></p>
+<h6 id="作业-1">作业
+</h6><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/zuoye1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="zuoye1"
+	
+	
+></p>
+<p>1.浅拷贝，将对应的值和内存地址直接拷贝到对应的变量当中，也就是，两个指针指向同一个内存地址，共享这一个内存地址</p>
+<p>深拷贝，在拷贝指针中分配新的内存，然后将被拷贝指针中的值拷贝到新地址，原指针的改动对拷贝后的指针无影响</p>
+<p>2.浅拷贝对指针来说是两个指针指向同一个内存地址，如果原指针所在结构体运行完成后释放自己在堆上分配的内存，会导致拷贝后的指针变成野指针</p>
+<p>3.c语言中默认是浅拷贝</p>
+<p>4.拷贝时，先给拷贝指针分配一个内存，然后再对齐进行拷贝</p>
+<p>5.写时拷贝，是一种利用&quot;节点&quot;的拷贝方式,多个指针指向一个节点，然后节点再指向一个内存地址，节点用于记录所指向的指针的个数，当还有指针指向的时候，避免释放内存导致其他指针变为野指针</p>
+<p>另外，写实拷贝还能按某一指针需要修改内存地址中的数据并开辟一个新的地址来存放数据</p>
+<h2 id="4结构体应用">（4）：结构体应用
+</h2><h4 id="结构体数组">结构体数组
+</h4><p>结构体数组的初始化与遍历</p>
+<p>结构体指针数组</p>
+<h5 id="结构体做函数参数">结构体做函数参数
+</h5><p>传指针</p>
+<p>传值</p>
+<p>判断两个同学成绩</p>
+<h6 id="作业-2">作业
+</h6><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/zuoye2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="zuoye2"
+	
+	
+></p>
+<p>1.引用传参，c++中。c语言中指针的效率大于传值</p>
+<p>2.链表待定</p>
+<h2 id="5sizeof计算结构体长度">（5）：sizeof计算结构体长度
+</h2><p>计算类型或者变量的长度，计算的是所占字节的长度</p>
+<h3 id="基本类型">基本类型
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/jibenleixing.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="jibenleixing"
+	
+	
+></p>
+<p>utf16编码，utf32编码</p>
+<p>long ：win 都站4个字节，linux x64占8个字节</p>
+<h3 id="结构体对齐-自然对齐">结构体对齐-自然对齐
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/jiegoutizirnaduiqi.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="jiegoutizirnaduiqi"
+	
+	
+></p>
+<p>成员一样，位置不太一样</p>
+<p>如果是基本成员，存放地点就必须是成员类型的整数倍</p>
+<p>char，可以存放在任何地址，地址都是1的整数倍</p>
+<p>short，0 2 4 6 8</p>
+<p>结构体中包含结构体，按照结构体中子成员中最大的基本类型的整数倍</p>
+<p>最终结果成都必须为sizeof基本类型的整数倍，比如第一个a结构体，计算出来的结果如果是20，需要往后填充4个字节来满足必须要是基本类型double=8的整数倍，也就是24个字节</p>
+<p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/ziranduiqi.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="ziranduiqi"
+	
+	
+></p>
+<p>一般从零地址开始存，这样计算存完即是结构体所占内存大小</p>
+<p>作用，保证cpu在一个时钟周期内把这些数据拿到，提高存取效率</p>
+<h3 id="pragma-packn">pragma pack(n)
+</h3><p>![pragma pack](C:/blog/my-blog/content/post/11-2025/11.08.2025/pragma pack.png)</p>
+<p>pragma示例</p>
+<p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/pragmashili.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="pragmashili"
+	
+	
+></p>
+<p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/jisuan.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="jisuan"
+	
+	
+></p>
+<p>定义结构对齐</p>
+<p>![pragma pack1](C:/blog/my-blog/content/post/11-2025/11.08.2025/pragma pack1.png)</p>
+<p>如果按照1字节对齐，那就不用空格，全部加起来即是字节大小</p>
+<h3 id="栈空间对齐">栈空间对齐
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/zhankongjianduiqi.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="zhankongjianduiqi"
+	
+	
+></p>
+<p>直接按4字节对齐</p>
+<p>在print函数中float会扩充成double字节。</p>
+<p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/zhankongjian.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="zhankongjian"
+	
+	
+></p>
+<p>x64平台填充</p>
+<p>float有专门的寄存器，前四个参数存入寄存器，在栈上还会给这四个参数预留空间</p>
+<p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/x64.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="x64"
+	
+	
+></p>
+<h6 id="作业-3">作业
+</h6><p><img src="C:/blog/my-blog/content/post/11-2025/11.08.2025/zuoye3.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="zuoye3"
+	
+	
+></p>
+<p>1.sizeof(s1)=8  short 两个字节，long 四个字节 ，long为4，需要为4的倍数，所以最后为8</p>
+<p>sizeof(s2)= 24  char 1个字节， s1 有8个字节，long long  类有8个字节，结果17，因为要为8的倍数，所以为24</p>
+<p>sizeof(s3)=   char 1个字节，short两个字节，long 4个字节，longlong  8个字节   16个字节</p>
+<p>2.sizeof(double) = 8  sizeof (long) = 4 sizeof(char) = 1</p>
+<p>sizeof(a) = 24   sizeof(b)=16</p>
+
 </section>
 
 
@@ -1266,18 +1660,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-30/">
+    <a href="/p/11-15/">
         
         
             <div class="article-image">
-                
-                    <img src="/bj.jpg" loading="lazy" data-key="11-30" data-hash="/bj.jpg"/>
+                <img src="/p/11-15/bj.a16604ad36919a2ee87388ff87281a01_hu_9e5044718131be7e.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 11-15 作业"
+                        data-key="11-15" 
+                        data-hash="md5-oWYErTaRmi7oc4j/hygaAQ==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-30 笔记</h2>
+            <h2 class="article-title">11-15 作业</h2>
         </div>
     </a>
 </article>
@@ -1285,23 +1684,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-29/">
+    <a href="/p/11-14/">
         
         
             <div class="article-image">
-                <img src="/p/11-29/bj.60013e3f00f58254a21112014daf3f28_hu_f49e52853cd86f55.jpg" 
+                <img src="/p/11-14/bj.d577405db0b641e0a671e01e6c32b3b8_hu_5c9e70a11824ff53.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-29 笔记"
-                        data-key="11-29" 
-                        data-hash="md5-YAE&#43;PwD1glSiERIBTa8/KA==">
+                        alt="Featured image of post 11-14 作业"
+                        data-key="11-14" 
+                        data-hash="md5-1XdAXbC2QeCmceAebDKzuA==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-29 笔记</h2>
+            <h2 class="article-title">11-14 作业</h2>
         </div>
     </a>
 </article>
@@ -1309,23 +1708,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-28/">
+    <a href="/p/11-13/">
         
         
             <div class="article-image">
-                <img src="/p/11-28/bj.6d148dab18c6c1baea6098318eaface2_hu_4e132fbee8d0b475.jpg" 
+                <img src="/p/11-13/bj.c319198b3d02ce40ea9c75f5a419c871_hu_26b15fc36ffa70d.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-28 笔记"
-                        data-key="11-28" 
-                        data-hash="md5-bRSNqxjGwbrqYJgxjq&#43;s4g==">
+                        alt="Featured image of post 11-13 作业"
+                        data-key="11-13" 
+                        data-hash="md5-wxkZiz0CzkDqnHX1pBnIcQ==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-28 笔记</h2>
+            <h2 class="article-title">11-13 作业</h2>
         </div>
     </a>
 </article>
@@ -1333,23 +1732,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-27/">
+    <a href="/p/11-12/">
         
         
             <div class="article-image">
-                <img src="/p/11-27/bj.82b7b84c3ec267628100612ae18a037f_hu_c4b47f8dd6ff8e67.jpg" 
+                <img src="/p/11-12/bj.ad77c93609bb7b7605a81180b007dcdc_hu_17f111edc709b5c7.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-27 笔记"
-                        data-key="11-27" 
-                        data-hash="md5-gre4TD7CZ2KBAGEq4YoDfw==">
+                        alt="Featured image of post 11-12 作业"
+                        data-key="11-12" 
+                        data-hash="md5-rXfJNgm7e3YFqBGAsAfc3A==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-27 笔记</h2>
+            <h2 class="article-title">11-12 作业</h2>
         </div>
     </a>
 </article>
@@ -1357,23 +1756,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-26/">
+    <a href="/p/11-11/">
         
         
             <div class="article-image">
-                <img src="/p/11-26/bj.8e20f3ed06dc4fa57c2513213cc51884_hu_8728ad2704bb5069.jpg" 
+                <img src="/p/11-11/bj.939ac470f1f843a30170be56807c38ab_hu_d57086257fb1c61d.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-26 笔记"
-                        data-key="11-26" 
-                        data-hash="md5-jiDz7QbcT6V8JRMhPMUYhA==">
+                        alt="Featured image of post 11-11 递归"
+                        data-key="11-11" 
+                        data-hash="md5-k5rEcPH4Q6MBcL5WgHw4qw==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-26 笔记</h2>
+            <h2 class="article-title">11-11 递归</h2>
         </div>
     </a>
 </article>

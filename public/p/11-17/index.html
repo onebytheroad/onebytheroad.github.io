@@ -2,16 +2,16 @@
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="平生不会相思，才会相思，便害相思">
-<title>11-17 笔记</title>
+<title>11-17 寄存器</title>
 
 <link rel='canonical' href='http://localhost:1313/p/11-17/'>
 
-<link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="11-17 笔记">
+<link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="11-17 寄存器">
 <meta property='og:description' content="平生不会相思，才会相思，便害相思">
 <meta property='og:url' content='http://localhost:1313/p/11-17/'>
 <meta property='og:site_name' content='雫的小站'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-11-17T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-11-17T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/p/11-17/bj.jpg' />
-<meta name="twitter:title" content="11-17 笔记">
+<meta name="twitter:title" content="11-17 寄存器">
 <meta name="twitter:description" content="平生不会相思，才会相思，便害相思"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='http://localhost:1313/p/11-17/bj.jpg' />
         
@@ -274,8 +274,29 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li>
+    <li><a href="#第二章--寄存器cpu工作原理">第二章  寄存器（cpu工作原理）</a>
       <ol>
+        <li><a href="#cpu寄存器">CPU，寄存器</a></li>
+        <li><a href="#21-通用寄存器">2.1 通用寄存器</a></li>
+        <li><a href="#22-字在寄存器中的存储">2.2 字在寄存器中的存储</a></li>
+        <li><a href="#23-几条汇编指令">2.3 几条汇编指令</a>
+          <ol>
+            <li>
+              <ol>
+                <li>
+                  <ol>
+                    <li>
+                      <ol>
+                        <li><a href="#监测点21">监测点2.1</a></li>
+                      </ol>
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+        <li><a href="#24-物理地址">2.4 物理地址</a></li>
         <li><a href="#25-16位结构的cpu">2.5 16位结构的cpu</a></li>
         <li><a href="#26-8086cpu给出物理地址的方法">2.6 8086cpu给出物理地址的方法</a>
           <ol>
@@ -360,7 +381,7 @@
                         width="800" 
                         height="613" 
                         loading="lazy"
-                        alt="Featured image of post 11-17 笔记" />
+                        alt="Featured image of post 11-17 寄存器" />
                 
             </a>
         </div>
@@ -370,8 +391,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/%E6%AF%8F%E6%97%A5/" >
-                每日
+            <a href="/categories/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/" >
+                汇编语言
             </a>
         
     </header>
@@ -379,7 +400,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/11-17/">11-17 笔记</a>
+            <a href="/p/11-17/">11-17 寄存器</a>
         </h2>
     
         
@@ -420,7 +441,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 3 分钟
+                    阅读时长: 4 分钟
                 </time>
             </div>
         
@@ -435,7 +456,184 @@
     <section class="article-content">
     
     
-    <h2 id="25-16位结构的cpu">2.5 16位结构的cpu
+    <h1 id="第二章--寄存器cpu工作原理">第二章  寄存器（cpu工作原理）
+</h1><h2 id="cpu寄存器">CPU，寄存器
+</h2><p>一个典型的CPU由运算器，控制器，寄存器等器件组成，器件靠内部总线相连</p>
+<p>区别：</p>
+<p>内部总线实现CPU内部各个器件之间的联系</p>
+<p>外部总线实现CPU和主板上其他器件的联系</p>
+<h2 id="21-通用寄存器">2.1 通用寄存器
+</h2><p>8086CPU由14个寄存器，名称为AX,BZ,CX,DX,SI,DI,SP,BP,IP,CS,SS,DS,ES,PSW</p>
+<p>8086CPU所有的寄存器都是16位的，可以存放两个字节</p>
+<p>AX,BX,CX,DX 通常用来存放一般性数据被称之为通用寄存器</p>
+<p>AX作例子</p>
+<p><img src="C:/blog/my-blog/content/post/11-2025/11.16.2025/2.1jicunqicunfang.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2.1jicunqicunfang"
+	
+	
+></p>
+<p><img src="C:/blog/my-blog/content/post/11-2025/11.16.2025/2.1hexcunchuqingk.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2.1hexcunchuqingk"
+	
+	
+></p>
+<p><img src="C:/blog/my-blog/content/post/11-2025/11.16.2025/2.1jicunqidfenwei.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2.1jicunqidfenwei"
+	
+	
+></p>
+<p>![2.1 jicunqi8weio](C:/blog/my-blog/content/post/11-2025/11.16.2025/2.1 jicunqi8weio.png)</p>
+<h2 id="22-字在寄存器中的存储">2.2 字在寄存器中的存储
+</h2><p>字  word = 2B  8086  8位升级到16位， 把一次性读取16位的内存单元称之为字</p>
+<h2 id="23-几条汇编指令">2.3 几条汇编指令
+</h2><p><img src="C:/blog/my-blog/content/post/11-2025/11.16.2025/2.3huibianzhil.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2.3huibianzhil"
+	
+	
+></p>
+<p>示例：</p>
+<p><img src="C:%5cblog%5cmy-blog%5ccontent%5cpost%5c11-2025%5c11.16.2025%5c2.3huibianshili.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2.3huibianshili"
+	
+	
+></p>
+<p>8226H+8226H   进位溢出  1044C  答案是044C</p>
+<p>这里的1被放到了进制位中去（请听下回分解）</p>
+<p><img src="C:/blog/my-blog/content/post/11-2025/11.16.2025/2.3seconshili.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2.3seconshili"
+	
+	
+></p>
+<p>0000H  其中，AH代表了ax的高位，AL代表了ax的低位</p>
+<p>add ah，bl  就是对ax的高位和bx的低位进行运算</p>
+<p>答案不等于0158H，AH和AL是两个分开的存储，溢出了不会互相进入，会抛到另一个地方</p>
+<p>如果是ax则为0158H</p>
+<h6 id="监测点21">监测点2.1
+</h6><p><img src="C:/blog/my-blog/content/post/11-2025/11.16.2025/jiancedian2.1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="jiancedian2.1"
+	
+	
+></p>
+<p>另附             add al,6						ax=</p>
+<p>​		    add al.al						ax=</p>
+<p>​		    mov ax,cx						ax=</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">AX = F4A3H
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">AX = 31A3H
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">AX = 3123H
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">AX = 6246H
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">BX = 826CH
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">CX = 6246H
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">AX = 826CH
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">AX = 04D8H
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">AX = 0482H
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">AX = 6C82H
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">AX = D882H
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">AX = D888H
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">AX = D810H
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">AX = 6246H
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>（2）只能使用目前削过的汇编指令，最多能够使用四条指令，编程计算2的4次方</p>
+<p>add ax,0008H</p>
+<p>add ax,0008H</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">add ax,2
+</span></span><span class="line"><span class="cl">add ax,ax
+</span></span><span class="line"><span class="cl">add ax,ax
+</span></span><span class="line"><span class="cl">add ax,ax
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="24-物理地址">2.4 物理地址
+</h2><p>cpu访问内存单元是要给出内存单元的地址，所有的内存单元构成的存储空间是一个一位的线性空间。</p>
+<p>我们将这个唯一的地址成为物理地址。</p>
+<p>线性空间里的每一个存储单元都有唯一的地址，这个唯一的地址称为物理地址</p>
+<h2 id="25-16位结构的cpu">2.5 16位结构的cpu
 </h2><ul>
 <li>1.运算器一次最多可以处理16位的数据</li>
 <li>2.寄存器的最大宽度为16位</li>
@@ -908,18 +1106,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-30/">
+    <a href="/p/12-06/">
         
         
             <div class="article-image">
-                
-                    <img src="/bj.jpg" loading="lazy" data-key="11-30" data-hash="/bj.jpg"/>
+                <img src="/p/12-06/bj.2a867bdf019bc18164c4e331c520012f_hu_d825c6ce53c8507.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 12-06 汇编编写"
+                        data-key="12-06" 
+                        data-hash="md5-KoZ73wGbwYFkxOMxxSABLw==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-30 笔记</h2>
+            <h2 class="article-title">12-06 汇编编写</h2>
         </div>
     </a>
 </article>
@@ -927,23 +1130,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-29/">
+    <a href="/p/12-05/">
         
         
             <div class="article-image">
-                <img src="/p/11-29/bj.60013e3f00f58254a21112014daf3f28_hu_f49e52853cd86f55.jpg" 
+                <img src="/p/12-05/bj.5fd30f0c63ce2c19f95a7a5adcb80477_hu_39f5fc0f85f3418a.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-29 笔记"
-                        data-key="11-29" 
-                        data-hash="md5-YAE&#43;PwD1glSiERIBTa8/KA==">
+                        alt="Featured image of post 12-05 汇编编写"
+                        data-key="12-05" 
+                        data-hash="md5-X9MPDGPOLBn5Wnpa3LgEdw==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-29 笔记</h2>
+            <h2 class="article-title">12-05 汇编编写</h2>
         </div>
     </a>
 </article>
@@ -951,23 +1154,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-28/">
+    <a href="/p/12-04/">
         
         
             <div class="article-image">
-                <img src="/p/11-28/bj.6d148dab18c6c1baea6098318eaface2_hu_4e132fbee8d0b475.jpg" 
+                <img src="/p/12-04/bj.ae66fbb470d49a25c0db7234c5f92918_hu_d7e72db24ae69883.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-28 笔记"
-                        data-key="11-28" 
-                        data-hash="md5-bRSNqxjGwbrqYJgxjq&#43;s4g==">
+                        alt="Featured image of post 12-04 汇编编写"
+                        data-key="12-04" 
+                        data-hash="md5-rmb7tHDUmiXA23I0xfkpGA==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-28 笔记</h2>
+            <h2 class="article-title">12-04 汇编编写</h2>
         </div>
     </a>
 </article>
@@ -975,23 +1178,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-27/">
+    <a href="/p/12-03/">
         
         
             <div class="article-image">
-                <img src="/p/11-27/bj.82b7b84c3ec267628100612ae18a037f_hu_c4b47f8dd6ff8e67.jpg" 
+                <img src="/p/12-03/bj.84b397e4934578eadf7ef2928bf00f05_hu_26b44697610aa75.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-27 笔记"
-                        data-key="11-27" 
-                        data-hash="md5-gre4TD7CZ2KBAGEq4YoDfw==">
+                        alt="Featured image of post 12-03 内中断"
+                        data-key="12-03" 
+                        data-hash="md5-hLOX5JNFeOrffvKSi/APBQ==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-27 笔记</h2>
+            <h2 class="article-title">12-03 内中断</h2>
         </div>
     </a>
 </article>
@@ -999,23 +1202,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-26/">
+    <a href="/p/12-02/">
         
         
             <div class="article-image">
-                <img src="/p/11-26/bj.8e20f3ed06dc4fa57c2513213cc51884_hu_8728ad2704bb5069.jpg" 
+                <img src="/p/12-02/bj.11dc268d69f4aa569dfd586148aef40a_hu_3c8c0664f1655cce.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-26 笔记"
-                        data-key="11-26" 
-                        data-hash="md5-jiDz7QbcT6V8JRMhPMUYhA==">
+                        alt="Featured image of post 12-02 标志寄存器"
+                        data-key="12-02" 
+                        data-hash="md5-EdwmjWn0qlad/VhhSK70Cg==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-26 笔记</h2>
+            <h2 class="article-title">12-02 标志寄存器</h2>
         </div>
     </a>
 </article>

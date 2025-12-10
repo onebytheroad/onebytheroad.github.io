@@ -1,20 +1,12 @@
 ---
-title: 11-12 笔记
+title: 11-12 作业
 description: 飞鸟与鱼不同路，再见容易再见难。
 date: 2025-11-12
 slug: 11-12
 image: bj.jpg
 categories:
-    - 每日
+    - c语言基础
 ---
-
-
-
-
-
-
-
-
 
 将之前除链表，pe读取，配置文件读取的作业写了
 

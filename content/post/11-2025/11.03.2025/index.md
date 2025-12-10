@@ -1,12 +1,222 @@
 ---
-title: 11-03 笔记
+title: 11-03 指针定义与使用
 description: 春风若有怜花意，可否许我再少年。
 date: 2025-11-03
 slug: 11-03
 image: bj.jpg
 categories:
-    - 每日
+    - c语言基础
 ---
+
+# 第十三课-指针
+
+## （1）：指针定义与使用
+
+### 变量在内存中的地址
+
+![bianliangd](C:/blog/my-blog/content/post/11-2025/11.02.2025/bianliangdeneicundizhi.png)
+
+ &取值运算符
+
+### 指针定义
+
+![zhizhen](C:/blog/my-blog/content/post/11-2025/11.02.2025/zhizhen.png)
+
+指针也是变量，指针也有类型，指针存放的值是内存地址
+
+指针字节就是内存地址的长度
+
+```
+int main()
+{
+	int i = 1;
+	int* p = &i;
+	printf("p=%p,&i=%p,sizeof(p):%d\n", p, &i, sizeof(p));
+
+
+	return 0;
+}
+
+```
+
+### 指针的定义与初始化形式
+
+![zhenzhiding](C:/blog/my-blog/content/post/11-2025/11.02.2025/zhenzhidingyiyuchushihua.png)
+
+初始化：1.指向某个变量的地址  2.指向一个分配的内存或者字符串常量  3.指向NULL
+
+```
+int i,*p；定义了一个整型i和整型指针，这里*与int一起 
+p =&i  野指针，指向随机值 
+```
+
+ ```
+char *p=(Char*)malloc(100);  在堆上分配了地址，赋值给了一个指针
+char *str = "hello world";   指向的是字符串变量地址
+char c='A';  一个字符变量'a'
+char *str = &c;  一个指针str，把c的地址赋值给了str，指向字符变量c
+char *pch= &c ;
+字符指针既可以指向字符串，也可以指向字符变量
+赋值给指针的时候，赋值的类型一定要匹配
+字符指针赋值给整型指针，需要强制转化
+ ```
+
+### *p：解引用运算符    与指针定义的\*不是一个东西
+
+![jieyinyuongyunsuanfu](C:/blog/my-blog/content/post/11-2025/11.02.2025/jieyinyuongyunsuanfu.png)
+
+  ```
+int *p1,*p2   中 “*” 是定义指针p1，p2
+printf 中*p1 *p2 是解引用符
+*p1 == a   *p2 == b    对 *p1+1 *p2+2 就是对a，b修改
+但是必须要是可写的 
+a是常量指针，指针的一种形式，指向的数组的首地址
+p指向的字符串的首地址
+对a和p进行解引用，*a为数组第一个元素，*p为字符串第一个
+  ```
+
+野指针和NULL都不能被解引用
+
+```
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h> 
+
+
+
+int main()
+{	
+	int a = 100;
+	int b = 10;
+
+	int arr[10] = { 2,3,4,6,7,8 };
+	char* s = "hello world";
+
+	int* p1 = &a;
+	int* p2 = &b;
+
+	printf("*p1=%d,*p2=%d\n", *p1, *p2);
+	printf("a=%d,b=%d\n", a, b);
+
+	*p1 += 1;
+	*p2 += 1;
+
+	printf("a=%d,b=%d\n", a, b);
+
+	printf("*arr:%d\n", *arr);
+
+	printf("*s:%c\n", *s);
+
+	return 0;
+}
+
+```
+
+### &与*
+
+![&](C:/blog/my-blog/content/post/11-2025/11.02.2025/&.png)
+
+	*arr = 100;
+	*s = "X";
+
+*arr 指向数组第一个元素，可以使用指针修改
+
+*s指向静态常量区，修改会报错
+
+### &与*互为逆运算：\*&与&\*
+
+![niyunsuan](C:/blog/my-blog/content/post/11-2025/11.02.2025/niyunsuan.png)
+
+*运算符需要和指针联系在一起，a不是指针，所以&\*a会报错
+
+### 易混淆
+
+![yihunxiao](C:/blog/my-blog/content/post/11-2025/11.02.2025/yihunxiao.png)
+
+### 指针的赋值与使用
+
+![zhizhendefuzhi](C:/blog/my-blog/content/post/11-2025/11.02.2025/zhizhendefuzhiyushiyong.png)
+
+*p2 = *p1  即j = i   j和i的值都变为'a'
+
+**用双引号直接赋值的字符串是只读的，用数组或malloc创建的字符串是可修改的。**
+
+p2=p1 把p1的地址赋值给p2，相当于p2指向了p1的地址
+
+### 指针类型与互相转换
+
+![zhizhenlei](C:/blog/my-blog/content/post/11-2025/11.02.2025/zhizhenleixingyuhuxiangzhuanhuan.png)
+
+
+
+![lizi2](C:/blog/my-blog/content/post/11-2025/11.02.2025/lizi2.png)
+
+少了会导致数据丢失，多了可能会导致破坏其他内存地址。强制转化有可能会导致程序受到影响
+
+类型不一样宽度就不一样
+
+### void *p
+
+![void](C:/blog/my-blog/content/post/11-2025/11.02.2025/void.png)
+
+void *p  没有任何类型，和类型指针不一样
+
+void的指针概念中没有内存长度的概念，拿不到内存长度
+
+不能用*p来取值，取不了其中的值
+
+GCC里面的扩展，void默认为1字节
+
+主要用在函数参数定义的时候，可以接受任何类型的指针的赋值，万能指针型
+
+void赋值成别的类型需要强转，而解引用也需要转换
+
+一般用在函数的形参位置，不用做任何的强制转换，只是在内部需要转换
+
+ ~~~
+void *pv1 = p1 
+只是对pv1的赋值，类型并未转换，GCC应该可以
+sizeof(pv1)   指针本身是变量
+sizeof(*pv1)  只是无法解引用
+ ~~~
+
+### 字符指针
+
+![zifuzhizhen](C:/blog/my-blog/content/post/11-2025/11.02.2025/zifuzhizhen.png)
+
+### sizeof(p)\sizeog(*p)
+
+![sizeof(C:/blog/my-blog/content/post/11-2025/11.02.2025/sizeof(p).png)](sizeof(p).png)
+
+sizeof(p)   指针对应的长度
+
+sizeof(*p)  指针对应类型的长度
+
+4 4 1 4   12   4  1  1
+
+### 指针的应用
+
+![yingyong](C:/blog/my-blog/content/post/11-2025/11.02.2025/yingyong.png)
+
+```
+#include <stdbool.h>
+
+bool is_system_little()
+{
+	int x = 0x1;
+	char* p = (char*)&x;
+
+	if (*p == 1)
+		return true;
+	else
+		return false;
+
+}
+```
+
+##### 作业
+
+![zuoye2](zuoye2.png)
 
 ##### 作业
 
@@ -95,8 +305,3 @@ printf的理解：
 
 
 ```
-
-
-
-美化了博客，修复了一堆史山代码
-

@@ -1,11 +1,11 @@
 ---
-title: 11-22 笔记
+title: 11-22 BX和loop
 description: 雨终究会停，雾终究会散，你我终究会被替代
 date: 2025-11-22
 slug: 11-22
 image: bj.jpg
 categories:
-  - 每日
+  - 汇编语言
 ---
 
 # 第五章 [BX]和loop指令

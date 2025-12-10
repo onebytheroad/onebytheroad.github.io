@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>C语言基础 - 程序基础 on 雫的小站</title>
+        <link>http://localhost:1313/categories/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80---%E7%A8%8B%E5%BA%8F%E5%9F%BA%E7%A1%80/</link>
+        <description>Recent content in C语言基础 - 程序基础 on 雫的小站</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>Example Person</copyright>
+        <lastBuildDate>Sat, 18 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80---%E7%A8%8B%E5%BA%8F%E5%9F%BA%E7%A1%80/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>10-18 笔记</title>
+        <link>http://localhost:1313/p/10-18/</link>
+        <pubDate>Sat, 18 Oct 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/10-18/</guid>
+        <description>&lt;img src="http://localhost:1313/p/10-18/tutu.jpg" alt="Featured image of post 10-18 笔记" /&gt;&lt;h1 id=&#34;程序基础&#34;&gt;程序基础
+&lt;/h1&gt;&lt;p&gt;程序的编译和链接&lt;br&gt;
+vc&lt;/p&gt;
+&lt;p&gt;预处理 a.c    编译 a.i     汇编 a.s       链接 a.o(a.obj)     &amp;gt;  a.exe
+c      &amp;gt;       i     &amp;gt;    s     &amp;gt;     o    &amp;gt;   exe&lt;/p&gt;
+&lt;p&gt;多个c会编辑成多个obj，然后与lib一起链接成exe。pe格式  (可执行文件)&lt;br&gt;
+pe格式存放了程序执行的代码啊，数据，资源        是一种规范和标准&lt;/p&gt;
+&lt;p&gt;win:. exe/.dll/.sys =&amp;gt; pe &lt;br&gt;
+Linux: elf&lt;br&gt;
+病毒分析逆向&lt;/p&gt;
+&lt;p&gt;dos ‘MZ’   e_magic MZ 开头  0X5a4d&lt;br&gt;
+dos stub         主要起兼容作用&lt;/p&gt;
+&lt;p&gt;e_lfanew 指向 pe文件头
+PE\0\0: 0x50 0x45 00 00&lt;/p&gt;
+&lt;p&gt;块表 记录每一个块的位置&lt;/p&gt;
+&lt;p&gt;块 存放着可执行代码&lt;/p&gt;
+&lt;p&gt;调试信息&lt;/p&gt;
+&lt;p&gt;section 节，块，段
+eop  入口点，第一条指令所在地址
+oep  原入口点，壳里面的概念
+epo  入口模糊  病毒概念  病毒感染了程序，模糊了入口点
+imageBase:0x4000000   exe从磁盘加载到内存中，有一个基地值，不修改的话是固定的（）编译可修改
+VA  加载到内存中，pe文件的每一条指令，数据，变量的虚拟地址
+RVA 相对虚拟地址，相对于imagebase
+VOFFSET  每一节的起始的虚拟地址减去imagebase得到的值  内存中起始地址截取imagebase
+ROFFSET  每一节的起始地址减去文件的首地址得到的偏移   磁盘中起始地址减去文件的首地址&lt;/p&gt;
+&lt;p&gt;peid/petool     pe petool 查壳查地址
+notepad++/winhex&lt;/p&gt;
+&lt;p&gt;extrypoint eop&lt;br&gt;
+ep section 所在的节 text 存放代码&lt;/p&gt;
+&lt;p&gt;程序，是指令和数据的有序集合，本身没有任何运行的含义，静态概念&lt;br&gt;
+存放在磁盘上的exe程序叫做映像文件 imagefile&lt;/p&gt;
+&lt;p&gt;进程是程序在处理机上的一次执行过程，他是一个动态的概念，拥有一个完整的生命周期&lt;br&gt;
+进程的是指是程序在系统中的一次执行过程，进程是动态产生，动态消亡的&lt;br&gt;
+一个程序在不同的数据集里就构成不同的进程&lt;br&gt;
+不同的程序可以启动不同数量的进程&lt;br&gt;
+程序在运行的时候就有一个pid标识&lt;br&gt;
+进程的三个状态：&lt;br&gt;
+1，就绪状态&lt;br&gt;
+已经获得除了处理器的所需资源，等待分配处理器&lt;br&gt;
+2，运行状态&lt;br&gt;
+占用cpu资源，&lt;br&gt;
+3，阻塞状态&lt;br&gt;
+等待某种条件，在条件满足前无法继续执行&lt;/p&gt;
+&lt;p&gt;线程：为了提高系统并发的度。&lt;br&gt;
+一个程序至少有一个进程&lt;br&gt;
+一个进程至少有一个线程，进程是资源分配的基本单元，线程的调度的基本单元&lt;/p&gt;
+&lt;p&gt;冯诺依曼体系   cpu(算术逻辑单元和浮点数逻辑单元)  寄存器   内存(RAM)   磁盘&lt;/p&gt;
+&lt;p&gt;cpu 》计算 》计算器 》 储存&lt;br&gt;
+系统总线，控制总线，地址总线，数据总线  连接cpu和内存，通过线路传输连接计算&lt;/p&gt;
+&lt;p&gt;cpu：多核时代，一个cpu上有多个核，每一个核就是一个processor，操作系统的视角中一个核就是一个逻辑处理器&lt;/p&gt;
+&lt;p&gt;系统内存布局&lt;br&gt;
+分为俩个部分&lt;/p&gt;
+&lt;p&gt;user space    应用程序运行空间                         2GB内核空间 0xffffffff&lt;/p&gt;
+&lt;p&gt;kernel space   内核空间，操作系统的运行空间            0x7fffffff   64kb非法区域&lt;br&gt;
+最下层是硬件                           0x7fff0000 &lt;br&gt;
+进程空间（私有的，每一个进程  之间的内存）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;                                                    64kb null空间  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;应用层程序R3&lt;br&gt;
+内核层R0（最高权限）&lt;/p&gt;
+&lt;p&gt;x86支持32位寻址，pae技术可以扩大内存空间&lt;br&gt;
+2^32=4GB  32位系统，四个字节&lt;/p&gt;
+&lt;p&gt;x64内存理论上支持2^64的寻址空间，目前一般只支持到40多位&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

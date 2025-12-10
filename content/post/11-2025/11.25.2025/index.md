@@ -1,11 +1,11 @@
 ---
-title: 11-25 笔记
+title: 11-25 更灵活的定位内存地址的方法下
 description: 人有悲欢离合，月有阴晴圆缺
 date: 2025-11-25
 slug: 11-25
 image: bj.jpg
 categories:
-  - 每日
+  - 汇编语言
 ---
 
 ## 7.7 SI和DI

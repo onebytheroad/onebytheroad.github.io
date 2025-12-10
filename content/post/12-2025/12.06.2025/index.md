@@ -1,164 +1,56 @@
 ---
-title: 12-06 笔记
+title: 12-06 汇编编写
 description: 我不再爱她，这是确定的，但也许我爱她。爱情太短，而遗忘太长
 date: 2025-12-06
 slug: 12-06
 image: bj.jpg
 categories:
-  - 每日 
+  - 汇编语言 
 ---
 
-问题：
+函数的ABI规范
 
-1.汇编语法调用函数，两处，
+\- 参数通过 `rdi, rsi, rdx...` 传递
+\- 返回值在 `rax`
+\- `rbx, rbp, r12–r15` 是 callee-saved，其余是 caller-saved
 
-一：call一个函数，假设输入一个值，怎么让我需要的值输入，如果是有多个值，又怎么处理 。
+寄存器的分类
 
-二：ret返回，跟输入的不一样，怎么使得返回值到达我指定的寄存器，以及，函数调用时多个寄存器冲突的话，怎么去避免寄存器冲突，寄存器的调用顺序等
+| **参数/返回**            | `rdi`, `rsi`, `rdx`, `rcx`, `r8`, `r9`, `rax` | 传参 + 返回值                  |
+| ------------------------ | --------------------------------------------- | ------------------------------ |
+| **callee-saved**         | `rbx`, `rbp`, `r12–r15`                       | 可安全用于保存中间值           |
+| **临时（caller-saved）** | `r10`, `r11`                                  | 自由使用，调用函数后可能被破坏 |
 
-正在写函数调用
+使用地址中的参数，注意要求导入的数据长度
 
-1
+多个参数的传递：
 
-控制流逻辑
+| 参数序号 | 寄存器（64位） | 32位形式 | 用途说明                    |
+| -------- | -------------- | -------- | --------------------------- |
+| 第1个    | `rdi`          | `edi`    | 常用于目标地址（如 `dest`） |
+| 第2个    | `rsi`          | `esi`    | 常用于源地址（如 `src`）    |
+| 第3个    | `rdx`          | `edx`    | 数据、长度等                |
+| 第4个    | `rcx`          | `ecx`    | 计数、标志等                |
+| 第5个    | `r8`           | `r8d`    | —                           |
+| 第6个    | `r9`           | `r9d`    | —                           |
 
-在完成条件多路跳转时，必须使用 `je + jmp done` 隔离
+超过6个则需要使用栈传递（注意保持16字节对齐）
 
-~~~
-.intel_syntax noprefix
-.text
-.global _start
-_start:
-	mov eax,[rdi]
-	cmp eax,0x7f454c46
-	je Add
-	cmp eax,0x00005A4D
-	je Sub
-	jmp cheng
-Add:
-	mov eax,[rdi+4]
-	add eax,[rdi+8]
-	add eax,[rdi+12]
-	jmp done
-Sub:
-	mov eax,[rdi+4]
-	sub eax,[rdi+8]
-	sub eax,[rdi+12]
-	jmp done
-cheng:
-	mov eax,[rdi+4]
-    imul eax,[rdi+8]
-	imul eax,[rdi+12]
-	jmp done
-done:
-~~~
+浮点数用XMM寄存器
 
-以上代码中，如果没有`jmp done`指令，各个指令之间会穿透，即按顺序执行到底，导致代码运行错误
 
-2
 
-数据宽度问题，`rax`和`eax`的位数使用，使用不满足题意的高位字节，导致引入垃圾数据，破坏原本的数（负数破坏成正数）
-
-3
-
-拓展有符号数
-
-cdqe拓展
+函数中用栈使用数组时，需要对其清零
 
 ```
-sign-extend EAX to RAX
-```
-
-4
-
-逆向中跳转表的识别
-
-在反汇编中看到以下模式，很可能是跳转表：
-
-```
-cmp eax, 7
-ja  default
-mov rax, qword ptr [table + rax*8]
-jmp rax
-```
-
-或
-
-```
-lea rax, [table]
-jmp [rax + rcx*8]
-```
-
-5
-
-跳转表，示例：
-
-```
-.intel_syntax noprefix
-.text
-.global _start
-
-; 跳转表（必须对齐，通常放 .text 或 .rodata）
-jtab:
-    .quad do_add
-    .quad do_sub
-    .quad do_mul
-    .quad do_div
-
-_start:
-    mov rax, [rdi]          ; x = [rdi]
-    cmp rax, 3
-    ja  default             ; if (x > 3) goto default
-
-    ; 跳转表分发
-    jmp [jtab + rax*8]
-
-do_add:
-    mov rax, [rdi+8]
-    add rax, [rdi+16]
-    jmp done
-
-do_sub:
-    mov rax, [rdi+8]
-    sub rax, [rdi+16]
-    jmp done
-
-do_mul:
-    mov rax, [rdi+8]
-    imul rax, [rdi+16]
-    jmp done
-
-do_div:
-    mov rax, [rdi+8]
-    cqo                     ; sign-extend rax to rdx:rax
-    idiv qword ptr [rdi+16] ; signed divide
-    jmp done
-
-default:
-    xor rax, rax            ; y = 0
-
-done:
-    ; rax = result
+mov rcx, 0
+clear_loop:
+    mov word ptr [rsp + rcx*2], 0
+    inc rcx
+    cmp rcx, 256
+    jl clear_loop
+循环清零计数器，处理完rsp设定字节
 ```
 
 
 
-汇编的伪指令，在内存中定义一个或多个字节的常量
-
-~~~
-.byte → 1 字节
-.word → 2 字节（16 位）
-.long 或 .int → 4 字节（32 位）
-.quad → 8 字节（64 位）
-~~~
-
-==必须做边界检查==
-
-~~~
-cmp rax, MAX_INDEX
-ja  default   ; 否则可能跳到任意地址（严重安全漏洞！）
-~~~
-
-跳转表最好连续，因为其属于在内存中被读取出的地址，最好是放在只读数据段
-
-提供跳转表的前提下，注意跳转表的溢出条件，可能溢出条件会写在跳转表的末尾

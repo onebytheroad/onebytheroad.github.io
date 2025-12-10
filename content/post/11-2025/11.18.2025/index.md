@@ -1,11 +1,11 @@
 ---
-title: 11-18 笔记
+title: 11-18 寄存器上
 description: 非常幸福的结局，只是忘记了爱你
 date: 2025-11-18
 slug: 11-18
 image: bj.jpg
 categories:
-  - 每日
+  - 汇编语言
 ---
 
 # 第三章：寄存器的内存访问

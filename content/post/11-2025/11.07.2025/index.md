@@ -1,11 +1,11 @@
 ---
-title: 11-07 笔记
+title: 11-07 结构体指针，应用
 description: 人生若只如初见，何事秋风悲画扇
 date: 2025-11-07
 slug: 11-07
 image: bj.jpg
 categories:
-    - 每日
+    - c语言基础
 ---
 
 ## （2）：结构体中的指针与数组
@@ -453,3 +453,219 @@ int main()
 
 
 
+## （3）：结构体浅拷贝深拷贝
+
+#### 结构体赋值时的拷贝
+
+![jiegoutifuzhi](C:/blog/my-blog/content/post/11-2025/11.08.2025/jiegoutifuzhi.png)
+
+是否能像图中一样，s1赋值之后，直接用s1来拷贝到其他结构体
+
+##### 浅拷贝和深拷贝
+
+![qiamkaobei](C:/blog/my-blog/content/post/11-2025/11.08.2025/qiamkaobeishenkkaobei.png)
+
+左，如果结构体中不包含指针变量，那么s2=s1是正确的
+
+右，结构体中的拷贝默认是浅拷贝，在赋值的同时也把指针所指向的的地址一起拷贝过去，而且s2中还未给指针分配内存，会导致s1和s2共享分配的100个字节的内存
+
+如果free(s1.p)，那么s2.p就变成了野指针，指向了一个无效的内存地址
+
+
+
+```
+#include <stdio.h>
+#include <string.h>
+#include <malloc.h>
+
+typedef struct _struct1
+{
+	int a;
+	char c;
+
+}struct1,*pstruct1;
+ 
+typedef struct _struct2
+{
+	int a;
+	char *p;
+
+}struct2, *pstruct2;
+
+int main()
+{
+	struct1 s1 = { 100,'A' };
+	struct1 s2=s1;
+
+	printf("s1:a:%d,c:%c\n", s1.a, s1.c);
+	printf("s2:a:%d,c:%c\n", s2.a, s2.c);
+
+	struct2 s3;
+	s3.a = 100;
+	s3.p = (char*)malloc(16);
+	if(s3.p == NULL)
+	{
+		return -1;
+	}
+
+	memset(s3.p, 0, 16);
+	strcpy_s(s3.p, 16, "hello world");
+	struct2 s4=s3;
+
+	printf("s3:a:%d,p:%s\n", s3.a, s3.p);
+	printf("s4:a:%d,p:%s\n", s4.a, s4.p);
+
+	free(s3.p);
+
+	printf("s4:a:%d,p:%s\n", s4.a, s4.p);
+
+	return 0;
+}
+
+```
+
+debug
+
+![qiankaobeidebug](C:/blog/my-blog/content/post/11-2025/11.08.2025/qiankaobeidebug.png)
+
+##### 深拷贝的实现
+
+![sh](C:/blog/my-blog/content/post/11-2025/11.08.2025/shenkaobeideshixian.png)
+
+需要程序员手动去分配内存
+
+##### 图解
+
+![qianshenj](C:/blog/my-blog/content/post/11-2025/11.08.2025/qianshenjkaobeitujie.png)
+
+互有瑕疵
+
+#### copy-on-writr
+
+![copy-on-write](C:/blog/my-blog/content/post/11-2025/11.08.2025/copy-on-write.png)
+
+###### 作业
+
+![zuoye1](C:/blog/my-blog/content/post/11-2025/11.08.2025/zuoye1.png)
+
+1.浅拷贝，将对应的值和内存地址直接拷贝到对应的变量当中，也就是，两个指针指向同一个内存地址，共享这一个内存地址
+
+深拷贝，在拷贝指针中分配新的内存，然后将被拷贝指针中的值拷贝到新地址，原指针的改动对拷贝后的指针无影响
+
+2.浅拷贝对指针来说是两个指针指向同一个内存地址，如果原指针所在结构体运行完成后释放自己在堆上分配的内存，会导致拷贝后的指针变成野指针
+
+3.c语言中默认是浅拷贝
+
+4.拷贝时，先给拷贝指针分配一个内存，然后再对齐进行拷贝
+
+5.写时拷贝，是一种利用"节点"的拷贝方式,多个指针指向一个节点，然后节点再指向一个内存地址，节点用于记录所指向的指针的个数，当还有指针指向的时候，避免释放内存导致其他指针变为野指针
+
+另外，写实拷贝还能按某一指针需要修改内存地址中的数据并开辟一个新的地址来存放数据
+
+
+
+## （4）：结构体应用
+
+#### 结构体数组
+
+结构体数组的初始化与遍历
+
+结构体指针数组
+
+ ##### 结构体做函数参数
+
+传指针
+
+传值
+
+判断两个同学成绩
+
+###### 作业
+
+![zuoye2](C:/blog/my-blog/content/post/11-2025/11.08.2025/zuoye2.png)
+
+1.引用传参，c++中。c语言中指针的效率大于传值
+
+2.链表待定
+
+##  （5）：sizeof计算结构体长度
+
+计算类型或者变量的长度，计算的是所占字节的长度
+
+### 基本类型
+
+![jibenleixing](C:/blog/my-blog/content/post/11-2025/11.08.2025/jibenleixing.png)
+
+utf16编码，utf32编码
+
+long ：win 都站4个字节，linux x64占8个字节
+
+### 结构体对齐-自然对齐
+
+![jiegoutizirnaduiqi](C:/blog/my-blog/content/post/11-2025/11.08.2025/jiegoutizirnaduiqi.png)
+
+成员一样，位置不太一样
+
+如果是基本成员，存放地点就必须是成员类型的整数倍
+
+char，可以存放在任何地址，地址都是1的整数倍
+
+short，0 2 4 6 8  
+
+结构体中包含结构体，按照结构体中子成员中最大的基本类型的整数倍
+
+最终结果成都必须为sizeof基本类型的整数倍，比如第一个a结构体，计算出来的结果如果是20，需要往后填充4个字节来满足必须要是基本类型double=8的整数倍，也就是24个字节
+
+![ziranduiqi](C:/blog/my-blog/content/post/11-2025/11.08.2025/ziranduiqi.png)
+
+一般从零地址开始存，这样计算存完即是结构体所占内存大小
+
+作用，保证cpu在一个时钟周期内把这些数据拿到，提高存取效率
+
+### pragma pack(n)
+
+![pragma pack](C:/blog/my-blog/content/post/11-2025/11.08.2025/pragma pack.png)
+
+pragma示例
+
+![pragmashili](C:/blog/my-blog/content/post/11-2025/11.08.2025/pragmashili.png)
+
+![jisuan](C:/blog/my-blog/content/post/11-2025/11.08.2025/jisuan.png)
+
+定义结构对齐
+
+![pragma pack1](C:/blog/my-blog/content/post/11-2025/11.08.2025/pragma pack1.png)
+
+如果按照1字节对齐，那就不用空格，全部加起来即是字节大小 
+
+### 栈空间对齐
+
+![zhankongjianduiqi](C:/blog/my-blog/content/post/11-2025/11.08.2025/zhankongjianduiqi.png)
+
+直接按4字节对齐
+
+在print函数中float会扩充成double字节。
+
+![zhankongjian](C:/blog/my-blog/content/post/11-2025/11.08.2025/zhankongjian.png)
+
+x64平台填充
+
+float有专门的寄存器，前四个参数存入寄存器，在栈上还会给这四个参数预留空间
+
+![x64](C:/blog/my-blog/content/post/11-2025/11.08.2025/x64.png)
+
+###### 作业
+
+![zuoye3](C:/blog/my-blog/content/post/11-2025/11.08.2025/zuoye3.png)
+
+ 1.sizeof(s1)=8  short 两个字节，long 四个字节 ，long为4，需要为4的倍数，所以最后为8
+
+sizeof(s2)= 24  char 1个字节， s1 有8个字节，long long  类有8个字节，结果17，因为要为8的倍数，所以为24
+
+sizeof(s3)=   char 1个字节，short两个字节，long 4个字节，longlong  8个字节   16个字节
+
+
+
+2.sizeof(double) = 8  sizeof (long) = 4 sizeof(char) = 1
+
+sizeof(a) = 24   sizeof(b)=16

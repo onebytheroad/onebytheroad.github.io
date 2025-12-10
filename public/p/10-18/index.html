@@ -2,16 +2,16 @@
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="最是人间留不住，朱颜辞镜花辞树">
-<title>10-18 笔记</title>
+<title>10-18 程序基础</title>
 
 <link rel='canonical' href='http://localhost:1313/p/10-18/'>
 
-<link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="10-18 笔记">
+<link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="10-18 程序基础">
 <meta property='og:description' content="最是人间留不住，朱颜辞镜花辞树">
 <meta property='og:url' content='http://localhost:1313/p/10-18/'>
 <meta property='og:site_name' content='雫的小站'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-10-18T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-10-18T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/p/10-18/tutu.jpg' />
-<meta name="twitter:title" content="10-18 笔记">
+<meta name="twitter:title" content="10-18 程序基础">
 <meta name="twitter:description" content="最是人间留不住，朱颜辞镜花辞树"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='http://localhost:1313/p/10-18/tutu.jpg' />
         
@@ -274,20 +274,7 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li>
-      <ol>
-        <li>
-          <ol>
-            <li><a href="#1018">10.18</a></li>
-          </ol>
-        </li>
-        <li><a href="#美化博客">美化博客</a></li>
-        <li><a href="#python熟练">python熟练</a></li>
-        <li><a href="#c语言学习">c语言学习</a></li>
-      </ol>
-    </li>
     <li><a href="#程序基础">程序基础</a></li>
-    <li><a href="#整数">整数</a></li>
   </ol>
 </nav>
         </div>
@@ -308,7 +295,7 @@
                         width="800" 
                         height="400" 
                         loading="lazy"
-                        alt="Featured image of post 10-18 笔记" />
+                        alt="Featured image of post 10-18 程序基础" />
                 
             </a>
         </div>
@@ -318,8 +305,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/%E6%AF%8F%E6%97%A5/" >
-                每日
+            <a href="/categories/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" >
+                C语言基础
             </a>
         
     </header>
@@ -327,7 +314,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/10-18/">10-18 笔记</a>
+            <a href="/p/10-18/">10-18 程序基础</a>
         </h2>
     
         
@@ -368,7 +355,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 6 分钟
+                    阅读时长: 3 分钟
                 </time>
             </div>
         
@@ -383,18 +370,7 @@
     <section class="article-content">
     
     
-    <h3 id="1018">10.18
-</h3><h2 id="美化博客">美化博客
-</h2><p>新增了背景图片，修改了字体，增加遮光罩，部分路径代码优化很差，网页加载变卡</p>
-<h2 id="python熟练">python熟练
-</h2><p>洛谷B2007-B2014的入门编程题，新增语法表达，逻辑优化
-如：
-￥round(number, ndigits)  四舍五入函数  要舍入的数字和保留的小数位数（ 默认为0）不会强制保留小数
-￥f-string 字符串格式化 f&quot;{变量：格式}&quot;   f&rsquo;  {}   {} &rsquo;  引号内相当于字符串，大括号内可以加变量
-{} 内可以简洁表达   {:10    :&lt;10    ^10}右对齐，左对齐，居中对齐  {:,.2f      :.1%}千分位加保留2位      保留一位和百分比</p>
-<p>后续继续学习序列和巩固之前所学语法</p>
-<h2 id="c语言学习">c语言学习
-</h2><h1 id="程序基础">程序基础
+    <h1 id="程序基础">程序基础
 </h1><p>程序的编译和链接<br>
 vc</p>
 <p>预处理 a.c    编译 a.i     汇编 a.s       链接 a.o(a.obj)     &gt;  a.exe
@@ -458,98 +434,6 @@ ep section 所在的节 text 存放代码</p>
 <p>x86支持32位寻址，pae技术可以扩大内存空间<br>
 2^32=4GB  32位系统，四个字节</p>
 <p>x64内存理论上支持2^64的寻址空间，目前一般只支持到40多位</p>
-<h1 id="整数">整数
-</h1><p>##整数##<br>
-#进制转换<br>
-十进制，二进制，十六进制，八进制<br>
-1.c：<br>
-十六进制：0x71ef（0x开头 A(10)B(11)C(12)D(13)E(14)F(15)）<br>
-八进制：0127（0-7）<br>
-二进制：101101(c里面没有单独的二进制表示方法)<br>
-十进制：100<br>
-2.进制只是整数值的表现形式，<br>
-值123：123/0x7b/0173/01111011<br>
-3.汇编语言：<br>
-十六进制：1aH<br>
-八进制：17O<br>
-十进制：12D<br>
-二级制：110B<br>
-4.进制转换计算<br>
-x进制转换10进制：<br>
-A(n)A(n-1)&hellip;..=A(n)*x^(n-1)&hellip;<br>
-十进制（A）转换x进制：<br>
-A除以x取余数，再取商除以x取余数，直到商为0，再把所有余数逆序.<br>
-有小数的数，十进制转二进制，小数点前后分开转换<br>
-22.8125   00010110.1101<br>
-对2进制分组，将每一个二进制专门转化为十六进制，每四位分一组，便于计算二进制转十六进制
-整  数：1，2，4，8字节
-浮点数：4个或者8个字节
-5.特性
-十六进制的特性
-根据十六进制转化为二进制的方法，可以得出：在十六进制中，1个数字占四位，2个数字为一个字节
-可以直接观察这个数在内存中每个字节的内容
-8位二进制为一个字节，十六进制中每两个数字是一个字节
-#整数编码
-1.计算机存储数据的bit（位）与byte（字节）
-bit：位，小b，最小单位
-byte：字节，大B，1Byte=8bit
-网路带宽使用bit计算的
-1个bit只能存储两个信息：0，1
-1个Byte能存储2^8个信息：【-128，127】，【0，255】8位二进制，两位十六进制
-2个Byte，4个Byte，8个Byte
-数据存储位置，寄存器，内存，磁盘  一般按byte来计算存储单位
-2.整数的正负表示<br>
-有符号数：最高位做符号位这种表示的整数叫做有符号数（有正负之分）<br>
-最高位做符号位，1表示负数，0表示正数<br>
-如果用1个字节来表示整数，那么：<br>
-10110110:负数<br>
-01001011:正数<br>
-无符号数：无负数，表示0和正整数，最高位无需表示正负，参与数值运算。<br>
-一个字节的整数<br>
-有符号：【-128，127】<br>
-无符号：【0，255】<br>
-3.整数的编码<br>
-（最终采取了补码）整数是按照二进制储存的，二进制需要进行特定的编码规则存储：原码，反码，补码<br>
-原码：在数值前面增加了一位符号位（即最高位位符号位），该位为0表示整数，该位为1表示负数，其余位标识数值的大小。<br>
-以一个byte作为整数存储长度为例子：<br>
-1：  00000001<br>
--1：  10000001<br>
-那么1-1=1+（-1）=00000001+10000001=10000010=-2错误，符号位无法参加运算</p>
-<p>反码：正整数的反码就是其自身，而负整数的反码可以通过对其绝对值逐位求反来求得。<br>
-以一个byte作为整数存储长度为例子：<br>
-1：  00000001<br>
--1：  11111110<br>
-那么1-1=1+（-1）=00000001+11111110=11111111=0错误，反码的问题在于+0和-0的情况，人常识的计算概念中0是没有正负之分的 <br>
-补码：整数的补码为它本身，负数的补码就是它的绝对值求反加1，0的补码就是0 <br>
-计算机采用补码储存整数<br>
-以一个byte作为整数存储长度为例子：<br>
-1：  00000001<br>
--1：  11111111<br>
-100：  01100100<br>
--100：  10011100   （取反加1等于其绝对值）<br>
-47：  00101111<br>
--47：  11010001<br>
--128：  10000000<br>
-127：  01111111<br>
-两个字节的100：00000000 01100100<br>
-两个字节的-100：11111111 10011100<br>
-两个字节的-1  ：11111111 11111111<br>
-一个字节的补码扩充到两个字节，四个字节：<br>
-正数：零扩充<br>
-负数：一扩充<br>
-用最高位的符号位去扩充<br>
-4.整数的存储方式<br>
-0x 12 34 56 78  左边是高位  右边是地位，设计的逻辑顺序<br>
-内存存放，从左往右，由低到高<br>
-低位优先-》低位存放在低地址 ：little-endian<br>
-高位优先-》高位存放在低地址 ：big-endian<br>
-x86系统，低位优先系统                     同一种东西的不同存储方式<br>
-0x 00 00 00 01<br>
-低位优先： 01 00 00 00<br>
-高位优先： 00 00 00 01<br>
-htons()    主机字节序到网络字节序转换<br>
-htohs()  网络字节序到主机字节序转换<br>
-网络字节序是高位优先的</p>
 
 </section>
 
@@ -586,18 +470,23 @@ htohs()  网络字节序到主机字节序转换<br>
             
                 
 <article class="has-image">
-    <a href="/p/11-30/">
+    <a href="/p/11-15/">
         
         
             <div class="article-image">
-                
-                    <img src="/bj.jpg" loading="lazy" data-key="11-30" data-hash="/bj.jpg"/>
+                <img src="/p/11-15/bj.a16604ad36919a2ee87388ff87281a01_hu_9e5044718131be7e.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 11-15 作业"
+                        data-key="11-15" 
+                        data-hash="md5-oWYErTaRmi7oc4j/hygaAQ==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-30 笔记</h2>
+            <h2 class="article-title">11-15 作业</h2>
         </div>
     </a>
 </article>
@@ -605,23 +494,23 @@ htohs()  网络字节序到主机字节序转换<br>
             
                 
 <article class="has-image">
-    <a href="/p/11-29/">
+    <a href="/p/11-14/">
         
         
             <div class="article-image">
-                <img src="/p/11-29/bj.60013e3f00f58254a21112014daf3f28_hu_f49e52853cd86f55.jpg" 
+                <img src="/p/11-14/bj.d577405db0b641e0a671e01e6c32b3b8_hu_5c9e70a11824ff53.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-29 笔记"
-                        data-key="11-29" 
-                        data-hash="md5-YAE&#43;PwD1glSiERIBTa8/KA==">
+                        alt="Featured image of post 11-14 作业"
+                        data-key="11-14" 
+                        data-hash="md5-1XdAXbC2QeCmceAebDKzuA==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-29 笔记</h2>
+            <h2 class="article-title">11-14 作业</h2>
         </div>
     </a>
 </article>
@@ -629,23 +518,23 @@ htohs()  网络字节序到主机字节序转换<br>
             
                 
 <article class="has-image">
-    <a href="/p/11-28/">
+    <a href="/p/11-13/">
         
         
             <div class="article-image">
-                <img src="/p/11-28/bj.6d148dab18c6c1baea6098318eaface2_hu_4e132fbee8d0b475.jpg" 
+                <img src="/p/11-13/bj.c319198b3d02ce40ea9c75f5a419c871_hu_26b15fc36ffa70d.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-28 笔记"
-                        data-key="11-28" 
-                        data-hash="md5-bRSNqxjGwbrqYJgxjq&#43;s4g==">
+                        alt="Featured image of post 11-13 作业"
+                        data-key="11-13" 
+                        data-hash="md5-wxkZiz0CzkDqnHX1pBnIcQ==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-28 笔记</h2>
+            <h2 class="article-title">11-13 作业</h2>
         </div>
     </a>
 </article>
@@ -653,23 +542,23 @@ htohs()  网络字节序到主机字节序转换<br>
             
                 
 <article class="has-image">
-    <a href="/p/11-27/">
+    <a href="/p/11-12/">
         
         
             <div class="article-image">
-                <img src="/p/11-27/bj.82b7b84c3ec267628100612ae18a037f_hu_c4b47f8dd6ff8e67.jpg" 
+                <img src="/p/11-12/bj.ad77c93609bb7b7605a81180b007dcdc_hu_17f111edc709b5c7.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-27 笔记"
-                        data-key="11-27" 
-                        data-hash="md5-gre4TD7CZ2KBAGEq4YoDfw==">
+                        alt="Featured image of post 11-12 作业"
+                        data-key="11-12" 
+                        data-hash="md5-rXfJNgm7e3YFqBGAsAfc3A==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-27 笔记</h2>
+            <h2 class="article-title">11-12 作业</h2>
         </div>
     </a>
 </article>
@@ -677,23 +566,23 @@ htohs()  网络字节序到主机字节序转换<br>
             
                 
 <article class="has-image">
-    <a href="/p/11-26/">
+    <a href="/p/11-11/">
         
         
             <div class="article-image">
-                <img src="/p/11-26/bj.8e20f3ed06dc4fa57c2513213cc51884_hu_8728ad2704bb5069.jpg" 
+                <img src="/p/11-11/bj.939ac470f1f843a30170be56807c38ab_hu_d57086257fb1c61d.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-26 笔记"
-                        data-key="11-26" 
-                        data-hash="md5-jiDz7QbcT6V8JRMhPMUYhA==">
+                        alt="Featured image of post 11-11 递归"
+                        data-key="11-11" 
+                        data-hash="md5-k5rEcPH4Q6MBcL5WgHw4qw==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-26 笔记</h2>
+            <h2 class="article-title">11-11 递归</h2>
         </div>
     </a>
 </article>

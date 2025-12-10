@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="无条件跳转 jmp far ptr 标号\n实现段间转移，又称为远转移\nCS表示标号所在的段地址\nIP表示标号坐在段中的偏移地址\nfar ptr指明了指令用标号的段地址和便宜地址来修改CS和IP\n">
-<title>11-30 笔记</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="从前的车马很慢，一生只够爱一人">
+<title>11-30 call和ret</title>
 
 <link rel='canonical' href='http://localhost:1313/p/11-30/'>
 
-<link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="11-30 笔记">
-<meta property='og:description' content="无条件跳转 jmp far ptr 标号\n实现段间转移，又称为远转移\nCS表示标号所在的段地址\nIP表示标号坐在段中的偏移地址\nfar ptr指明了指令用标号的段地址和便宜地址来修改CS和IP\n">
+<link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="11-30 call和ret">
+<meta property='og:description' content="从前的车马很慢，一生只够爱一人">
 <meta property='og:url' content='http://localhost:1313/p/11-30/'>
 <meta property='og:site_name' content='雫的小站'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-11-30T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-11-30T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/bj.jpg' />
-<meta name="twitter:title" content="11-30 笔记">
-<meta name="twitter:description" content="无条件跳转 jmp far ptr 标号\n实现段间转移，又称为远转移\nCS表示标号所在的段地址\nIP表示标号坐在段中的偏移地址\nfar ptr指明了指令用标号的段地址和便宜地址来修改CS和IP\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:1313/bj.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-11-30T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-11-30T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/p/11-30/bj.jpg' />
+<meta name="twitter:title" content="11-30 call和ret">
+<meta name="twitter:description" content="从前的车马很慢，一生只够爱一人"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/p/11-30/bj.jpg' />
         
         <link rel="stylesheet" href="http://localhost:1313/css/custom.min.css">
         <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🌸</text></svg>">
@@ -274,13 +274,16 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li>
+    <li><a href="#第十章-call和ret">第十章 call和ret</a>
       <ol>
-        <li><a href="#无条件跳转">无条件跳转</a></li>
-        <li><a href="#有条件跳转">有条件跳转</a></li>
+        <li>
+          <ol>
+            <li><a href="#mul">MUL</a></li>
+            <li></li>
+          </ol>
+        </li>
       </ol>
     </li>
-    <li><a href="#第十章-call和ret">第十章 call和ret</a></li>
   </ol>
 </nav>
         </div>
@@ -296,8 +299,12 @@
     <header class="article-header">
         <div class="article-image">
             <a href="/p/11-30/">
-                
-                    <img src="/bj.jpg" loading="lazy" alt="Featured image of post 11-30 笔记" />
+                <img src="/p/11-30/bj_hu_de669bb99e9febd.jpg"
+                        srcset="/p/11-30/bj_hu_de669bb99e9febd.jpg 800w, /p/11-30/bj_hu_fae020e6e675ff83.jpg 1600w"
+                        width="800" 
+                        height="682" 
+                        loading="lazy"
+                        alt="Featured image of post 11-30 call和ret" />
                 
             </a>
         </div>
@@ -307,8 +314,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/%E6%AF%8F%E6%97%A5/" >
-                每日
+            <a href="/categories/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/" >
+                汇编语言
             </a>
         
     </header>
@@ -316,9 +323,13 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/11-30/">11-30 笔记</a>
+            <a href="/p/11-30/">11-30 call和ret</a>
         </h2>
     
+        
+        <h3 class="article-subtitle">
+            从前的车马很慢，一生只够爱一人
+        </h3>
         
     </div>
 
@@ -368,84 +379,7 @@
     <section class="article-content">
     
     
-    <h2 id="无条件跳转">无条件跳转
-</h2><p><code>jmp far ptr 标号</code></p>
-<p>实现段间转移，又称为远转移</p>
-<p>CS表示标号所在的段地址</p>
-<p>IP表示标号坐在段中的偏移地址</p>
-<p>far ptr指明了指令用标号的段地址和便宜地址来修改CS和IP</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">start:mov ax,0
-</span></span><span class="line"><span class="cl">      mov bx,0
-</span></span><span class="line"><span class="cl">      jmp far ptr s
-</span></span><span class="line"><span class="cl">      db 256 dup (0)
-</span></span><span class="line"><span class="cl">    s:add ax,1
-</span></span><span class="line"><span class="cl">      inc ax
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><code>jmp 16位寄存器</code></p>
-<p>ip = 16位寄存器</p>
-<p><code>jmp word ptr 内存单元地址（段内转移）</code></p>
-<p>从内存单元地址处开始存放一个字，转移的目的偏移地址</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mov ax,0123H
-</span></span><span class="line"><span class="cl">mov ds:[0],ax
-</span></span><span class="line"><span class="cl">jmp word ptr ds:[0]
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><code>jmp dword ptr 内存单元地址（段内转移）</code></p>
-<p>内存单元地址处存放着两个字，高地址处的字是转移的目的段地址</p>
-<p>低地址处是转移的目的偏移地址</p>
-<p>cs = 内存单元地址+2</p>
-<p>ip  = 内存单元地址</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mov ax,0123h
-</span></span><span class="line"><span class="cl">mov ds:[0],ax
-</span></span><span class="line"><span class="cl">mov word ptr ds:[2],0
-</span></span><span class="line"><span class="cl">jmp dword ptr ds:[0]
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">cs = 0
-</span></span><span class="line"><span class="cl">ip = 0123h
-</span></span><span class="line"><span class="cl">cs:ip = 0000:0123
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="有条件跳转">有条件跳转
-</h2><p>jcxz指令为有条件转移指令，所有的有条件转移指令都是短转移</p>
-<p>在对应的机器码中包含转移的位移，而不是目的地址</p>
-<p><code>jcxz 标号</code></p>
-<p>如果（cx）=0，则转移到标号处执行</p>
-<p>(ip) = (ip) + 8位位移</p>
-<p>cx != 0 时什么也不做</p>
-<p>==约等于 if((cx)==0)   jmp short  标号==</p>
-<p>loop</p>
-<p>if( (cx) != 0 )   jmp short 标号</p>
-<h1 id="第十章-call和ret">第十章 call和ret
+    <h1 id="第十章-call和ret">第十章 call和ret
 </h1><p>ret指令用栈中的数据，修改ip的内容，实现近转移</p>
 <p>cpu执行ret指令时，进行下面的操作</p>
 <ol>
@@ -474,7 +408,126 @@
 <p>1.(sp) = (sp) - 2</p>
 <p>((ss)*16 + (sp)) = (ip)</p>
 <p>2.(ip) = (ip) + 16位位移</p>
-
+<p><code>call far ptr 标号</code></p>
+ <img src="10.4callfarptr.png" alt="10.4callfarptr" style="zoom:67%;" />
+<p>cs = 标号所在段地址，ip = 标号所在偏移地址</p>
+<p>call16位寄存器</p>
+<p>(sp) = (sp) -2</p>
+<p>((ss)*16 + (sp)) = ( ip )</p>
+<p>(ip) = (16位寄存器)</p>
+<p>call word ptr  内存单元地址</p>
+<p>push ip</p>
+<p>jmp word ptr</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mov sp,10h
+</span></span><span class="line"><span class="cl">mov ax,0123h
+</span></span><span class="line"><span class="cl">mov ds:[0],ax
+</span></span><span class="line"><span class="cl">call word ptr ds:[0]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">(ip) = 0123h,(sp) = 0eh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>call dword ptr 内存单元地址</p>
+<p>push cs</p>
+<p>push ip</p>
+<p>jmp dword ptr 内存单元地址</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mov sp,10h
+</span></span><span class="line"><span class="cl">mov ax,0123h
+</span></span><span class="line"><span class="cl">mov ds:[0],ax
+</span></span><span class="line"><span class="cl">mov word ptr ds:[2],0
+</span></span><span class="line"><span class="cl">call dword ptr ds:[0]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">(cs) = 0 ,(ip) = 0123h , (sp) = 0CH
+</span></span><span class="line"><span class="cl">H16 = cs   L16 = ip
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>call 和 ret 的配合使用</p>
+<p>call 将ip传输到栈中，执行完子程序之后，</p>
+<p>再利用ret接受栈中的ip，然后再返回call的下一个指令位置</p>
+<h3 id="mul">MUL
+</h3><p>mul命令,汇编语言中的乘法命令</p>
+<p>相乘的两个数，要么都是8位，要么都是16位</p>
+<p><strong>乘数</strong>：指令中给出的 <code>reg/mem</code>
+<strong>被乘数</strong>：<strong>固定为 AL 或 AX</strong>（根据乘数位数决定）</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: left">乘数位数</th>
+          <th style="text-align: left">被乘数</th>
+          <th style="text-align: left">结果存放</th>
+          <th style="text-align: left">示例</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>8位</strong></td>
+          <td style="text-align: left"><strong>AL</strong></td>
+          <td style="text-align: left"><strong>AX</strong></td>
+          <td style="text-align: left"><code>MUL BL</code> : AX = AL × BL</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>16位</strong></td>
+          <td style="text-align: left"><strong>AX</strong></td>
+          <td style="text-align: left"><strong>DX:AX</strong></td>
+          <td style="text-align: left"><code>MUL BX</code> : DX:AX = AX × BX</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>32位</strong></td>
+          <td style="text-align: left"><strong>EAX</strong></td>
+          <td style="text-align: left"><strong>EDX:EAX</strong></td>
+          <td style="text-align: left"><code>MUL ECX</code> : EDX:EAX = EAX × ECX</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>8位乘数结果存放在AX中</p>
+<p>16位乘数结果存放在DX,AX中，DX存高位，AX存低位</p>
+<p>32位存EDX,EAX</p>
+<p><code>MUL</code>只处理无符号位乘法，有符号位需要用<code>IMUL</code>来计算</p>
+<p><code>mul reg</code></p>
+<p><code>mul 内存单元</code> 内存单元可以用不同的寻址方式给出</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mul byte ptr ds:[0]
+</span></span><span class="line"><span class="cl">(ax) - (al) * ((ds)*16 + 0)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">mul word ptr [bx+Si+8]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">(ax) = (al)* ((ds)*16 + (bx) + (si) + 8)
+</span></span><span class="line"><span class="cl">(dx) = (al)* ((ds)*16 + (bx) + (si) + 8)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="">
+</h3>
 </section>
 
 
@@ -510,23 +563,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-29/">
+    <a href="/p/12-06/">
         
         
             <div class="article-image">
-                <img src="/p/11-29/bj.60013e3f00f58254a21112014daf3f28_hu_f49e52853cd86f55.jpg" 
+                <img src="/p/12-06/bj.2a867bdf019bc18164c4e331c520012f_hu_d825c6ce53c8507.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-29 笔记"
-                        data-key="11-29" 
-                        data-hash="md5-YAE&#43;PwD1glSiERIBTa8/KA==">
+                        alt="Featured image of post 12-06 汇编编写"
+                        data-key="12-06" 
+                        data-hash="md5-KoZ73wGbwYFkxOMxxSABLw==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-29 笔记</h2>
+            <h2 class="article-title">12-06 汇编编写</h2>
         </div>
     </a>
 </article>
@@ -534,23 +587,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-28/">
+    <a href="/p/12-05/">
         
         
             <div class="article-image">
-                <img src="/p/11-28/bj.6d148dab18c6c1baea6098318eaface2_hu_4e132fbee8d0b475.jpg" 
+                <img src="/p/12-05/bj.5fd30f0c63ce2c19f95a7a5adcb80477_hu_39f5fc0f85f3418a.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-28 笔记"
-                        data-key="11-28" 
-                        data-hash="md5-bRSNqxjGwbrqYJgxjq&#43;s4g==">
+                        alt="Featured image of post 12-05 汇编编写"
+                        data-key="12-05" 
+                        data-hash="md5-X9MPDGPOLBn5Wnpa3LgEdw==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-28 笔记</h2>
+            <h2 class="article-title">12-05 汇编编写</h2>
         </div>
     </a>
 </article>
@@ -558,23 +611,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-27/">
+    <a href="/p/12-04/">
         
         
             <div class="article-image">
-                <img src="/p/11-27/bj.82b7b84c3ec267628100612ae18a037f_hu_c4b47f8dd6ff8e67.jpg" 
+                <img src="/p/12-04/bj.ae66fbb470d49a25c0db7234c5f92918_hu_d7e72db24ae69883.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-27 笔记"
-                        data-key="11-27" 
-                        data-hash="md5-gre4TD7CZ2KBAGEq4YoDfw==">
+                        alt="Featured image of post 12-04 汇编编写"
+                        data-key="12-04" 
+                        data-hash="md5-rmb7tHDUmiXA23I0xfkpGA==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-27 笔记</h2>
+            <h2 class="article-title">12-04 汇编编写</h2>
         </div>
     </a>
 </article>
@@ -582,23 +635,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-26/">
+    <a href="/p/12-03/">
         
         
             <div class="article-image">
-                <img src="/p/11-26/bj.8e20f3ed06dc4fa57c2513213cc51884_hu_8728ad2704bb5069.jpg" 
+                <img src="/p/12-03/bj.84b397e4934578eadf7ef2928bf00f05_hu_26b44697610aa75.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-26 笔记"
-                        data-key="11-26" 
-                        data-hash="md5-jiDz7QbcT6V8JRMhPMUYhA==">
+                        alt="Featured image of post 12-03 内中断"
+                        data-key="12-03" 
+                        data-hash="md5-hLOX5JNFeOrffvKSi/APBQ==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-26 笔记</h2>
+            <h2 class="article-title">12-03 内中断</h2>
         </div>
     </a>
 </article>
@@ -606,23 +659,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-25/">
+    <a href="/p/12-02/">
         
         
             <div class="article-image">
-                <img src="/p/11-25/bj.e9dac6a8aebe837eda20455659bac86e_hu_36200ed80501b60f.jpg" 
+                <img src="/p/12-02/bj.11dc268d69f4aa569dfd586148aef40a_hu_3c8c0664f1655cce.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-25 笔记"
-                        data-key="11-25" 
-                        data-hash="md5-6drGqK6&#43;g37aIEVWWbrIbg==">
+                        alt="Featured image of post 12-02 标志寄存器"
+                        data-key="12-02" 
+                        data-hash="md5-EdwmjWn0qlad/VhhSK70Cg==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-25 笔记</h2>
+            <h2 class="article-title">12-02 标志寄存器</h2>
         </div>
     </a>
 </article>

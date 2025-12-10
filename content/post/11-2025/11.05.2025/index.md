@@ -1,331 +1,247 @@
 ---
-title: 11-05 笔记
+title: 11-05 内存管理
 description: 而今识得愁滋味，欲说还休，欲说还休，却道天凉好个秋...
 date: 2025-11-05
 slug: 11-05
 image: bj.jpg
 categories:
-    - 每日
+    - c语言基础
 ---
 
-# 第十五课-结构体
+# 第十四课-内存管理
 
-## （1）：结构体定义与使用
+物理内存，cpu根据物理地址在物理内存中存储数据
 
-### 基本类型与构建类型
+## （1）：内存分类与寻址
 
-![jibenleixing](jibenleixing.png)
+![xunineicun](C:/blog/my-blog/content/post/11-2025/11.04.2025/xunineicun.png)
 
-#### 结构体定义
+R0，内核空间，最高权限。R3，进程空间
 
-![jiegoutidingyi](jiegoutidingyi.png)
+加载程序，就是把数据加载到程序的进程空间中部署运行
 
-一般形式
+### 程序内存布局
 
-![dingyideyibanxingshi](dingyideyibanxingshi.png)
+![neicunbuju](C:/blog/my-blog/content/post/11-2025/11.04.2025/neicunbuju.png)
 
-第三种没有结构体名称，不能在用来定义新的变量名，只能在这起到临时的变量名1，变量名2的作用
+data 初始化的全局变量，静态变量
 
-### 初始化定义，初始化与成员访问
+rdata 常量
 
-![dingyichushihuafangwen](dingyichushihuafangwen.png)
+### 堆和栈的区别
 
-```
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h> 
-#include <stdbool.h>
-#include <malloc.h>
+![duihezhan](C:/blog/my-blog/content/post/11-2025/11.04.2025/duihezhan.png)
 
-typedef struct _student
-{
-    int id;
-    int age;
-    char name[20];
-    char sex;
-    float score;
-} student, *pstudent;
+堆上的内存需要释放，否则会造成内存些泄露
 
+栈：自动分配内存，内存大小相对较小且固定，后进先出
 
-int main()
-{
-    student s1 = { 1001,19,"tom",'m',80.5 };
-    student s2 = { 0 };
-    s2.id = 1001;
-    s2.age = 19;
-    strcpy_s(s2.name, 20, "tom");//名字是数组，需要用stucpy拷贝进去
-    s2.sex = 'M';
-    s2.score = 99.5f;
+堆：手动分配内存，可以动态调整大小，大小受限于计算机
 
-    printf("id:%d,age:%d,name:%s,sex:%c,%f\n", s1.id,s1.age,s1.name,s1.sex,s1.score);
-    printf("id:%d,age:%d,name:%s,sex:%c,%f\n", s2.id,s2.age,s2.name,s2.sex,s2.score);
+指针函数不能返回栈上的地址，函数执行完了之后源地址已经销毁了
 
-    return 0;
-    
-}
+内存碎片：存在着内存，但是无法分配到空闲的内存
 
-```
+![neicundi](C:/blog/my-blog/content/post/11-2025/11.04.2025/neicundizhifenleihexunzhimoshi.png)
 
-### 结构体的指针访问：->
+进程的地址空间是私有的，可能拥有相同的，类似的逻辑地址
 
-![jiegoutidezhizhen](jiegoutidezhizhen.png)
+### 寻址模式
 
-```
-    student* ps1 = &s1;
-    pstudent ps2 = &s2;//pstudent = student *
+![sunzhimoshi](C:/blog/my-blog/content/post/11-2025/11.04.2025/sunzhimoshi.png)
 
-    printf("id:%d,age:%d,name:%s,sex:%c,%f\n", ps1->id, ps1->age, ps1->name, ps1->sex, ps1->score);
-    printf("id:%d,age:%d,name:%s,sex:%c,%f\n", ps2->id, ps2->age, ps2->name, ps2->sex, ps2->score);
-```
+#### 分段：用起始地址加偏移地址来表示位置
 
-注意，长度，加减
+段的起始地址，低4位设置成零用来让16位寄存器表示段地址
 
-```
-    //ps1+1
-    //sizeof(ps1) 指针大小，根据平台  ,sizeof(*ps1) = sizeof(student)
+两个寄存器，一个寄存器中拿到起始地址，然后左移四位，加上段的偏移
 
-    printf("sizeof(ps1)=%d,sizeof(*ps1)=%d,sizeof(student)=%d\n", sizeof(ps1),sizeof(*ps1),sizeof(student));
+左移四位，低四位是0，未存放，也就是存放时右移四位
 
-    printf("ps1:%p,ps1+1:%p\n", ps1, ps1 + 1);
+cs 代码段起始地址， ds 数据段起始地址
 
-```
+#### 扁平模型
 
-在堆上分配内存来表示结构体
+不需要设置起始地址，能够直接用一个寄存器寻址整个地址空间
 
-```
-    student* ps3 = (student*)malloc(sizeof(student));
-    if (ps3 == NULL)
-    {
-        return -1;
-    }
-    memset(ps3, 0, sizeof(student));
-    ps3->id = 25;
-    ps3->age = 21;
-    strcpy_s(ps3->name, 20, "leilei");
-    ps3->sex = 'm';
-    ps3->score = 86.5f;
 
-    printf("id:%d,age:%d,name:%s,sex:%c,%f\n", ps3->id, ps3->age, ps3->name, ps3->sex, ps3->score);
 
-    free(ps3);
-    ps3 = NULL;
+实模式，段寄存器中的地址加偏移能得到物理地址
 
-```
+保护模式，地址使用虚拟地址，通过页表段表来映射得到物理地址
 
-注意，在free之后，ps3指针依旧指向之前的地址，如果后续还要使用ps3指针，需要重新设为null，否是使用则是垃圾值
+![leixingzongjie](C:/blog/my-blog/content/post/11-2025/11.04.2025/leixingzongjie.png)
 
-### 运算符
+保护模式中无需参与计算
 
-![yunsuanfu](yunsuanfu.png)
+![xunzhi](C:/blog/my-blog/content/post/11-2025/11.04.2025/xunzhi.png)
 
-*pstdt->sex  第一个，箭头优先级高，箭头指向运算之后，所表示的值不是一个地址，无法解引用
+段选择符加段表和偏移量得到线性地址
 
-*pstdt->name  依旧是箭头优先级高，取出了name，name是数组名，代表数组指针，可以解引用
-
-*pstdt.sex  点号优先级高，指针没有点号这个运算
-
-(*pstdt).sex  解引用指针，解出来是结构体的名字
-
-### 结构体中的结构体
-
-![jiegoutizhongdejiegouti](jiegoutizhongdejiegouti.png)
-
-```
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h> 
-#include <stdbool.h>
-#include <malloc.h>
-
-typedef struct _date
-{
-    int year;
-    int month;
-    int day;
-}date, *pdate;
-
-typedef struct _student
-{
-    int id;
-    int age;
-    char name[20];
-    char sex;
-    float score;
-    date birthday;
-} student, *pstudent;
-
-
-int main()
-{
-    student s1 = { 1001,19,"tom",'m',80.5f,{1995,2,5} };
-    student s2 = { 0 };
-    s2.id = 1001;
-    s2.age = 19;
-    strcpy_s(s2.name, 20, "tom");//名字是数组，需要用stucpy拷贝进去
-    s2.sex = 'M';
-    s2.score = 99.5f;
-    s2.birthday.year = 1997;
-    s2.birthday.month = 6;
-    s2.birthday.day = 21;
-
-    printf("id:%d,age:%d,name:%s,sex:%c,%f,year:%d,month:%d,day:%d\n", s1.id,s1.age,s1.name,s1.sex,s1.score, s2.birthday.year, s2.birthday.month, s2.birthday.day);
-    printf("id:%d,age:%d,name:%s,sex:%c,%f\n", s2.id,s2.age,s2.name,s2.sex,s2.score);
-
-    student* ps1 = &s1;
-    pstudent ps2 = &s2;//pstudent = student *
-
-    printf("id:%d,age:%d,name:%s,sex:%c,%f\n", ps1->id, ps1->age, ps1->name, ps1->sex, ps1->score);
-    printf("id:%d,age:%d,name:%s,sex:%c,%f\n", ps2->id, ps2->age, ps2->name, ps2->sex, ps2->score);
-
-    //ps1+1
-    //sizeof(ps1) 指针大小，根据平台  ,sizeof(*ps1) = sizeof(student)
-
-    printf("sizeof(ps1)=%d,sizeof(*ps1)=%d,sizeof(student)=%d\n", sizeof(ps1),sizeof(*ps1),sizeof(student));
-
-    printf("ps1:%p,ps1+1:%p\n", ps1, ps1 + 1);
-
-    printf("sizeof(student *):%d\n", sizeof(student*));
-
-    student* ps3 = (student*)malloc(sizeof(student));
-    if (ps3 == NULL)
-    {
-        return -1;
-    }
-    memset(ps3, 0, sizeof(student));
-    ps3->id = 25;
-    ps3->age = 21;
-    strcpy_s(ps3->name, 20, "leilei");
-    ps3->sex = 'm';
-    ps3->score = 86.5f;
-    ps3->birthday.year=1996;
-    ps3->birthday.month = 8;
-    ps3->birthday.day = 1;
-
-    printf("id:%d,age:%d,name:%s,sex:%c,%f,year:%d,month:%d,day:%d\n", ps3->id, ps3->age, ps3->name, ps3->sex, ps3->score,ps3->birthday.year, ps3->birthday.month, ps3->birthday.day);
-
-    free(ps3);
-    ps3 = NULL;
-
-
-    return 0;
-    
-}
-```
-
-### 结构体中的指针
-
-![jiegouti](jiegoutizhongdezhizhen.png)
-
-结构体中有指针必须要为这个指针赋值一个有效的内存
-
-```
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h> 
-#include <stdbool.h>
-#include <malloc.h>
-
-typedef struct _student
-{
-    int id;
-    int age;
-    char* name;//char name[20]  有指针的话，需要专门为指针指定内存
-    char sex;
-    float score;
-}student, * pstudent;
-
-
-
-
-int main()
-{
-    student s1 = { 11,21,"tom",'m',97.5f };//tom存储在静态常量区，name可以指向
-    student s2 = { 0 };
-
-    s2.id = 15;
-    s2.age = 22;
-
-    s2.name = (char*)malloc(20);//指向了堆上的内存
-    if (s2.name == NULL)
-    {
-        return -1;
-    }
-    memset(s2.name, 0, 20);
-    strcpy_s(s2.name,20,"lily");
-    s2.sex = 'F';
-    s2.score = 94.5f;
-
-
-
-    student* s3 = (student*)malloc(sizeof(student));
-    if (s3 == NULL)
-    {
-        free(s2.name);
-        return -1;
-    }
-    memset(s3, 0, sizeof(student));
-    s3->id=18;
-    s3->age = 23;
-    s3->name = (char*)malloc(20);
-    if (s3->name == NULL)
-    {
-        
-        free(s3);
-        return -1;
-    }
-    memset(s3->name, 0, 20);
-
-    strcpy_s(s3->name, 20, "david");
-    s3->sex = 'M';
-    s3->score = 87.5f;
-
-    printf("s1:name:%s\n", s1.name);
-    printf("s2:name:%s\n", s2.name);
-    printf("s3:name:%s\n", s3->name);
-
-    free(s2.name);
-    s2.name = NULL;
-
-    free(s3->name);
-    s3->name = NULL;
-
-    free(s3);
-    s3 = NULL;
-
-    return 0;
-}
-
-```
-
-赋值要注意进行深拷贝
-
-![lianbiaoheshu](lianbiaoheshu.png) 
-
-左边，链表节点  右边，二叉树
+CR3寄存器，获得页目录，确定页表项，通过偏移找到物理地址
 
 ##### 作业
 
-![zuoye](zuoye.png)
+![zuoye1](C:/blog/my-blog/content/post/11-2025/11.04.2025/zuoye1.png)
 
-1.
+1.底层是静态区，存放了变量，数据，常量；往上是代码区，存放源代码；再往上是堆，一个手动管理的内存池；然后最后是栈，调用函数时存放变量的区域
+
+2.程序内存分为四个区域，内核区，两个非法区，进程区。内核区和进程区占4GB，内核区的权限最高，进程区R3的权限，非法区域用来隔绝两个区域的相互影响，只占64kb
+
+3.栈是函数调用时的临时存储区，由系统自动分配，后进先出，效率较高
+
+堆是由程序员手动分配的内存池，大小由计算机硬件决定，调用灵活，但是效率稍低
+
+4.分段模型是在计算机寄存器只有16位用来寻址的方法，计算机地址总线有20位，寄存器无法完全存储，于是采用分段模型的方式来存储，将20位总内存大小1m的内存分为16个64kb的段，然后规定最后四位都为0的方式，省略四位零，然后用两个寄存器，一个用来表示起始地址，另一个用来表示偏移量，这样用来将逻辑地址转换为物理地址
+
+  平坦模型，则是计算机发展之后，一个寄存器能够完成将逻辑地址转换为物理地址之后发展出来的方式，能用一个寄存器去遍历所有的地址线
+
+5.实模式，没有保护，用分段模型构建的物理地址，可以读写任何内存位置
+
+保护模式，需要页表将虚拟地址转换为物理地址
 
 ```
-typedef struct _date
+直接物理内存访问：程序看到的地址就是真实的物理内存地址。一个程序可以读写任何内存位置，包括操作系统的核心代码。
+
+无权限分级：没有“内核态”和“用户态”之分。所有代码都以最高权限运行。
+
+内存空间小：由于16位架构和寻址方式限制，最多只能访问 1MB 内存。
+
+
+
+虚拟内存：程序运行在独立的“虚拟地址空间”中，由CPU和操作系统负责映射到真实的物理内存。程序A无法直接访问程序B的内存。
+
+权限分级：通常有4个特权级（Ring 0 ~ Ring 3）。操作系统内核运行在最高特权级（Ring 0），应用程序运行在最低特权级（Ring 3）。应用程序想执行特权指令（如操作硬件）会被CPU拒绝。
+
+内存分段与分页：通过复杂的描述符表和页表来管理内存访问，提供了隔离和保护机制。
+
+支持大内存：可以访问远超过1MB的物理和虚拟内存（如4GB甚至更多）。
+```
+
+
+
+## （2）：内存分配
+
+静态区，代码区，栈，堆，如何编译一个10m的程序
+
+ 全局数组，全局变量， 必然存放在静态区
+
+```
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h> 
+#include <stdbool.h>
+#include <malloc.h>
+
+int g_iNum = 10;
+char g_Aarrat[] = "hello worlf";
+
+
+
+int main(void)
 {
-int value;
-struct _date *next
-}date,*pdate;
+    int a = 123;
+    int b = 127;
+
+    char buf[128] = { 0 };//栈
+
+
+
+    char* p = (char*)malloc(256);//堆上，需要内存分配函数，nalloc是一个函数名，返回的变量名是一个void类型*指针
+    free(p == NULL);
+
+    if (p == NULL)
+    {
+        return -1;
+    }
+
+    memset(p, 0, 256);//内存初始化为0
+    strcpy_s(p, 256, "hello world");
+    printf("%s\n", p);
+
+    free(p);//释放，把值重新放入到内存去，但是指针指向未必其余的
+    
+    p = NULL;
+
+    return 0;
+}
+
 ```
 
-2.
+如果一个数组里面全是0，编译器不会打开数组将值存放在内存，可以压缩成一个存放
 
-.运算符加载结构体名称后面，用来访问非指针结构体的内部数据
+比如  g_data区有10\*1024\*1024的数组，全是0即被压缩，如果有存放字符，就会开辟一个区域存放
 
-->用来放在指针结构体名称后，访问结构体内数据
+### malloc/calloc/realloc
 
-3.结构体在函数中被调用的时候就是在栈上运行
+![malloccalloc](C:/blog/my-blog/content/post/11-2025/11.04.2025/malloccalloc.png)
 
-而在堆上运行需要手动在堆上分配内存
+##### 作业
 
-4.链表看不懂。。。。
+![zuoye2](C:/blog/my-blog/content/post/11-2025/11.04.2025/zuoye2.png)
 
+1.静态区存放全局变量，静态变量，从静态区分配内存只能从最开始的声明变量，内存由声明类型决定，不由程序员决定
+
+2.栈的内存是在函数调用时由机器分配使用，根据所写函数的声明类型定义来决定，不受程序员控制
+
+3.从堆上分配内存需要使用特定的函数，比如malloc，calloc，用来在堆上划取一部分内存来使用
+
+4.栈是函数调用时的临时存储区，由系统自动分配，后进先出，效率较高
+
+堆是由程序员手动分配的内存池，大小由计算机硬件决定，调用灵活，但是效率稍低
+
+##  
+
+
+
+## （3）：内存泄漏预防与检测
+
+### 内存泄漏
+
+![neicunxielou](C:/blog/my-blog/content/post/11-2025/11.04.2025/neicunxielou.png)
+
+忘记了将调用的堆的内存释放，即内存泄漏
+
+系统内存耗尽后，系统会将磁盘的一部分用来存储内存的数据，导致系统性能大幅下降
+
+图中传参的代码，传的是值，而函数中定义的是指针，调用时并没有真正传入，但是堆上的内存会分配，导致程序崩溃，释放内存也没有用
+
+### API不正确调用造成内存泄漏
+
+![APIbuzhengquediaoyong](C:/blog/my-blog/content/post/11-2025/11.04.2025/APIbuzhengquediaoyong.png)
+
+### 预防内存泄漏 -1
+
+![-1](C:/blog/my-blog/content/post/11-2025/11.04.2025/-1.png)
+
+### 预防内存泄漏-2
+
+![-2](C:/blog/my-blog/content/post/11-2025/11.04.2025/-2.png)
+
+集中处理内存泄漏
+
+### 预防内存泄漏-3
+
+![-3](C:/blog/my-blog/content/post/11-2025/11.04.2025/-3.png)
+
+### 预防内存泄漏-4
+
+![-4](C:/blog/my-blog/content/post/11-2025/11.04.2025/-4.png)
+
+### 内存泄漏之后的检测
+
+![xielouzhihou](C:/blog/my-blog/content/post/11-2025/11.04.2025/xielouzhihou.png)
+
+realloc会检查原来内存的容量，不够会开辟新的内存地址
+
+##### 作业
+
+![zuoye3](C:/blog/my-blog/content/post/11-2025/11.04.2025/zuoye3.png)
+
+1.写代码的时候，声明函数之后跟上释放，让划取和释放成对出现
+
+或者用goto集中处理所有的堆
+
+用内存使用计数，使用时+1，释放时-1，最后看是否还有+1
+
+2.用容器封存指向所划取堆的首地址的指针，在调用完成后检查是否有未释放的指针留存

@@ -2,16 +2,16 @@
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="我爱你，没有别的什么，只是爱你">
-<title>11-02 笔记</title>
+<title>11-02 函数</title>
 
 <link rel='canonical' href='http://localhost:1313/p/11-02/'>
 
-<link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="11-02 笔记">
+<link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="11-02 函数">
 <meta property='og:description' content="我爱你，没有别的什么，只是爱你">
 <meta property='og:url' content='http://localhost:1313/p/11-02/'>
 <meta property='og:site_name' content='雫的小站'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-11-02T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-11-02T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/p/11-02/bj.jpg' />
-<meta name="twitter:title" content="11-02 笔记">
+<meta name="twitter:title" content="11-02 函数">
 <meta name="twitter:description" content="我爱你，没有别的什么，只是爱你"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='http://localhost:1313/p/11-02/bj.jpg' />
         
@@ -274,8 +274,61 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li>
+    <li><a href="#第十二课-函数">第十二课-函数</a>
       <ol>
+        <li><a href="#1函数定义与应用">（1）：函数定义与应用</a>
+          <ol>
+            <li><a href="#定义">定义</a></li>
+            <li><a href="#定义形式与调用调试">定义形式与调用，调试</a></li>
+            <li><a href="#函数应用头文件写法导出函数和变量">函数应用，头文件写法（导出函数和变量）</a>
+              <ol>
+                <li><a href="#写头文件">写头文件</a></li>
+              </ol>
+            </li>
+            <li><a href="#main函数参数的使用">main函数参数的使用</a></li>
+            <li><a href="#函数定义注意事项">函数定义注意事项</a>
+              <ol>
+                <li><a href="#逆置字符串">逆置字符串</a></li>
+              </ol>
+            </li>
+            <li><a href="#库函数">库函数</a></li>
+            <li><a href="#面向对象和面向过程">面向对象和面向过程</a>
+              <ol>
+                <li>
+                  <ol>
+                    <li><a href="#作业">作业</a></li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+        <li><a href="#2函数传参">（2）：函数传参</a>
+          <ol>
+            <li>
+              <ol>
+                <li><a href="#传值">传值</a></li>
+                <li><a href="#传指针">传指针</a></li>
+                <li><a href="#传引用">传引用</a></li>
+              </ol>
+            </li>
+            <li><a href="#传值还是传指针">传值还是传指针</a>
+              <ol>
+                <li><a href="#swap-交换">swap-交换</a></li>
+              </ol>
+            </li>
+            <li><a href="#函数用参数作为返回值">函数用参数作为返回值</a></li>
+            <li><a href="#数组做函数参数-防溢出">数组做函数参数 ，防溢出</a>
+              <ol>
+                <li>
+                  <ol>
+                    <li><a href="#作业-1">作业</a></li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </li>
         <li><a href="#3函数调用约定">（3）：函数调用约定</a>
           <ol>
             <li>
@@ -284,7 +337,7 @@
                 <li><a href="#缓冲区溢出-栈溢出">缓冲区溢出-栈溢出</a></li>
                 <li><a href="#x64调用约定">x64调用约定</a>
                   <ol>
-                    <li><a href="#作业">作业：</a></li>
+                    <li><a href="#作业-2">作业：</a></li>
                   </ol>
                 </li>
               </ol>
@@ -326,35 +379,6 @@
         </li>
       </ol>
     </li>
-    <li><a href="#第十三课-指针">第十三课-指针</a>
-      <ol>
-        <li><a href="#1指针定义与使用">（1）：指针定义与使用</a>
-          <ol>
-            <li><a href="#变量在内存中的地址">变量在内存中的地址</a></li>
-            <li><a href="#指针定义">指针定义</a></li>
-            <li><a href="#指针的定义与初始化形式">指针的定义与初始化形式</a></li>
-            <li><a href="#p解引用运算符----与指针定义的不是一个东西">*p：解引用运算符    与指针定义的*不是一个东西</a></li>
-            <li><a href="#与">&amp;与*</a></li>
-            <li><a href="#与互为逆运算与">&amp;与*互为逆运算：*&amp;与&amp;*</a></li>
-            <li><a href="#易混淆">易混淆</a></li>
-            <li><a href="#指针的赋值与使用">指针的赋值与使用</a></li>
-            <li><a href="#指针类型与互相转换">指针类型与互相转换</a></li>
-            <li><a href="#void-p">void *p</a></li>
-            <li><a href="#字符指针">字符指针</a></li>
-            <li><a href="#sizeofpsizeogp">sizeof(p)\sizeog(*p)</a></li>
-            <li><a href="#指针的应用">指针的应用</a>
-              <ol>
-                <li>
-                  <ol>
-                    <li><a href="#作业-1">作业</a></li>
-                  </ol>
-                </li>
-              </ol>
-            </li>
-          </ol>
-        </li>
-      </ol>
-    </li>
   </ol>
 </nav>
         </div>
@@ -375,7 +399,7 @@
                         width="800" 
                         height="580" 
                         loading="lazy"
-                        alt="Featured image of post 11-02 笔记" />
+                        alt="Featured image of post 11-02 函数" />
                 
             </a>
         </div>
@@ -385,8 +409,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/%E6%AF%8F%E6%97%A5/" >
-                每日
+            <a href="/categories/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" >
+                C语言基础
             </a>
         
     </header>
@@ -394,7 +418,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/11-02/">11-02 笔记</a>
+            <a href="/p/11-02/">11-02 函数</a>
         </h2>
     
         
@@ -435,7 +459,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 7 分钟
+                    阅读时长: 11 分钟
                 </time>
             </div>
         
@@ -450,7 +474,1235 @@
     <section class="article-content">
     
     
-    <h2 id="3函数调用约定">（3）：函数调用约定
+    <h1 id="第十二课-函数">第十二课-函数
+</h1><h2 id="1函数定义与应用">（1）：函数定义与应用
+</h2><h3 id="定义">定义
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.01.2025/hanshudingyi.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="hanshudingyi"
+	
+	
+></p>
+<h3 id="定义形式与调用调试">定义形式与调用，调试
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.01.2025/hanshudingyixingshiyudiaoyong%27.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="hanshudingyixingshiyudiaoyong’"
+	
+	
+></p>
+<p>输入参数：外部传递给函数</p>
+<p>输出参数：函数计算的结果，可以通过输出方式传递给调用值；也能用return方式返回给调用值</p>
+<p>有的函数即做了输出参数也做了输入参数</p>
+<p>变参函数：函数的参数个数可以变化，比如printf函数在打印的时候，可以打印多个</p>
+<h3 id="函数应用头文件写法导出函数和变量">函数应用，头文件写法（导出函数和变量）
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.01.2025/hanshuyingyongtouwenjian.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="hanshuyingyongtouwenjian"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdbool.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">myadd</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span><span class="c1">//声明的时候可以不用形参，只加两个类型也可以
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">res</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">getmax</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span> <span class="o">?</span> <span class="nl">x</span> <span class="p">:</span> <span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="nf">leep_year</span><span class="p">(</span><span class="kt">int</span> <span class="n">year</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">(</span><span class="n">year</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">year</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">||</span> <span class="n">year</span> <span class="o">%</span> <span class="mi">400</span> <span class="o">==</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="nf">mytolower</span><span class="p">(</span><span class="kt">char</span> <span class="n">ch</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">ch</span> <span class="o">&gt;=</span> <span class="sc">&#39;A&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">ch</span> <span class="o">&lt;=</span> <span class="sc">&#39;Z&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ch</span> <span class="o">+=</span> <span class="sc">&#39;a&#39;</span> <span class="o">-</span> <span class="sc">&#39;A&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">ch</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span><span class="c1">//整数进行交换就不需要返回值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">x</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">y</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">暂时如此，后续实验出现问题有更改</span>
+</span></span><span class="line"><span class="cl"><span class="mf">1.</span><span class="err">使用</span><span class="n">bool类型需要包含头文件</span>
+</span></span><span class="line"><span class="cl"><span class="err">这是在</span><span class="n">myfunc</span><span class="p">.</span><span class="n">c里面打的函数</span><span class="err">，跟</span><span class="n">main函数不在同一个源文件里</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="写头文件">写头文件
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#pragma once
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdbool.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">myadd</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">);</span>        <span class="c1">//保证头文件项目在编译的时候只被包含一次
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">getmax</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">);</span>       <span class="c1">//然后将刚刚写的函数全部放在里面声明
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">bool</span> <span class="nf">leep_year</span><span class="p">(</span><span class="kt">int</span> <span class="n">year</span><span class="p">);</span>       <span class="c1">//再到源文件里写包含
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">char</span> <span class="nf">mytolower</span><span class="p">(</span><span class="kt">char</span> <span class="n">ch</span><span class="p">);</span>        <span class="c1">//自己写的源文件用&#34;&#34;。引号是从当前目录开始查找
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">);</span>        <span class="c1">//而&lt;&gt;是从系统目录开始查找
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>预编译</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#ifndef _MYFUNC_H_
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define _MYFUNC_H_
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">myadd</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">);</span>        
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">getmax</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">);</span>      
+</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="nf">leep_year</span><span class="p">(</span><span class="kt">int</span> <span class="n">year</span><span class="p">);</span>       
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="nf">mytolower</span><span class="p">(</span><span class="kt">char</span> <span class="n">ch</span><span class="p">);</span>       
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">);</span>        
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#endif
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>swap运行之后函数的值没有发生交换</p>
+<p><strong>形参和实参的区别</strong></p>
+<p>在函数内部完成了形参的交换，但实际上设定的函数实参没有发生改变</p>
+<p>采用的传参方法叫传值，传值是不能改变实参的，传值是将实参的值拷贝到了形参的位置，改变形参并不会改变实参，上述定义的函数都是采用传值的方法运行的</p>
+<h3 id="main函数参数的使用">main函数参数的使用
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.01.2025/mainhanshucanshushiyong.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="mainhanshucanshushiyong"
+	
+	
+></p>
+<p>例子:</p>
+<p><img src="C:/blog/my-blog/content/post/11-2025/11.01.2025/shili.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="shili"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;tchar.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">_tmain</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="n">_TCHAR</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Invalid parameters</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">argc</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">_tprintf</span><span class="p">(</span><span class="nf">_T</span><span class="p">(</span><span class="s">&#34;%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">),</span> <span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">exe中</span><span class="o">--&gt;</span><span class="err">属性</span><span class="o">--&gt;</span><span class="err">调试</span><span class="o">--&gt;</span><span class="err">命令参数</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>argv中，argv[0]永远是我们程序自身，此程序中拿两个参数，即自身和在调试中输入的命令行参数，两个</p>
+<h3 id="函数定义注意事项">函数定义注意事项
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.01.2025/hanshudingyizhuyishixiang.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="hanshudingyizhuyishixiang"
+	
+	
+></p>
+<p><em>功能单一</em>   方便维护，可模块化</p>
+<p><img src="C:/blog/my-blog/content/post/11-2025/11.01.2025/mokuaihua.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="mokuaihua"
+	
+	
+></p>
+<p>输入输出，设计函数的接口</p>
+<p>局部变量要进行初始化</p>
+<p>严进宽出：严格判断是否合法，长度是否合理，类型是否匹配</p>
+<p>assert  断严</p>
+<p>复杂度  时间短  尽量不分配内存</p>
+<p>边界考虑：特殊情况，考虑所有的情况，大于小于，多了少了，内存是否重叠</p>
+<p>功能测试：调用，测试，不同的测试用语</p>
+<p>return不可以返回指向栈内存，栈内存在结束时会被释放</p>
+<h4 id="逆置字符串">逆置字符串
+</h4><p>定义了函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;tchar.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">reverse_str</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span><span class="o">*</span> <span class="n">s</span> <span class="o">=</span> <span class="n">str</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span> <span class="p">(</span><span class="o">*</span><span class="n">s</span> <span class="o">!=</span> <span class="sc">&#39;\0&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">s</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">len</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">char</span> <span class="n">ch</span> <span class="o">=</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">		<span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">str</span><span class="p">[</span><span class="n">len</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">		<span class="n">str</span><span class="p">[</span><span class="n">len</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">ch</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">str</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span><span class="o">*</span> <span class="n">str</span> <span class="o">=</span> <span class="s">&#34;hello world&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;str before:%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">str</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">reverse_str</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;str after:%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">str</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">改为</span><span class="kt">char</span> <span class="n">str</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&#34;hello world&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="err">就不会崩溃，这样是在栈上分配的地址，栈上的地址是可读可写的</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在进行逆置字符串的操作，这一段内存必须是可读可写的，上述代码会崩溃</p>
+<p>用指针指向的 “hello world”  是存储在静态常量区是不能读写的</p>
+<p>该函数设计上问题：</p>
+<p>1.没有模块化</p>
+<p>也就是需要把计算字符串长度这一段代码单独弄出来形成一个函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="c1">#include &lt;stdio.h&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#include &lt;string.h&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#include &lt;tchar.h&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="ne">int</span> <span class="n">mystrlen</span><span class="p">(</span><span class="k">const</span> <span class="n">char</span><span class="o">*</span> <span class="nb">str</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="ne">int</span> <span class="n">len</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">char</span><span class="o">*</span> <span class="n">s</span> <span class="o">=</span><span class="p">(</span><span class="n">char</span> <span class="o">*</span><span class="p">)</span> <span class="nb">str</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span> <span class="p">(</span><span class="o">*</span><span class="n">s</span> <span class="o">!=</span> <span class="s1">&#39;</span><span class="se">\0</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">s</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">len</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">len</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">void</span> <span class="n">reverse_str</span><span class="p">(</span><span class="n">char</span><span class="o">*</span> <span class="nb">str</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="ne">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">mystrlen</span><span class="p">(</span><span class="nb">str</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="ne">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">char</span> <span class="n">ch</span> <span class="o">=</span> <span class="nb">str</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">		<span class="nb">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">[</span><span class="n">len</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">		<span class="nb">str</span><span class="p">[</span><span class="n">len</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">ch</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nb">str</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="ne">int</span> <span class="n">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">char</span> <span class="nb">str</span><span class="p">[]</span> <span class="o">=</span> <span class="s2">&#34;hello world&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">printf</span><span class="p">(</span><span class="s2">&#34;str before:</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="nb">str</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">reverse_str</span><span class="p">(</span><span class="nb">str</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">printf</span><span class="p">(</span><span class="s2">&#34;str after:</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="nb">str</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="库函数">库函数
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.01.2025/kuhanshu.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="kuhanshu"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="c1">#include &lt;stdio.h&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#include &lt;Windows.h&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="ne">int</span> <span class="n">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">char</span> <span class="o">*</span><span class="n">filename</span><span class="o">=</span><span class="s2">&#34;d:</span><span class="se">\\</span><span class="s2">docs</span><span class="se">\\</span><span class="s2">1.doc&#34;</span><span class="p">;</span>   <span class="o">//</span><span class="mf">1.</span><span class="n">txt</span> <span class="err">可行，改成</span><span class="mf">1.</span><span class="n">doc不行</span><span class="err">，所以打错误代码</span>
+</span></span><span class="line"><span class="cl">	<span class="ne">int</span> <span class="n">res</span> <span class="o">=</span><span class="n">remove</span><span class="p">(</span><span class="n">filename</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">res</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">printf</span><span class="p">(</span><span class="s2">&#34;delted!</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">printf</span><span class="p">(</span><span class="s2">&#34;failed</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="n">errno_t</span> <span class="n">err</span><span class="o">=</span><span class="n">GetLastError</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">printf</span><span class="p">(</span><span class="s2">&#34;err:</span><span class="si">%d</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span><span class="n">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="o">//</span><span class="err">通过错误码</span><span class="mi">32</span><span class="err">，</span><span class="n">tool中搜索得知是因为文件正在运行</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="面向对象和面向过程">面向对象和面向过程
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.01.2025/mianxiangduixianghemianxianguocheng.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="mianxiangduixiang"
+	
+	
+></p>
+<p>面向过程：抽象出解决问题的步骤，然后用函数表达步骤，解决的时候一一调用</p>
+<p>面向对象：抽象出问题里面的对象，然后分析对象的行为，解决问题是对象发生了什么样的行为，调用对象的行为</p>
+<h5 id="作业">作业
+</h5><p><img src="C:/blog/my-blog/content/post/11-2025/11.01.2025/zuoye2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="zuoye2"
+	
+	
+></p>
+<p>1.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt; </span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">str</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&#34;hello world&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span><span class="o">*</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span><span class="o">*</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">str</span><span class="p">[</span><span class="n">len</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span><span class="n">len</span><span class="p">;</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">len</span><span class="o">+</span><span class="mi">1</span> <span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="nf">strlen</span><span class="p">(</span><span class="n">str</span><span class="p">);</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="kt">char</span> <span class="n">tep</span> <span class="o">=</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">			<span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">str</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">			<span class="n">str</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">tep</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="o">++</span><span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="o">++</span><span class="n">j</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">str</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%c&#34;</span><span class="p">,</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"></code></pre></td></tr></table>
+</div>
+</div><h2 id="2函数传参">（2）：函数传参
+</h2><p><img src="C:/blog/my-blog/content/post/11-2025/11.01.2025/hanshuchuancan.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="hanshuchuancan"
+	
+	
+></p>
+<p>传引用是c++里面的</p>
+<p>c语言里面有两种，函数里面传参有三种</p>
+<h4 id="传值">传值
+</h4><p>拷贝实参的值，无法改变实参</p>
+<p>func1  形参x是a的值的拷贝，x与a独立</p>
+<h4 id="传指针">传指针
+</h4><p>拷贝实参的地址，可以改变实参</p>
+<p>func2 形参*x是a的地址的拷贝，x就是a     引用中取用了a的地址</p>
+<h4 id="传引用">传引用
+</h4><p>void func3(int &amp;x)</p>
+<p>传过来引用的地址，可以改变实参，x就是a</p>
+<p>如果一个函数有多个参数，每一个参数可以有不同的传值方法</p>
+<p><strong>指针可能会指向错误的内存的地址，难以驾驭，可能破坏程序</strong></p>
+<p><img src="C:/blog/my-blog/content/post/11-2025/11.01.2025/sikao.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="sikao"
+	
+	
+></p>
+<p>在传引用的情况下，形参就是实参的别名，代表的就是实参</p>
+<h3 id="传值还是传指针">传值还是传指针
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.01.2025/chuanzhihaishichuanzhizhen.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="chuanzhihaishi"
+	
+	
+></p>
+<p>并非函数设定的指针，在传参的时候就是在传指针，而是看传的实参，是否是传的指针</p>
+<p>func2(&amp;c2)  //传c2的地址，是传指针，传指针的指针，二级指针</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">void func1(char *c);
+</span></span><span class="line"><span class="cl">void func2(char **c);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">int main(void)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">	char c1;
+</span></span><span class="line"><span class="cl">	char *c2;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	func1(&amp;c1);
+</span></span><span class="line"><span class="cl">	func1(c2);
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	//func1(&amp;c2)错误,func1本身是一级指针，&amp;c2取地址就二级指针了，就是语法错误
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	func(&amp;c2);
+</span></span><span class="line"><span class="cl">	return 0;
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="swap-交换">swap-交换
+</h4><p>![swap jiaohuan](C:/blog/my-blog/content/post/11-2025/11.01.2025/swap jiaohuan.png)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;tchar.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">swap1</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span><span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">tep</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">x</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">y</span> <span class="o">=</span> <span class="n">tep</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">swap2</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">tep</span> <span class="o">=</span> <span class="o">*</span><span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="o">*</span><span class="n">x</span> <span class="o">=</span> <span class="o">*</span><span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="o">*</span><span class="n">y</span> <span class="o">=</span> <span class="n">tep</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">swap3</span><span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">tep</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">x</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">y</span> <span class="o">=</span> <span class="n">tep</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="nf">swap1</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;x:%d,y:%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="nf">swap2</span><span class="p">(</span><span class="o">&amp;</span><span class="n">x</span><span class="p">,</span><span class="o">&amp;</span><span class="n">y</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;x:%d,y:%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">y</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="nf">swap3</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;x:%d,y:%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="函数用参数作为返回值">函数用参数作为返回值
+</h3><p><img src="C:%5cblog%5cmy-blog%5ccontent%5cpost%5c11.01.2025%5chanshuyongcanshuzuofanhuizhi.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="hanshuyongcanshuzuofanhuizhi"
+	
+	
+></p>
+<p>做输出参数的时候，必须使用传指针或者传引用，因为传值无法改变实参</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">add1</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">add2</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="kt">int</span><span class="o">*</span> <span class="n">sum</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">sum</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="o">*</span><span class="n">sum</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">add3</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">sum</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">sum</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">add4</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="o">*</span><span class="n">x</span> <span class="o">=</span> <span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">add5</span><span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">sum</span> <span class="o">=</span> <span class="nf">add1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;sum:%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">sum</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nf">add2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span><span class="o">&amp;</span><span class="n">sum</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;sum:%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">sum</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nf">add3</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span><span class="n">sum</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;sum:%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">sum</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nf">add4</span><span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;sum:%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">sum</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="n">a</span><span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">add5</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;sum:%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">sum</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="数组做函数参数-防溢出">数组做函数参数 ，防溢出
+</h3><p><img src="C:/blog/my-blog/content/post/11-2025/11.01.2025/shuzuzuohanshucanshu.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="shuzuzuohanshucanshu"
+	
+	
+></p>
+<p>右边程序，函数设定中&lt;10，但是main函数引用函数时设定了9个元素也就是0-8的数组，会导致内存溢出</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="err">第一种，多设置一个参数</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">print_array</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">[],</span><span class="kt">size_t</span> <span class="n">len</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nf">print_array</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="mi">9</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="err">第二种</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">print_array</span><span class="p">(</span><span class="kt">int</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="mi">10</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nf">print_array</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">取值</span><span class="mi">10</span><span class="err">个元素的一维数组，在编译阶段就无法将九个元素的数组传参过去。</span>
+</span></span><span class="line"><span class="cl"><span class="err">只接收十个数组的函数</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>分析问题</p>
+<p><img src="C:/blog/my-blog/content/post/11-2025/11.01.2025/fenxiwenti.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="fenxiwenti"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt; </span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">GetMemory</span><span class="p">(</span><span class="kt">char</span> <span class="o">**</span><span class="n">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">Test</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span><span class="o">*</span> <span class="n">str</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">GetMemory</span><span class="p">(</span><span class="o">&amp;</span><span class="n">str</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">strcpy_s</span><span class="p">(</span><span class="n">str</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">malloc</span> <span class="err">需要头文件</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="作业-1">作业
+</h5><p><img src="C:/blog/my-blog/content/post/11-2025/11.01.2025/zuoye3.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="zuoye3"
+	
+	
+></p>
+<p>1.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">fun(c)   输出  9   fun函数设定c[]，忽略了函数长度的影响，但是此题没有涉及函数长度的语句，结果不变
+</span></span><span class="line"><span class="cl">fun2(c)  输出  9   fun2函数设定&amp;c，也就是传递指针，c数组指针传递过去，计算元素个数为9
+</span></span><span class="line"><span class="cl">fun3(c)  输出  报错  fun3中，（&amp;c）[9]限制了输入数组的长度必须为9，但是原数组是1-8八个元素，所以报错
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">解析： 8 1 9
+</span></span><span class="line"><span class="cl">第一个，数组参数退化为指针，char c[]在函数参数中等价于char *c 即sizeof(char*)，与数组内容无关，只与指针类型有关
+</span></span><span class="line"><span class="cl">第二个，
+</span></span><span class="line"><span class="cl">第三个，(&amp;c)[9]限定的九个元素里是包含了&#39;\0&#39;这个元素的，所以实际上对于a[8]来说元素个数是符合条件的
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1.传递空指针，会导致程序崩溃
+</span></span><span class="line"><span class="cl">2.手动分配内存，可能会出现导入字节数大于100的情况
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ai解答：
+</span></span><span class="line"><span class="cl">getmemory函数定义指针值，test传递值应该二级指针
+</span></span><span class="line"><span class="cl">或者get函数定义数组，返回指针
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">1.
+</span></span><span class="line"><span class="cl">void GetMemory(char** p)  // 传指针的地址
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    *p = (char*)malloc(100);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">void Test(char* s)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    char* str = NULL;
+</span></span><span class="line"><span class="cl">    GetMemory(&amp;str);  // 传str的地址
+</span></span><span class="line"><span class="cl">    if(str != NULL) {
+</span></span><span class="line"><span class="cl">        strcpy(str, s);
+</span></span><span class="line"><span class="cl">        printf(&#34;%s&#34;, str);
+</span></span><span class="line"><span class="cl">        free(str);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">2.
+</span></span><span class="line"><span class="cl">char* GetMemory()
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    return (char*)malloc(100);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">void Test(char* s)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    char* str = GetMemory();
+</span></span><span class="line"><span class="cl">    if(str != NULL) {
+</span></span><span class="line"><span class="cl">        strcpy(str, s);
+</span></span><span class="line"><span class="cl">        printf(&#34;%s&#34;, str);
+</span></span><span class="line"><span class="cl">        free(str);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="3函数调用约定">（3）：函数调用约定
 </h2><h4 id="调用约定">调用约定：
 </h4><p><img src="/p/11-02/diaoyongyueding.png"
 	width="1923"
@@ -630,7 +1882,7 @@
 ></p>
 <p>x64 fastcall 变为调用者来维持栈平衡，统一采用fastcall</p>
 <p>栈的整体大小要能被16整除</p>
-<h5 id="作业">作业：
+<h5 id="作业-2">作业：
 </h5><p><img src="/p/11-02/zuoye.png"
 	width="1916"
 	height="1290"
@@ -1058,449 +2310,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="第十三课-指针">第十三课-指针
-</h1><h2 id="1指针定义与使用">（1）：指针定义与使用
-</h2><h3 id="变量在内存中的地址">变量在内存中的地址
-</h3><p><img src="/p/11-02/bianliangdeneicundizhi.png"
-	width="1913"
-	height="1298"
-	srcset="/p/11-02/bianliangdeneicundizhi_hu_d3aef75d1ae2f9c4.png 480w, /p/11-02/bianliangdeneicundizhi_hu_a4d1a3216f720215.png 1024w"
-	loading="lazy"
-	
-		alt="bianliangd"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="147"
-		data-flex-basis="353px"
-	
-></p>
-<p>&amp;取值运算符</p>
-<h3 id="指针定义">指针定义
-</h3><p><img src="/p/11-02/zhizhen.png"
-	width="1914"
-	height="1300"
-	srcset="/p/11-02/zhizhen_hu_4119338975b71588.png 480w, /p/11-02/zhizhen_hu_a4cff1826c5247f2.png 1024w"
-	loading="lazy"
-	
-		alt="zhizhen"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="147"
-		data-flex-basis="353px"
-	
-></p>
-<p>指针也是变量，指针也有类型，指针存放的值是内存地址</p>
-<p>指针字节就是内存地址的长度</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">int main()
-</span></span><span class="line"><span class="cl">{
-</span></span><span class="line"><span class="cl">	int i = 1;
-</span></span><span class="line"><span class="cl">	int* p = &amp;i;
-</span></span><span class="line"><span class="cl">	printf(&#34;p=%p,&amp;i=%p,sizeof(p):%d\n&#34;, p, &amp;i, sizeof(p));
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	return 0;
-</span></span><span class="line"><span class="cl">}
-</span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="指针的定义与初始化形式">指针的定义与初始化形式
-</h3><p><img src="/p/11-02/zhenzhidingyiyuchushihua.png"
-	width="1909"
-	height="1305"
-	srcset="/p/11-02/zhenzhidingyiyuchushihua_hu_cf06639539759c60.png 480w, /p/11-02/zhenzhidingyiyuchushihua_hu_e839730b175e9ea9.png 1024w"
-	loading="lazy"
-	
-		alt="zhenzhiding"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="146"
-		data-flex-basis="351px"
-	
-></p>
-<p>初始化：1.指向某个变量的地址  2.指向一个分配的内存或者字符串常量  3.指向NULL</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">int i,*p；定义了一个整型i和整型指针，这里*与int一起 
-</span></span><span class="line"><span class="cl">p =&amp;i  野指针，指向随机值 
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">char *p=(Char*)malloc(100);  在堆上分配了地址，赋值给了一个指针
-</span></span><span class="line"><span class="cl">char *str = &#34;hello world&#34;;   指向的是字符串变量地址
-</span></span><span class="line"><span class="cl">char c=&#39;A&#39;;  一个字符变量&#39;a&#39;
-</span></span><span class="line"><span class="cl">char *str = &amp;c;  一个指针str，把c的地址赋值给了str，指向字符变量c
-</span></span><span class="line"><span class="cl">char *pch= &amp;c ;
-</span></span><span class="line"><span class="cl">字符指针既可以指向字符串，也可以指向字符变量
-</span></span><span class="line"><span class="cl">赋值给指针的时候，赋值的类型一定要匹配
-</span></span><span class="line"><span class="cl">字符指针赋值给整型指针，需要强制转化
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="p解引用运算符----与指针定义的不是一个东西">*p：解引用运算符    与指针定义的*不是一个东西
-</h3><p><img src="/p/11-02/jieyinyuongyunsuanfu.png"
-	width="1918"
-	height="1298"
-	srcset="/p/11-02/jieyinyuongyunsuanfu_hu_e88c3e8c787e78b2.png 480w, /p/11-02/jieyinyuongyunsuanfu_hu_7036fdcbf72dd613.png 1024w"
-	loading="lazy"
-	
-		alt="jieyinyuongyunsuanfu"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="147"
-		data-flex-basis="354px"
-	
-></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">int *p1,*p2   中 “*” 是定义指针p1，p2
-</span></span><span class="line"><span class="cl">printf 中*p1 *p2 是解引用符
-</span></span><span class="line"><span class="cl">*p1 == a   *p2 == b    对 *p1+1 *p2+2 就是对a，b修改
-</span></span><span class="line"><span class="cl">但是必须要是可写的 
-</span></span><span class="line"><span class="cl">a是常量指针，指针的一种形式，指向的数组的首地址
-</span></span><span class="line"><span class="cl">p指向的字符串的首地址
-</span></span><span class="line"><span class="cl">对a和p进行解引用，*a为数组第一个元素，*p为字符串第一个
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>野指针和NULL都不能被解引用</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt; </span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>	
-</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span> <span class="p">};</span>
-</span></span><span class="line"><span class="cl">	<span class="kt">char</span><span class="o">*</span> <span class="n">s</span> <span class="o">=</span> <span class="s">&#34;hello world&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="kt">int</span><span class="o">*</span> <span class="n">p1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="kt">int</span><span class="o">*</span> <span class="n">p2</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;*p1=%d,*p2=%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">p1</span><span class="p">,</span> <span class="o">*</span><span class="n">p2</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;a=%d,b=%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="o">*</span><span class="n">p1</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="o">*</span><span class="n">p2</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;a=%d,b=%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;*arr:%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">arr</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;*s:%c</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">s</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="与">&amp;与*
-</h3><p><img src="/p/11-02/&amp;.png"
-	width="1922"
-	height="1299"
-	srcset="/p/11-02/&amp;_hu_cd74887c8dcd7601.png 480w, /p/11-02/&amp;_hu_ad49fa22e265d626.png 1024w"
-	loading="lazy"
-	
-		alt="&"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="147"
-		data-flex-basis="355px"
-	
-></p>
-<pre><code>*arr = 100;
-*s = &quot;X&quot;;
-</code></pre>
-<p>*arr 指向数组第一个元素，可以使用指针修改</p>
-<p>*s指向静态常量区，修改会报错</p>
-<h3 id="与互为逆运算与">&amp;与*互为逆运算：*&amp;与&amp;*
-</h3><p><img src="/p/11-02/niyunsuan.png"
-	width="1889"
-	height="1299"
-	srcset="/p/11-02/niyunsuan_hu_32c68198003e7e2d.png 480w, /p/11-02/niyunsuan_hu_70fc9bb2f62ff565.png 1024w"
-	loading="lazy"
-	
-		alt="niyunsuan"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="145"
-		data-flex-basis="349px"
-	
-></p>
-<p>*运算符需要和指针联系在一起，a不是指针，所以&amp;*a会报错</p>
-<h3 id="易混淆">易混淆
-</h3><p><img src="/p/11-02/yihunxiao.png"
-	width="1924"
-	height="1298"
-	srcset="/p/11-02/yihunxiao_hu_cb74861357cd5799.png 480w, /p/11-02/yihunxiao_hu_cf9a5266c79fa576.png 1024w"
-	loading="lazy"
-	
-		alt="yihunxiao"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="148"
-		data-flex-basis="355px"
-	
-></p>
-<h3 id="指针的赋值与使用">指针的赋值与使用
-</h3><p><img src="/p/11-02/zhizhendefuzhiyushiyong.png"
-	width="1916"
-	height="1287"
-	srcset="/p/11-02/zhizhendefuzhiyushiyong_hu_4386f45e27b3c143.png 480w, /p/11-02/zhizhendefuzhiyushiyong_hu_177db70322b35827.png 1024w"
-	loading="lazy"
-	
-		alt="zhizhendefuzhi"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="148"
-		data-flex-basis="357px"
-	
-></p>
-<p>*p2 = *p1  即j = i   j和i的值都变为&rsquo;a'</p>
-<p><strong>用双引号直接赋值的字符串是只读的，用数组或malloc创建的字符串是可修改的。</strong></p>
-<p>p2=p1 把p1的地址赋值给p2，相当于p2指向了p1的地址</p>
-<h3 id="指针类型与互相转换">指针类型与互相转换
-</h3><p><img src="/p/11-02/zhizhenleixingyuhuxiangzhuanhuan.png"
-	width="1930"
-	height="1306"
-	srcset="/p/11-02/zhizhenleixingyuhuxiangzhuanhuan_hu_a93d4334eadb02f9.png 480w, /p/11-02/zhizhenleixingyuhuxiangzhuanhuan_hu_d0b97303b7bd8bcd.png 1024w"
-	loading="lazy"
-	
-		alt="zhizhenlei"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="147"
-		data-flex-basis="354px"
-	
-></p>
-<p><img src="/p/11-02/lizi2.png"
-	width="1147"
-	height="744"
-	srcset="/p/11-02/lizi2_hu_99eb10f09263ed04.png 480w, /p/11-02/lizi2_hu_b369ba7af1c4425b.png 1024w"
-	loading="lazy"
-	
-		alt="lizi2"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="154"
-		data-flex-basis="370px"
-	
-></p>
-<p>少了会导致数据丢失，多了可能会导致破坏其他内存地址。强制转化有可能会导致程序受到影响</p>
-<p>类型不一样宽度就不一样</p>
-<h3 id="void-p">void *p
-</h3><p><img src="/p/11-02/void.png"
-	width="1917"
-	height="1292"
-	srcset="/p/11-02/void_hu_85276c342ee0e1e7.png 480w, /p/11-02/void_hu_90e92b55ca41ea6c.png 1024w"
-	loading="lazy"
-	
-		alt="void"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="148"
-		data-flex-basis="356px"
-	
-></p>
-<p>void *p  没有任何类型，和类型指针不一样</p>
-<p>void的指针概念中没有内存长度的概念，拿不到内存长度</p>
-<p>不能用*p来取值，取不了其中的值</p>
-<p>GCC里面的扩展，void默认为1字节</p>
-<p>主要用在函数参数定义的时候，可以接受任何类型的指针的赋值，万能指针型</p>
-<p>void赋值成别的类型需要强转，而解引用也需要转换</p>
-<p>一般用在函数的形参位置，不用做任何的强制转换，只是在内部需要转换</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">void *pv1 = p1 
-</span></span><span class="line"><span class="cl">只是对pv1的赋值，类型并未转换，GCC应该可以
-</span></span><span class="line"><span class="cl">sizeof(pv1)   指针本身是变量
-</span></span><span class="line"><span class="cl">sizeof(*pv1)  只是无法解引用
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="字符指针">字符指针
-</h3><p><img src="/p/11-02/zifuzhizhen.png"
-	width="1912"
-	height="1297"
-	srcset="/p/11-02/zifuzhizhen_hu_bb21f15b0593da5b.png 480w, /p/11-02/zifuzhizhen_hu_89628c996ee386da.png 1024w"
-	loading="lazy"
-	
-		alt="zifuzhizhen"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="147"
-		data-flex-basis="353px"
-	
-></p>
-<h3 id="sizeofpsizeogp">sizeof(p)\sizeog(*p)
-</h3><p><img src="/p/11-02/sizeof%28p%29.png"
-	width="1883"
-	height="1298"
-	srcset="/p/11-02/sizeof%28p%29_hu_96931f428cebe556.png 480w, /p/11-02/sizeof%28p%29_hu_2431417555f5179.png 1024w"
-	loading="lazy"
-	
-		alt="sizeof(p)"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="145"
-		data-flex-basis="348px"
-	
-></p>
-<p>sizeof(p)   指针对应的长度</p>
-<p>sizeof(*p)  指针对应类型的长度</p>
-<p>4 4 1 4   12   4  1  1</p>
-<h3 id="指针的应用">指针的应用
-</h3><p><img src="/p/11-02/yingyong.png"
-	width="1911"
-	height="1291"
-	srcset="/p/11-02/yingyong_hu_ef2bf3db8bf18e4d.png 480w, /p/11-02/yingyong_hu_ba91eb82e4ba5047.png 1024w"
-	loading="lazy"
-	
-		alt="yingyong"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="148"
-		data-flex-basis="355px"
-	
-></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdbool.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="nf">is_system_little</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mh">0x1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="kt">char</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">x</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">p</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="k">else</span>
-</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h5 id="作业-1">作业
-</h5><p><img src="/p/11-02/zuoye2.png"
-	width="1910"
-	height="1292"
-	srcset="/p/11-02/zuoye2_hu_762f445cd5d870af.png 480w, /p/11-02/zuoye2_hu_27a0e02a5f5d6bf5.png 1024w"
-	loading="lazy"
-	
-		alt="zuoye2"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="147"
-		data-flex-basis="354px"
-	
-></p>
-
 </section>
 
 
@@ -1536,18 +2346,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-30/">
+    <a href="/p/11-15/">
         
         
             <div class="article-image">
-                
-                    <img src="/bj.jpg" loading="lazy" data-key="11-30" data-hash="/bj.jpg"/>
+                <img src="/p/11-15/bj.a16604ad36919a2ee87388ff87281a01_hu_9e5044718131be7e.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 11-15 作业"
+                        data-key="11-15" 
+                        data-hash="md5-oWYErTaRmi7oc4j/hygaAQ==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-30 笔记</h2>
+            <h2 class="article-title">11-15 作业</h2>
         </div>
     </a>
 </article>
@@ -1555,23 +2370,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-29/">
+    <a href="/p/11-14/">
         
         
             <div class="article-image">
-                <img src="/p/11-29/bj.60013e3f00f58254a21112014daf3f28_hu_f49e52853cd86f55.jpg" 
+                <img src="/p/11-14/bj.d577405db0b641e0a671e01e6c32b3b8_hu_5c9e70a11824ff53.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-29 笔记"
-                        data-key="11-29" 
-                        data-hash="md5-YAE&#43;PwD1glSiERIBTa8/KA==">
+                        alt="Featured image of post 11-14 作业"
+                        data-key="11-14" 
+                        data-hash="md5-1XdAXbC2QeCmceAebDKzuA==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-29 笔记</h2>
+            <h2 class="article-title">11-14 作业</h2>
         </div>
     </a>
 </article>
@@ -1579,23 +2394,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-28/">
+    <a href="/p/11-13/">
         
         
             <div class="article-image">
-                <img src="/p/11-28/bj.6d148dab18c6c1baea6098318eaface2_hu_4e132fbee8d0b475.jpg" 
+                <img src="/p/11-13/bj.c319198b3d02ce40ea9c75f5a419c871_hu_26b15fc36ffa70d.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-28 笔记"
-                        data-key="11-28" 
-                        data-hash="md5-bRSNqxjGwbrqYJgxjq&#43;s4g==">
+                        alt="Featured image of post 11-13 作业"
+                        data-key="11-13" 
+                        data-hash="md5-wxkZiz0CzkDqnHX1pBnIcQ==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-28 笔记</h2>
+            <h2 class="article-title">11-13 作业</h2>
         </div>
     </a>
 </article>
@@ -1603,23 +2418,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-27/">
+    <a href="/p/11-12/">
         
         
             <div class="article-image">
-                <img src="/p/11-27/bj.82b7b84c3ec267628100612ae18a037f_hu_c4b47f8dd6ff8e67.jpg" 
+                <img src="/p/11-12/bj.ad77c93609bb7b7605a81180b007dcdc_hu_17f111edc709b5c7.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-27 笔记"
-                        data-key="11-27" 
-                        data-hash="md5-gre4TD7CZ2KBAGEq4YoDfw==">
+                        alt="Featured image of post 11-12 作业"
+                        data-key="11-12" 
+                        data-hash="md5-rXfJNgm7e3YFqBGAsAfc3A==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-27 笔记</h2>
+            <h2 class="article-title">11-12 作业</h2>
         </div>
     </a>
 </article>
@@ -1627,23 +2442,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/11-26/">
+    <a href="/p/11-11/">
         
         
             <div class="article-image">
-                <img src="/p/11-26/bj.8e20f3ed06dc4fa57c2513213cc51884_hu_8728ad2704bb5069.jpg" 
+                <img src="/p/11-11/bj.939ac470f1f843a30170be56807c38ab_hu_d57086257fb1c61d.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 11-26 笔记"
-                        data-key="11-26" 
-                        data-hash="md5-jiDz7QbcT6V8JRMhPMUYhA==">
+                        alt="Featured image of post 11-11 递归"
+                        data-key="11-11" 
+                        data-hash="md5-k5rEcPH4Q6MBcL5WgHw4qw==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">11-26 笔记</h2>
+            <h2 class="article-title">11-11 递归</h2>
         </div>
     </a>
 </article>
