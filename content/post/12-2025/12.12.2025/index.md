@@ -8,16 +8,6 @@ categories:
   - 编码
 ---
 
-q
-
-问题：base64变表变索引的处理未实现
-
-卡在密文，密钥，自设表的转换上，还在实现密文转换上
-
-其他的表之前题复现了一遍，方法还没有做题自己打代码实现过
-
-
-
 base64编码 - 一种编码方式
 
 ## 编码原理
@@ -199,54 +189,6 @@ int main() {
 这样解码时，遇到字符 'A'，查 `decoding_table[65]` 就直接得到索引 0。
 
 
-
-### 重要概念:
-
-#### 1.映射表
-
-解码实现中`table`表即原码的映射表，用来表示至少为123位（ z 的ASCII码是 122 ）数组的解码，用索引字符的ASCII值作为小标，直接取出字符对应的6位数值，是一种用空间换时间的方式。
-
-~~~
-举例：
-原base64编码表为 table64= "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
-而字符`B`的 ASCII 是 66，那么 table[66] 就等于 1，因为`B`在 Base64 编码表中排第 1（从`A`为 0 开始）
-
-如果不使用映射表的话
-就必须手动判断输入字符的范围并计算对应值在填充:
-int val = 0;
-if(ch >= 'A' && ch <= 'Z') val = ch - 'A';
-else if(ch >= 'a' && ch <= 'z') val = ch - 'a' + 26;
-else if(ch >= '0' && ch <= '9') val = ch - '0' + 52;
-else if(ch == '+') val = 62;
-else if(ch == '/') val = 63;
-else if(ch == '=') val = 0; // 填充符
-
-~~~
-
-#### 不可见字符的处理
-
-Base64规范中只有64个字符和`=`，其他都应忽略。处理方式：遍历输入字符串，跳过非Base64字符（即不在`A-Za-z0-9+/=`中的字符），将有效字符复制到新缓冲区再进行解码。否则直接解码会因`table`索引越界或取到错误值导致乱码或崩溃。
-
-
-
-#### memset
-
-```
-memset(起始地址, 要设置的值, 要设置的字节数)
-```
-
-**常见用途**：
-
-1. **数组/内存块清零**：`memset(arr, 0, sizeof(arr))`
-2. **初始化结构体**：`memset(&obj, 0, sizeof(obj))`（注意会清空所有成员，包括指针）
-3. **填充特定值**：如 `memset(buffer, 0xFF, size)` 全填为 255
-4. **字符串结尾安全处理**：在敏感数据使用后填充 0 防残留
-
-
-
-
-
-
 ## 魔改原理
 
 base64的魔改主要有两个方式
@@ -312,7 +254,7 @@ print(base64.b64decode(map_text))  # 直接使用提供的base64解密函数解�
 
 密文处如果不是4的倍数需要填充`=`
 
-第二种
+第二种代码
 
 ```
 import base64
@@ -358,6 +300,181 @@ print(decodedd)
 ```
 
 **本质**：在Base64编码的**索引层**做了加法掩蔽，相当于在6位值上做了循环移位混淆。这比单纯换表多了一层算术变换，但仍是可逆的简单混淆。
+
+```
+table = "CDABGHEFKLIJOPMNSTQRWXUVabYZefcdijghmnklqropuvstyzwx23016745+/89"  # base64当前表
+cipher = "TqK1YUSaQryEMHaLMnWhYU+Fe0WPenqhRXahfkV6WE2fa3iRW197Za62eEaD"  # 密文
+cipher = cipher.rstrip('=') #去除密文多余的'='
+_index = []
+key = [1, 2, 3, 4]  #正常设置为[0,0,0,0]就可以
+for i in range(len(cipher)):
+    tmp = table.index(cipher[i]) - key[i % 4]  # 减去加密时加上的key
+    if tmp >= 0:
+        _index.append(tmp)
+    else:  # 因为减去key会导致索引变成负数，+64保证在正常索引范围
+        _index.append(tmp + 64)
+#print(_index)
+
+for i in range(0, len(_index), 4):
+    a = _index[i]
+    b = _index[i + 1]
+    c = _index[i + 2] if i + 2 < len(_index) else 0  # 添加范围检查，为未处理部分设为0
+    d = _index[i + 3] if i + 3 < len(_index) else 0
+    sum = a << 18 | b << 12 | c << 6 | d
+    for j in range(3):
+        if i * 6 + j * 8 < len(cipher) * 8:  # 检查是否超出原始编码长度
+            print(chr((sum >> ((2 - j) * 8)) & 0xff), end="")
+
+后续可利用py带的base64库快速解码
+std_table = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+b64_str = ''.join(std_table[i] for i in _index)
+print(base64.b64decode(b64_str))
+```
+
+#### 注意事项
+
+1.设定的key在ida中可能不会显示出来，直接就导入在算法里面成为固定的整数
+
+2.变索引有很多类型
+
+* +key
+* ^ key
+* *k
+* imul
+* and 3Fh
+
+都可以进行索引的更改，此处只例举了加索引的例子，其他的需要有遇到例题再添加
+
+3.key也会有不同的形式
+
+* Step 3：判断 key 的形式
+* 常量？
+* 数组？
+* i % n？
+* 跟位置相关？
+
+都是需要在解题过程中注意
+
+~~~
+例题
+#include <stdio.h>
+#include <string.h>
+#include <malloc.h>
+
+char* base64encry(char* input)
+{
+	int len = 0, str_len = 0;
+	char* encry;
+	char table64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+	len = strlen(input);
+	if (len % 3 == 0)
+		str_len = (len / 3) * 4;
+	else
+		str_len = ((len / 3) + 1) * 4;
+	encry = (char*)malloc(sizeof(char) * str_len + 1);
+
+	for (int i = 0, j = 0; i < len; i += 3, j += 4)
+	{
+		encry[j] = table64[input[i] >> 2];
+		encry[j + 1] = table64[((input[i] & 0x3) << 4) | ((input[i + 1]) >> 4)];
+		encry[j + 2] = table64[((input[i + 1] & 0xf) << 2) | (input[i + 2] >> 6)];
+		encry[j + 3] = table64[input[i + 2] & 0x3f];
+	}
+	switch (len % 3)
+	{
+	case 1:
+		encry[str_len - 1] = '=';
+		encry[str_len - 2] = '=';
+		break;
+	case 2:
+		encry[str_len - 1] = '=';
+		break;
+	}
+	encry[str_len] = '\0';
+	return encry;
+}
+
+char* base64(char* input)
+{
+	int len = 0, str_len = 0;
+	char* encry;
+	char table64[] = "CDABGHEFKLIJOPMNSTQRWXUVabYZefcdijghmnklqropuvstyzwx23016745+/89";
+	int key[] = { 1, 2, 3, 4 };
+	len = strlen(input);
+	if (len % 3 == 0)
+		str_len = (len / 3) * 4;
+	else
+		str_len = ((len / 3) + 1) * 4;
+	encry = (char*)malloc(sizeof(char) * str_len + 1);
+
+	for (int i = 0, j = 0; i < len; i += 3, j += 4)
+	{
+		unsigned char k1 = input[i] >> 2;
+		unsigned char k2 = ((input[i] & 0x3) << 4) | (input[i + 1] >> 4);
+		unsigned char k3 = ((input[i + 1] & 0xf) << 2) | (input[i + 2] >> 6);
+		unsigned char k4 = input[i + 2] & 0x3f;
+
+		encry[j] = table64[(k1 + key[0]) & 0x3F];
+		encry[j + 1] = table64[(k2 + key[1]) & 0x3F];
+		encry[j + 2] = table64[(k3 + key[2]) & 0x3F];
+		encry[j + 3] = table64[(k4 + key[3]) & 0x3F];
+	}
+	switch (len % 3)
+	{
+	case 1:
+		encry[str_len - 1] = '=';
+		encry[str_len - 2] = '=';
+		break;
+	case 2:
+		encry[str_len - 1] = '=';
+		break;
+	}
+	encry[str_len] = '\0';
+	return encry;
+
+}
+
+int main()
+{
+	char v1[] = "X0iYf6OJNaebeVZ0VlmMdluYNUWqQ1lD";
+	char v2[100] = {0};
+	printf("请输入flag：");
+	scanf("%s",v2);
+	char* v3,*v4,*v5;
+	v3 = base64encry(v2);
+	v5 = base64(v3);
+	if (*v1 == *v5)
+		printf("success");
+	else
+		printf("wrong");
+	return 0;
+}
+编译成exe，然后在ida中看
+
+这是解密脚本
+import base64
+t2 = 'CDABGHEFKLIJOPMNSTQRWXUVabYZefcdijghmnklqropuvstyzwx23016745+/89'
+t3 = 'X0iYf6OJNaebeVZ0VlmMdluYNUWqQ1lD'
+key = [1,2,3,4]
+_index = []
+for i in range(len(t3)):
+    tmp = t2.index(t3[i]) - key[i % 4]
+    if tmp >= 0:
+        _index.append(tmp)
+    else:
+        _index.append(tmp + 64)
+std_table = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+b64_str = ''.join(std_table[i] for i in _index)
+print(base64.b64decode(b64_str))
+~~~
+
+
+
+
+
+
+
+
 
 ## base64模块的语法使用
 
@@ -415,4 +532,46 @@ url_enc = base64.urlsafe_b64encode(b"data").decode()  # 'ZGF0YQ=='
 - 模块还有 `b32encode`、`b16encode` 等其他进制编码
 
 
+
+## 重要概念:
+
+#### 1.映射表
+
+解码实现中`table`表即原码的映射表，用来表示至少为123位（ z 的ASCII码是 122 ）数组的解码，用索引字符的ASCII值作为小标，直接取出字符对应的6位数值，是一种用空间换时间的方式。
+
+~~~
+举例：
+原base64编码表为 table64= "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+而字符`B`的 ASCII 是 66，那么 table[66] 就等于 1，因为`B`在 Base64 编码表中排第 1（从`A`为 0 开始）
+
+如果不使用映射表的话
+就必须手动判断输入字符的范围并计算对应值在填充:
+int val = 0;
+if(ch >= 'A' && ch <= 'Z') val = ch - 'A';
+else if(ch >= 'a' && ch <= 'z') val = ch - 'a' + 26;
+else if(ch >= '0' && ch <= '9') val = ch - '0' + 52;
+else if(ch == '+') val = 62;
+else if(ch == '/') val = 63;
+else if(ch == '=') val = 0; // 填充符
+
+~~~
+
+#### 不可见字符的处理
+
+Base64规范中只有64个字符和`=`，其他都应忽略。处理方式：遍历输入字符串，跳过非Base64字符（即不在`A-Za-z0-9+/=`中的字符），将有效字符复制到新缓冲区再进行解码。否则直接解码会因`table`索引越界或取到错误值导致乱码或崩溃。
+
+
+
+#### memset
+
+```
+memset(起始地址, 要设置的值, 要设置的字节数)
+```
+
+**常见用途**：
+
+1. **数组/内存块清零**：`memset(arr, 0, sizeof(arr))`
+2. **初始化结构体**：`memset(&obj, 0, sizeof(obj))`（注意会清空所有成员，包括指针）
+3. **填充特定值**：如 `memset(buffer, 0xFF, size)` 全填为 255
+4. **字符串结尾安全处理**：在敏感数据使用后填充 0 防残留
 
