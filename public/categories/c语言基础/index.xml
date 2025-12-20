@@ -14881,14 +14881,18 @@ while (p2 != NULL)
 &lt;p&gt;a %= 5     等效为  a = a % 5&lt;/p&gt;
 &lt;p&gt;a *= 5   等效为  a = a * 5&lt;/p&gt;
 &lt;p&gt;表达式由运算符、常量及变量构成。每一个表达式，都有对应的一个值。该值与表达式中操作符的优先级和结合律有关&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;C:/blog/my-blog/content/post/10-2025/10.26.2025/changjianbiaodashi.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/10-25/changjianbiaodashi.png&#34;
+	width=&#34;1922&#34;
+	height=&#34;1290&#34;
+	srcset=&#34;http://localhost:1313/p/10-25/changjianbiaodashi_hu_9fac5231e89fc0af.png 480w, http://localhost:1313/p/10-25/changjianbiaodashi_hu_6028d720684d58a5.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;changjianbiaodashi&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;148&#34;
+		data-flex-basis=&#34;357px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;逗号表达式：先算a的值，再算b的值，从左往右依次计算，f的值，就是整个式子最终的值&lt;/p&gt;
@@ -15208,14 +15212,18 @@ c:1&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;其中scanf会提示4996的错误，调用scanf可能会导致数据溢出带来的安全风险。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;C:/blog/my-blog/content/post/10-2025/10.25.2025/geshihua.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/10-24/geshihua.png&#34;
+	width=&#34;1912&#34;
+	height=&#34;1300&#34;
+	srcset=&#34;http://localhost:1313/p/10-24/geshihua_hu_dea80ffc07070ccc.png 480w, http://localhost:1313/p/10-24/geshihua_hu_449b5d836ba3f978.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;geshihua&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;147&#34;
+		data-flex-basis=&#34;352px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;输出16进制前缀的整数&lt;/p&gt;
@@ -15331,25 +15339,33 @@ c:1&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;多重输出，加宽字节会出bug导致无法输出。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;C:/blog/my-blog/content/post/10-2025/10.25.2025/jingcheng.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/10-24/jingcheng.png&#34;
+	width=&#34;1911&#34;
+	height=&#34;1294&#34;
+	srcset=&#34;http://localhost:1313/p/10-24/jingcheng_hu_e48334c37f4a85e9.png 480w, http://localhost:1313/p/10-24/jingcheng_hu_a8cee082343b1390.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;jingcheng&#34;
 	
 	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;147&#34;
+		data-flex-basis=&#34;354px&#34;
+	
 &gt;&lt;/p&gt;
 &lt;p&gt;fd，文件描述符表，每个进程独立拥有的指向任何一打开的文件，管道，设备等任何资源的引用或句柄，一种资源调配的数字编号&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;C:/blog/my-blog/content/post/10-2025/10.25.2025/zuoye1.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/10-24/zuoye1.png&#34;
+	width=&#34;1920&#34;
+	height=&#34;1294&#34;
+	srcset=&#34;http://localhost:1313/p/10-24/zuoye1_hu_b56239e15e9d61e7.png 480w, http://localhost:1313/p/10-24/zuoye1_hu_a907db902384afcb.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;zuoye1&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;148&#34;
+		data-flex-basis=&#34;356px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;1.输入一个变量需要用取值符&amp;amp;获取其内存地址，字符串不需要，字符串的数组存储在计算机&lt;/p&gt;

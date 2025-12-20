@@ -1,0 +1,1779 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="抓不住的东西太多了，所以要告诉自己没关系">
+<title>12-12 base64</title>
+
+<link rel='canonical' href='http://localhost:1313/p/12-12/'>
+
+<link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="12-12 base64">
+<meta property='og:description' content="抓不住的东西太多了，所以要告诉自己没关系">
+<meta property='og:url' content='http://localhost:1313/p/12-12/'>
+<meta property='og:site_name' content='雫的小站'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-12-12T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-12-12T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/p/12-12/bj.jpg' />
+<meta name="twitter:title" content="12-12 base64">
+<meta name="twitter:description" content="抓不住的东西太多了，所以要告诉自己没关系"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/p/12-12/bj.jpg' />
+        
+        <link rel="stylesheet" href="http://localhost:1313/css/custom.min.css">
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🌸</text></svg>">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "dark");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_f37ea70955b02a87.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">雫的小站</a></h1>
+            <h2 class="site-description">Don&#39;t leave me</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="http://localhost:1313/en/" >English</option>
+                                
+                                    <option value="http://localhost:1313/" selected>中文</option>
+                                
+                                    <option value="http://localhost:1313/ar/" >عربي</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li><a href="#编码原理">编码原理</a>
+          <ol>
+            <li><a href="#base64编码c语言实现">base64编码c语言实现</a></li>
+            <li><a href="#base64原码解码c语言实现">base64原码解码c语言实现</a></li>
+            <li><a href="#映射表的生成">映射表的生成</a></li>
+          </ol>
+        </li>
+        <li><a href="#魔改原理">魔改原理</a>
+          <ol>
+            <li><a href="#修改索引的魔改俗称换表">修改索引的魔改，俗称换表</a>
+              <ol>
+                <li><a href="#换表的c语言解密">换表的c语言解密</a></li>
+                <li><a href="#换表的py解密">换表的py解密</a></li>
+              </ol>
+            </li>
+            <li><a href="#改索引移位密钥的处理">改索引/移位密钥的处理</a>
+              <ol>
+                <li><a href="#注意事项">注意事项</a></li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+        <li><a href="#base64模块的语法使用">base64模块的语法使用</a></li>
+        <li><a href="#重要概念">重要概念:</a>
+          <ol>
+            <li>
+              <ol>
+                <li><a href="#1映射表">1.映射表</a></li>
+                <li><a href="#不可见字符的处理">不可见字符的处理</a></li>
+                <li><a href="#memset">memset</a></li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/12-12/">
+                <img src="/p/12-12/bj_hu_31256fe6ff988386.jpg"
+                        srcset="/p/12-12/bj_hu_31256fe6ff988386.jpg 800w, /p/12-12/bj_hu_e8224ac6a8d6defd.jpg 1600w"
+                        width="800" 
+                        height="628" 
+                        loading="lazy"
+                        alt="Featured image of post 12-12 base64" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E7%BC%96%E7%A0%81/" >
+                编码
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/12-12/">12-12 base64</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            抓不住的东西太多了，所以要告诉自己没关系
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2025-12-12T00:00:00Z'>Dec 12, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 9 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>base64编码 - 一种编码方式</p>
+<h2 id="编码原理">编码原理
+</h2><p>将每一个字符转换成二进制数字，然后按六位一组分开，用新的六位二进制值解释成新的整数，然后取对应字符</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">编码Man：
+</span></span><span class="line"><span class="cl">原始数据（ASCII 编码）：
+</span></span><span class="line"><span class="cl">M -&gt; 01001101
+</span></span><span class="line"><span class="cl">a -&gt; 01100001
+</span></span><span class="line"><span class="cl">n -&gt; 01101110
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">合并成 24 位：
+</span></span><span class="line"><span class="cl">01001101 01100001 01101110
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">拆分为 6 位的块：
+</span></span><span class="line"><span class="cl">010011 010110 000101 101110
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">将每 6 位二进制块映射为 Base64 字符：
+</span></span><span class="line"><span class="cl">010011 -&gt; 19 -&gt; T
+</span></span><span class="line"><span class="cl">010110 -&gt; 22 -&gt; W
+</span></span><span class="line"><span class="cl">000101 -&gt; 5  -&gt; F
+</span></span><span class="line"><span class="cl">101110 -&gt; 46 -&gt; u
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">编码结果：
+</span></span><span class="line"><span class="cl">&#34;Man&#34; -&gt; &#34;TWFu&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">如果输入的数据，转换成二进制数据后不是3的倍数，Base64 会在末尾补上 = 作为填充符。
+</span></span><span class="line"><span class="cl">解码即逆向思考，将编码转化为二进制数据，6位合并成8位，然后去掉=
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="base64编码c语言实现">base64编码c语言实现
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">char* base64encry(char* input)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">	int len = 0, str_len = 0;
+</span></span><span class="line"><span class="cl">	char* encry;
+</span></span><span class="line"><span class="cl">	char table64[] = &#34;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&#34;;
+</span></span><span class="line"><span class="cl">	len = strlen(input);
+</span></span><span class="line"><span class="cl">	if (len % 3 == 0)
+</span></span><span class="line"><span class="cl">		str_len = (len / 3) * 4;
+</span></span><span class="line"><span class="cl">	else
+</span></span><span class="line"><span class="cl">		str_len = ((len / 3) + 1) * 4;
+</span></span><span class="line"><span class="cl">	encry = (char*)malloc(sizeof(char) * str_len + 1);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	for (int i = 0, j = 0; i &lt; len; i += 3, j += 4)
+</span></span><span class="line"><span class="cl">	{
+</span></span><span class="line"><span class="cl">		encry[j] = table64[input[i] &gt;&gt; 2];
+</span></span><span class="line"><span class="cl">		encry[j + 1] = table64[((input[i] &amp; 0x3) &lt;&lt; 4) | ((input[i + 1]) &gt;&gt; 4)];
+</span></span><span class="line"><span class="cl">		encry[j + 2] = table64[((input[i + 1] &amp; 0xf) &lt;&lt; 2) | (input[i + 2] &gt;&gt; 6)];
+</span></span><span class="line"><span class="cl">		encry[j + 3] = table64[input[i + 2] &amp; 0x3f];
+</span></span><span class="line"><span class="cl">	}
+</span></span><span class="line"><span class="cl">	switch (len % 3)
+</span></span><span class="line"><span class="cl">	{
+</span></span><span class="line"><span class="cl">	case 1:
+</span></span><span class="line"><span class="cl">		encry[str_len - 1] = &#39;=&#39;;
+</span></span><span class="line"><span class="cl">		encry[str_len - 2] = &#39;=&#39;;
+</span></span><span class="line"><span class="cl">		break;
+</span></span><span class="line"><span class="cl">	case 2:
+</span></span><span class="line"><span class="cl">		encry[str_len - 1] = &#39;=&#39;;
+</span></span><span class="line"><span class="cl">		break;
+</span></span><span class="line"><span class="cl">	}
+</span></span><span class="line"><span class="cl">	encry[str_len] = &#39;\0&#39;;
+</span></span><span class="line"><span class="cl">	return encry;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="base64原码解码c语言实现">base64原码解码c语言实现
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">char* base64decry(char* input)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">	int table[] =
+</span></span><span class="line"><span class="cl">	{
+</span></span><span class="line"><span class="cl">	0,0,0,0,0,0,0,0,0,0,0,0,
+</span></span><span class="line"><span class="cl">	0,0,0,0,0,0,0,0,0,0,0,0,
+</span></span><span class="line"><span class="cl">	0,0,0,0,0,0,0,0,0,0,0,0,
+</span></span><span class="line"><span class="cl">	0,0,0,0,0,0,0,62,0,0,0,63,
+</span></span><span class="line"><span class="cl">	52,53,54,55,56,57,58,59,60,61,0,0,
+</span></span><span class="line"><span class="cl">	0,0,0,0,0,0,1,2,3,4,5,6,
+</span></span><span class="line"><span class="cl">	7,8,9,10,11,12,13,14,15,16,17,18,
+</span></span><span class="line"><span class="cl">	19,20,21,22,23,24,25,0,0,0,0,0,
+</span></span><span class="line"><span class="cl">	0,26,27,28,29,30,31,32,33,34,35,36,
+</span></span><span class="line"><span class="cl">	37,38,39,40,41,42,43,44,45,46,47,48,
+</span></span><span class="line"><span class="cl">	49,50,51,
+</span></span><span class="line"><span class="cl">	};
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	int len = 0, str_len = 0;
+</span></span><span class="line"><span class="cl">	char* decry;
+</span></span><span class="line"><span class="cl">	len = strlen(input);
+</span></span><span class="line"><span class="cl">	if (strstr(input, &#34;==&#34;))
+</span></span><span class="line"><span class="cl">		str_len = (len / 4) * 3 - 2;
+</span></span><span class="line"><span class="cl">	else if (strstr(input, &#34;=&#34;))
+</span></span><span class="line"><span class="cl">		str_len = (len / 4) * 3 - 1;
+</span></span><span class="line"><span class="cl">	else
+</span></span><span class="line"><span class="cl">		str_len = (len / 4) * 3;
+</span></span><span class="line"><span class="cl">	decry = (char*)malloc(sizeof(char) * str_len + 1);
+</span></span><span class="line"><span class="cl">	for (int i = 0, j = 0; i &lt; len; i += 4, j += 3)
+</span></span><span class="line"><span class="cl">	{
+</span></span><span class="line"><span class="cl">		decry[j] = (table[input[i]] &lt;&lt; 2) | (table[input[i + 1]] &gt;&gt; 4);
+</span></span><span class="line"><span class="cl">		decry[j + 1] = ((table[input[i + 1]]) &amp; 0xf) &lt;&lt; 4 | (table[input[i + 2]] &gt;&gt; 2);
+</span></span><span class="line"><span class="cl">		decry[j + 2] = ((table[input[i + 2]]) &amp; 0x3) &lt;&lt; 6 | (table[input[i + 3]]);
+</span></span><span class="line"><span class="cl">	}
+</span></span><span class="line"><span class="cl">	decry[str_len] = &#39;\0&#39;;
+</span></span><span class="line"><span class="cl">	return decry;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="映射表的生成">映射表的生成
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="c1">#define _CRT_SECURE_NO_WARNINGS 1</span>
+</span></span><span class="line"><span class="cl"><span class="o">//</span><span class="err">生成映射表</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#include &lt;stdio.h&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#include &lt;string.h&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#define TABLE_SIZE 128</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">//</span> <span class="err">生成解密映射表的函数</span>
+</span></span><span class="line"><span class="cl"><span class="n">void</span> <span class="n">generate_decoding_table</span><span class="p">(</span><span class="k">const</span> <span class="n">char</span><span class="o">*</span> <span class="n">encoding_table</span><span class="p">,</span> <span class="ne">int</span><span class="o">*</span> <span class="n">decoding_table</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">//</span> <span class="err">初始化解密映射表，将所有元素置为</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">memset</span><span class="p">(</span><span class="n">decoding_table</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">TABLE_SIZE</span> <span class="o">*</span> <span class="n">sizeof</span><span class="p">(</span><span class="ne">int</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="o">//</span> <span class="err">遍历编码表中的每个字符</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="ne">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">64</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="o">//</span> <span class="err">获取当前字符的</span> <span class="n">ASCII</span> <span class="err">码值</span>
+</span></span><span class="line"><span class="cl">        <span class="ne">int</span> <span class="n">ascii_value</span> <span class="o">=</span> <span class="p">(</span><span class="ne">int</span><span class="p">)</span><span class="n">encoding_table</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="o">//</span> <span class="err">将该字符在编码表中的索引值存入解密映射表对应位置</span>
+</span></span><span class="line"><span class="cl">        <span class="n">decoding_table</span><span class="p">[</span><span class="n">ascii_value</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">//</span> <span class="err">打印解密映射表的函数</span>
+</span></span><span class="line"><span class="cl"><span class="n">void</span> <span class="n">print_decoding_table</span><span class="p">(</span><span class="ne">int</span><span class="o">*</span> <span class="n">decoding_table</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s2">&#34;{</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="ne">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">TABLE_SIZE</span> <span class="o">-</span> <span class="mi">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">12</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">printf</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%d</span><span class="s2">,&#34;</span><span class="p">,</span> <span class="n">decoding_table</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">};</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="ne">int</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">//</span> <span class="err">标准的</span> <span class="n">Base64</span> <span class="err">编码字符表</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="n">char</span> <span class="n">standard_encoding_table</span><span class="p">[]</span> <span class="o">=</span> <span class="s2">&#34;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="ne">int</span> <span class="n">decoding_table</span><span class="p">[</span><span class="n">TABLE_SIZE</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">//</span> <span class="err">生成解密映射表</span>
+</span></span><span class="line"><span class="cl">    <span class="n">generate_decoding_table</span><span class="p">(</span><span class="n">standard_encoding_table</span><span class="p">,</span> <span class="n">decoding_table</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">//</span> <span class="err">打印解密映射表</span>
+</span></span><span class="line"><span class="cl">    <span class="n">print_decoding_table</span><span class="p">(</span><span class="n">decoding_table</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>建立索引 <code>decoding_table[ascii_value] = i;</code></p>
+<p><strong>建立解码映射</strong>：</p>
+<ul>
+<li><code>i</code> 是字符在编码表中的位置（0~63）</li>
+<li><code>ascii_value</code> 是字符的 ASCII 码（如 &lsquo;A&rsquo;=65）</li>
+<li><code>decoding_table[ascii_value] = i</code> 表示：
+<strong>当遇到 ASCII 码为 <code>ascii_value</code> 的字符时，它对应的 Base64 索引值是 <code>i</code></strong></li>
+</ul>
+<p><strong>示例</strong>：
+若编码表第一个字符是 &lsquo;A&rsquo;（ASCII 65），<code>i=0</code>，则执行：
+<code>decoding_table[65] = 0</code>
+这样解码时，遇到字符 &lsquo;A&rsquo;，查 <code>decoding_table[65]</code> 就直接得到索引 0。</p>
+<h2 id="魔改原理">魔改原理
+</h2><p>base64的魔改主要有两个方式</p>
+<h3 id="修改索引的魔改俗称换表">修改索引的魔改，俗称换表
+</h3><p>对下标进行额外的的偏移</p>
+<ol>
+<li>魔改加密时：原始数据 → 标准Base64编码 → 将编码结果按 <code>b</code> 表替换（<code>a[j]</code> 换成 <code>b[j]</code>）。</li>
+<li>这段解密代码：将 <code>c</code> 每个字符在魔改表 <code>b</code> 中找到位置 <code>j</code> → 换成标准表 <code>a</code> 中同一位置的字符。</li>
+<li>结果 <code>c</code> 变成了标准Base64字符串，之后可用标准Base64解码得到原始数据。</li>
+</ol>
+<p><strong>本质</strong>：换表只是字符替换密码，不改变Base64编码结构，只改变了字符外观。解密就是查反向映射还原为标准Base64，再正常解码。</p>
+<h4 id="换表的c语言解密">换表的c语言解密
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">static void main()
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">	char a[64] = &#34;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&#34;;
+</span></span><span class="line"><span class="cl">	char b[64] = &#34;ZYXABCDEFGHIJKLMNOPQRSTUVWzyxabcdefghijklmnopqrstuvw0123456789+/&#34;;
+</span></span><span class="line"><span class="cl">	char c[] = &#34;Wj1gWE9xPSGUQ0KCPCGET09WR1qSzZ&#34;;
+</span></span><span class="line"><span class="cl">	for (int i = 0; i &lt; strlen(c); i++)
+</span></span><span class="line"><span class="cl">	{
+</span></span><span class="line"><span class="cl">		for (int j = 0; j &lt; 64; j++)
+</span></span><span class="line"><span class="cl">		{
+</span></span><span class="line"><span class="cl">			if (c[i] == b[j])
+</span></span><span class="line"><span class="cl">			{
+</span></span><span class="line"><span class="cl">				c[i] = a[j];
+</span></span><span class="line"><span class="cl">				break;
+</span></span><span class="line"><span class="cl">			}
+</span></span><span class="line"><span class="cl">		}
+</span></span><span class="line"><span class="cl">	}
+</span></span><span class="line"><span class="cl">	for (int i = 0; i &lt; strlen(c); i++)
+</span></span><span class="line"><span class="cl">	{
+</span></span><span class="line"><span class="cl">		printf(&#34;%c&#34;, c[i]);
+</span></span><span class="line"><span class="cl">	}
+</span></span><span class="line"><span class="cl">	printf(&#34;\n&#34;);
+</span></span><span class="line"><span class="cl">	printf(&#34;%s&#34;, c);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">循环寻找解密字符串在魔改表中的对应，然后映射到原表的码，最后用原表解密
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="换表的py解密">换表的py解密
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import base64  # 导入base64模块用于解密
+</span></span><span class="line"><span class="cl">#这里是先把密文映射替换相当于原表还是标准表
+</span></span><span class="line"><span class="cl">s1 = &#39;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&#39;  
+</span></span><span class="line"><span class="cl">s2 = &#39;ZYXABCDEFGHIJKLMNOPQRSTUVWzyxabcdefghijklmnopqrstuvw0123456789+/&#39;  
+</span></span><span class="line"><span class="cl">en_text = &#39;Wj1gWE9xPSGUQ0KCPCGET09WR1qSzZ==&#39;  # 密文
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">map = str.maketrans(s2, s1)  
+</span></span><span class="line"><span class="cl"># 用str类中的maketrans建立映射，注意第一个参数是需要映射的字符串，第二个参数是映射的目标
+</span></span><span class="line"><span class="cl">map_text = en_text.translate(map)  
+</span></span><span class="line"><span class="cl"># 映射实现替换密文，替换前是base64换表加密，替换后则是base64标准表加密
+</span></span><span class="line"><span class="cl">print(map_text)  # 可以先看看标准表加密的原base64密文
+</span></span><span class="line"><span class="cl">print(base64.b64decode(map_text))  # 直接使用提供的base64解密函数解密
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>密文处如果不是4的倍数需要填充<code>=</code></p>
+<p>第二种代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import base64
+</span></span><span class="line"><span class="cl">a = &#34;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&#34;
+</span></span><span class="line"><span class="cl">b = &#34;ZYXABCDEFGHIJKLMNOPQRSTUVWzyxabcdefghijklmnopqrstuvw0123456789+/&#34;
+</span></span><span class="line"><span class="cl">c = &#34;Wj1gWE9xPSGUQ0KCPCGET09WR1qSzZ&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">mapping = dict(zip(b, a))
+</span></span><span class="line"><span class="cl">standard_base64 = &#39;&#39;.join(mapping[ch] for ch in c)
+</span></span><span class="line"><span class="cl"># 补足填充符
+</span></span><span class="line"><span class="cl">padding = 4 - len(standard_base64) % 4
+</span></span><span class="line"><span class="cl">if padding != 4: 
+</span></span><span class="line"><span class="cl">    standard_base64 += &#39;=&#39; * padding
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">decoded = base64.b64decode(standard_base64.encode()).decode()  
+</span></span><span class="line"><span class="cl">decodedd = base64.b64decode(standard_base64) 
+</span></span><span class="line"><span class="cl">print(decoded)
+</span></span><span class="line"><span class="cl">print(decodedd)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="改索引移位密钥的处理">改索引/移位密钥的处理
+</h3><p><strong>加密过程</strong></p>
+<ol>
+<li>原始数据 → 标准Base64编码 → 得到标准Base64字符串。</li>
+<li>对每个字符：查标准Base64表得到索引值 → 加上密钥 <code>key[i % 4]</code> → 用魔改表（或原表）根据新索引取字符输出。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">原始数据 → 标准Base64编码 → 得到标准字符 → 查标准表得索引 → 索引+密钥 → 查自定义表 → 输出密文
+</span></span><span class="line"><span class="cl">         (内置b64encode)   (如&#34;QQ==&#34;)      (如索引0)     (如+5→5)   (取第5个字符)  (如&#34;f&#34;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>解密过程</strong></p>
+<ol>
+<li>对密文字符：查魔改表得到索引值 → 减去密钥 <code>key[i % 4]</code>（负数则+64）→ 得到标准Base64索引值。</li>
+<li>将索引值按Base64规则重组为字节数据。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">密文 → 查自定义表得索引 → 索引-密钥 → 得标准索引 → 查标准表得字符 → 拼接 → 标准Base64解码 → 原始数据
+</span></span><span class="line"><span class="cl">(如&#34;f&#34;)  (如得到5)      (5-5→0)    (索引0)      (字符&#34;Q&#34;)    (&#34;QQ==&#34;)   (内置b64decode)  (如&#34;@&#34;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>本质</strong>：在Base64编码的<strong>索引层</strong>做了加法掩蔽，相当于在6位值上做了循环移位混淆。这比单纯换表多了一层算术变换，但仍是可逆的简单混淆。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">table = &#34;CDABGHEFKLIJOPMNSTQRWXUVabYZefcdijghmnklqropuvstyzwx23016745+/89&#34;  # base64当前表
+</span></span><span class="line"><span class="cl">cipher = &#34;TqK1YUSaQryEMHaLMnWhYU+Fe0WPenqhRXahfkV6WE2fa3iRW197Za62eEaD&#34;  # 密文
+</span></span><span class="line"><span class="cl">cipher = cipher.rstrip(&#39;=&#39;) #去除密文多余的&#39;=&#39;
+</span></span><span class="line"><span class="cl">_index = []
+</span></span><span class="line"><span class="cl">key = [1, 2, 3, 4]  #正常设置为[0,0,0,0]就可以
+</span></span><span class="line"><span class="cl">for i in range(len(cipher)):
+</span></span><span class="line"><span class="cl">    tmp = table.index(cipher[i]) - key[i % 4]  # 减去加密时加上的key
+</span></span><span class="line"><span class="cl">    if tmp &gt;= 0:
+</span></span><span class="line"><span class="cl">        _index.append(tmp)
+</span></span><span class="line"><span class="cl">    else:  # 因为减去key会导致索引变成负数，+64保证在正常索引范围
+</span></span><span class="line"><span class="cl">        _index.append(tmp + 64)
+</span></span><span class="line"><span class="cl">#print(_index)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">for i in range(0, len(_index), 4):
+</span></span><span class="line"><span class="cl">    a = _index[i]
+</span></span><span class="line"><span class="cl">    b = _index[i + 1]
+</span></span><span class="line"><span class="cl">    c = _index[i + 2] if i + 2 &lt; len(_index) else 0  # 添加范围检查，为未处理部分设为0
+</span></span><span class="line"><span class="cl">    d = _index[i + 3] if i + 3 &lt; len(_index) else 0
+</span></span><span class="line"><span class="cl">    sum = a &lt;&lt; 18 | b &lt;&lt; 12 | c &lt;&lt; 6 | d
+</span></span><span class="line"><span class="cl">    for j in range(3):
+</span></span><span class="line"><span class="cl">        if i * 6 + j * 8 &lt; len(cipher) * 8:  # 检查是否超出原始编码长度
+</span></span><span class="line"><span class="cl">            print(chr((sum &gt;&gt; ((2 - j) * 8)) &amp; 0xff), end=&#34;&#34;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">后续可利用py带的base64库快速解码
+</span></span><span class="line"><span class="cl">std_table = &#34;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&#34;
+</span></span><span class="line"><span class="cl">b64_str = &#39;&#39;.join(std_table[i] for i in _index)
+</span></span><span class="line"><span class="cl">print(base64.b64decode(b64_str))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="注意事项">注意事项
+</h4><p>1.设定的key在ida中可能不会显示出来，直接就导入在算法里面成为固定的整数</p>
+<p>2.变索引有很多类型</p>
+<ul>
+<li>+key</li>
+<li>^ key</li>
+<li>*k</li>
+<li>imul</li>
+<li>and 3Fh</li>
+</ul>
+<p>都可以进行索引的更改，此处只例举了加索引的例子，其他的需要有遇到例题再添加</p>
+<p>3.key也会有不同的形式</p>
+<ul>
+<li>Step 3：判断 key 的形式</li>
+<li>常量？</li>
+<li>数组？</li>
+<li>i % n？</li>
+<li>跟位置相关？</li>
+</ul>
+<p>都是需要在解题过程中注意</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="err">例题</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;malloc.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">char</span><span class="o">*</span> <span class="nf">base64encry</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">input</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">str_len</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span><span class="o">*</span> <span class="n">encry</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">table64</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&#34;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">len</span> <span class="o">=</span> <span class="nf">strlen</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">len</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">str_len</span> <span class="o">=</span> <span class="p">(</span><span class="n">len</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span>
+</span></span><span class="line"><span class="cl">		<span class="n">str_len</span> <span class="o">=</span> <span class="p">((</span><span class="n">len</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">encry</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span> <span class="o">*</span> <span class="n">str_len</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">j</span> <span class="o">+=</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">encry</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">table64</span><span class="p">[</span><span class="n">input</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="mi">2</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">		<span class="n">encry</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">table64</span><span class="p">[((</span><span class="n">input</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mh">0x3</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">|</span> <span class="p">((</span><span class="n">input</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span><span class="p">)];</span>
+</span></span><span class="line"><span class="cl">		<span class="n">encry</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">table64</span><span class="p">[((</span><span class="n">input</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mh">0xf</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">input</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="mi">6</span><span class="p">)];</span>
+</span></span><span class="line"><span class="cl">		<span class="n">encry</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">table64</span><span class="p">[</span><span class="n">input</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mh">0x3f</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">switch</span> <span class="p">(</span><span class="n">len</span> <span class="o">%</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">		<span class="n">encry</span><span class="p">[</span><span class="n">str_len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;=&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">encry</span><span class="p">[</span><span class="n">str_len</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;=&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">		<span class="n">encry</span><span class="p">[</span><span class="n">str_len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;=&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">encry</span><span class="p">[</span><span class="n">str_len</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">encry</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">char</span><span class="o">*</span> <span class="nf">base64</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">input</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">str_len</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span><span class="o">*</span> <span class="n">encry</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">table64</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&#34;CDABGHEFKLIJOPMNSTQRWXUVabYZefcdijghmnklqropuvstyzwx23016745+/89&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">key</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">	<span class="n">len</span> <span class="o">=</span> <span class="nf">strlen</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">len</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">str_len</span> <span class="o">=</span> <span class="p">(</span><span class="n">len</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span>
+</span></span><span class="line"><span class="cl">		<span class="n">str_len</span> <span class="o">=</span> <span class="p">((</span><span class="n">len</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">encry</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span> <span class="o">*</span> <span class="n">str_len</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">j</span> <span class="o">+=</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">k1</span> <span class="o">=</span> <span class="n">input</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">k2</span> <span class="o">=</span> <span class="p">((</span><span class="n">input</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mh">0x3</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">input</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">k3</span> <span class="o">=</span> <span class="p">((</span><span class="n">input</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mh">0xf</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">input</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="mi">6</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">k4</span> <span class="o">=</span> <span class="n">input</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mh">0x3f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="n">encry</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">table64</span><span class="p">[(</span><span class="n">k1</span> <span class="o">+</span> <span class="n">key</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&amp;</span> <span class="mh">0x3F</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">		<span class="n">encry</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">table64</span><span class="p">[(</span><span class="n">k2</span> <span class="o">+</span> <span class="n">key</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">&amp;</span> <span class="mh">0x3F</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">		<span class="n">encry</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">table64</span><span class="p">[(</span><span class="n">k3</span> <span class="o">+</span> <span class="n">key</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">&amp;</span> <span class="mh">0x3F</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">		<span class="n">encry</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">table64</span><span class="p">[(</span><span class="n">k4</span> <span class="o">+</span> <span class="n">key</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="o">&amp;</span> <span class="mh">0x3F</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">switch</span> <span class="p">(</span><span class="n">len</span> <span class="o">%</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">		<span class="n">encry</span><span class="p">[</span><span class="n">str_len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;=&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">encry</span><span class="p">[</span><span class="n">str_len</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;=&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">		<span class="n">encry</span><span class="p">[</span><span class="n">str_len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;=&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">encry</span><span class="p">[</span><span class="n">str_len</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">encry</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">v1</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&#34;X0iYf6OJNaebeVZ0VlmMdluYNUWqQ1lD&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">v2</span><span class="p">[</span><span class="mi">100</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;请输入flag：&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">scanf</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span><span class="n">v2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span><span class="o">*</span> <span class="n">v3</span><span class="p">,</span><span class="o">*</span><span class="n">v4</span><span class="p">,</span><span class="o">*</span><span class="n">v5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">v3</span> <span class="o">=</span> <span class="nf">base64encry</span><span class="p">(</span><span class="n">v2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">v5</span> <span class="o">=</span> <span class="nf">base64</span><span class="p">(</span><span class="n">v3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">v1</span> <span class="o">==</span> <span class="o">*</span><span class="n">v5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;success&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;wrong&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="err">编译成</span><span class="n">exe</span><span class="err">，然后在</span><span class="n">ida中看</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">这是解密脚本</span>
+</span></span><span class="line"><span class="cl"><span class="n">import</span> <span class="n">base64</span>
+</span></span><span class="line"><span class="cl"><span class="n">t2</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">CDABGHEFKLIJOPMNSTQRWXUVabYZefcdijghmnklqropuvstyzwx23016745</span><span class="o">+/</span><span class="mi">89</span><span class="err">&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">t3</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">X0iYf6OJNaebeVZ0VlmMdluYNUWqQ1lD</span><span class="err">&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">key</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">_index</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="n">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">t3</span><span class="p">))</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tmp</span> <span class="o">=</span> <span class="n">t2</span><span class="p">.</span><span class="nf">index</span><span class="p">(</span><span class="n">t3</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">-</span> <span class="n">key</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="mi">4</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">tmp</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">_index</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">_index</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">tmp</span> <span class="o">+</span> <span class="mi">64</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">std_table</span> <span class="o">=</span> <span class="s">&#34;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">b64_str</span> <span class="o">=</span> <span class="err">&#39;&#39;</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">std_table</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="n">in</span> <span class="n">_index</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">print</span><span class="p">(</span><span class="n">base64</span><span class="p">.</span><span class="nf">b64decode</span><span class="p">(</span><span class="n">b64_str</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="base64模块的语法使用">base64模块的语法使用
+</h2><p><strong>1. 编码</strong></p>
+<ul>
+<li><code>base64.b64encode(s)</code>
+参数：<code>s</code> 必须是 bytes
+返回：bytes（Base64 编码结果）</li>
+<li><code>base64.b64encode(s).decode()</code>
+把 bytes 结果转为字符串</li>
+</ul>
+<p><strong>2. 解码</strong></p>
+<ul>
+<li><code>base64.b64decode(s)</code>
+参数：<code>s</code> 可以是 bytes 或 str（只含 Base64 字符）
+返回：bytes（解码后的原始数据）</li>
+<li><code>base64.b64decode(s).decode('utf-8')</code>
+把解码结果转为 UTF-8 字符串</li>
+</ul>
+<p><strong>3. 处理换行/URL安全</strong></p>
+<ul>
+<li><code>base64.standard_b64encode(s)</code> / <code>standard_b64decode(s)</code>
+标准 Base64</li>
+<li><code>base64.urlsafe_b64encode(s)</code> / <code>urlsafe_b64decode(s)</code>
+URL 安全（<code>+</code>→<code>-</code>，<code>/</code>→<code>_</code>）</li>
+</ul>
+<p><strong>4. 带填充控制</strong></p>
+<ul>
+<li><code>base64.b64decode(s, validate=True)</code>
+<code>validate=False</code> 时忽略非 Base64 字符</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<p>python</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import base64
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 编码
+</span></span><span class="line"><span class="cl">enc = base64.b64encode(b&#34;hello&#34;).decode()  # &#39;aGVsbG8=&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 解码
+</span></span><span class="line"><span class="cl">dec = base64.b64decode(&#34;aGVsbG8=&#34;).decode()  # &#39;hello&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># URL安全
+</span></span><span class="line"><span class="cl">url_enc = base64.urlsafe_b64encode(b&#34;data&#34;).decode()  # &#39;ZGF0YQ==&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>关键点</strong>：</p>
+<ul>
+<li>输入输出默认都是 bytes，字符串需用 <code>.encode()</code> 和 <code>.decode()</code> 转换</li>
+<li>解码自动处理填充符 <code>=</code></li>
+<li>模块还有 <code>b32encode</code>、<code>b16encode</code> 等其他进制编码</li>
+</ul>
+<h2 id="重要概念">重要概念:
+</h2><h4 id="1映射表">1.映射表
+</h4><p>解码实现中<code>table</code>表即原码的映射表，用来表示至少为123位（ z 的ASCII码是 122 ）数组的解码，用索引字符的ASCII值作为小标，直接取出字符对应的6位数值，是一种用空间换时间的方式。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="err">举例：</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">原</span><span class="n">base64编码表为</span><span class="w"> </span><span class="n">table64</span><span class="o">=</span><span class="w"> </span><span class="s2">&#34;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">而字符</span><span class="o">`</span><span class="n">B</span><span class="o">`</span><span class="err">的</span><span class="w"> </span><span class="n">ASCII</span><span class="w"> </span><span class="err">是</span><span class="w"> </span><span class="mi">66</span><span class="err">，那么</span><span class="w"> </span><span class="k">table</span><span class="p">[</span><span class="mi">66</span><span class="p">]</span><span class="w"> </span><span class="err">就等于</span><span class="w"> </span><span class="mi">1</span><span class="err">，因为</span><span class="o">`</span><span class="n">B</span><span class="o">`</span><span class="err">在</span><span class="w"> </span><span class="n">Base64</span><span class="w"> </span><span class="err">编码表中排第</span><span class="w"> </span><span class="mi">1</span><span class="err">（从</span><span class="o">`</span><span class="n">A</span><span class="o">`</span><span class="err">为</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="err">开始）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">如果不使用映射表的话</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">就必须手动判断输入字符的范围并计算对应值在填充</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kt">int</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">if</span><span class="p">(</span><span class="n">ch</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="s1">&#39;A&#39;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="s1">&#39;Z&#39;</span><span class="p">)</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="s1">&#39;A&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">ch</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="s1">&#39;z&#39;</span><span class="p">)</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">26</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">ch</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="s1">&#39;9&#39;</span><span class="p">)</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">52</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">ch</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;+&#39;</span><span class="p">)</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">62</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">ch</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">63</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">ch</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;=&#39;</span><span class="p">)</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="err">填充符</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="不可见字符的处理">不可见字符的处理
+</h4><p>Base64规范中只有64个字符和<code>=</code>，其他都应忽略。处理方式：遍历输入字符串，跳过非Base64字符（即不在<code>A-Za-z0-9+/=</code>中的字符），将有效字符复制到新缓冲区再进行解码。否则直接解码会因<code>table</code>索引越界或取到错误值导致乱码或崩溃。</p>
+<h4 id="memset">memset
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">memset(起始地址, 要设置的值, 要设置的字节数)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>常见用途</strong>：</p>
+<ol>
+<li><strong>数组/内存块清零</strong>：<code>memset(arr, 0, sizeof(arr))</code></li>
+<li><strong>初始化结构体</strong>：<code>memset(&amp;obj, 0, sizeof(obj))</code>（注意会清空所有成员，包括指针）</li>
+<li><strong>填充特定值</strong>：如 <code>memset(buffer, 0xFF, size)</code> 全填为 255</li>
+<li><strong>字符串结尾安全处理</strong>：在敏感数据使用后填充 0 防残留</li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <div class="disqus-container">
+    
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2025 Example Person
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.32.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        
+        
+<script src="https://cdn.jsdelivr.net/gh/ZhaoUncle/image@main/static/mouse-click.js"></script>
+<canvas width="1777" height="841" style="position: fixed; left: 0px; top: 0px; z-index: 2147483647; pointer-events: none;"></canvas>
+
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<a href="#" id="back-to-top" title="返回顶部"></a>
+
+
+<style>
+  #back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 55px;
+    width: 55px;
+    height: 55px;
+    border-radius: 7px;
+    background-color: rgba(64, 158, 255, 0.5);
+    box-shadow: var(--shadow-l2);
+    font-size: 30px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+  }
+
+  #back-to-top:before {
+    content: ' ';
+    display: inline-block;
+    position: relative;
+    top: 0;
+    transform: rotate(135deg);
+    height: 10px;
+    width: 10px;
+    border-width: 0 0 2px 2px;
+    border-color: var(--back-to-top-color);
+    border-style: solid;
+  }
+
+  #back-to-top:hover:before {
+    border-color: #2674e0;
+  }
+
+   
+  @media screen and (max-width: 768px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      font-size: 10px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1024px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 40px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1280px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 55px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1536px) {
+    #back-to-top {
+      visibility: hidden;
+    }
+  }
+</style>
+
+
+<script>
+  function backToTop() {
+    document.documentElement.scrollIntoView({
+      behavior: 'smooth',
+    })
+  }
+
+  window.onload = function () {
+    let scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop
+    let totopBtn = this.document.getElementById('back-to-top')
+    if (scrollTop > 0) {
+      totopBtn.style.display = 'inline'
+    } else {
+      totopBtn.style.display = 'none'
+    }
+  }
+
+  window.onscroll = function () {
+    let scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop
+    let totopBtn = this.document.getElementById('back-to-top')
+    if (scrollTop < 200) {
+      totopBtn.style.display = 'none'
+    } else {
+      totopBtn.style.display = 'inline'
+      totopBtn.addEventListener('click', backToTop, false)
+    }
+  }
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Ukenn2112/UkennWeb@3.0/index/web.js">
+
+</script>
+
+
+
+        
+        <script>
+        
+        function initGlobalMusicPlayer() {
+            if (!document.getElementById('global-music-player')) {
+                const playerHTML = `
+                    <div id="global-music-player" style="position: fixed; bottom: 20px; right: 20px; z-index: 99999; background: red; border: 3px solid blue; padding: 15px;">
+                        <audio id="bgMusic" loop>
+                            <source src="/music/background.mp3" type="audio/mpeg">
+                        </audio>
+                        <button id="musicToggle" style="background: green; color: white; border: none; padding: 15px 20px; border-radius: 50%; cursor: pointer; font-size: 20px;">
+                            🎵 播放
+                        </button>
+                        <div id="musicStatus" style="margin-top: 10px; font-size: 14px; color: black; font-weight: bold;">
+                            点击播放
+                        </div>
+                    </div>
+                `;
+                document.body.insertAdjacentHTML('beforeend', playerHTML);
+                
+                
+                const audio = document.getElementById('bgMusic');
+                const toggleBtn = document.getElementById('musicToggle');
+                const status = document.getElementById('musicStatus');
+                
+                
+                const savedState = localStorage.getItem('globalMusicState');
+                const savedTime = localStorage.getItem('globalMusicTime');
+                
+                
+                if (savedTime) {
+                    audio.currentTime = parseFloat(savedTime);
+                }
+                
+                function updateButtonState(isPlaying) {
+                    if (isPlaying) {
+                        status.textContent = '🎶 播放中...';
+                        toggleBtn.innerHTML = '⏸ 暂停';
+                        toggleBtn.style.background = 'orange';
+                    } else {
+                        status.textContent = '⏹ 已暂停';
+                        toggleBtn.innerHTML = '🎵 播放';
+                        toggleBtn.style.background = 'green';
+                    }
+                }
+                
+                
+                function tryAutoResume() {
+                    const savedState = localStorage.getItem('globalMusicState');
+                    if (savedState === 'playing') {
+                        
+                        audio.muted = true;
+                        audio.play().then(() => {
+                            audio.muted = false;
+                            updateButtonState(true);
+                        }).catch(error => {
+                            
+                            status.textContent = '点击恢复播放';
+                            updateButtonState(false);
+                        });
+                    }
+                }
+                
+                
+                setTimeout(tryAutoResume, 1000);
+                
+                
+                let userInteracted = false;
+                const interactionEvents = ['click', 'touchstart', 'keydown', 'scroll'];
+                
+                interactionEvents.forEach(eventType => {
+                    document.addEventListener(eventType, function() {
+                        if (!userInteracted) {
+                            userInteracted = true;
+                            const savedState = localStorage.getItem('globalMusicState');
+                            if (savedState === 'playing' && audio.paused) {
+                                audio.play().then(() => {
+                                    updateButtonState(true);
+                                });
+                            }
+                        }
+                    }, { once: true, passive: true });
+                });
+                
+                toggleBtn.addEventListener('click', function() {
+                    userInteracted = true; 
+                    if (audio.paused) {
+                        audio.play().then(() => {
+                            updateButtonState(true);
+                            localStorage.setItem('globalMusicState', 'playing');
+                        }).catch(error => {
+                            status.textContent = '❌ 播放失败';
+                        });
+                    } else {
+                        audio.pause();
+                        updateButtonState(false);
+                        localStorage.setItem('globalMusicState', 'paused');
+                    }
+                });
+                
+                
+                audio.addEventListener('timeupdate', function() {
+                    localStorage.setItem('globalMusicTime', audio.currentTime);
+                });
+                
+                
+                window.addEventListener('beforeunload', function() {
+                    localStorage.setItem('globalMusicTime', audio.currentTime);
+                    localStorage.setItem('globalMusicState', audio.paused ? 'paused' : 'playing');
+                });
+
+                
+                audio.addEventListener('loadeddata', function() {
+                    console.log('音频加载完成，尝试恢复播放状态');
+                });
+            }
+        }
+
+        
+        function initSakuraEffect() {
+            if (!document.getElementById('sakura-container')) {
+                const sakuraHTML = `
+                    <div id="sakura-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998; overflow: hidden;"></div>
+                `;
+                document.body.insertAdjacentHTML('beforeend', sakuraHTML);
+                
+                
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes sakuraFall {
+                        0% { transform: translateY(-100px) rotate(0deg); opacity: 0.8; }
+                        100% { transform: translateY(100vh) rotate(180deg); opacity: 0; }
+                    }
+                    .sakura { position: absolute; top: -50px; font-size: 18px; animation: sakuraFall linear forwards; user-select: none; pointer-events: none; }
+                `;
+                document.head.appendChild(style);
+                
+                let sakuraCount = 0;
+                const maxSakuras = 10;
+                
+                function createSakura() {
+                    if (sakuraCount >= maxSakuras) return;
+                    
+                    const sakura = document.createElement('div');
+                    sakura.className = 'sakura';
+                    sakura.innerHTML = '🌸';
+                    sakura.style.left = Math.random() * 100 + 'vw';
+                    sakura.style.fontSize = (16 + Math.random() * 16) + 'px';
+                    sakura.style.animationDuration = (10 + Math.random() * 10) + 's';
+                    sakura.style.animationDelay = (Math.random() * 3) + 's';
+                    
+                    document.getElementById('sakura-container').appendChild(sakura);
+                    sakuraCount++;
+                    
+                    setTimeout(() => {
+                        if (sakura.parentNode) {
+                            sakura.remove();
+                            sakuraCount--;
+                        }
+                    }, 20000);
+                }
+                
+                setTimeout(() => {
+                    setInterval(createSakura, 1200);
+                    for (let i = 0; i < 5; i++) {
+                        setTimeout(createSakura, i * 800);
+                    }
+                }, 2000);
+            }
+        }
+
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            initGlobalMusicPlayer();
+            initSakuraEffect();
+        });
+
+        
+        setTimeout(function() {
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/gh/hustcc/canvas-nest.js@1.0.1/dist/canvas-nest.min.js';
+            script.async = true;
+            document.body.appendChild(script);
+        }, 1500);
+        </script>
+    </body>
+</html>

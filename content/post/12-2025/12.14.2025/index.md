@@ -555,17 +555,21 @@ void encrypt(uint32_t *v, uint32_t *k) {
 解密：
 
 ~~~
+void decrypt5(unsigned int* v, unsigned int* k) {
+    unsigned int v0 = v[0], v1 = v[1];
+    unsigned int delta = 0x9E3779B9;
+    unsigned int sum = 32 * delta;
+
+    for (int i = 0; i < 32; i++) {
+        v1 -= ((v0 >> 5) + k[(sum >> 11) & 3]) ^ (v0 + sum);
+        v0 -= ((v1 << 4) + k[sum & 3]) ^ (v1 + sum);
+        sum -= delta;
+    }
+    v[0] = v0; v[1] = v1;
+}
 ~~~
 
-
-
-
-
-
-
-
-
-
+key的数目不影响加密解密结果
 
 ------
 
@@ -586,11 +590,38 @@ v0 ^= expr;
 - 注意是否仍然可逆
 - XOR ≠ ADD，但仍可反推
 
+加密：
 
+```
+void decrypt6(unsigned int* v, unsigned int* k) {
+    unsigned int v0 = v[0], v1 = v[1];
+    unsigned int sum = 0;
+    unsigned int delta = 0xA56BABCD;
 
+    for (int i = 0; i < 20; i++) {
+        sum += delta;
+        v0 += (v1 ^ (v1 << 5) ^ (v1 >> 3)) + k[(sum >> 13) & 3];
+        v1 += (v0 ^ (v0 << 4) ^ (v0 >> 7)) + k[sum & 3];
+    }
+    v[0] = v0; v[1] = v1;
+}
+```
 
+解密：
 
-
+```
+void decrypt6(unsigned int* v, unsigned int* k) {
+    unsigned int v0 = v[0], v1 = v[1];
+    unsigned int delta = 0xA56BABCD;
+    unsigned int sum = 20 * delta;
+    for (int i = 0; i < 20; i++) {
+        v1 -= (v0 ^ (v0 << 4) ^ (v0 >> 7)) + k[sum & 3];
+        v0 -= (v1 ^ (v1 << 5) ^ (v1 >> 3)) + k[(sum >> 13) & 3];
+        sum -= delta;
+    }
+    v[0] = v0; v[1] = v1;
+}
+```
 
 # 知识补充
 

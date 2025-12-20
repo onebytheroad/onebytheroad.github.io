@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>笔记 on 雫的小站</title>
+        <link>http://localhost:1313/categories/%E7%AC%94%E8%AE%B0/</link>
+        <description>Recent content in 笔记 on 雫的小站</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>Example Person</copyright>
+        <lastBuildDate>Sat, 20 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>12-20 笔记</title>
+        <link>http://localhost:1313/p/12-20-2025-biji/</link>
+        <pubDate>Sat, 20 Dec 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/12-20-2025-biji/</guid>
+        <description>&lt;img src="http://localhost:1313/p/12-20-2025-biji/bj.jpg" alt="Featured image of post 12-20 笔记" /&gt;&lt;p&gt;1&lt;/p&gt;
+&lt;h1 id=&#34;api&#34;&gt;API
+&lt;/h1&gt;&lt;p&gt;它预先把这些复杂的操作写在一个函数里面，编译成一个组件（一般是动态链接库），随操作系统一起发布，并配上说明文档，程序员只需要简单地调用这些函数就可以完成复杂的工作，让编程变得简单有趣。这些封装好的函数，就叫做API(Application Programming Interface)，即应用程序编程接口。&lt;/p&gt;
+&lt;p&gt;API（Application Programming Interface）是软件系统之间的桥梁，定义了一套规则，使得调用方（客户端）可以通过接口与服务端进行交互，而无需了解服务端的内部实现。例如，当你在应用中查询天气或进行支付时，实际上是通过 API 与天气服务或支付系统进行通信。&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

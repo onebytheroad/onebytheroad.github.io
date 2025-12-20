@@ -3,12 +3,8 @@ author = "Hugo Authors"
 title = "Emoji Support"
 date = "2025-10-08"
 description = "Guide to emoji usage in Hugo"
-categories = [
-    "Test"
-]
-tags = [
-    "emoji",
-]
+categories = []
+tags = []
 image = "the-creative-exchange-d2zvqp3fpro-unsplash.jpg"
 +++
 
