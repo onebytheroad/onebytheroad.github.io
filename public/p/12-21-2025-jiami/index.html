@@ -1,0 +1,1826 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="AES加密 1.核心原理 AES为分组密码，将明文分为一组一组，每次加密一组数据，直到加密完所有明文。\nAES标准规范中，分组长度只能是128位，即每个分组为16个字节。\n">
+<title>12-21 AES加密</title>
+
+<link rel='canonical' href='http://localhost:1313/p/12-21-2025-jiami/'>
+
+<link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="12-21 AES加密">
+<meta property='og:description' content="AES加密 1.核心原理 AES为分组密码，将明文分为一组一组，每次加密一组数据，直到加密完所有明文。\nAES标准规范中，分组长度只能是128位，即每个分组为16个字节。\n">
+<meta property='og:url' content='http://localhost:1313/p/12-21-2025-jiami/'>
+<meta property='og:site_name' content='雫的小站'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-12-21T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-12-21T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/p/12-21-2025-jiami/bj.jpg' />
+<meta name="twitter:title" content="12-21 AES加密">
+<meta name="twitter:description" content="AES加密 1.核心原理 AES为分组密码，将明文分为一组一组，每次加密一组数据，直到加密完所有明文。\nAES标准规范中，分组长度只能是128位，即每个分组为16个字节。\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/p/12-21-2025-jiami/bj.jpg' />
+        
+        <link rel="stylesheet" href="http://localhost:1313/css/custom.min.css">
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🌸</text></svg>">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "dark");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_f37ea70955b02a87.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">雫的小站</a></h1>
+            <h2 class="site-description">Don&#39;t leave me</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="http://localhost:1313/en/" >English</option>
+                                
+                                    <option value="http://localhost:1313/" selected>中文</option>
+                                
+                                    <option value="http://localhost:1313/ar/" >عربي</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#aes加密">AES加密</a>
+      <ol>
+        <li><a href="#1核心原理">1.核心原理</a>
+          <ol>
+            <li><a href="#状态矩阵">状态矩阵</a></li>
+            <li><a href="#轮密钥">轮密钥</a></li>
+            <li><a href="#有限域运算">有限域运算</a></li>
+            <li><a href="#填充">填充</a>
+              <ol>
+                <li><a href="#nopadding">nopadding</a></li>
+                <li><a href="#pkcs5padding默认">PKCS5Padding（默认）：</a></li>
+                <li><a href="#iso10126padding">iso10126padding</a></li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+        <li><a href="#2算法原理">2.算法原理</a>
+          <ol>
+            <li><a href="#字节代换">字节代换</a></li>
+            <li><a href="#行移位">行移位</a></li>
+            <li><a href="#列混合">列混合</a></li>
+            <li><a href="#轮密钥加">轮密钥加</a></li>
+            <li><a href="#密钥扩展">密钥扩展</a></li>
+          </ol>
+        </li>
+        <li><a href="#3算法实现">3.算法实现</a>
+          <ol>
+            <li><a href="#各个对应函数的实现">各个对应函数的实现</a>
+              <ol>
+                <li><a href="#1-密钥拓展">1 密钥拓展</a></li>
+                <li><a href="#2-字节代换">2 字节代换</a></li>
+                <li><a href="#3-行移位的实现">3 行移位的实现</a></li>
+                <li><a href="#4-列混合">4 列混合</a></li>
+                <li><a href="#5-轮钥加密">5 轮钥加密</a></li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#aes解密">AES解密</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/12-21-2025-jiami/">
+                <img src="/p/12-21-2025-jiami/bj_hu_7080d84a37f32137.jpg"
+                        srcset="/p/12-21-2025-jiami/bj_hu_7080d84a37f32137.jpg 800w, /p/12-21-2025-jiami/bj_hu_9bdfe3b22245d447.jpg 1600w"
+                        width="800" 
+                        height="488" 
+                        loading="lazy"
+                        alt="Featured image of post 12-21 AES加密" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" >
+                加密算法
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/12-21-2025-jiami/">12-21 AES加密</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2025-12-21T00:00:00Z'>Dec 21, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 9 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="aes加密">AES加密
+</h1><h2 id="1核心原理">1.核心原理
+</h2><p>AES为分组密码，将明文分为一组一组，每次加密一组数据，直到加密完所有明文。</p>
+<p>AES标准规范中，分组长度只能是128位，即每个分组为16个字节。</p>
+<p>密钥的长度可以为128，192，256位。根据密钥长度不同，推荐的加密轮数也不同</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>AES</th>
+          <th>密钥长度（32位比特字)</th>
+          <th>分组长度(32位比特字)</th>
+          <th>加密轮数</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>AES-128</td>
+          <td>4</td>
+          <td>4</td>
+          <td>10</td>
+      </tr>
+      <tr>
+          <td>AES-192</td>
+          <td>6</td>
+          <td>4</td>
+          <td>12</td>
+      </tr>
+      <tr>
+          <td>AES-256</td>
+          <td>8</td>
+          <td>4</td>
+          <td>14</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="状态矩阵">状态矩阵
+</h3><p>AES算法中的核心，一个状态矩阵为4x4的字节矩阵，共16个字节，作为一组明文或者加密的中间结果展现。排列规则为 “按列填充”—— 即明文第 1-4 字节为第 1 列，第 5-8 字节为第 2 列，第 9-12 字节为第 3 列，第 13-16 字节为第 4 列。
+例：128 位明文00 11 22 33 44 55 66 77 88 99 aa bb cc dd ee ff（16 字节），状态矩阵为：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>列0</th>
+          <th>列1</th>
+          <th>列2</th>
+          <th>列3</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>00</td>
+          <td>44</td>
+          <td>88</td>
+          <td>cc</td>
+      </tr>
+      <tr>
+          <td>11</td>
+          <td>55</td>
+          <td>99</td>
+          <td>dd</td>
+      </tr>
+      <tr>
+          <td>22</td>
+          <td>66</td>
+          <td>aa</td>
+          <td>ee</td>
+      </tr>
+      <tr>
+          <td>33</td>
+          <td>77</td>
+          <td>bb</td>
+          <td>ff</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="轮密钥">轮密钥
+</h3><p>原始密钥通过密钥拓展的方式生成，每轮迭代需要1个与状态矩阵等大的4*4轮密钥，因此总的轮密钥数 = 轮数 + 1。（第0轮为 初始轮密钥，用于首轮“轮密钥加”）</p>
+<h3 id="有限域运算">有限域运算
+</h3><p>AES 的 “列混合” 和 “密钥扩展” 依赖<strong>GF (2⁸) 有限域</strong>（即 8 位字节的二元域）运算，确保所有变换在固定范围内可逆</p>
+<h3 id="填充">填充
+</h3><p>假如一段明文长度是192bit，如果按每128bit一个明文块来拆分的话，第二个明文块只有64bit，不足128bit。这时候怎么办呢？就需要对明文块进行填充。</p>
+<h4 id="nopadding">nopadding
+</h4><p>不做任何填充，但是要求明文必须是16字节的整数倍。</p>
+<h4 id="pkcs5padding默认">PKCS5Padding（默认）：
+</h4><p>如果明文块少于16个字节（128bit），在明文块末尾补足相应数量的字符，且每个字节的值等于缺少的字符数。</p>
+<p>比如明文：{1,2,3,4,5,a,b,c,d,e},缺少6个字节，则补全为{1,2,3,4,5,a,b,c,d,e,6,6,6,6,6,6}</p>
+<h4 id="iso10126padding">iso10126padding
+</h4><p>如果明文块少于16个字节（128bit），在明文块末尾补足相应数量的字节，最后一个字符值等于缺少的字符数，其他字符填充随机数。</p>
+<p>比如明文：{1,2,3,4,5,a,b,c,d,e},缺少6个字节，则可能补全为{1,2,3,4,5,a,b,c,d,e,5,c,3,G,$,6}</p>
+<h2 id="2算法原理">2.算法原理
+</h2><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>加密阶段（AES-128）</th>
+          <th>对应解密阶段（AES-128）</th>
+          <th>关键差异</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>最终轮（字节代换→行移位→轮密钥加）</td>
+          <td>初始轮（轮密钥加→逆行移位→逆字节代换）</td>
+          <td>解密初始轮需先抵消加密的 “轮密钥加”，再逆序还原 “行移位” 和 “字节代换”</td>
+      </tr>
+      <tr>
+          <td>第 9~1 轮（字节代换→行移位→列混合→轮密钥加）</td>
+          <td>第 1~9 轮（轮密钥加→逆列混合→逆行移位→逆字节代换）</td>
+          <td>解密轮需先 “轮密钥加”（抵消加密的最后一步），再逆序还原 “列混合”“行移位”“字节代换”</td>
+      </tr>
+      <tr>
+          <td>初始轮密钥加</td>
+          <td>最终轮密钥加</td>
+          <td>解密最终轮仅需 “轮密钥加”，直接还原明文</td>
+      </tr>
+      <tr>
+          <td>轮密钥使用顺序：K₀→K₁→…→K₁₀</td>
+          <td>轮密钥使用顺序：K₁₀→K₉→…→K₀</td>
+          <td>解密轮密钥完全逆序，与加密互补</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><img src="https://i-blog.csdnimg.cn/blog_migrate/170c344422d4953193c2186534f6c61a.png#pic_center"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<h3 id="字节代换">字节代换
+</h3><p>定义S盒和逆S盒的查表操作</p>
+<h3 id="行移位">行移位
+</h3><p>1.行移位操作
+行移位是一个简单的左循环移位操作。当密钥长度为128比特时，状态矩阵的第0行左移0字节，第1行左移1字节，第2行左移2字节，第3行左移3字节
+<img src="https://i-blog.csdnimg.cn/blog_migrate/a3ba629bd129bec80302323bef4fdbb0.png#pic_center"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<p>2.行移位的逆变换是将状态矩阵中的每一行执行相反的移位操作，例如AES-128中，状态矩阵的第0行右移0字节，第1行右移1字节，第2行右移2字节，第3行右移3字节。</p>
+<h3 id="列混合">列混合
+</h3><p><strong>列混合操作</strong></p>
+<p>列混合变换是通过矩阵相乘来实现的,经行移位后的状态矩阵与固定的矩阵相乘，得到混淆后的状态矩阵</p>
+<p><strong>列混合逆运算</strong></p>
+<p>逆向列混合变换可由下图的矩阵乘法定义：
+<img src="https://i-blog.csdnimg.cn/blog_migrate/e8498590806020fc7f54b6ebbee9f7b9.png#pic_center"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+>
+可以验证，逆变换矩阵同正变换矩阵的乘积恰好为单位矩阵。</p>
+<h3 id="轮密钥加">轮密钥加
+</h3><p>1238位密钥同状态矩阵中的数据进行诸位异或操作，密钥Ki中每个字W[4i],W[4i+1],W[4i+2],W[4i+3]为32位比特字，包含4个字节</p>
+<p>轮密钥加过程可以看成是字逐位异或的结果，也可以看成字节级别或者位级别的操作。也就是说，可以看成S0 S1 S2 S3 组成的32位字与W[4i]的异或运算。</p>
+<p>轮密钥加的逆运算同正向的轮密钥加运算完全一致，这是因为异或的逆操作是其自身。轮密钥加非常简单，但却能够影响S数组中的每一位</p>
+<h3 id="密钥扩展">密钥扩展
+</h3><p>AES首先将初始密钥输入到一个44的状态矩阵中，如下图所示。
+<img src="https://i-blog.csdnimg.cn/blog_migrate/f2f5d96365125bdbc8d60e00ed20d96f.png#pic_center"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+>
+这个44矩阵的每一列的4个字节组成一个字，矩阵4列的4个字依次命名为W[0]、W[1]、W[2]和W[3]，它们构成一个以字为单位的数组W。例如，设密钥K为&quot;abcdefghijklmnop&quot;,则K0 = ‘a’,K1 = ‘b’, K2 = ‘c’,K3 = ‘d’,W[0] = “abcd”。
+接着，对W数组扩充40个新列，构成总共44列的扩展密钥数组。新列以如下的递归方式产生：</p>
+<ol>
+<li>
+<p>如果i不是4的倍数，那么第i列由如下等式确定：
+W[i]=W[i-4]⨁W[i-1]</p>
+</li>
+<li>
+<p>如果i是4的倍数，那么第i列由如下等式确定：</p>
+<p>W[i]=W[i-4]⨁T(W[i-1])</p>
+<p>其中，T是一个有点复杂的函数。</p>
+<p>函数T由3部分组成：字循环、字节代换和轮常量异或，这3部分的作用分别如下。</p>
+<ol>
+<li>字循环：将1个字中的4个字节循环左移1个字节。即将输入字[b0, b1, b2, b3]变换成[b1,b2,b3,b0]。</li>
+<li>字节代换：对字循环的结果使用S盒进行字节代换。</li>
+<li>轮常量异或：将前两步的结果同轮常量Rcon[j]进行异或，其中j表示轮数。
+轮常量Rcon[j]是一个字，其值见下表。</li>
+</ol>
+</li>
+</ol>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>j</th>
+          <th>1</th>
+          <th>2</th>
+          <th>3</th>
+          <th>4</th>
+          <th>5</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Rcon[j]</td>
+          <td>01 00 00 00</td>
+          <td>02 00 00 00</td>
+          <td>04 00 00 00</td>
+          <td>08 00 00 00</td>
+          <td>10 00 00 00</td>
+      </tr>
+      <tr>
+          <td>j</td>
+          <td>6</td>
+          <td>7</td>
+          <td>8</td>
+          <td>9</td>
+          <td>10</td>
+      </tr>
+      <tr>
+          <td>Rcon[j]</td>
+          <td>20 00 00 00</td>
+          <td>40 00 00 00</td>
+          <td>80 00 00 00</td>
+          <td>1B 00 00 00</td>
+          <td>36 00 00 00</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>设初始的128位密钥为：
+3C A1 0B 21 57 F0 19 16 90 2E 13 80 AC C1 07 BD
+那么4个初始值为：
+W[0] = 3C A1 0B 21
+W[1] = 57 F0 19 16
+W[2] = 90 2E 13 80
+W[3] = AC C1 07 BD
+下面求扩展的第1轮的子密钥(W[4],W[5],W[6],W[7])。
+由于4是4的倍数，所以：
+W[4] = W[0] ⨁ T(W[3])
+T(W[3])的计算步骤如下：</p>
+<ol>
+<li>循环地将W[3]的元素移位：AC C1 07 BD变成C1 07 BD AC;</li>
+<li>将 C1 07 BD AC 作为S盒的输入，输出为78 C5 7A 91;</li>
+<li>将78 C5 7A 91与第一轮轮常量Rcon[1]进行异或运算，将得到79 C5 7A 91，因此，T(W[3])=79 C5 7A 91，故
+W[4] = 3C A1 0B 21 ⨁ 79 C5 7A 91 = 45 64 71 B0
+其余的3个子密钥段的计算如下：
+W[5] = W[1] ⨁ W[4] = 57 F0 19 16 ⨁ 45 64 71 B0 = 12 94 68 A6
+W[6] = W[2] ⨁ W[5] =90 2E 13 80 ⨁ 12 94 68 A6 = 82 BA 7B 26
+W[7] = W[3] ⨁ W[6] = AC C1 07 BD ⨁ 82 BA 7B 26 = 2E 7B 7C 9B
+所以，第一轮的密钥为 45 64 71 B0 12 94 68 A6 82 BA 7B 26 2E 7B 7C 9B。</li>
+</ol>
+<h2 id="3算法实现">3.算法实现
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/**
+</span></span><span class="line"><span class="cl"> * 参数 p: 明文的字符串数组。
+</span></span><span class="line"><span class="cl"> * 参数 plen: 明文的长度。
+</span></span><span class="line"><span class="cl"> * 参数 key: 密钥的字符串数组。
+</span></span><span class="line"><span class="cl"> */
+</span></span><span class="line"><span class="cl">void aes(char *p, int plen, char *key){
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    int keylen = strlen(key);
+</span></span><span class="line"><span class="cl">    if(plen == 0 || plen % 16 != 0) {
+</span></span><span class="line"><span class="cl">        printf(&#34;明文字符长度必须为16的倍数！\n&#34;);
+</span></span><span class="line"><span class="cl">        exit(0);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    if(!checkKeyLen(keylen)) {
+</span></span><span class="line"><span class="cl">        printf(&#34;密钥字符长度错误！长度必须为16、24和32。当前长度为%d\n&#34;,keylen);
+</span></span><span class="line"><span class="cl">        exit(0);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    extendKey(key);//扩展密钥
+</span></span><span class="line"><span class="cl">    int pArray[4][4];
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    for(int k = 0; k &lt; plen; k += 16) {
+</span></span><span class="line"><span class="cl">        convertToIntArray(p + k, pArray);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        addRoundKey(pArray, 0);//一开始的轮密钥加
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        for(int i = 1; i &lt; 10; i++){//前9轮
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            subBytes(pArray);//字节代换
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            shiftRows(pArray);//行移位
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            mixColumns(pArray);//列混合
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            addRoundKey(pArray, i);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        //第10轮
+</span></span><span class="line"><span class="cl">        subBytes(pArray);//字节代换
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        shiftRows(pArray);//行移位
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        addRoundKey(pArray, 10);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        convertArrayToStr(pArray, p + k);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="各个对应函数的实现">各个对应函数的实现
+</h3><h4 id="1-密钥拓展">1 密钥拓展
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//密钥对应的扩展数组
+</span></span><span class="line"><span class="cl">static int w[44];
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/**
+</span></span><span class="line"><span class="cl"> * 扩展密钥，结果是把w[44]中的每个元素初始化
+</span></span><span class="line"><span class="cl"> */
+</span></span><span class="line"><span class="cl">static void extendKey(char *key) {
+</span></span><span class="line"><span class="cl">    for(int i = 0; i &lt; 4; i++)
+</span></span><span class="line"><span class="cl">        w[i] = getWordFromStr(key + i * 4); 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    for(int i = 4, j = 0; i &lt; 44; i++) {
+</span></span><span class="line"><span class="cl">        if( i % 4 == 0) {
+</span></span><span class="line"><span class="cl">            w[i] = w[i - 4] ^ T(w[i - 1], j); 
+</span></span><span class="line"><span class="cl">            j++;//下一轮
+</span></span><span class="line"><span class="cl">        }else {
+</span></span><span class="line"><span class="cl">            w[i] = w[i - 4] ^ w[i - 1]; 
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }   
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>T函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">/**</span>
+</span></span><span class="line"><span class="cl"> <span class="o">*</span> <span class="err">常量轮值表</span>
+</span></span><span class="line"><span class="cl"> <span class="o">*/</span>
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="k">const</span> <span class="ne">int</span> <span class="n">Rcon</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mh">0x01000000</span><span class="p">,</span> <span class="mh">0x02000000</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="mh">0x04000000</span><span class="p">,</span> <span class="mh">0x08000000</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="mh">0x10000000</span><span class="p">,</span> <span class="mh">0x20000000</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="mh">0x40000000</span><span class="p">,</span> <span class="mh">0x80000000</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="mh">0x1b000000</span><span class="p">,</span> <span class="mh">0x36000000</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="o">/**</span>
+</span></span><span class="line"><span class="cl"> <span class="o">*</span> <span class="err">密钥扩展中的</span><span class="n">T函数</span>
+</span></span><span class="line"><span class="cl"> <span class="o">*/</span>
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="ne">int</span> <span class="n">T</span><span class="p">(</span><span class="ne">int</span> <span class="n">num</span><span class="p">,</span> <span class="ne">int</span> <span class="nb">round</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="ne">int</span> <span class="n">numArray</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">splitIntToArray</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">numArray</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">leftLoop4int</span><span class="p">(</span><span class="n">numArray</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span><span class="o">//</span><span class="err">字循环</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">//</span><span class="err">字节代换</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="ne">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">numArray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">getNumFromSBox</span><span class="p">(</span><span class="n">numArray</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="ne">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">mergeArrayToInt</span><span class="p">(</span><span class="n">numArray</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">result</span> <span class="o">^</span> <span class="n">Rcon</span><span class="p">[</span><span class="nb">round</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="2-字节代换">2 字节代换
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/**
+</span></span><span class="line"><span class="cl"> * 根据索引，从S盒中获得元素
+</span></span><span class="line"><span class="cl"> */
+</span></span><span class="line"><span class="cl">static int getNumFromSBox(int index) {
+</span></span><span class="line"><span class="cl">    int row = getLeft4Bit(index);
+</span></span><span class="line"><span class="cl">    int col = getRight4Bit(index);
+</span></span><span class="line"><span class="cl">    return S[row][col];
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/**
+</span></span><span class="line"><span class="cl"> * 字节代换
+</span></span><span class="line"><span class="cl"> */
+</span></span><span class="line"><span class="cl">static void subBytes(int array[4][4]){
+</span></span><span class="line"><span class="cl">    for(int i = 0; i &lt; 4; i++)
+</span></span><span class="line"><span class="cl">        for(int j = 0; j &lt; 4; j++)
+</span></span><span class="line"><span class="cl">            array[i][j] = getNumFromSBox(array[i][j]);
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="3-行移位的实现">3 行移位的实现
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/**
+</span></span><span class="line"><span class="cl"> * 将数组中的元素循环左移step位
+</span></span><span class="line"><span class="cl"> */
+</span></span><span class="line"><span class="cl">static void leftLoop4int(int array[4], int step) {
+</span></span><span class="line"><span class="cl">    int temp[4];
+</span></span><span class="line"><span class="cl">    for(int i = 0; i &lt; 4; i++)
+</span></span><span class="line"><span class="cl">        temp[i] = array[i];
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    int index = step % 4 == 0 ? 0 : step % 4;
+</span></span><span class="line"><span class="cl">    for(int i = 0; i &lt; 4; i++){
+</span></span><span class="line"><span class="cl">        array[i] = temp[index];
+</span></span><span class="line"><span class="cl">        index++;
+</span></span><span class="line"><span class="cl">        index = index % 4;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/**
+</span></span><span class="line"><span class="cl"> * 行移位
+</span></span><span class="line"><span class="cl"> */
+</span></span><span class="line"><span class="cl">static void shiftRows(int array[4][4]) {
+</span></span><span class="line"><span class="cl">    int rowTwo[4], rowThree[4], rowFour[4];
+</span></span><span class="line"><span class="cl">    //复制状态矩阵的第2,3,4行
+</span></span><span class="line"><span class="cl">    for(int i = 0; i &lt; 4; i++) {
+</span></span><span class="line"><span class="cl">        rowTwo[i] = array[1][i];
+</span></span><span class="line"><span class="cl">        rowThree[i] = array[2][i];
+</span></span><span class="line"><span class="cl">        rowFour[i] = array[3][i];
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    //循环左移相应的位数
+</span></span><span class="line"><span class="cl">    leftLoop4int(rowTwo, 1);
+</span></span><span class="line"><span class="cl">    leftLoop4int(rowThree, 2);
+</span></span><span class="line"><span class="cl">    leftLoop4int(rowFour, 3);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    //把左移后的行复制回状态矩阵中
+</span></span><span class="line"><span class="cl">    for(int i = 0; i &lt; 4; i++) {
+</span></span><span class="line"><span class="cl">        array[1][i] = rowTwo[i];
+</span></span><span class="line"><span class="cl">        array[2][i] = rowThree[i];
+</span></span><span class="line"><span class="cl">        array[3][i] = rowFour[i];
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="4-列混合">4 列混合
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">/**</span>
+</span></span><span class="line"><span class="cl"> <span class="o">*</span> <span class="err">列混合要用到的矩阵</span>
+</span></span><span class="line"><span class="cl"> <span class="o">*/</span>
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="k">const</span> <span class="ne">int</span> <span class="n">colM</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="ne">int</span> <span class="n">GFMul2</span><span class="p">(</span><span class="ne">int</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="ne">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">s</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="ne">int</span> <span class="n">a7</span> <span class="o">=</span> <span class="n">result</span> <span class="o">&amp;</span> <span class="mh">0x00000100</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">a7</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">&amp;</span> <span class="mh">0x000000ff</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">^</span> <span class="mh">0x1b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="ne">int</span> <span class="n">GFMul3</span><span class="p">(</span><span class="ne">int</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">GFMul2</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">^</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">/**</span>
+</span></span><span class="line"><span class="cl"> <span class="o">*</span> <span class="n">GF上的二元运算</span>
+</span></span><span class="line"><span class="cl"> <span class="o">*/</span>
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="ne">int</span> <span class="n">GFMul</span><span class="p">(</span><span class="ne">int</span> <span class="n">n</span><span class="p">,</span> <span class="ne">int</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="ne">int</span> <span class="n">result</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">result</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">result</span> <span class="o">=</span> <span class="n">GFMul2</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">result</span> <span class="o">=</span> <span class="n">GFMul3</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mh">0x9</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">result</span> <span class="o">=</span> <span class="n">GFMul9</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mh">0xb</span><span class="p">)</span><span class="o">//</span><span class="mi">11</span>
+</span></span><span class="line"><span class="cl">        <span class="n">result</span> <span class="o">=</span> <span class="n">GFMul11</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mh">0xd</span><span class="p">)</span><span class="o">//</span><span class="mi">13</span>
+</span></span><span class="line"><span class="cl">        <span class="n">result</span> <span class="o">=</span> <span class="n">GFMul13</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mh">0xe</span><span class="p">)</span><span class="o">//</span><span class="mi">14</span>
+</span></span><span class="line"><span class="cl">        <span class="n">result</span> <span class="o">=</span> <span class="n">GFMul14</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">/**</span>
+</span></span><span class="line"><span class="cl"> <span class="o">*</span> <span class="err">列混合</span>
+</span></span><span class="line"><span class="cl"> <span class="o">*/</span>
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="n">void</span> <span class="n">mixColumns</span><span class="p">(</span><span class="ne">int</span> <span class="n">array</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">4</span><span class="p">])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="ne">int</span> <span class="n">tempArray</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">4</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="ne">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="p">(</span><span class="ne">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tempArray</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="ne">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="p">(</span><span class="ne">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">GFMul</span><span class="p">(</span><span class="n">colM</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">tempArray</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">j</span><span class="p">])</span> <span class="o">^</span> <span class="n">GFMul</span><span class="p">(</span><span class="n">colM</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span><span class="n">tempArray</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">                <span class="o">^</span> <span class="n">GFMul</span><span class="p">(</span><span class="n">colM</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span><span class="n">tempArray</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="n">j</span><span class="p">])</span> <span class="o">^</span> <span class="n">GFMul</span><span class="p">(</span><span class="n">colM</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">3</span><span class="p">],</span> <span class="n">tempArray</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="5-轮钥加密">5 轮钥加密
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/**
+</span></span><span class="line"><span class="cl"> * 轮密钥加
+</span></span><span class="line"><span class="cl"> */
+</span></span><span class="line"><span class="cl">static void addRoundKey(int array[4][4], int round) {
+</span></span><span class="line"><span class="cl">    int warray[4];
+</span></span><span class="line"><span class="cl">    for(int i = 0; i &lt; 4; i++) {
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        splitIntToArray(w[ round * 4 + i], warray);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        for(int j = 0; j &lt; 4; j++) {
+</span></span><span class="line"><span class="cl">            array[j][i] = array[j][i] ^ warray[j];
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="aes解密">AES解密
+</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/**
+</span></span><span class="line"><span class="cl"> * 参数 c: 密文的字符串数组。
+</span></span><span class="line"><span class="cl"> * 参数 clen: 密文的长度。
+</span></span><span class="line"><span class="cl"> * 参数 key: 密钥的字符串数组。
+</span></span><span class="line"><span class="cl"> */
+</span></span><span class="line"><span class="cl">void deAes(char *c, int clen, char *key) {
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    int keylen = strlen(key);
+</span></span><span class="line"><span class="cl">    if(clen == 0 || clen % 16 != 0) {
+</span></span><span class="line"><span class="cl">        printf(&#34;密文字符长度必须为16的倍数！现在的长度为%d\n&#34;,clen);
+</span></span><span class="line"><span class="cl">        exit(0);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    if(!checkKeyLen(keylen)) {
+</span></span><span class="line"><span class="cl">        printf(&#34;密钥字符长度错误！长度必须为16、24和32。当前长度为%d\n&#34;,keylen);
+</span></span><span class="line"><span class="cl">        exit(0);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    extendKey(key);//扩展密钥
+</span></span><span class="line"><span class="cl">    int cArray[4][4];
+</span></span><span class="line"><span class="cl">    for(int k = 0; k &lt; clen; k += 16) {
+</span></span><span class="line"><span class="cl">        convertToIntArray(c + k, cArray);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        addRoundKey(cArray, 10);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        int wArray[4][4];
+</span></span><span class="line"><span class="cl">        for(int i = 9; i &gt;= 1; i--) {
+</span></span><span class="line"><span class="cl">            deSubBytes(cArray);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            deShiftRows(cArray);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            deMixColumns(cArray);
+</span></span><span class="line"><span class="cl">            getArrayFrom4W(i, wArray);
+</span></span><span class="line"><span class="cl">            deMixColumns(wArray);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            addRoundTowArray(cArray, wArray);
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        deSubBytes(cArray);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        deShiftRows(cArray);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        addRoundKey(cArray, 0);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        convertArrayToStr(cArray, c + k);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/12-20-2025-jiami/">
+        
+        
+            <div class="article-image">
+                <img src="/p/12-20-2025-jiami/bj.285e5264432066c2a8483ac1b7484e75.285e5264432066c2a8483ac1b7484e75_hu_6e666b41a09bb67c.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 12-20 凯撒加密"
+                        data-key="12-20-2025-jiami" 
+                        data-hash="md5-KF5SZEMgZsKoSDrBt0hOdQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">12-20 凯撒加密</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/12-14/">
+        
+        
+            <div class="article-image">
+                <img src="/p/12-14/bj.2b0720091a2a6c51e7ecac1c4beb1c8a.2b0720091a2a6c51e7ecac1c4beb1c8a_hu_2131ba3fbecd8254.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 12-14 TEA"
+                        data-key="12-14" 
+                        data-hash="md5-KwcgCRoqbFHn7KwcS&#43;scig==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">12-14 TEA</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/12-13/">
+        
+        
+            <div class="article-image">
+                <img src="/p/12-13/bj.6fee9f59c08159f86539bfca453db5fe.6fee9f59c08159f86539bfca453db5fe_hu_bddd55d620d6aa5a.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 12-13 TEA"
+                        data-key="12-13" 
+                        data-hash="md5-b&#43;6fWcCBWfhlOb/KRT21/g==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">12-13 TEA</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2025 Example Person
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.32.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        
+        
+<script src="https://cdn.jsdelivr.net/gh/ZhaoUncle/image@main/static/mouse-click.js"></script>
+<canvas width="1777" height="841" style="position: fixed; left: 0px; top: 0px; z-index: 2147483647; pointer-events: none;"></canvas>
+
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<a href="#" id="back-to-top" title="返回顶部"></a>
+
+
+<style>
+  #back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 55px;
+    width: 55px;
+    height: 55px;
+    border-radius: 7px;
+    background-color: rgba(64, 158, 255, 0.5);
+    box-shadow: var(--shadow-l2);
+    font-size: 30px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+  }
+
+  #back-to-top:before {
+    content: ' ';
+    display: inline-block;
+    position: relative;
+    top: 0;
+    transform: rotate(135deg);
+    height: 10px;
+    width: 10px;
+    border-width: 0 0 2px 2px;
+    border-color: var(--back-to-top-color);
+    border-style: solid;
+  }
+
+  #back-to-top:hover:before {
+    border-color: #2674e0;
+  }
+
+   
+  @media screen and (max-width: 768px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      font-size: 10px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1024px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 40px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1280px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 55px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1536px) {
+    #back-to-top {
+      visibility: hidden;
+    }
+  }
+</style>
+
+
+<script>
+  function backToTop() {
+    document.documentElement.scrollIntoView({
+      behavior: 'smooth',
+    })
+  }
+
+  window.onload = function () {
+    let scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop
+    let totopBtn = this.document.getElementById('back-to-top')
+    if (scrollTop > 0) {
+      totopBtn.style.display = 'inline'
+    } else {
+      totopBtn.style.display = 'none'
+    }
+  }
+
+  window.onscroll = function () {
+    let scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop
+    let totopBtn = this.document.getElementById('back-to-top')
+    if (scrollTop < 200) {
+      totopBtn.style.display = 'none'
+    } else {
+      totopBtn.style.display = 'inline'
+      totopBtn.addEventListener('click', backToTop, false)
+    }
+  }
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Ukenn2112/UkennWeb@3.0/index/web.js">
+
+</script>
+
+
+
+        
+        <script>
+        
+        function initGlobalMusicPlayer() {
+            if (!document.getElementById('global-music-player')) {
+                const playerHTML = `
+                    <div id="global-music-player" style="position: fixed; bottom: 20px; right: 20px; z-index: 99999; background: red; border: 3px solid blue; padding: 15px;">
+                        <audio id="bgMusic" loop>
+                            <source src="/music/background.mp3" type="audio/mpeg">
+                        </audio>
+                        <button id="musicToggle" style="background: green; color: white; border: none; padding: 15px 20px; border-radius: 50%; cursor: pointer; font-size: 20px;">
+                            🎵 播放
+                        </button>
+                        <div id="musicStatus" style="margin-top: 10px; font-size: 14px; color: black; font-weight: bold;">
+                            点击播放
+                        </div>
+                    </div>
+                `;
+                document.body.insertAdjacentHTML('beforeend', playerHTML);
+                
+                
+                const audio = document.getElementById('bgMusic');
+                const toggleBtn = document.getElementById('musicToggle');
+                const status = document.getElementById('musicStatus');
+                
+                
+                const savedState = localStorage.getItem('globalMusicState');
+                const savedTime = localStorage.getItem('globalMusicTime');
+                
+                
+                if (savedTime) {
+                    audio.currentTime = parseFloat(savedTime);
+                }
+                
+                function updateButtonState(isPlaying) {
+                    if (isPlaying) {
+                        status.textContent = '🎶 播放中...';
+                        toggleBtn.innerHTML = '⏸ 暂停';
+                        toggleBtn.style.background = 'orange';
+                    } else {
+                        status.textContent = '⏹ 已暂停';
+                        toggleBtn.innerHTML = '🎵 播放';
+                        toggleBtn.style.background = 'green';
+                    }
+                }
+                
+                
+                function tryAutoResume() {
+                    const savedState = localStorage.getItem('globalMusicState');
+                    if (savedState === 'playing') {
+                        
+                        audio.muted = true;
+                        audio.play().then(() => {
+                            audio.muted = false;
+                            updateButtonState(true);
+                        }).catch(error => {
+                            
+                            status.textContent = '点击恢复播放';
+                            updateButtonState(false);
+                        });
+                    }
+                }
+                
+                
+                setTimeout(tryAutoResume, 1000);
+                
+                
+                let userInteracted = false;
+                const interactionEvents = ['click', 'touchstart', 'keydown', 'scroll'];
+                
+                interactionEvents.forEach(eventType => {
+                    document.addEventListener(eventType, function() {
+                        if (!userInteracted) {
+                            userInteracted = true;
+                            const savedState = localStorage.getItem('globalMusicState');
+                            if (savedState === 'playing' && audio.paused) {
+                                audio.play().then(() => {
+                                    updateButtonState(true);
+                                });
+                            }
+                        }
+                    }, { once: true, passive: true });
+                });
+                
+                toggleBtn.addEventListener('click', function() {
+                    userInteracted = true; 
+                    if (audio.paused) {
+                        audio.play().then(() => {
+                            updateButtonState(true);
+                            localStorage.setItem('globalMusicState', 'playing');
+                        }).catch(error => {
+                            status.textContent = '❌ 播放失败';
+                        });
+                    } else {
+                        audio.pause();
+                        updateButtonState(false);
+                        localStorage.setItem('globalMusicState', 'paused');
+                    }
+                });
+                
+                
+                audio.addEventListener('timeupdate', function() {
+                    localStorage.setItem('globalMusicTime', audio.currentTime);
+                });
+                
+                
+                window.addEventListener('beforeunload', function() {
+                    localStorage.setItem('globalMusicTime', audio.currentTime);
+                    localStorage.setItem('globalMusicState', audio.paused ? 'paused' : 'playing');
+                });
+
+                
+                audio.addEventListener('loadeddata', function() {
+                    console.log('音频加载完成，尝试恢复播放状态');
+                });
+            }
+        }
+
+        
+        function initSakuraEffect() {
+            if (!document.getElementById('sakura-container')) {
+                const sakuraHTML = `
+                    <div id="sakura-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998; overflow: hidden;"></div>
+                `;
+                document.body.insertAdjacentHTML('beforeend', sakuraHTML);
+                
+                
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes sakuraFall {
+                        0% { transform: translateY(-100px) rotate(0deg); opacity: 0.8; }
+                        100% { transform: translateY(100vh) rotate(180deg); opacity: 0; }
+                    }
+                    .sakura { position: absolute; top: -50px; font-size: 18px; animation: sakuraFall linear forwards; user-select: none; pointer-events: none; }
+                `;
+                document.head.appendChild(style);
+                
+                let sakuraCount = 0;
+                const maxSakuras = 10;
+                
+                function createSakura() {
+                    if (sakuraCount >= maxSakuras) return;
+                    
+                    const sakura = document.createElement('div');
+                    sakura.className = 'sakura';
+                    sakura.innerHTML = '🌸';
+                    sakura.style.left = Math.random() * 100 + 'vw';
+                    sakura.style.fontSize = (16 + Math.random() * 16) + 'px';
+                    sakura.style.animationDuration = (10 + Math.random() * 10) + 's';
+                    sakura.style.animationDelay = (Math.random() * 3) + 's';
+                    
+                    document.getElementById('sakura-container').appendChild(sakura);
+                    sakuraCount++;
+                    
+                    setTimeout(() => {
+                        if (sakura.parentNode) {
+                            sakura.remove();
+                            sakuraCount--;
+                        }
+                    }, 20000);
+                }
+                
+                setTimeout(() => {
+                    setInterval(createSakura, 1200);
+                    for (let i = 0; i < 5; i++) {
+                        setTimeout(createSakura, i * 800);
+                    }
+                }, 2000);
+            }
+        }
+
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            initGlobalMusicPlayer();
+            initSakuraEffect();
+        });
+
+        
+        setTimeout(function() {
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/gh/hustcc/canvas-nest.js@1.0.1/dist/canvas-nest.min.js';
+            script.async = true;
+            document.body.appendChild(script);
+        }, 1500);
+        </script>
+    </body>
+</html>

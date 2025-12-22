@@ -410,7 +410,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 8 分钟
+                    阅读时长: 9 分钟
                 </time>
             </div>
         
@@ -1311,11 +1311,36 @@
 </div><p>解密：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code></code></pre></td>
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">void decrypt5(unsigned int* v, unsigned int* k) {
+</span></span><span class="line"><span class="cl">    unsigned int v0 = v[0], v1 = v[1];
+</span></span><span class="line"><span class="cl">    unsigned int delta = 0x9E3779B9;
+</span></span><span class="line"><span class="cl">    unsigned int sum = 32 * delta;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    for (int i = 0; i &lt; 32; i++) {
+</span></span><span class="line"><span class="cl">        v1 -= ((v0 &gt;&gt; 5) + k[(sum &gt;&gt; 11) &amp; 3]) ^ (v0 + sum);
+</span></span><span class="line"><span class="cl">        v0 -= ((v1 &lt;&lt; 4) + k[sum &amp; 3]) ^ (v1 + sum);
+</span></span><span class="line"><span class="cl">        sum -= delta;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    v[0] = v0; v[1] = v1;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
 </div>
-</div><hr>
+</div><p>key的数目不影响加密解密结果</p>
+<hr>
 <h3 id="6-xor--add-混用">6. XOR / ADD 混用
 </h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1339,7 +1364,67 @@
 <li>注意是否仍然可逆</li>
 <li>XOR ≠ ADD，但仍可反推</li>
 </ul>
-<h1 id="知识补充">知识补充
+<p>加密：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">void decrypt6(unsigned int* v, unsigned int* k) {
+</span></span><span class="line"><span class="cl">    unsigned int v0 = v[0], v1 = v[1];
+</span></span><span class="line"><span class="cl">    unsigned int sum = 0;
+</span></span><span class="line"><span class="cl">    unsigned int delta = 0xA56BABCD;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    for (int i = 0; i &lt; 20; i++) {
+</span></span><span class="line"><span class="cl">        sum += delta;
+</span></span><span class="line"><span class="cl">        v0 += (v1 ^ (v1 &lt;&lt; 5) ^ (v1 &gt;&gt; 3)) + k[(sum &gt;&gt; 13) &amp; 3];
+</span></span><span class="line"><span class="cl">        v1 += (v0 ^ (v0 &lt;&lt; 4) ^ (v0 &gt;&gt; 7)) + k[sum &amp; 3];
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    v[0] = v0; v[1] = v1;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>解密：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">void decrypt6(unsigned int* v, unsigned int* k) {
+</span></span><span class="line"><span class="cl">    unsigned int v0 = v[0], v1 = v[1];
+</span></span><span class="line"><span class="cl">    unsigned int delta = 0xA56BABCD;
+</span></span><span class="line"><span class="cl">    unsigned int sum = 20 * delta;
+</span></span><span class="line"><span class="cl">    for (int i = 0; i &lt; 20; i++) {
+</span></span><span class="line"><span class="cl">        v1 -= (v0 ^ (v0 &lt;&lt; 4) ^ (v0 &gt;&gt; 7)) + k[sum &amp; 3];
+</span></span><span class="line"><span class="cl">        v0 -= (v1 ^ (v1 &lt;&lt; 5) ^ (v1 &gt;&gt; 3)) + k[(sum &gt;&gt; 13) &amp; 3];
+</span></span><span class="line"><span class="cl">        sum -= delta;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    v[0] = v0; v[1] = v1;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="知识补充">知识补充
 </h1><h2 id="feistel网络">Feistel网络
 </h2><p>一种对称加密算法的基本结构，它通过将明文分组并多轮迭代处理，实现加密和解密的功能。</p>
 <p>Feistel网络的核心特点是加密和解密流程完全相同，仅密钥使用顺序相反。</p>
@@ -1589,6 +1674,25 @@
     <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/12-21-2025-jiami/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/bj.jpg" loading="lazy" data-key="12-21-2025-jiami" data-hash="/bj.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">12-21 AES加密</h2>
+        </div>
+    </a>
+</article>
+
             
                 
 <article class="has-image">

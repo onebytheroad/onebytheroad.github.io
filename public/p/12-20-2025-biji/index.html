@@ -252,7 +252,50 @@
     </ol>
 </aside>
 
-    
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#api">API</a></li>
+    <li><a href="#ollvm">OLLVM</a>
+      <ol>
+        <li><a href="#三大功能">三大功能</a></li>
+        <li><a href="#二原始-c-代码示例">二、原始 C 代码示例</a>
+          <ol>
+            <li><a href="#应用--bcf虚假控制流">应用 <code>-bcf</code>（虚假控制流）</a></li>
+            <li><a href="#应用--fla控制流平展">应用 <code>-fla</code>（控制流平展）</a></li>
+            <li><a href="#应用--split基本块分割">应用 <code>-split</code>（基本块分割）</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
 
             <main class="main full-width">
     <article class="has-image main-article">
@@ -324,7 +367,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 1 分钟
+                    阅读时长: 3 分钟
                 </time>
             </div>
         
@@ -339,11 +382,236 @@
     <section class="article-content">
     
     
-    <p>1</p>
-<h1 id="api">API
+    <h1 id="api">API
 </h1><p>它预先把这些复杂的操作写在一个函数里面，编译成一个组件（一般是动态链接库），随操作系统一起发布，并配上说明文档，程序员只需要简单地调用这些函数就可以完成复杂的工作，让编程变得简单有趣。这些封装好的函数，就叫做API(Application Programming Interface)，即应用程序编程接口。</p>
 <p>API（Application Programming Interface）是软件系统之间的桥梁，定义了一套规则，使得调用方（客户端）可以通过接口与服务端进行交互，而无需了解服务端的内部实现。例如，当你在应用中查询天气或进行支付时，实际上是通过 API 与天气服务或支付系统进行通信。</p>
-
+<h1 id="ollvm">OLLVM
+</h1><p>OLLVM是一款针对于LLVM的代码混淆工具，整个项目包含数个独立功能的LLVM Pass，每个pass对应实现一种特定的混淆方式，这些pass将在后面进行细说，通过pass可以改变源程序的CFG和源程序的结构。</p>
+<h2 id="三大功能">三大功能
+</h2><p>（1）指令替换功能：随机选择一种功能上等效但更复杂的指令序列替换标准二元运算符；适用范围：加法操作、减法操作、布尔操作（与或非操作）且只能为整数类型。</p>
+<p>（2）混淆控制流功能：</p>
+<p>1.在当前基本块之前添加基本块来修改函数调用图。</p>
+<p>2.原始基本块也被克隆并填充随机选择的垃圾指令。</p>
+<p>（3）控制流平展功能：目的是完全展平程序的控制流程图。</p>
+<p>将 <code>if/else</code>、<code>for</code> 等结构转为 <strong>switch + 状态机</strong></p>
+<p>“压扁逻辑”：所有分支从同一个入口进入</p>
+<h2 id="二原始-c-代码示例">二、原始 C 代码示例
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">// original.c
+</span></span><span class="line"><span class="cl">int main() {
+</span></span><span class="line"><span class="cl">    int x = 5;
+</span></span><span class="line"><span class="cl">    if (x &gt; 0) {
+</span></span><span class="line"><span class="cl">        printf(&#34;Positive\n&#34;);
+</span></span><span class="line"><span class="cl">    } else if (x &lt; 0) {
+</span></span><span class="line"><span class="cl">        printf(&#34;Negative\n&#34;);
+</span></span><span class="line"><span class="cl">    } else {
+</span></span><span class="line"><span class="cl">        printf(&#34;Zero\n&#34;);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    return 0;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这是一个典型的三路分支结构。</p>
+<hr>
+<h3 id="应用--bcf虚假控制流">应用 <code>-bcf</code>（虚假控制流）
+</h3><p><strong>效果</strong>：插入看似有用、实则无害的“垃圾分支”。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">int main() {
+</span></span><span class="line"><span class="cl">    int x = 5;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    // 虚假分支 1（永远不执行）
+</span></span><span class="line"><span class="cl">    if ((rand() % 100) &lt; -1) {
+</span></span><span class="line"><span class="cl">        dummy_function(); // 无副作用
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    if (x &gt; 0) {
+</span></span><span class="line"><span class="cl">        printf(&#34;Positive\n&#34;);
+</span></span><span class="line"><span class="cl">    } 
+</span></span><span class="line"><span class="cl">    // 虚假分支 2
+</span></span><span class="line"><span class="cl">    else if ((x ^ x) == 1) { // 永远 false
+</span></span><span class="line"><span class="cl">        fake_print();
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    else if (x &lt; 0) {
+</span></span><span class="line"><span class="cl">        printf(&#34;Negative\n&#34;);
+</span></span><span class="line"><span class="cl">    } 
+</span></span><span class="line"><span class="cl">    // 虚假分支 3
+</span></span><span class="line"><span class="cl">    else if (0) {
+</span></span><span class="line"><span class="cl">        unreachable_code();
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    else {
+</span></span><span class="line"><span class="cl">        printf(&#34;Zero\n&#34;);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    // 更多无意义跳转...
+</span></span><span class="line"><span class="cl">    goto label_end;
+</span></span><span class="line"><span class="cl">label_end:
+</span></span><span class="line"><span class="cl">    return 0;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>原逻辑不变</li>
+<li>多出很多“看起来像分支”的代码</li>
+<li>反编译后流程图变得杂乱</li>
+</ul>
+<hr>
+<h3 id="应用--fla控制流平展">应用 <code>-fla</code>（控制流平展）
+</h3><p><strong>效果</strong>：把 <code>if-else</code> 变成 <code>switch</code> + 状态变量。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">int main() {
+</span></span><span class="line"><span class="cl">    int x = 5;
+</span></span><span class="line"><span class="cl">    int state = 0;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    // 初始化状态
+</span></span><span class="line"><span class="cl">    if (x &gt; 0) state = 1;
+</span></span><span class="line"><span class="cl">    else if (x &lt; 0) state = 2;
+</span></span><span class="line"><span class="cl">    else state = 3;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    // 平展后的主循环
+</span></span><span class="line"><span class="cl">    while (1) {
+</span></span><span class="line"><span class="cl">        switch (state) {
+</span></span><span class="line"><span class="cl">            case 1:
+</span></span><span class="line"><span class="cl">                printf(&#34;Positive\n&#34;);
+</span></span><span class="line"><span class="cl">                state = 4; // 跳转到结束
+</span></span><span class="line"><span class="cl">                break;
+</span></span><span class="line"><span class="cl">            case 2:
+</span></span><span class="line"><span class="cl">                printf(&#34;Negative\n&#34;);
+</span></span><span class="line"><span class="cl">                state = 4;
+</span></span><span class="line"><span class="cl">                break;
+</span></span><span class="line"><span class="cl">            case 3:
+</span></span><span class="line"><span class="cl">                printf(&#34;Zero\n&#34;);
+</span></span><span class="line"><span class="cl">                state = 4;
+</span></span><span class="line"><span class="cl">                break;
+</span></span><span class="line"><span class="cl">            case 4:
+</span></span><span class="line"><span class="cl">                goto end_loop; // 结束
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">end_loop:
+</span></span><span class="line"><span class="cl">    return 0;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>特点</strong>：</p>
+<ul>
+<li>所有逻辑都在 <code>switch</code> 里</li>
+<li>原始条件判断被“隐藏”在状态赋值中</li>
+<li>静态分析难以还原 <code>if-else</code> 结构</li>
+</ul>
+<hr>
+<h3 id="应用--split基本块分割">应用 <code>-split</code>（基本块分割）
+</h3><p><strong>效果</strong>：把一行代码拆成多行，插入无意义中间变量。</p>
+<p>原始片段：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">printf(&#34;Positive\n&#34;);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>分割后可能变成：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">char* str1 = &#34;Pos&#34;;
+</span></span><span class="line"><span class="cl">char* str2 = &#34;itive\n&#34;;
+</span></span><span class="line"><span class="cl">char full[20];
+</span></span><span class="line"><span class="cl">strcpy(full, str1);
+</span></span><span class="line"><span class="cl">strcat(full, str2);
+</span></span><span class="line"><span class="cl">printf(&#34;%s&#34;, full);
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
 </section>
 
 
