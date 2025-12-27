@@ -7,7 +7,108 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Example Person</copyright>
-        <lastBuildDate>Sun, 21 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 22 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>12-22 解题</title>
+        <link>http://localhost:1313/p/12-22-2025/</link>
+        <pubDate>Mon, 22 Dec 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/12-22-2025/</guid>
+        <description>&lt;img src="http://localhost:1313/p/12-22-2025/bj.jpg" alt="Featured image of post 12-22 解题" /&gt;&lt;p&gt;2019红帽杯 re&lt;/p&gt;
+&lt;p&gt;进入无main函数&lt;/p&gt;
+&lt;p&gt;然后观察start中的函数出入，第一个主函数解密出两个字符串&lt;/p&gt;
+&lt;p&gt;Info:The first four chars are &lt;code&gt;flag&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://bbs.kanxue.com/thread-254172.htm&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://bbs.kanxue.com/thread-254172.htm&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;简单异或&lt;/p&gt;
+&lt;p&gt;无魔改的base64&lt;/p&gt;
+&lt;p&gt;但是答案不对&lt;/p&gt;
+&lt;p&gt;说明正确逻辑在别处&lt;/p&gt;
+&lt;p&gt;。。&lt;/p&gt;
+&lt;p&gt;看看别人wp，发现在某一个字符串调用下藏着一个可以的调用函数&lt;/p&gt;
+&lt;p&gt;sub_400D35&lt;/p&gt;
+&lt;p&gt;x交叉发现只有一个引用&lt;/p&gt;
+&lt;p&gt;进入之后发现是内部比对，而且没有输出&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;unsigned __int64 sub_400D35()
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  unsigned __int64 result; // rax
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  unsigned int v1; // [rsp+Ch] [rbp-24h]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  int i; // [rsp+10h] [rbp-20h]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  int j; // [rsp+14h] [rbp-1Ch]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  unsigned int v4; // [rsp+24h] [rbp-Ch]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  unsigned __int64 v5; // [rsp+28h] [rbp-8h]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  v5 = __readfsqword(0x28u);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  v1 = sub_43FD20(0) - qword_6CEE38;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  for ( i = 0; i &amp;lt;= 1233; ++i )
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    sub_40F790(v1);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    sub_40FE60();
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    sub_40FE60();
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    v1 = sub_40FE60() ^ 0x98765432;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  v4 = v1;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  if ( ((unsigned __int8)v1 ^ byte_6CC0A0[0]) == 102 &amp;amp;&amp;amp; (HIBYTE(v4) ^ (unsigned __int8)byte_6CC0A3) == 103 )
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    for ( j = 0; j &amp;lt;= 24; ++j )
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      sub_410E90((unsigned __int8)(byte_6CC0A0[j] ^ *((_BYTE *)&amp;amp;v4 + j % 4)));
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  result = __readfsqword(0x28u) ^ v5;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  if ( result )
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    sub_444020();
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  return result;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;经过解密发现，1233次异或混淆，然后主要字符串可以通过 调试获得 byte_6CC0A0&lt;/p&gt;
+&lt;p&gt;enc = [0x40, 0x35, 0x20, 0x56, 0x5D, 0x18, 0x22, 0x45, 0x17, 0x2F, 0x24, 0x6E, 0x62, 0x3C, 0x27, 0x54, 0x48, 0x6C, 0x24, 0x6E, 0x72, 0x3C, 0x32, 0x45, 0x5B]&lt;/p&gt;
+&lt;p&gt;再通过&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;v1 = sub_40FE60() ^ 0x98765432;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;(HIBYTE(v4)&lt;/code&gt; 和&lt;code&gt; ((unsigned __int8)v1&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;(_BYTE *)&amp;amp;v4 + j % 4))&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;这三条，可得到v1=v4且只有四个字节，然后进入循环需要过一个if&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;unsigned __int8)v1 ^ byte_6CC0A0[0]) == 102 &amp;amp;&amp;amp; (HIBYTE(v4) ^ (unsigned __int8)byte_6CC0A3) == 103&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;使得数组里面前四个字节与字符串前四个字节异或得到&lt;code&gt;flag&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;再异或回去得到原本的数组&lt;/p&gt;
+&lt;p&gt;然后解密&lt;/p&gt;
+&lt;p&gt;总结：&lt;/p&gt;
+&lt;p&gt;这一类无主函数且有多处混淆还无确定输出的题目&lt;/p&gt;
+&lt;p&gt;需要根据字符串或者函数的调用去寻找对应的解密&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>12-21 AES加密</title>
         <link>http://localhost:1313/p/12-21-2025-jiami/</link>
         <pubDate>Sun, 21 Dec 2025 00:00:00 +0000</pubDate>
@@ -1863,7 +1964,7 @@ W[7] = W[3] ⨁ W[6] = AC C1 07 BD ⨁ 82 BA 7B 26 = 2E 7B 7C 9B
         <pubDate>Wed, 17 Dec 2025 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/p/12-17/</guid>
-        <description>&lt;img src="http://localhost:1313/bj.jpg" alt="Featured image of post 12-17 解题" /&gt;&lt;p&gt;算法加密？&lt;/p&gt;
+        <description>&lt;img src="http://localhost:1313/p/12-17/bj.jpg" alt="Featured image of post 12-17 解题" /&gt;&lt;p&gt;算法加密？&lt;/p&gt;
 &lt;p&gt;![img](file:///C:\Users\14671\Documents\Tencent Files\1467149032\Image\C2C($_[ZB$_YSGV921@7)A]3WT.png)&lt;/p&gt;
 &lt;p&gt;已知_data_start__  内含字符串，v4的字符串也知道&lt;/p&gt;
 &lt;p&gt;解密思路，已知题目有&lt;code&gt;v4[i] != _data_start__[*((char *)v5 + i) - 1]&lt;/code&gt; 的判断条件&lt;/p&gt;

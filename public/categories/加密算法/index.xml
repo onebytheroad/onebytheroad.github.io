@@ -13,7 +13,7 @@
         <pubDate>Sun, 21 Dec 2025 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/p/12-21-2025-jiami/</guid>
-        <description>&lt;img src="http://localhost:1313/bj.jpg" alt="Featured image of post 12-21 AES加密" /&gt;&lt;h1 id=&#34;aes加密&#34;&gt;AES加密
+        <description>&lt;img src="http://localhost:1313/p/12-21-2025-jiami/bj.jpg" alt="Featured image of post 12-21 AES加密" /&gt;&lt;h1 id=&#34;aes加密&#34;&gt;AES加密
 &lt;/h1&gt;&lt;h2 id=&#34;1核心原理&#34;&gt;1.核心原理
 &lt;/h2&gt;&lt;p&gt;AES为分组密码，将明文分为一组一组，每次加密一组数据，直到加密完所有明文。&lt;/p&gt;
 &lt;p&gt;AES标准规范中，分组长度只能是128位，即每个分组为16个字节。&lt;/p&gt;
