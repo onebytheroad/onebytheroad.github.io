@@ -1,8 +1,8 @@
 ---
-title: 12-23 RSA
+title: 12-24 RSA
 description: 从我们相遇那一刻起，你是我白天黑夜不落的星
-date: 2025-12-23
-slug: 12-23-2025-algor
+date: 2025-12-24
+slug: 12-24-2025-algor
 image: bj.jpg
 categories:
   - 加密算法
