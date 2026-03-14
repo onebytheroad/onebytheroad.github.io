@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="ELF 文件格式 可重定位文件：包含代码和数据，用来被链接成可执行文件或共享目标文件，如：编译后的目标文件(.o)，静态链接库也可以认为是可重定位文件。 什么是可重定位 指一种代码或文件格式，允许程序在内存中被加载到不同的地址而不需要修改代码本身\n">
+<title>ELF</title>
+
+<link rel='canonical' href='http://localhost:1313/p/01-06-2026/'>
+
+<link rel="stylesheet" href="/scss/style.min.9cd4a8da08864051674ff86d447b3a65a40a4de759cdc235138dc358f04fb62c.css"><meta property='og:title' content="ELF">
+<meta property='og:description' content="ELF 文件格式 可重定位文件：包含代码和数据，用来被链接成可执行文件或共享目标文件，如：编译后的目标文件(.o)，静态链接库也可以认为是可重定位文件。 什么是可重定位 指一种代码或文件格式，允许程序在内存中被加载到不同的地址而不需要修改代码本身\n">
+<meta property='og:url' content='http://localhost:1313/p/01-06-2026/'>
+<meta property='og:site_name' content='雫的小站'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-01-06T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-01-06T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/bj.jpg' />
+<meta name="twitter:title" content="ELF">
+<meta name="twitter:description" content="ELF 文件格式 可重定位文件：包含代码和数据，用来被链接成可执行文件或共享目标文件，如：编译后的目标文件(.o)，静态链接库也可以认为是可重定位文件。 什么是可重定位 指一种代码或文件格式，允许程序在内存中被加载到不同的地址而不需要修改代码本身\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/bj.jpg' />
+        
+        <link rel="stylesheet" href="http://localhost:1313/css/custom.min.css">
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🌸</text></svg>">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "dark");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_f37ea70955b02a87.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">雫的小站</a></h1>
+            <h2 class="site-description">Don&#39;t leave me</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="http://localhost:1313/en/" >English</option>
+                                
+                                    <option value="http://localhost:1313/" selected>中文</option>
+                                
+                                    <option value="http://localhost:1313/ar/" >عربي</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#elf">ELF</a>
+      <ol>
+        <li><a href="#文件格式">文件格式</a>
+          <ol>
+            <li><a href="#什么是可重定位">什么是可重定位</a></li>
+            <li><a href="#什么是共享目标文件">什么是共享目标文件</a></li>
+          </ol>
+        </li>
+        <li><a href="#elf文件包含">ELF文件包含</a></li>
+        <li><a href="#elf文件头">ELF文件头</a></li>
+        <li><a href="#节区头表">节区头表</a></li>
+        <li><a href="#节">节</a>
+          <ol>
+            <li><a href="#text-节区">.text 节区</a></li>
+            <li><a href="#data-节区">.data 节区</a></li>
+            <li><a href="#rodata节区">.rodata节区</a></li>
+            <li><a href="#bss节区">.bss节区</a></li>
+            <li><a href="#重定位表">重定位表</a></li>
+            <li><a href="#字符串表">字符串表</a></li>
+            <li><a href="#符号表">符号表</a></li>
+          </ol>
+        </li>
+        <li><a href="#程序头表">程序头表</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/01-06-2026/">
+                
+                    <img src="/bj.jpg" loading="lazy" alt="Featured image of post ELF" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/elf/" >
+                ELF
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/01-06-2026/">ELF</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-01-06T00:00:00Z'>Jan 06, 2026</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 12 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="elf">ELF
+</h1><h2 id="文件格式">文件格式
+</h2><ul>
+<li>可重定位文件：包含代码和数据，用来被链接成可执行文件或共享目标文件，如：编译后的目标文件(.o)，静态链接库也可以认为是可重定位文件。</li>
+</ul>
+<h3 id="什么是可重定位">什么是可重定位
+</h3><p>指一种代码或文件格式，允许程序在内存中被加载到不同的地址而不需要修改代码本身</p>
+<p>可重定位代码是在程序加载时生成绝对地址的代码，重定位由操作系统管理，确保程序可以在 不同的内存地址运行</p>
+<p>动态重定位和静态重定位是两种主要的重定位方式。动态重定位在程序运行时进行，而静态重定位在程序加载时完成</p>
+<p>可重定位文件通常是elf格式的二进制文件，包含了程序的可重定位信息</p>
+<ul>
+<li>
+<p>可执行文件：可直接运行的程序，包含代码、数据、入口点地址等。</p>
+</li>
+<li>
+<p>共享目标文件：包含可链接的代码和数据，主要有两个作用：1）与其他可重定位文件或共享目标文件链接生成可执行文件；2）动态连接器在运行可执行文件时加载动态库文件，如：动态链接库(.so)。</p>
+</li>
+</ul>
+<h3 id="什么是共享目标文件">什么是共享目标文件
+</h3><p>一种特殊的目标文件，包含可以被多个程序共享的代码和数据。多个进程都可以共享这些资源。</p>
+<p>主要优点是减少了内存占用</p>
+<ul>
+<li>核心转储文件 ：当程序意外崩溃时，用于调试分析的内存镜像，如：core-dump文件。</li>
+</ul>
+<h2 id="elf文件包含">ELF文件包含
+</h2><p><img src="https://i-blog.csdnimg.cn/img_convert/c5dfe562dff72b86098cf95aa05f4e21.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片"
+	
+	
+></p>
+<p>链接视图服务于编译/链接阶段，由ELF文件头，节，节区头表组成，以section为单位，一般是可重定位的目标文件</p>
+<p>执行视图服务于程序加载/执行阶段，由ELF文件头，程序头表，段和截取头表（可通过strip等操作取出）组成，以Segment为单位，一般是执行文件或共享库</p>
+<h2 id="elf文件头">ELF文件头
+</h2><p>ELF文件头描述文件类型，目标机器架构，入口地址，投标位置等信息，</p>
+<p>在标准头文件&lt;elf.h&gt;中定义了elf文件格式的所有数据结构，常量，类型和宏</p>
+<p>头文件定义了特定大小的数据类型，确保跨平台的一致性</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/* Type for a 16-bit quantity.  */
+</span></span><span class="line"><span class="cl">typedef uint16_t Elf32_Half;
+</span></span><span class="line"><span class="cl">typedef uint16_t Elf64_Half;
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">/* Types for signed and unsigned 32-bit quantities.  */
+</span></span><span class="line"><span class="cl">typedef uint32_t Elf32_Word;
+</span></span><span class="line"><span class="cl">typedef	int32_t  Elf32_Sword;
+</span></span><span class="line"><span class="cl">typedef uint32_t Elf64_Word;
+</span></span><span class="line"><span class="cl">typedef	int32_t  Elf64_Sword;
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">/* Types for signed and unsigned 64-bit quantities.  */
+</span></span><span class="line"><span class="cl">typedef uint64_t Elf32_Xword;
+</span></span><span class="line"><span class="cl">typedef	int64_t  Elf32_Sxword;
+</span></span><span class="line"><span class="cl">typedef uint64_t Elf64_Xword;
+</span></span><span class="line"><span class="cl">typedef	int64_t  Elf64_Sxword;
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">/* Type of addresses.  */
+</span></span><span class="line"><span class="cl">typedef uint32_t Elf32_Addr;
+</span></span><span class="line"><span class="cl">typedef uint64_t Elf64_Addr;
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">/* Type of file offsets.  */
+</span></span><span class="line"><span class="cl">typedef uint32_t Elf32_Off;
+</span></span><span class="line"><span class="cl">typedef uint64_t Elf64_Off;
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">/* Type for section indices, which are 16-bit quantities.  */
+</span></span><span class="line"><span class="cl">typedef uint16_t Elf32_Section;
+</span></span><span class="line"><span class="cl">typedef uint16_t Elf64_Section;
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">/* Type for version symbol information.  */
+</span></span><span class="line"><span class="cl">typedef Elf32_Half Elf32_Versym;
+</span></span><span class="line"><span class="cl">typedef Elf64_Half Elf64_Versym;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><font size=3 color="red">在64位系统和32位系统中elf文件的关键区别在于地址和偏移大小的差异，以及一些字段大小的差异，其基本结构是一致的,</font>所以我们以64位系统的elf头来进行讲解。在64位系统中elf头固定为64个字节，elf头结构如下：</p>
+<p>利用这个数据结构可以索引到ELF文件的全部信息</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/* The ELF file header.  This appears at the start of every ELF file.  */
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">#define EI_NIDENT (16)
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">typedef struct
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">  unsigned char	e_ident[EI_NIDENT];	/* Magic number and other info */
+</span></span><span class="line"><span class="cl">  Elf64_Half	e_type;			/* Object file type */
+</span></span><span class="line"><span class="cl">  Elf64_Half	e_machine;		/* Architecture */
+</span></span><span class="line"><span class="cl">  Elf64_Word	e_version;		/* Object file version */
+</span></span><span class="line"><span class="cl">  Elf64_Addr	e_entry;		/* Entry point virtual address */
+</span></span><span class="line"><span class="cl">  Elf64_Off	e_phoff;		/* Program header table file offset */
+</span></span><span class="line"><span class="cl">  Elf64_Off	e_shoff;		/* Section header table file offset */
+</span></span><span class="line"><span class="cl">  Elf64_Word	e_flags;		/* Processor-specific flags */
+</span></span><span class="line"><span class="cl">  Elf64_Half	e_ehsize;		/* ELF header size in bytes */
+</span></span><span class="line"><span class="cl">  Elf64_Half	e_phentsize;		/* Program header table entry size */
+</span></span><span class="line"><span class="cl">  Elf64_Half	e_phnum;		/* Program header table entry count */
+</span></span><span class="line"><span class="cl">  Elf64_Half	e_shentsize;		/* Section header table entry size */
+</span></span><span class="line"><span class="cl">  Elf64_Half	e_shnum;		/* Section header table entry count */
+</span></span><span class="line"><span class="cl">  Elf64_Half	e_shstrndx;		/* Section header string table index */
+</span></span><span class="line"><span class="cl">} Elf64_Ehdr;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>readelf 工具查看目标文件 ELF文件头，看到.o文件的类型为ET_REL（可重定位文件），程序</p>
+<p>入口地址为0，且程序表头的大小和数量都为0，与链接视图对应</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ readelf -h elfExample.o
+</span></span><span class="line"><span class="cl">ELF Header:
+</span></span><span class="line"><span class="cl">  Magic:   7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00 
+</span></span><span class="line"><span class="cl">  Class:                             ELF64
+</span></span><span class="line"><span class="cl">  Data:                              2&#39;s complement, little endian
+</span></span><span class="line"><span class="cl">  Version:                           1 (current)
+</span></span><span class="line"><span class="cl">  OS/ABI:                            UNIX - System V
+</span></span><span class="line"><span class="cl">  ABI Version:                       0
+</span></span><span class="line"><span class="cl">  Type:                              REL (Relocatable file)
+</span></span><span class="line"><span class="cl">  Machine:                           Advanced Micro Devices X86-64
+</span></span><span class="line"><span class="cl">  Version:                           0x1
+</span></span><span class="line"><span class="cl">  Entry point address:               0x0
+</span></span><span class="line"><span class="cl">  Start of program headers:          0 (bytes into file)
+</span></span><span class="line"><span class="cl">  Start of section headers:          1304 (bytes into file)
+</span></span><span class="line"><span class="cl">  Flags:                             0x0
+</span></span><span class="line"><span class="cl">  Size of this header:               64 (bytes)
+</span></span><span class="line"><span class="cl">  Size of program headers:           0 (bytes)
+</span></span><span class="line"><span class="cl">  Number of program headers:         0
+</span></span><span class="line"><span class="cl">  Size of section headers:           64 (bytes)
+</span></span><span class="line"><span class="cl">  Number of section headers:         14
+</span></span><span class="line"><span class="cl">  Section header string table index: 11
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上面的结构整理为下面的表格：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>e_ident[16]</th>
+          <th>ELF 文件标识  <br />Magic: 7f  45  4c  46  02  01  01  00  00  00  00  00  00  00  00  00  <br />7f  45  4c  46: ELF魔数（&lsquo;DEL&rsquo;   &lsquo;E&rsquo;   &lsquo;L&rsquo;   &lsquo;F&rsquo;）  <br />02: 目标平台文件类型(1=32位; 2=64位)  <br />01: 目标平台字节序(1=小端序; 2= 大端序)  <br />01：ELF标识版本(当前为1)  <br />00：操作系统ABI(0=System V)  <br />00：ABI版本  <br />剩余字节：填充字节(全0)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>e_type</td>
+          <td>目标文件类型  <br />ET_REL:值为0x0001，可重定位文件，如.a文件  <br />ET_EXEC:值为0x0002，可执行文件  <br />ET_DYN:值为0x0003，共享目标文件，如.so文件  <br />ET_CORE:值为0x0004，核心转存储文件，如core-dump文件</td>
+      </tr>
+      <tr>
+          <td>e_machine</td>
+          <td>目标CPU架构EM_X86_64: 值为0x003E，<br />X86_64 架构<code>EM_ARM</code>: 值为0x0040，<br />ARM 架构: 值为0x0040，ARM 架构</td>
+      </tr>
+      <tr>
+          <td>e_version</td>
+          <td>ELF文件格式版本号<br /><code>EV_NONE</code> (0)：无效版本<br /><code>EV_CURRENT</code> (1)：当前版本</td>
+      </tr>
+      <tr>
+          <td>e_entry</td>
+          <td>程序开始执行的虚拟地址,<br />目标文件：总是0</td>
+      </tr>
+      <tr>
+          <td>e_phoff</td>
+          <td>程序头表偏移：程序头表在ELF文件中偏移的字节数<br />紧接这ELF头之后，所以本例为64<br />对于目标文件没有程序头表，所以总是为0</td>
+      </tr>
+      <tr>
+          <td>e_shoff</td>
+          <td>节区头表偏移：节区头表在ELF文件中偏移的字节数</td>
+      </tr>
+      <tr>
+          <td>e_flags</td>
+          <td>处理器特定的标记：与具体的处理其相关</td>
+      </tr>
+      <tr>
+          <td>e_ehsize</td>
+          <td>ELF头大小：64位ELF文件固定为64字节</td>
+      </tr>
+      <tr>
+          <td>e_phentsize</td>
+          <td>程序头表每个条目大小：64位ELF文件，固定位56字节</td>
+      </tr>
+      <tr>
+          <td>e_phnum</td>
+          <td>程序头表条目数量</td>
+      </tr>
+      <tr>
+          <td>e_shentsize</td>
+          <td>节区头表每个条目的大小：64位ELF文件，固定为64字节</td>
+      </tr>
+      <tr>
+          <td>e_shnum</td>
+          <td>节区头表条目数量</td>
+      </tr>
+      <tr>
+          <td>e_shstrndx</td>
+          <td>节区名称字符串表节区的节区索引值</td>
+      </tr>
+  </tbody>
+</table></div>
+<h2 id="节区头表">节区头表
+</h2><p>节区头表包含了ELF文件中各个节区（Section）的详细信息，如节区名称、节区大小、节区偏移、节区属性等，ELF头中的<code>e_shoff</code>字段指向节区头表的起始位置。</p>
+<p>节区头表的结构：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">typedef struct
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">  Elf64_Word	sh_name;		/* Section name (string tbl index) */
+</span></span><span class="line"><span class="cl">  Elf64_Word	sh_type;		/* Section type */
+</span></span><span class="line"><span class="cl">  Elf64_Xword	sh_flags;		/* Section flags */
+</span></span><span class="line"><span class="cl">  Elf64_Addr	sh_addr;		/* Section virtual addr at execution */
+</span></span><span class="line"><span class="cl">  Elf64_Off	sh_offset;		/* Section file offset */
+</span></span><span class="line"><span class="cl">  Elf64_Xword	sh_size;		/* Section size in bytes */
+</span></span><span class="line"><span class="cl">  Elf64_Word	sh_link;		/* Link to another section */
+</span></span><span class="line"><span class="cl">  Elf64_Word	sh_info;		/* Additional section information */
+</span></span><span class="line"><span class="cl">  Elf64_Xword	sh_addralign;		/* Section alignment */
+</span></span><span class="line"><span class="cl">  Elf64_Xword	sh_entsize;		/* Entry size if section holds table */
+</span></span><span class="line"><span class="cl">} Elf64_Shdr;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>sh_name</th>
+          <th>节区名称索引，是节区头部字符串表节区的索引。</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>sh_type</td>
+          <td>节区类型<br/><br/>SHT_NULL：无效节区；<br/><br/>SHT_PROGBITS：程序代码节区/数据节区/数据节区；SHT_SYMTAB：符号表；<br/><br/>SHT_STRTAB：字符串表；<br/><br/>SHT_RELA：带addend的重定位的节区；<br/><br/>SHT_HASH：符号哈希表；<br/><br/>SHT_DYNAMIC：动态链接信息；<br/><br/>SHT_NOTE：注释信息；<br/><br/>SHT_NOBITS：该节区不占用文件空间（如.bss）；<br/><br/>SHT_REL：无addend的的重定位条目；<br/><br/>SHT_DYNSYM：动态链接符号表。</td>
+      </tr>
+      <tr>
+          <td>sh_flags</td>
+          <td>节区标志<br/><br/>SHF_WRITE：可写；<br/><br/>SHF_ALLOC：在内存中分配空间；<br/><br/>SHF_EXECINSTR：包含可执行指令；<br/><br/>SHF_MERGE：可合并数据；<br/><br/>SHF_STRINGS：包含以null结尾的字符串；<br/><br/>SHF_INFO_LINK：sh_info 包含节区索引；<br/><br/>SHF_LINK_ORDER：特殊链接顺序；<br/><br/>SHF_OS_NONCONFORMING：操作系统特定；<br/><br/>SHF_GROUP：节区组；<br/><br/>SHF_TLS：线程本地存储。</td>
+      </tr>
+      <tr>
+          <td>sh_addr</td>
+          <td>节区加载到内存中的虚拟地址，0表示该节区不会被加载到内存。</td>
+      </tr>
+      <tr>
+          <td>sh_offset</td>
+          <td>节区内容在文件中的偏移。如果节区类型是SH_NOBITS（如.bss），表示该节区不占用文件空间，该值无意义。</td>
+      </tr>
+      <tr>
+          <td>sh_size</td>
+          <td>节区大小。如果节区类型是SH_NOBITS（如.bss），内存空间大小 &gt; 文件空间大小（为0）</td>
+      </tr>
+      <tr>
+          <td>sh_link</td>
+          <td>节区的链接信息，依赖于节区类型，如果节区类型与链接相关（不论是动态链接或者是静态链接），比如重定位节区、符号表节区，那么这两个成员是有意义的，对于其他类型的节区是没有意义的。</td>
+      </tr>
+      <tr>
+          <td>sh_info</td>
+          <td>同上</td>
+      </tr>
+      <tr>
+          <td>sh_addralign</td>
+          <td>节区地址的对齐要求，代码节区通常对齐到16字节。</td>
+      </tr>
+      <tr>
+          <td>sh_entsize</td>
+          <td>条目大小，对于表类型节区（如符号表），它的每个条目大小固定，sh_entsize指定了每个条目大小的字节数。</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>readelf查看节区表</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ readelf -SW elfExample.o 
+</span></span><span class="line"><span class="cl">There are 14 section headers, starting at offset 0x518:
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">Section Headers:
+</span></span><span class="line"><span class="cl">  [Nr] Name              Type            Address          Off    Size   ES Flg Lk Inf Al
+</span></span><span class="line"><span class="cl">  [ 0]                   NULL            0000000000000000 000000 000000 00      0   0  0
+</span></span><span class="line"><span class="cl">  [ 1] .text             PROGBITS        0000000000000000 000040 00006e 00  AX  0   0  1
+</span></span><span class="line"><span class="cl">  [ 2] .rela.text        RELA            0000000000000000 000378 0000f0 18   I 12   1  8
+</span></span><span class="line"><span class="cl">  [ 3] .data             PROGBITS        0000000000000000 0000b0 000010 00  WA  0   0  8
+</span></span><span class="line"><span class="cl">  [ 4] .rela.data        RELA            0000000000000000 000468 000018 18   I 12   3  8
+</span></span><span class="line"><span class="cl">  [ 5] .bss              NOBITS          0000000000000000 0000c0 000004 00  WA  0   0  4
+</span></span><span class="line"><span class="cl">  [ 6] .rodata           PROGBITS        0000000000000000 0000c0 000039 00   A  0   0  1
+</span></span><span class="line"><span class="cl">  [ 7] .comment          PROGBITS        0000000000000000 0000f9 000036 01  MS  0   0  1
+</span></span><span class="line"><span class="cl">  [ 8] .note.GNU-stack   PROGBITS        0000000000000000 00012f 000000 00      0   0  1
+</span></span><span class="line"><span class="cl">  [ 9] .eh_frame         PROGBITS        0000000000000000 000130 000058 00   A  0   0  8
+</span></span><span class="line"><span class="cl">  [10] .rela.eh_frame    RELA            0000000000000000 000480 000030 18   I 12   9  8
+</span></span><span class="line"><span class="cl">  [11] .shstrtab         STRTAB          0000000000000000 0004b0 000066 00      0   0  1
+</span></span><span class="line"><span class="cl">  [12] .symtab           SYMTAB          0000000000000000 000188 000198 18     13  11  8
+</span></span><span class="line"><span class="cl">  [13] .strtab           STRTAB          0000000000000000 000320 000058 00      0   0  1
+</span></span><span class="line"><span class="cl">Key to Flags:
+</span></span><span class="line"><span class="cl">  W (write), A (alloc), X (execute), M (merge), S (strings), l (large)
+</span></span><span class="line"><span class="cl">  I (info), L (link order), G (group), T (TLS), E (exclude), x (unknown)
+</span></span><span class="line"><span class="cl">  O (extra OS processing required) o (OS specific), p (processor specific)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>elfExample.o节区表是以“Elf64_Shdr”结构体为元素的数组，每个“Elf64_Shdr”结构体对应一个节区，数组共有14个元素，其中第一个元素类型是“NULL”（无效段描述符），所以elfExample.o共有13个效节区。elfExample.o各字段与“Elf64_Shdr”结构体成员的含义一致。</p>
+<p>其中，Address是程序加载到内存的虚拟地址，在目标文件中虚拟地址空间尚未分配，值全是0，链接后被自动替换为实际的虚拟地址。</p>
+<h2 id="节">节
+</h2><h3 id="text-节区">.text 节区
+</h3><p>.text节区是存储可执行代码，节区类型是SHT_PROGBITS，</p>
+<p>标记为SHF_ALLOC +SHF_EXECINSTR，属性为只读，</p>
+<p>使用objdump工具对elfExample.o的.text节区反汇编，可以看到函数myPrint和main</p>
+<h3 id="data-节区">.data 节区
+</h3><p>.data节区是存储已初始化的全局变量和静态变量，节区类型是SHT_PROGBITS，标记为SHF_ALLOC +SHF_WRITE，属性为可读写，</p>
+<p>前面ELF文件的节区表中显示.data节区的size为0x10，</p>
+<p>源码elfExample.c中包含一个常量指针const_str（64位系统占8个字节）、一个已初始化全局变量g_initVar（int类型占4个字节）和一个已初始化的静态变量s_initVar（int类型占4个字节，所以.data节区的大小=4+4+8=16，与节区表中的大小一致。</p>
+<h3 id="rodata节区">.rodata节区
+</h3><p>.rodata节区存放程序的只读数据，一般是只读变量（Const修饰的变量）和字符串常量。查看.rodata节区的内容，可以看到程序中所有字符串常量的完整内存布局，如：二进制“454c4620 4578616d 706c6500”对应的是&quot;ELF Example&quot;+&rsquo;\0&rsquo;；“636f6e73 745f7374 723a2025 730a00”对应的是“const_str: %s\n”+&rsquo;\0&rsquo;，其余字段类似。</p>
+<h3 id="bss节区">.bss节区
+</h3><p>.bss节区存放未初始化的或初始化为0的全局变量和静态变量（如果全局变量或静态变量被初始化为0，编译器会将其放在.bss节区，节省文件空间），节区类型和属性与.data节区相同。</p>
+<p>ELF文件的节区表中显示.bss节区的size为0x4，这与源码elfExample.c中g_uninitVar（int类型占4个字节）和s_uninitVar（int类型占4个字节）共8个字节不符。使用objdump查看符号表，可以看到s_uninitVar存放在目标文件的.bss节区，.g_uninitVar没有被放在任节区，只是一个未定义的“COMMON符号&quot;，这与具体的编译器相关，有些编译器会将未初始化的全局符号放在目标文件的.bss段，有些则仅预留一个未定义符号，等到最终链接成可执行文件时再在分配空间。</p>
+<h3 id="重定位表">重定位表
+</h3><p>在节区表中有.rele.text、.rele.data和.rela.eh_frame节区，他们的类型都是SHT_RELA，即重定位表。链接器在处理目标文件时，需要对目标文件中某些部位进行重定位，如elfExample.c中对printf函数的调用。</p>
+<p>一个重定位表同时也是ELF中的一个节区，&ldquo;Lk&rdquo;（也就是&quot;sh_link&quot;）代表符号表的下标，&ldquo;Inf&rdquo;（也就是&quot;sh_info&quot;）代表它作用于哪个节区。如:&quot;.rele.text&quot;作用于节区text,&quot;.rele.text&quot;的&quot;Inf&quot;为 1，所以&quot;.text&quot;的下标为1 。</p>
+<h3 id="字符串表">字符串表
+</h3><p>ELF文件中有很多字符串，比如段名，变量名等，但字符串的长度不固定，一种常见做法是把字符串集中起来存放到一个表中，然后使用字符串在表中的偏移来引用字符串，&rsquo;\0&rsquo;作为字符串结束符。</p>
+<p>字符串表在ELF文件中是以节区的形式保存，&quot;.shstrtab&quot;是节区名称字符串表节区，用来保存节区名称的字符串。&quot;.strtab&quot;是字符串表节区，用来保存普通的字符串。</p>
+<p>通过下面的流程可以在&quot;.shstrtab&quot;中获取到节区名称：</p>
+<p><img src="https://i-blog.csdnimg.cn/img_convert/750c0c27171981b998d40598e0a1cafd.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片"
+	
+	
+></p>
+<h3 id="符号表">符号表
+</h3><p>符号表中存储了程序中的各种符号及其对应的信息：函数名称、全局变量名称、局部变量名称、标签等。符号表的作用是：1）在链接阶段，链接器需要将不同的目标文件（.o）中的符号引用和符号定义进行链接匹配；2）调试器也依赖于符号表中的信息来映射源代码中的变量和函数到执行文件中的地址。符号表的类型：&quot;.symtab&quot;（符号表）和&quot;.dynsym&quot;(动态符号表，可执行文件和共享库中存在，用于运行时解析符号)。</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>字段</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>st_name</td>
+          <td>符号名称在字符串表(.strtab)中的字节偏移（与前面获取节区名称的流程相似）</td>
+      </tr>
+      <tr>
+          <td>st_info</td>
+          <td>符号类型（低4位）<br/>STT_NOTYPE:值为0，未知类型符号<br/>STT_OBJECT:值为1，数据对象，如变量、数组等<br/>STT_FUNC:值为2，函数或其他可执行代码<br/>STT_SECTION:值为3，该符号表示一个段<br/>STT_FILE:值位4，该符号表示文件名<br/>绑定信息（高28位）<br/>STB_LOCAL:值为0，局部符号，目标文件外部不可<br/>STB_GLOBAL:值为1，全局符号，外部可见<br/>STB_WEAK:值为2，弱引用</td>
+      </tr>
+      <tr>
+          <td>st_other</td>
+          <td>该成员暂未使用，值为0</td>
+      </tr>
+      <tr>
+          <td>st_shndx</td>
+          <td>符号所在的节，如果符号定义在本目标文件中，那么这个成员表示符号所在的段表中的下标</td>
+      </tr>
+      <tr>
+          <td>st_value</td>
+          <td>符号值，通常是符号的虚拟地址，或符号在段中的偏移</td>
+      </tr>
+      <tr>
+          <td>st_size</td>
+          <td>符号大小</td>
+      </tr>
+  </tbody>
+</table></div>
+<h2 id="程序头表">程序头表
+</h2><p>程序头表描述了段的结构，它指导操作系统将多个段加载到虚拟内存空间。</p>
+<p>可以看到，程序头表中包含了9个段（Segment），段的结构如下：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>字段</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Type</td>
+          <td>段类型<br/><br/>PT_PHDR:描述程序头表自身的位置<br/><br/>PT_LOAD:可加载到内存的段，包含代码段、数据段<br/><br/>PT_DYNAMIC:包含动态链接所需的信息<br/><br/>PT_NODE:辅助信息<br/><br/>PT_INTERP:指定动态链接器的路径<br/><br/>PT_GNU_STACK:控制栈的执行权限<br/><br/>PT_GNU_RELRO:指定重定位后只读的区域</td>
+      </tr>
+      <tr>
+          <td>Offset</td>
+          <td>段在ELF文件的偏移</td>
+      </tr>
+      <tr>
+          <td>VirtAddr</td>
+          <td>段在内存中的起始地址</td>
+      </tr>
+      <tr>
+          <td>PhysAddr</td>
+          <td>段的物理内存地址（在需要物理地址的系统中才需要）</td>
+      </tr>
+      <tr>
+          <td>FileSize</td>
+          <td>段在文件中所占的字节数</td>
+      </tr>
+      <tr>
+          <td>MemSize</td>
+          <td>段在内存中所占的字节数</td>
+      </tr>
+      <tr>
+          <td>Flags</td>
+          <td>段权限<br />PF_X:可执行权限<br />PF_W:可写权限<br />PF_R:可读权限<br />PF_MASKPROC:处理器架构特定的权限标记</td>
+      </tr>
+      <tr>
+          <td>Align</td>
+          <td>段在内存中的对齐要求</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>具有相同属性的section会被链接器归类到一个Segment</p>
+<p><img src="https://i-blog.csdnimg.cn/img_convert/37c22f69eca256f6f8c941881d02807c.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片"
+	
+	
+></p>
+<p>一般不会过度区分节和段，基本都称之为段</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <div class="disqus-container">
+    
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2026 Example Person
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.32.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        
+        
+<script src="https://cdn.jsdelivr.net/gh/ZhaoUncle/image@main/static/mouse-click.js"></script>
+<canvas width="1777" height="841" style="position: fixed; left: 0px; top: 0px; z-index: 2147483647; pointer-events: none;"></canvas>
+
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<a href="#" id="back-to-top" title="返回顶部"></a>
+
+
+<style>
+  #back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 55px;
+    width: 55px;
+    height: 55px;
+    border-radius: 7px;
+    background-color: rgba(64, 158, 255, 0.5);
+    box-shadow: var(--shadow-l2);
+    font-size: 30px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+  }
+
+  #back-to-top:before {
+    content: ' ';
+    display: inline-block;
+    position: relative;
+    top: 0;
+    transform: rotate(135deg);
+    height: 10px;
+    width: 10px;
+    border-width: 0 0 2px 2px;
+    border-color: var(--back-to-top-color);
+    border-style: solid;
+  }
+
+  #back-to-top:hover:before {
+    border-color: #2674e0;
+  }
+
+   
+  @media screen and (max-width: 768px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      font-size: 10px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1024px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 40px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1280px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 55px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1536px) {
+    #back-to-top {
+      visibility: hidden;
+    }
+  }
+</style>
+
+
+<script>
+  function backToTop() {
+    document.documentElement.scrollIntoView({
+      behavior: 'smooth',
+    })
+  }
+
+  window.onload = function () {
+    let scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop
+    let totopBtn = this.document.getElementById('back-to-top')
+    if (scrollTop > 0) {
+      totopBtn.style.display = 'inline'
+    } else {
+      totopBtn.style.display = 'none'
+    }
+  }
+
+  window.onscroll = function () {
+    let scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop
+    let totopBtn = this.document.getElementById('back-to-top')
+    if (scrollTop < 200) {
+      totopBtn.style.display = 'none'
+    } else {
+      totopBtn.style.display = 'inline'
+      totopBtn.addEventListener('click', backToTop, false)
+    }
+  }
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Ukenn2112/UkennWeb@3.0/index/web.js">
+
+</script>
+
+
+
+        
+        <script>
+        
+        function initGlobalMusicPlayer() {
+            if (!document.getElementById('global-music-player')) {
+                const playerHTML = `
+                    <div id="global-music-player" style="position: fixed; bottom: 20px; right: 20px; z-index: 99999; background: red; border: 3px solid blue; padding: 15px;">
+                        <audio id="bgMusic" loop>
+                            <source src="/music/background.mp3" type="audio/mpeg">
+                        </audio>
+                        <button id="musicToggle" style="background: green; color: white; border: none; padding: 15px 20px; border-radius: 50%; cursor: pointer; font-size: 20px;">
+                            🎵 播放
+                        </button>
+                        <div id="musicStatus" style="margin-top: 10px; font-size: 14px; color: black; font-weight: bold;">
+                            点击播放
+                        </div>
+                    </div>
+                `;
+                document.body.insertAdjacentHTML('beforeend', playerHTML);
+                
+                
+                const audio = document.getElementById('bgMusic');
+                const toggleBtn = document.getElementById('musicToggle');
+                const status = document.getElementById('musicStatus');
+                
+                
+                const savedState = localStorage.getItem('globalMusicState');
+                const savedTime = localStorage.getItem('globalMusicTime');
+                
+                
+                if (savedTime) {
+                    audio.currentTime = parseFloat(savedTime);
+                }
+                
+                function updateButtonState(isPlaying) {
+                    if (isPlaying) {
+                        status.textContent = '🎶 播放中...';
+                        toggleBtn.innerHTML = '⏸ 暂停';
+                        toggleBtn.style.background = 'orange';
+                    } else {
+                        status.textContent = '⏹ 已暂停';
+                        toggleBtn.innerHTML = '🎵 播放';
+                        toggleBtn.style.background = 'green';
+                    }
+                }
+                
+                
+                function tryAutoResume() {
+                    const savedState = localStorage.getItem('globalMusicState');
+                    if (savedState === 'playing') {
+                        
+                        audio.muted = true;
+                        audio.play().then(() => {
+                            audio.muted = false;
+                            updateButtonState(true);
+                        }).catch(error => {
+                            
+                            status.textContent = '点击恢复播放';
+                            updateButtonState(false);
+                        });
+                    }
+                }
+                
+                
+                setTimeout(tryAutoResume, 1000);
+                
+                
+                let userInteracted = false;
+                const interactionEvents = ['click', 'touchstart', 'keydown', 'scroll'];
+                
+                interactionEvents.forEach(eventType => {
+                    document.addEventListener(eventType, function() {
+                        if (!userInteracted) {
+                            userInteracted = true;
+                            const savedState = localStorage.getItem('globalMusicState');
+                            if (savedState === 'playing' && audio.paused) {
+                                audio.play().then(() => {
+                                    updateButtonState(true);
+                                });
+                            }
+                        }
+                    }, { once: true, passive: true });
+                });
+                
+                toggleBtn.addEventListener('click', function() {
+                    userInteracted = true; 
+                    if (audio.paused) {
+                        audio.play().then(() => {
+                            updateButtonState(true);
+                            localStorage.setItem('globalMusicState', 'playing');
+                        }).catch(error => {
+                            status.textContent = '❌ 播放失败';
+                        });
+                    } else {
+                        audio.pause();
+                        updateButtonState(false);
+                        localStorage.setItem('globalMusicState', 'paused');
+                    }
+                });
+                
+                
+                audio.addEventListener('timeupdate', function() {
+                    localStorage.setItem('globalMusicTime', audio.currentTime);
+                });
+                
+                
+                window.addEventListener('beforeunload', function() {
+                    localStorage.setItem('globalMusicTime', audio.currentTime);
+                    localStorage.setItem('globalMusicState', audio.paused ? 'paused' : 'playing');
+                });
+
+                
+                audio.addEventListener('loadeddata', function() {
+                    console.log('音频加载完成，尝试恢复播放状态');
+                });
+            }
+        }
+
+        
+        function initSakuraEffect() {
+            if (!document.getElementById('sakura-container')) {
+                const sakuraHTML = `
+                    <div id="sakura-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998; overflow: hidden;"></div>
+                `;
+                document.body.insertAdjacentHTML('beforeend', sakuraHTML);
+                
+                
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes sakuraFall {
+                        0% { transform: translateY(-100px) rotate(0deg); opacity: 0.8; }
+                        100% { transform: translateY(100vh) rotate(180deg); opacity: 0; }
+                    }
+                    .sakura { position: absolute; top: -50px; font-size: 18px; animation: sakuraFall linear forwards; user-select: none; pointer-events: none; }
+                `;
+                document.head.appendChild(style);
+                
+                let sakuraCount = 0;
+                const maxSakuras = 10;
+                
+                function createSakura() {
+                    if (sakuraCount >= maxSakuras) return;
+                    
+                    const sakura = document.createElement('div');
+                    sakura.className = 'sakura';
+                    sakura.innerHTML = '🌸';
+                    sakura.style.left = Math.random() * 100 + 'vw';
+                    sakura.style.fontSize = (16 + Math.random() * 16) + 'px';
+                    sakura.style.animationDuration = (10 + Math.random() * 10) + 's';
+                    sakura.style.animationDelay = (Math.random() * 3) + 's';
+                    
+                    document.getElementById('sakura-container').appendChild(sakura);
+                    sakuraCount++;
+                    
+                    setTimeout(() => {
+                        if (sakura.parentNode) {
+                            sakura.remove();
+                            sakuraCount--;
+                        }
+                    }, 20000);
+                }
+                
+                setTimeout(() => {
+                    setInterval(createSakura, 1200);
+                    for (let i = 0; i < 5; i++) {
+                        setTimeout(createSakura, i * 800);
+                    }
+                }, 2000);
+            }
+        }
+
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            initGlobalMusicPlayer();
+            initSakuraEffect();
+        });
+
+        
+        setTimeout(function() {
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/gh/hustcc/canvas-nest.js@1.0.1/dist/canvas-nest.min.js';
+            script.async = true;
+            document.body.appendChild(script);
+        }, 1500);
+        </script>
+    </body>
+</html>
