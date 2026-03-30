@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>算法 on 雫的小站</title>
+        <link>http://localhost:1313/tags/%E7%AE%97%E6%B3%95/</link>
+        <description>Recent content in 算法 on 雫的小站</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>Example Person</copyright>
+        <lastBuildDate>Sat, 28 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>SM4</title>
+        <link>http://localhost:1313/p/sm4/</link>
+        <pubDate>Sat, 28 Mar 2026 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/sm4/</guid>
+        <description>&lt;h2 id=&#34;简介&#34;&gt;简介
+&lt;/h2&gt;&lt;p&gt;SM4是一种分组密码算法，其分组长度为128位（即16字节**，**4字），密钥长度也为128位（即16字节，4字）。其加解密过程采用了32轮迭代机制，每一轮需要一个轮密钥（与AES类似）。&lt;/p&gt;
+&lt;h2 id=&#34;加密过程&#34;&gt;加密过程
+&lt;/h2&gt;&lt;p&gt;SM4的分组长度为4字，因此，其输入是4字的明文 (X0,X1,X2,X3) （其中Xi表示一个32位的字），经过加密后，得到的输出是4字的密文 (Y0,Y1,Y2,Y3) （其中Yi表示一个32位的字）。&lt;/p&gt;
+&lt;p&gt;加密过程分为两步，由&lt;strong&gt;32次轮迭代&lt;/strong&gt;和&lt;strong&gt;1次反序变换&lt;/strong&gt;组成。&lt;/p&gt;
+&lt;h3 id=&#34;32次轮迭代&#34;&gt;32次轮迭代
+&lt;/h3&gt;&lt;p&gt;先对这个4字明文进行32次轮迭代。每一轮轮迭代都需要一个1字的轮密钥，总共需要32个轮密钥&lt;/p&gt;
+&lt;h4 id=&#34;轮函数f&#34;&gt;轮函数&lt;em&gt;F&lt;/em&gt;
+&lt;/h4&gt;&lt;p&gt;轮函数F接收五个1字的参数，前四个字为明文字或者迭代中间值，最后一个参数为1字的轮密钥。F的输出结果为1字&lt;/p&gt;
+&lt;h4 id=&#34;合成置换t&#34;&gt;合成置换T
+&lt;/h4&gt;&lt;p&gt;T 接收1字的输入，得到1字的输出&lt;/p&gt;
+&lt;p&gt;包含了非线性变换tau 和线性变换L 两个过程&lt;/p&gt;
+&lt;h5 id=&#34;非线性变换&#34;&gt;非线性变换
+&lt;/h5&gt;&lt;p&gt;非线性变换就是接受1字的输入，分成四个字节，对其进行S盒替换，得到输出结果&lt;/p&gt;
+&lt;p&gt;具体代换方法与AES中的字节代替相同。首先把一个字节的8位二进制写成2位十六进制，然后以十六进制的第一个数字为行，第二个数字为列，在S盒表中查找对应的数字。这样就可以把一个字节代替成另一个字节。&lt;/p&gt;
+&lt;h5 id=&#34;线性变换&#34;&gt;线性变换
+&lt;/h5&gt;&lt;p&gt;线性变换接收1字的 B 作为输入，经过运算，得出1字的输出 C 。&lt;/p&gt;
+&lt;p&gt;经过非线性变换和线性变换，就完成了一次轮迭代，计算出了下一个字的内容。&lt;/p&gt;
+&lt;h3 id=&#34;密钥拓展算法&#34;&gt;密钥拓展算法
+&lt;/h3&gt;</description>
+        </item>
+        
+    </channel>
+</rss>
